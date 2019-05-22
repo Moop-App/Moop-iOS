@@ -1,24 +1,179 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="az9-91-UXy">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--현재 상영-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CurrentMovieViewController" customModule="Moop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="spo-49-roq">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="C1i-SC-L7Z">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="8"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="spo-49-roq" secondAttribute="bottom" id="Ckw-aF-Rg7"/>
+                            <constraint firstItem="spo-49-roq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="L8i-HP-4cS"/>
+                            <constraint firstAttribute="trailing" secondItem="spo-49-roq" secondAttribute="trailing" id="lgO-U1-ELl"/>
+                            <constraint firstItem="spo-49-roq" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="oc5-iD-oyv"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="현재 상영" id="nck-SN-UnG"/>
+                    <connections>
+                        <outlet property="collectionView" destination="spo-49-roq" id="yqi-cH-bdn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1957.9710144927537" y="127.90178571428571"/>
+        </scene>
+        <!--현재상영-->
+        <scene sceneID="KSr-Aj-eaE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AO5-80-hPM" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="현재상영" id="NUX-xM-44d"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="NeI-uZ-D7o">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Ucc-Ka-x1G"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nSb-Gg-9Jh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1069.5652173913045" y="127.90178571428571"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Pvn-ms-9CF">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="az9-91-UXy" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BN5-KU-boy">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="AO5-80-hPM" kind="relationship" relationship="viewControllers" id="spJ-8f-8ap"/>
+                        <segue destination="OwT-hG-5Vu" kind="relationship" relationship="viewControllers" id="vkV-r0-sNP"/>
+                        <segue destination="twT-cc-Isq" kind="relationship" relationship="viewControllers" id="8Jx-eo-wXf"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="So9-e2-oIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="159.42028985507247" y="127.90178571428571"/>
+        </scene>
+        <!--개봉 예정-->
+        <scene sceneID="l9U-Gv-mwO">
+            <objects>
+                <viewController id="u0R-D9-NO2" customClass="ViewController" customModule="Moop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Me-sq-92e">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Oij-xH-5Cb">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3Wi-Je-KhM">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Oij-xH-5Cb" secondAttribute="bottom" id="4AB-zz-vp8"/>
+                            <constraint firstAttribute="trailing" secondItem="Oij-xH-5Cb" secondAttribute="trailing" id="OkM-Zw-yIy"/>
+                            <constraint firstItem="Oij-xH-5Cb" firstAttribute="top" secondItem="2Me-sq-92e" secondAttribute="top" id="aMI-aG-1C8"/>
+                            <constraint firstItem="Oij-xH-5Cb" firstAttribute="leading" secondItem="2Me-sq-92e" secondAttribute="leading" id="w3R-XC-uyV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Kwp-9b-J1I"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="개봉 예정" id="uZp-3g-cau"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fmc-zH-Ayi" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1979.7101449275365" y="797.54464285714278"/>
+        </scene>
+        <!--설정-->
+        <scene sceneID="woQ-00-37E">
+            <objects>
+                <viewController id="dOc-lB-h2k" customClass="ViewController" customModule="Moop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bkb-MF-0um">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="o9X-PZ-CeR"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="설정" id="J4m-CG-4Oh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M9M-2F-RZ6" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1979.7101449275365" y="1488.6160714285713"/>
+        </scene>
+        <!--개봉예정-->
+        <scene sceneID="vY6-KH-i3z">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OwT-hG-5Vu" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="개봉예정" id="RK2-Lk-d89"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="0ex-z5-uQa">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="u0R-D9-NO2" kind="relationship" relationship="rootViewController" id="DMG-B1-7QL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gNz-4R-JhU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1069.5652173913045" y="797.54464285714278"/>
+        </scene>
+        <!--설정-->
+        <scene sceneID="413-Q9-1Mz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="twT-cc-Isq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="설정" id="Pb1-Mr-WcG"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="t0N-MR-ldI">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dOc-lB-h2k" kind="relationship" relationship="rootViewController" id="n9q-oj-PM6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yth-Bk-FRR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1069.5652173913045" y="1488.6160714285713"/>
         </scene>
     </scenes>
 </document>

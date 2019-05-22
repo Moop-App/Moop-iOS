@@ -68,3 +68,4 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 Moop/GoogleService-Info.plist
+Moop/Config.swift

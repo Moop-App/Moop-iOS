@@ -15,6 +15,11 @@
 		3C6601FE22956D39000BA333 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C6601FC22956D39000BA333 /* LaunchScreen.storyboard */; };
 		3C66020922956D3A000BA333 /* MoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C66020822956D3A000BA333 /* MoopTests.swift */; };
 		3C6602152295745A000BA333 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C6602142295745A000BA333 /* GoogleService-Info.plist */; };
+		3C660217229596D3000BA333 /* CurrentMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C660216229596D3000BA333 /* CurrentMovieViewController.swift */; };
+		3C66021A22959A18000BA333 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C66021822959A18000BA333 /* MovieCell.swift */; };
+		3C66021B22959A18000BA333 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C66021922959A18000BA333 /* MovieCell.xib */; };
+		3C66021D22959DA5000BA333 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C66021C22959DA5000BA333 /* Config.swift */; };
+		3C66021F22959F04000BA333 /* MovieInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C66021E22959F04000BA333 /* MovieInfo.swift */; };
 		B0C760EE98FDCCE04F4B94C2 /* Pods_MoopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D7796071955DEAF3E6A7AF /* Pods_MoopTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +47,11 @@
 		3C66020822956D3A000BA333 /* MoopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoopTests.swift; sourceTree = "<group>"; };
 		3C66020A22956D3A000BA333 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C6602142295745A000BA333 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3C660216229596D3000BA333 /* CurrentMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMovieViewController.swift; sourceTree = "<group>"; };
+		3C66021822959A18000BA333 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		3C66021922959A18000BA333 /* MovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
+		3C66021C22959DA5000BA333 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		3C66021E22959F04000BA333 /* MovieInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfo.swift; sourceTree = "<group>"; };
 		A748664396DF941852859EA3 /* Pods-Moop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moop.release.xcconfig"; path = "Target Support Files/Pods-Moop/Pods-Moop.release.xcconfig"; sourceTree = "<group>"; };
 		AF133E07AA84A1910C2583F7 /* Pods-MoopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoopTests.debug.xcconfig"; path = "Target Support Files/Pods-MoopTests/Pods-MoopTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EB355564C1BCCEADDF32A988 /* Pods-Moop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moop.debug.xcconfig"; path = "Target Support Files/Pods-Moop/Pods-Moop.debug.xcconfig"; sourceTree = "<group>"; };
@@ -93,11 +103,16 @@
 			children = (
 				3C6601F322956D38000BA333 /* AppDelegate.swift */,
 				3C6601F522956D38000BA333 /* ViewController.swift */,
+				3C660216229596D3000BA333 /* CurrentMovieViewController.swift */,
+				3C66021822959A18000BA333 /* MovieCell.swift */,
+				3C66021922959A18000BA333 /* MovieCell.xib */,
 				3C6601F722956D38000BA333 /* Main.storyboard */,
 				3C6601FA22956D39000BA333 /* Assets.xcassets */,
 				3C6601FC22956D39000BA333 /* LaunchScreen.storyboard */,
 				3C6602142295745A000BA333 /* GoogleService-Info.plist */,
 				3C6601FF22956D39000BA333 /* Info.plist */,
+				3C66021C22959DA5000BA333 /* Config.swift */,
+				3C66021E22959F04000BA333 /* MovieInfo.swift */,
 			);
 			path = Moop;
 			sourceTree = "<group>";
@@ -221,6 +236,7 @@
 				3C6602152295745A000BA333 /* GoogleService-Info.plist in Resources */,
 				3C6601FB22956D39000BA333 /* Assets.xcassets in Resources */,
 				3C6601F922956D38000BA333 /* Main.storyboard in Resources */,
+				3C66021B22959A18000BA333 /* MovieCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +383,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C660217229596D3000BA333 /* CurrentMovieViewController.swift in Sources */,
 				3C6601F622956D38000BA333 /* ViewController.swift in Sources */,
+				3C66021D22959DA5000BA333 /* Config.swift in Sources */,
+				3C66021A22959A18000BA333 /* MovieCell.swift in Sources */,
+				3C66021F22959F04000BA333 /* MovieInfo.swift in Sources */,
 				3C6601F422956D38000BA333 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
