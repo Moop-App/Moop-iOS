@@ -1,0 +1,132 @@
+PODS:
+  - AcknowList (1.9)
+  - Alamofire (4.8.2)
+  - AlamofireNetworkActivityIndicator (2.4.0):
+    - Alamofire (~> 4.8)
+  - Crashlytics (3.13.1):
+    - Fabric (~> 1.10.1)
+  - CTFeedbackSwift (0.1.7)
+  - Fabric (1.10.1)
+  - Firebase/Core (6.1.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 6.0.1)
+  - Firebase/CoreOnly (6.1.0):
+    - FirebaseCore (= 6.0.1)
+  - FirebaseAnalytics (6.0.1):
+    - FirebaseCore (~> 6.0)
+    - FirebaseInstanceID (~> 4.1)
+    - GoogleAppMeasurement (= 6.0.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (~> 0.3)
+  - FirebaseCore (6.0.1):
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/Logger (~> 6.0)
+  - FirebaseInstanceID (4.1.0):
+    - FirebaseCore (~> 6.0)
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/UserDefaults (~> 6.0)
+  - FTLinearActivityIndicator (1.2)
+  - GoogleAppMeasurement (6.0.1):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (~> 0.3)
+  - GoogleUtilities/AppDelegateSwizzler (6.1.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.1.0)
+  - GoogleUtilities/Logger (6.1.0):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.1.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (6.1.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.1.0)"
+  - GoogleUtilities/Reachability (6.1.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.1.0):
+    - GoogleUtilities/Logger
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
+  - Nimble (8.0.1)
+  - Peek (5.2.0)
+  - Quick (2.1.0)
+  - SDWebImage (5.0.3):
+    - SDWebImage/Core (= 5.0.3)
+  - SDWebImage/Core (5.0.3)
+  - SwiftLint (0.32.0)
+  - Wormholy (1.4.1)
+
+DEPENDENCIES:
+  - AcknowList
+  - AlamofireNetworkActivityIndicator
+  - Crashlytics
+  - CTFeedbackSwift
+  - Fabric
+  - Firebase/Core
+  - FTLinearActivityIndicator
+  - Nimble
+  - Peek
+  - Quick
+  - SDWebImage
+  - SwiftLint
+  - Wormholy
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AcknowList
+    - Alamofire
+    - AlamofireNetworkActivityIndicator
+    - Crashlytics
+    - CTFeedbackSwift
+    - Fabric
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FTLinearActivityIndicator
+    - GoogleAppMeasurement
+    - GoogleUtilities
+    - nanopb
+    - Nimble
+    - Peek
+    - Quick
+    - SDWebImage
+    - SwiftLint
+    - Wormholy
+
+SPEC CHECKSUMS:
+  AcknowList: 06fde3319971dfd517ea1b1c194d78eb8cd774a2
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  AlamofireNetworkActivityIndicator: 9acc3de3ca6645bf0efed462396b0df13dd3e7b8
+  Crashlytics: 5aa8e90dcbf2f34898b4f5a0037787531246cca0
+  CTFeedbackSwift: 2a0d844ef8bade492f3cad59b21c8bd8300f5a91
+  Fabric: f6f21452846788bb44595d73e9909d79d328e617
+  Firebase: 8d77bb33624ae9b62d745d82ec023de5f70f7e4f
+  FirebaseAnalytics: 629301c2b9925f3537d4093a17a72751ae5b7084
+  FirebaseCore: 66bdef3b310a026880e2a5bc8aa586ab62ce4543
+  FirebaseInstanceID: 27bed93a59b6685f5c3e0c028a878a764fd75c33
+  FTLinearActivityIndicator: 1bc0016c92a6aae20a0a3ed5d73ee46cdd007863
+  GoogleAppMeasurement: 51d8d9ea48f0ca44484d29cfbdef976fbd4fc336
+  GoogleUtilities: 84df567c76ca84f67b7bb40e769fdd4acc746a10
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
+  Peek: 77f6362167c00aab3f1147d92d51bdf80d259d45
+  Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
+  SDWebImage: d4f87d7d36c8a4d9f9459dc282e0caa057fdf935
+  SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
+  Wormholy: f2488b9690976459a3ce6680ec099143724418d8
+
+PODFILE CHECKSUM: 06447bf20bbff72c40964de8e9d50930dac44241
+
+COCOAPODS: 1.6.2

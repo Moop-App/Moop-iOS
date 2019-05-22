@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EDD23484A5A214B04612924 /* Pods_Moop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0F0F28D907F86F889E893 /* Pods_Moop.framework */; };
 		3C6601F422956D38000BA333 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6601F322956D38000BA333 /* AppDelegate.swift */; };
 		3C6601F622956D38000BA333 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6601F522956D38000BA333 /* ViewController.swift */; };
 		3C6601F922956D38000BA333 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C6601F722956D38000BA333 /* Main.storyboard */; };
 		3C6601FB22956D39000BA333 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C6601FA22956D39000BA333 /* Assets.xcassets */; };
 		3C6601FE22956D39000BA333 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C6601FC22956D39000BA333 /* LaunchScreen.storyboard */; };
 		3C66020922956D3A000BA333 /* MoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C66020822956D3A000BA333 /* MoopTests.swift */; };
+		3C6602152295745A000BA333 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C6602142295745A000BA333 /* GoogleService-Info.plist */; };
+		B0C760EE98FDCCE04F4B94C2 /* Pods_MoopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D7796071955DEAF3E6A7AF /* Pods_MoopTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0FB0F0F28D907F86F889E893 /* Pods_Moop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		14FCFAAA46A550D61B0571B0 /* Pods-MoopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoopTests.release.xcconfig"; path = "Target Support Files/Pods-MoopTests/Pods-MoopTests.release.xcconfig"; sourceTree = "<group>"; };
 		3C6601F022956D38000BA333 /* Moop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C6601F322956D38000BA333 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C6601F522956D38000BA333 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +41,11 @@
 		3C66020422956D39000BA333 /* MoopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C66020822956D3A000BA333 /* MoopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoopTests.swift; sourceTree = "<group>"; };
 		3C66020A22956D3A000BA333 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C6602142295745A000BA333 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A748664396DF941852859EA3 /* Pods-Moop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moop.release.xcconfig"; path = "Target Support Files/Pods-Moop/Pods-Moop.release.xcconfig"; sourceTree = "<group>"; };
+		AF133E07AA84A1910C2583F7 /* Pods-MoopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoopTests.debug.xcconfig"; path = "Target Support Files/Pods-MoopTests/Pods-MoopTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EB355564C1BCCEADDF32A988 /* Pods-Moop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moop.debug.xcconfig"; path = "Target Support Files/Pods-Moop/Pods-Moop.debug.xcconfig"; sourceTree = "<group>"; };
+		F6D7796071955DEAF3E6A7AF /* Pods_MoopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EDD23484A5A214B04612924 /* Pods_Moop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0C760EE98FDCCE04F4B94C2 /* Pods_MoopTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +74,8 @@
 				3C6601F222956D38000BA333 /* Moop */,
 				3C66020722956D3A000BA333 /* MoopTests */,
 				3C6601F122956D38000BA333 /* Products */,
+				7CC273ECE369A706D587E64E /* Pods */,
+				FC4485EF88D37C6645F15DFF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,6 +96,7 @@
 				3C6601F722956D38000BA333 /* Main.storyboard */,
 				3C6601FA22956D39000BA333 /* Assets.xcassets */,
 				3C6601FC22956D39000BA333 /* LaunchScreen.storyboard */,
+				3C6602142295745A000BA333 /* GoogleService-Info.plist */,
 				3C6601FF22956D39000BA333 /* Info.plist */,
 			);
 			path = Moop;
@@ -96,6 +111,26 @@
 			path = MoopTests;
 			sourceTree = "<group>";
 		};
+		7CC273ECE369A706D587E64E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EB355564C1BCCEADDF32A988 /* Pods-Moop.debug.xcconfig */,
+				A748664396DF941852859EA3 /* Pods-Moop.release.xcconfig */,
+				AF133E07AA84A1910C2583F7 /* Pods-MoopTests.debug.xcconfig */,
+				14FCFAAA46A550D61B0571B0 /* Pods-MoopTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FC4485EF88D37C6645F15DFF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0FB0F0F28D907F86F889E893 /* Pods_Moop.framework */,
+				F6D7796071955DEAF3E6A7AF /* Pods_MoopTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,9 +138,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C66020D22956D3A000BA333 /* Build configuration list for PBXNativeTarget "Moop" */;
 			buildPhases = (
+				F87A6A4089411E7E0F51FB7E /* [CP] Check Pods Manifest.lock */,
 				3C6601EC22956D38000BA333 /* Sources */,
 				3C6601ED22956D38000BA333 /* Frameworks */,
 				3C6601EE22956D38000BA333 /* Resources */,
+				D0D494C35D318202EAC0412D /* [CP] Embed Pods Frameworks */,
+				3C66021322957301000BA333 /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -120,9 +158,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C66021022956D3A000BA333 /* Build configuration list for PBXNativeTarget "MoopTests" */;
 			buildPhases = (
+				23170C1832E49B63592AFC5F /* [CP] Check Pods Manifest.lock */,
 				3C66020022956D39000BA333 /* Sources */,
 				3C66020122956D39000BA333 /* Frameworks */,
 				3C66020222956D39000BA333 /* Resources */,
+				A70421C7A43B5A352EE18E2D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -178,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C6601FE22956D39000BA333 /* LaunchScreen.storyboard in Resources */,
+				3C6602152295745A000BA333 /* GoogleService-Info.plist in Resources */,
 				3C6601FB22956D39000BA333 /* Assets.xcassets in Resources */,
 				3C6601F922956D38000BA333 /* Main.storyboard in Resources */,
 			);
@@ -191,6 +232,135 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		23170C1832E49B63592AFC5F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MoopTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3C66021322957301000BA333 /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/Fabric/run\" a02a9ab6a0124eb073e884b5dc5f8c65be8d83ad 4b77a6b389af60eaf42f34a5044ae7e28af084bdf85f8855c32e81549d5c48a8\n";
+		};
+		A70421C7A43B5A352EE18E2D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MoopTests/Pods-MoopTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MoopTests/Pods-MoopTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0D494C35D318202EAC0412D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Moop/Pods-Moop-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AcknowList/AcknowList.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
+				"${BUILT_PRODUCTS_DIR}/CTFeedbackSwift/CTFeedbackSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/FTLinearActivityIndicator/FTLinearActivityIndicator.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Peek/Peek.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/Wormholy/Wormholy.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AcknowList.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CTFeedbackSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FTLinearActivityIndicator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Peek.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Wormholy.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Moop/Pods-Moop-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F87A6A4089411E7E0F51FB7E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Moop-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3C6601EC22956D38000BA333 /* Sources */ = {
@@ -358,11 +528,15 @@
 		};
 		3C66020E22956D3A000BA333 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB355564C1BCCEADDF32A988 /* Pods-Moop.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UQZ9Y78ACS;
 				INFOPLIST_FILE = Moop/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -376,11 +550,14 @@
 		};
 		3C66020F22956D3A000BA333 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A748664396DF941852859EA3 /* Pods-Moop.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UQZ9Y78ACS;
 				INFOPLIST_FILE = Moop/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -394,8 +571,9 @@
 		};
 		3C66021122956D3A000BA333 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF133E07AA84A1910C2583F7 /* Pods-MoopTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UQZ9Y78ACS;
@@ -415,8 +593,9 @@
 		};
 		3C66021222956D3A000BA333 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14FCFAAA46A550D61B0571B0 /* Pods-MoopTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UQZ9Y78ACS;
