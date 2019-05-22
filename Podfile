@@ -12,7 +12,7 @@ target 'Moop' do
   pod 'Crashlytics'
 
   pod 'FTLinearActivityIndicator'
-  pod 'AlamofireNetworkActivityIndicator'
+  pod 'AlamofireNetworkActivityIndicator', '~> 3.0.0-beta.3'
 
   pod 'SDWebImage'
 

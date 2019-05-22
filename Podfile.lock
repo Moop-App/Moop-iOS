@@ -1,8 +1,8 @@
 PODS:
   - AcknowList (1.9)
-  - Alamofire (4.8.2)
-  - AlamofireNetworkActivityIndicator (2.4.0):
-    - Alamofire (~> 4.8)
+  - Alamofire (5.0.0-beta.6)
+  - AlamofireNetworkActivityIndicator (3.0.0-beta.3):
+    - Alamofire (~> 5.0.0-beta.6)
   - Crashlytics (3.13.1):
     - Fabric (~> 1.10.1)
   - CTFeedbackSwift (0.1.7)
@@ -69,7 +69,7 @@ PODS:
 
 DEPENDENCIES:
   - AcknowList
-  - AlamofireNetworkActivityIndicator
+  - AlamofireNetworkActivityIndicator (~> 3.0.0-beta.3)
   - Crashlytics
   - CTFeedbackSwift
   - Fabric
@@ -107,8 +107,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AcknowList: 06fde3319971dfd517ea1b1c194d78eb8cd774a2
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  AlamofireNetworkActivityIndicator: 9acc3de3ca6645bf0efed462396b0df13dd3e7b8
+  Alamofire: cd08a4402bd12cacd0c66f23fb12fec8d6b965e4
+  AlamofireNetworkActivityIndicator: 592c612ef9bb2e9f55f00ad99f72b2222f0bf33f
   Crashlytics: 5aa8e90dcbf2f34898b4f5a0037787531246cca0
   CTFeedbackSwift: 2a0d844ef8bade492f3cad59b21c8bd8300f5a91
   Fabric: f6f21452846788bb44595d73e9909d79d328e617
@@ -127,6 +127,6 @@ SPEC CHECKSUMS:
   SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
   Wormholy: f2488b9690976459a3ce6680ec099143724418d8
 
-PODFILE CHECKSUM: 06447bf20bbff72c40964de8e9d50930dac44241
+PODFILE CHECKSUM: d6f9b5b7eaf4d5ec93f62a86ce30efb661862fa0
 
 COCOAPODS: 1.6.2
