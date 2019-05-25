@@ -71,7 +71,7 @@ extension CurrentMovieViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        cell.thumbnailImageView.sd_setImage(with: URL(string: datas[indexPath.item].posterUrl))
+        cell.set(datas[indexPath.item])
         return cell
     }
     

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct MovieInfo: Decodable {
     let age: String
@@ -50,6 +51,33 @@ extension MovieInfo {
         let components = calendar.dateComponents([.day], from: Date(), to: date)
         return components.day ?? 999
     }
+    
+    var isBest: Bool {
+        return (cgv?.eggIsOver(96) ?? false) ||
+            lotte?.starIsOver(8.8) ?? false ||
+            megabox?.starIsOver(8.5) ?? false
+    }
+    
+    var isNew: Bool {
+        return isNow && isIn(dayRange: [Int](-6...0))
+    }
+    
+    func isIn(dayRange: [Int]) -> Bool {
+        return dayRange.contains(getDay)
+    }
+    
+    var ageColor: UIColor {
+        switch ageValue {
+        case 19...:
+            return .red
+        case 15..<19:
+            return UIColor(hexString: "FFC107")
+        case 12..<15:
+            return .blue
+        default:
+            return .green
+        }
+    }
 }
 
 struct NaverInfo: Decodable {
@@ -63,12 +91,22 @@ struct MegaBoxInfo: Decodable {
     let id: String
     let rank: Int
     let star: String
+    
+    func starIsOver(_ target: Double) -> Bool {
+        guard !star.isEmpty, let starIntValue = Double(star) else { return false }
+        return starIntValue >= target
+    }
 }
 
 struct LotteInfo: Decodable {
     let id: String
     let rank: Int
     let star: String // ex: 8.8
+    
+    func starIsOver(_ target: Double) -> Bool {
+        guard !star.isEmpty, let starIntValue = Double(star) else { return false }
+        return starIntValue >= target
+    }
 }
 
 struct CGVInfo: Decodable {
@@ -76,6 +114,11 @@ struct CGVInfo: Decodable {
     let id: String
     let rank: Int
     let specialTypes: [String]?
+    
+    func eggIsOver(_ target: Int) -> Bool {
+        guard !egg.isEmpty && egg != "?", let eggIntValue = Int(egg) else { return false }
+        return eggIntValue >= target
+    }
 }
 
 struct TrailerInfo: Decodable {

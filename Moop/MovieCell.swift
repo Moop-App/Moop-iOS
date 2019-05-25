@@ -10,9 +10,24 @@ import UIKit
 
 class MovieCell: UICollectionViewCell {
     
-    @IBOutlet weak var thumbnailImageView: UIImageView!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    @IBOutlet private weak var thumbnailImageView: UIImageView!
+    @IBOutlet private weak var ageBadge: UIView!
+    @IBOutlet private weak var bestView: UIView!
+    @IBOutlet private weak var bestLabel: UILabel!
+    
+    func set(_ item: MovieInfo?) {
+        guard let item = item else { return }
+        thumbnailImageView.sd_setImage(with: URL(string: item.posterUrl))
+        ageBadge.backgroundColor = item.ageColor
+        bestView.isHidden = !item.isNew && !item.isBest
+        
+        if item.isNew {
+            bestView.backgroundColor = .red
+            bestLabel.text = "NEW"
+        }
+        if item.isBest {
+            bestView.backgroundColor = .orange
+            bestLabel.text = "BEST"
+        }
     }
 }
