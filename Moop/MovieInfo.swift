@@ -48,7 +48,8 @@ extension MovieInfo {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy.MM.dd"
         guard let date = formatter.date(from: openDate) else { return 999 }
-        let components = calendar.dateComponents([.day], from: Date(), to: date)
+        let today = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) ?? Date()
+        let components = calendar.dateComponents([.day], from: today, to: date)
         return components.day ?? 999
     }
     
@@ -60,6 +61,14 @@ extension MovieInfo {
     
     var isNew: Bool {
         return isNow && isIn(dayRange: [Int](-6...0))
+    }
+    
+    var isDDay: Bool {
+        return !isNow && getDay != 999
+    }
+    
+    var dDayText: String {
+        return getDay <= 0 ? "NOW" : "D-\(getDay)"
     }
     
     func isIn(dayRange: [Int]) -> Bool {

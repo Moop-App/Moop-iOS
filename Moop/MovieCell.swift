@@ -19,7 +19,7 @@ class MovieCell: UICollectionViewCell {
         guard let item = item else { return }
         thumbnailImageView.sd_setImage(with: URL(string: item.posterUrl))
         ageBadge.backgroundColor = item.ageColor
-        bestView.isHidden = !item.isNew && !item.isBest
+        bestView.isHidden = !item.isNew && !item.isBest && !item.isDDay
         
         if item.isNew {
             bestView.backgroundColor = .red
@@ -28,6 +28,10 @@ class MovieCell: UICollectionViewCell {
         if item.isBest {
             bestView.backgroundColor = .orange
             bestLabel.text = "BEST"
+        }
+        if item.isDDay {
+            bestView.backgroundColor = .gray
+            bestLabel.text = item.dDayText
         }
     }
 }
