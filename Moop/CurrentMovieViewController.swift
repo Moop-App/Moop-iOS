@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import SDWebImage
 
 class CurrentMovieViewController: UIViewController {
 
@@ -76,7 +75,7 @@ extension CurrentMovieViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "toDetails", sender: indexPath.item)
+//        performSegue(withIdentifier: "toDetails", sender: indexPath.item)
     }
 }
 

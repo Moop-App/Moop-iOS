@@ -75,7 +75,7 @@ extension FutureMovieViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "toDetails", sender: indexPath.item)
+//        performSegue(withIdentifier: "toDetails", sender: indexPath.item)
     }
 }
 
