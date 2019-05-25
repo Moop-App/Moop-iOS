@@ -48,7 +48,6 @@ extension MovieInfo {
         formatter.dateFormat = "yyyy.MM.dd"
         guard let date = formatter.date(from: openDate) else { return 999 }
         let components = calendar.dateComponents([.day], from: Date(), to: date)
-        print("Days", components.day)
         return components.day ?? 999
     }
 }

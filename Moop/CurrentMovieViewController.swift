@@ -12,10 +12,13 @@ import SDWebImage
 
 class CurrentMovieViewController: UIViewController {
 
+    let refreshControl = UIRefreshControl()
     @IBOutlet private weak var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
             collectionView.dataSource = self
+            refreshControl.addTarget(self, action: #selector(requestData), for: .valueChanged)
+            collectionView.refreshControl = refreshControl
             let nib = UINib(nibName: "MovieCell", bundle: nil)
             collectionView.register(nib, forCellWithReuseIdentifier: "MovieCell")
         }
@@ -25,19 +28,7 @@ class CurrentMovieViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let requestURL = URL(string: "\(Config.baseURL)/now/list.json")!
-        AF.request(requestURL)
-            .validate(statusCode: [200])
-            .responseDecodable { (response: DataResponse<[MovieInfo]>) in
-            switch response.result {
-            case .success(let result):
-                self.datas = result.sorted(by: { $0.rank < $1.rank })
-                self.collectionView.reloadData()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+        requestData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -51,6 +42,24 @@ class CurrentMovieViewController: UIViewController {
             destination.item = item
         default:
             break
+        }
+    }
+    
+    @objc private func requestData() {
+        let requestURL = URL(string: "\(Config.baseURL)/now/list.json")!
+        AF.request(requestURL)
+            .validate(statusCode: [200])
+            .responseDecodable { [weak self] (response: DataResponse<[MovieInfo]>) in
+                guard let self = self else { return }
+                switch response.result {
+                case .success(let result):
+                    self.datas = result.sorted(by: { $0.rank < $1.rank })
+                    self.collectionView.reloadData()
+                    self.refreshControl.endRefreshing()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    self.refreshControl.endRefreshing()
+                }
         }
     }
 }
