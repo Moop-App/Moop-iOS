@@ -34,8 +34,8 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="spo-49-roq" secondAttribute="bottom" id="Ckw-aF-Rg7"/>
-                            <constraint firstItem="spo-49-roq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="L8i-HP-4cS"/>
-                            <constraint firstAttribute="trailing" secondItem="spo-49-roq" secondAttribute="trailing" id="lgO-U1-ELl"/>
+                            <constraint firstItem="spo-49-roq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="L8i-HP-4cS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="spo-49-roq" secondAttribute="trailing" id="lgO-U1-ELl"/>
                             <constraint firstItem="spo-49-roq" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="oc5-iD-oyv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -112,9 +112,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Oij-xH-5Cb" secondAttribute="bottom" id="4AB-zz-vp8"/>
-                            <constraint firstAttribute="trailing" secondItem="Oij-xH-5Cb" secondAttribute="trailing" id="OkM-Zw-yIy"/>
+                            <constraint firstItem="Kwp-9b-J1I" firstAttribute="trailing" secondItem="Oij-xH-5Cb" secondAttribute="trailing" id="OkM-Zw-yIy"/>
                             <constraint firstItem="Oij-xH-5Cb" firstAttribute="top" secondItem="2Me-sq-92e" secondAttribute="top" id="aMI-aG-1C8"/>
-                            <constraint firstItem="Oij-xH-5Cb" firstAttribute="leading" secondItem="2Me-sq-92e" secondAttribute="leading" id="w3R-XC-uyV"/>
+                            <constraint firstItem="Oij-xH-5Cb" firstAttribute="leading" secondItem="Kwp-9b-J1I" secondAttribute="leading" id="w3R-XC-uyV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Kwp-9b-J1I"/>
                     </view>
@@ -608,6 +608,6 @@
         <image name="setting_selected" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5o6-kp-k48"/>
+        <segue reference="TBL-td-BGn"/>
     </inferredMetricsTieBreakers>
 </document>

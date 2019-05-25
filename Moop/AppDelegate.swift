@@ -12,7 +12,7 @@ import Crashlytics
 import Firebase
 import FTLinearActivityIndicator
 import AlamofireNetworkActivityIndicator
-
+import SDWebImage
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
