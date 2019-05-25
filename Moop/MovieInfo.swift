@@ -23,6 +23,36 @@ struct MovieInfo: Decodable {
     let trailers: [TrailerInfo]?
 }
 
+extension MovieInfo {
+    var rank: Double {
+        var count = 0
+        var rank = 0
+        if let cgvRank = cgv?.rank {
+            rank += cgvRank
+            count += 1
+        }
+        if let lotteRank = lotte?.rank {
+            rank += lotteRank
+            count += 1
+        }
+        if let megaboxRank = megabox?.rank {
+            rank += megaboxRank
+            count += 1
+        }
+        return Double(rank) / Double(count)
+    }
+    
+    var getDay: Int {
+        let calendar = Calendar.current
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        guard let date = formatter.date(from: openDate) else { return 999 }
+        let components = calendar.dateComponents([.day], from: Date(), to: date)
+        print("Days", components.day)
+        return components.day ?? 999
+    }
+}
+
 struct NaverInfo: Decodable {
     let link: String?
     let subtitle: String

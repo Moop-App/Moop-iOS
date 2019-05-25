@@ -1,16 +1,15 @@
 //
-//  CurrentMovieViewController.swift
+//  FutureMovieViewController.swift
 //  Moop
 //
-//  Created by Chang Woo Son on 22/05/2019.
+//  Created by Chang Woo Son on 23/05/2019.
 //  Copyright © 2019 kor45cw. All rights reserved.
 //
 
 import UIKit
 import Alamofire
-import SDWebImage
 
-class CurrentMovieViewController: UIViewController {
+class FutureMovieViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView! {
         didSet {
@@ -26,17 +25,17 @@ class CurrentMovieViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let requestURL = URL(string: "\(Config.baseURL)/now/list.json")!
+        let requestURL = URL(string: "\(Config.baseURL)/plan/list.json")!
         AF.request(requestURL)
             .validate(statusCode: [200])
             .responseDecodable { (response: DataResponse<[MovieInfo]>) in
-            switch response.result {
-            case .success(let result):
-                self.datas = result.sorted(by: { $0.rank < $1.rank })
-                self.collectionView.reloadData()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+                switch response.result {
+                case .success(let result):
+                    self.datas = result.sorted(by: { $0.getDay < $1.getDay })
+                    self.collectionView.reloadData()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
         }
     }
     
@@ -55,7 +54,7 @@ class CurrentMovieViewController: UIViewController {
     }
 }
 
-extension CurrentMovieViewController: UICollectionViewDataSource {
+extension FutureMovieViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return datas.count
     }
@@ -71,7 +70,7 @@ extension CurrentMovieViewController: UICollectionViewDataSource {
     }
 }
 
-extension CurrentMovieViewController: UICollectionViewDelegateFlowLayout {
+extension FutureMovieViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = (collectionView.bounds.width - 36) / 3
         return CGSize(width: cellWidth, height: cellWidth / 600.0 * 855)
