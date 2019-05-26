@@ -547,14 +547,30 @@
         <!--설정-->
         <scene sceneID="woQ-00-37E">
             <objects>
-                <viewController id="dOc-lB-h2k" customClass="ViewController" customModule="Moop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dOc-lB-h2k" customClass="SettingViewController" customModule="Moop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bkb-MF-0um">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dET-cH-r8p">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <sections/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="dET-cH-r8p" secondAttribute="bottom" id="9sz-NR-F8U"/>
+                            <constraint firstItem="o9X-PZ-CeR" firstAttribute="trailing" secondItem="dET-cH-r8p" secondAttribute="trailing" id="C37-g1-dbc"/>
+                            <constraint firstItem="dET-cH-r8p" firstAttribute="leading" secondItem="o9X-PZ-CeR" secondAttribute="leading" id="KTl-Yp-ZTv"/>
+                            <constraint firstItem="dET-cH-r8p" firstAttribute="top" secondItem="Bkb-MF-0um" secondAttribute="top" id="NIF-Oj-UO8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="o9X-PZ-CeR"/>
                     </view>
                     <navigationItem key="navigationItem" title="설정" id="J4m-CG-4Oh"/>
+                    <connections>
+                        <outlet property="tableView" destination="dET-cH-r8p" id="zc6-OU-DSn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M9M-2F-RZ6" sceneMemberID="firstResponder"/>
             </objects>
