@@ -87,6 +87,19 @@ extension MovieInfo {
             return .green
         }
     }
+    
+    var ageBadgeText: String {
+        switch ageValue {
+        case 19...:
+            return "청불"
+        case 15..<19:
+            return "15세"
+        case 12..<15:
+            return "12세"
+        default:
+            return "전체"
+        }
+    }
 }
 
 struct NaverInfo: Decodable {
