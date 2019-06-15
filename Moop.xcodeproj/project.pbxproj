@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -30,6 +30,10 @@
 		3C767530229953590052BEB6 /* SettingItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C76752E229953590052BEB6 /* SettingItemCell.xib */; };
 		3C767533229954A80052BEB6 /* SettingDividerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C767531229954A80052BEB6 /* SettingDividerCell.swift */; };
 		3C767534229954A80052BEB6 /* SettingDividerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C767532229954A80052BEB6 /* SettingDividerCell.xib */; };
+		3CB52E6922B4DC7D009FD7D1 /* TrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB52E6822B4DC7D009FD7D1 /* TrailerCell.swift */; };
+		3CB52E6B22B4DF84009FD7D1 /* TrailerFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB52E6A22B4DF84009FD7D1 /* TrailerFooterCell.swift */; };
+		3CB52E6D22B4F0B5009FD7D1 /* TrailerHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB52E6C22B4F0B5009FD7D1 /* TrailerHeaderCell.swift */; };
+		3CB52E6F22B4F3BA009FD7D1 /* NaverInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB52E6E22B4F3BA009FD7D1 /* NaverInfoCell.swift */; };
 		3CBD5EB422960DF7005A24E4 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD5EB322960DF7005A24E4 /* MovieDetailViewController.swift */; };
 		3CBD5EB622960EA5005A24E4 /* FutureMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD5EB522960EA5005A24E4 /* FutureMovieViewController.swift */; };
 		3CF5B8D1229ACE5F00A4C2BB /* Pods-Moop-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CF5B8D0229ACE5F00A4C2BB /* Pods-Moop-acknowledgements.plist */; };
@@ -75,6 +79,10 @@
 		3C76752E229953590052BEB6 /* SettingItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingItemCell.xib; sourceTree = "<group>"; };
 		3C767531229954A80052BEB6 /* SettingDividerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDividerCell.swift; sourceTree = "<group>"; };
 		3C767532229954A80052BEB6 /* SettingDividerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingDividerCell.xib; sourceTree = "<group>"; };
+		3CB52E6822B4DC7D009FD7D1 /* TrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerCell.swift; sourceTree = "<group>"; };
+		3CB52E6A22B4DF84009FD7D1 /* TrailerFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerFooterCell.swift; sourceTree = "<group>"; };
+		3CB52E6C22B4F0B5009FD7D1 /* TrailerHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerHeaderCell.swift; sourceTree = "<group>"; };
+		3CB52E6E22B4F3BA009FD7D1 /* NaverInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverInfoCell.swift; sourceTree = "<group>"; };
 		3CBD5EB322960DF7005A24E4 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		3CBD5EB522960EA5005A24E4 /* FutureMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureMovieViewController.swift; sourceTree = "<group>"; };
 		3CF5B8D0229ACE5F00A4C2BB /* Pods-Moop-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-Moop-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-Moop/Pods-Moop-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
@@ -129,11 +137,9 @@
 			children = (
 				3C6601F322956D38000BA333 /* AppDelegate.swift */,
 				3C767535229954AF0052BEB6 /* Setting */,
+				3CB52E6722B4D8BA009FD7D1 /* Detail */,
 				3C660216229596D3000BA333 /* CurrentMovieViewController.swift */,
 				3CBD5EB522960EA5005A24E4 /* FutureMovieViewController.swift */,
-				3CBD5EB322960DF7005A24E4 /* MovieDetailViewController.swift */,
-				3C1B6E662297A68F009CB740 /* MovieDetailHeaderView.swift */,
-				3C1B6E682297A80E009CB740 /* TheaterRankView.swift */,
 				3C66021822959A18000BA333 /* MovieCell.swift */,
 				3C66021922959A18000BA333 /* MovieCell.xib */,
 				3C6601F722956D38000BA333 /* Main.storyboard */,
@@ -187,6 +193,20 @@
 				3C76752A2299529C0052BEB6 /* SettingHeaderCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		3CB52E6722B4D8BA009FD7D1 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				3CBD5EB322960DF7005A24E4 /* MovieDetailViewController.swift */,
+				3C1B6E662297A68F009CB740 /* MovieDetailHeaderView.swift */,
+				3C1B6E682297A80E009CB740 /* TheaterRankView.swift */,
+				3CB52E6822B4DC7D009FD7D1 /* TrailerCell.swift */,
+				3CB52E6A22B4DF84009FD7D1 /* TrailerFooterCell.swift */,
+				3CB52E6C22B4F0B5009FD7D1 /* TrailerHeaderCell.swift */,
+				3CB52E6E22B4F3BA009FD7D1 /* NaverInfoCell.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		7CC273ECE369A706D587E64E /* Pods */ = {
@@ -427,6 +447,8 @@
 				3C1B6E672297A68F009CB740 /* MovieDetailHeaderView.swift in Sources */,
 				3C7675252299172C0052BEB6 /* UIColor+Extension.swift in Sources */,
 				3C66021D22959DA5000BA333 /* Config.swift in Sources */,
+				3CB52E6F22B4F3BA009FD7D1 /* NaverInfoCell.swift in Sources */,
+				3CB52E6B22B4DF84009FD7D1 /* TrailerFooterCell.swift in Sources */,
 				3C66021A22959A18000BA333 /* MovieCell.swift in Sources */,
 				3C767527229918890052BEB6 /* UIView+Extension.swift in Sources */,
 				3CBD5EB622960EA5005A24E4 /* FutureMovieViewController.swift in Sources */,
@@ -435,6 +457,8 @@
 				3C1B6E692297A80E009CB740 /* TheaterRankView.swift in Sources */,
 				3C767533229954A80052BEB6 /* SettingDividerCell.swift in Sources */,
 				3C6601F422956D38000BA333 /* AppDelegate.swift in Sources */,
+				3CB52E6D22B4F0B5009FD7D1 /* TrailerHeaderCell.swift in Sources */,
+				3CB52E6922B4DC7D009FD7D1 /* TrailerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

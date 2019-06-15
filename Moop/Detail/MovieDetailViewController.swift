@@ -20,6 +20,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet private weak var headerView: MovieDetailHeaderView!
 
     var item: MovieInfo?
+    var totalCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,11 +60,28 @@ extension MovieDetailViewController: UITableViewDataSource {
         numberOfRows += item?.naver != nil ? 1 : 0
         numberOfRows += (item?.trailers?.isEmpty ?? true) ? 0 : 2
         numberOfRows += item?.trailers?.count ?? 0
+        totalCount = numberOfRows
         return numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NaverInfoCell", for: indexPath)
+        if indexPath.item == 0 && item?.naver != nil {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NaverInfoCell", for: indexPath) as! NaverInfoCell
+            cell.set(item?.naver)
+            return cell
+        }
+        if (indexPath.item == 1 && item?.naver != nil) || (indexPath.item == 0 && item?.naver == nil) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerHeaderCell", for: indexPath) as! TrailerHeaderCell
+            cell.set(item?.title ?? "")
+            return cell
+        }
+        if totalCount - 1 == indexPath.item {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerFooterCell", for: indexPath)
+            return cell
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerCell", for: indexPath) as! TrailerCell
+        let targetIndex = item?.naver != nil ? 2 : 1
+        cell.set(item?.trailers?[indexPath.item - targetIndex])
         return cell
     }
 }

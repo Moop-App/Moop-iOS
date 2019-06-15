@@ -41,10 +41,6 @@ class MovieDetailHeaderView: UIView {
         newBadge.backgroundColor = .red
         bestBadge.backgroundColor = .orange
         dDayBadge.backgroundColor = .gray
-        
-        cgvWraaper.elevate(elevation: 8)
-        megaBoxWraaper.elevate(elevation: 8)
-        lotteWraaper.elevate(elevation: 8)
     }
     
     func set(_ item: MovieInfo?) {
