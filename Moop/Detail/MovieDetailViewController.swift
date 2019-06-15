@@ -87,5 +87,33 @@ extension MovieDetailViewController: UITableViewDataSource {
 }
 
 extension MovieDetailViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.cellForRow(at: indexPath) is NaverInfoCell {
+            guard let url = URL(string: item?.naver?.link ?? "") else { return }
+            let safariViewController = SFSafariViewController(url: url)
+            present(safariViewController, animated: true, completion: nil)
+        }
+        
+        if let cell = tableView.cellForRow(at: indexPath) as? TrailerCell {
+            guard let httpURL = URL(string: "http://www.youtube.com/watch?v=\(cell.youtubeId ?? "")"),
+                let youtubeURL = URL(string: "youtube://\(cell.youtubeId ?? "")") else { return }
+            if UIApplication.shared.canOpenURL(youtubeURL) {
+                UIApplication.shared.open(youtubeURL, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.open(httpURL, options: [:], completionHandler: nil)
+            }
+        }
+        
+        if tableView.cellForRow(at: indexPath) is TrailerFooterCell {
+            let title = item?.title.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+            guard let httpURL = URL(string: "https://www.youtube.com/results?search_query=\(title ?? "")"),
+                let youtubeURL = URL(string: "youtube://www.youtube.com/results?search_query=\(title ?? "")") else { return }
+            if UIApplication.shared.canOpenURL(youtubeURL) {
+                UIApplication.shared.open(youtubeURL, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.open(httpURL, options: [:], completionHandler: nil)
+            }
+        }
+        
+    }
 }

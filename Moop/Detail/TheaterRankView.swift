@@ -15,7 +15,7 @@ class TheaterRankView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         rankLabel.text = "-"
-        self.elevate(elevation: 6)
+        self.elevate(elevation: 2)
     }
     
     func set(_ info: CGVInfo?) {

@@ -15,6 +15,8 @@ class TrailerCell: UITableViewCell {
     @IBOutlet private weak var authorLabel: UILabel!
     @IBOutlet private weak var thumbnailImageView: UIImageView!
     
+    var youtubeId: String?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
@@ -23,6 +25,7 @@ class TrailerCell: UITableViewCell {
     
     func set(_ item: TrailerInfo?) {
         guard let item = item else { return }
+        self.youtubeId = item.youtubeId
         titleLabel.text = item.title
         authorLabel.text = item.author
         thumbnailImageView.sd_setImage(with: URL(string: item.thumbnailUrl))
