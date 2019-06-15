@@ -8,6 +8,17 @@
 
 import UIKit
 
+enum TheaterType {
+    case cgv
+    case lotte
+    case megabox
+}
+
+protocol DetailHeaderDelegate: class {
+    func wrapper(type: TheaterType)
+    func share()
+}
+
 class MovieDetailHeaderView: UIView {
     @IBOutlet private weak var posterImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
@@ -23,11 +34,17 @@ class MovieDetailHeaderView: UIView {
     @IBOutlet private weak var dDayBadge: UIView!
     @IBOutlet private weak var dDayLabel: UILabel!
     
+    weak var delegate: DetailHeaderDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         newBadge.backgroundColor = .red
         bestBadge.backgroundColor = .orange
         dDayBadge.backgroundColor = .gray
+        
+        cgvWraaper.elevate(elevation: 8)
+        megaBoxWraaper.elevate(elevation: 8)
+        lotteWraaper.elevate(elevation: 8)
     }
     
     func set(_ item: MovieInfo?) {
@@ -47,5 +64,21 @@ class MovieDetailHeaderView: UIView {
         
         ageLabel.text = item.ageBadgeText
         dDayLabel.text = item.dDayText
+    }
+    
+    @IBAction private func share(_ sender: UIButton) {
+        self.delegate?.share()
+    }
+    
+    @IBAction private func cgvClick(_ sender: UIButton) {
+        self.delegate?.wrapper(type: .cgv)
+    }
+    
+    @IBAction private func lotteClick(_ sender: UIButton) {
+        self.delegate?.wrapper(type: .lotte)
+    }
+    
+    @IBAction private func megaBoxClick(_ sender: UIButton) {
+        self.delegate?.wrapper(type: .megabox)
     }
 }

@@ -96,8 +96,10 @@ extension MovieInfo {
             return "15세"
         case 12..<15:
             return "12세"
-        default:
+        case 0...:
             return "전체"
+        default:
+            return "미정"
         }
     }
 }
