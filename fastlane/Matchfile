@@ -1,10 +1,11 @@
 git_url("https://github.com/kor45cw/certificates")
+git_branch("Moop")
 
-storage_mode("git")
+# storage_mode("git")
 
 type("development") # The default type, can be: appstore, adhoc, enterprise or development
 
-app_identifier(["com.kor45cw.Moop"])
+app_identifier("com.kor45cw.Moop")
 username("scw422@hanmail.net") # Your Apple Developer Portal username
 
 # For all available options run `fastlane match --help`

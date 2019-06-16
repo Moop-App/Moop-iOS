@@ -85,6 +85,7 @@ platform :ios do
       keychain_name: keychain_name,
       keychain_password: keychain_password,
       git_url: match_git_url,
+      git_branch: "Moop",
       type: "appstore",
       readonly: true
     )
