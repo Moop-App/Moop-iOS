@@ -89,6 +89,27 @@ class SettingViewController: UIViewController {
             return nil
         }
     }
+    
+    var canScrollToTop: Bool = false
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        canScrollToTop = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        canScrollToTop = false
+    }
+    
+    // Scrolls to top nicely
+    func scrollToTop() {
+        if tableView != nil && !datas.isEmpty {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+                self.tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .none, animated: true)
+            }
+        }
+    }
 }
 
 extension SettingViewController: UITableViewDataSource {

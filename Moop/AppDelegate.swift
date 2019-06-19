@@ -25,7 +25,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         UIApplication.configureLinearNetworkActivityIndicatorIfNeeded()
         NetworkActivityIndicatorManager.shared.isEnabled = true
+        ShortcutManager.shared.application(didFinishLaunchingWithOptions: launchOptions)
         return true
     }
+    
+    /// - Tag: PerformAction
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        ShortcutManager.shared.application(performActionFor: shortcutItem)
+    }
+    
+    /// - Tag: DidBecomeActive
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        ShortcutManager.shared.applicationDidBecomeActive(rootViewController: window?.rootViewController)
+    }
+    
+    /// - Tag: WillResignActive
+    func applicationWillResignActive(_ application: UIApplication) {
+        ShortcutManager.shared.applicationWillResignActive(application)
+    }
+
 }
 

@@ -34,6 +34,8 @@
 		3CB52E6B22B4DF84009FD7D1 /* TrailerFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB52E6A22B4DF84009FD7D1 /* TrailerFooterCell.swift */; };
 		3CB52E6D22B4F0B5009FD7D1 /* TrailerHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB52E6C22B4F0B5009FD7D1 /* TrailerHeaderCell.swift */; };
 		3CB52E6F22B4F3BA009FD7D1 /* NaverInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB52E6E22B4F3BA009FD7D1 /* NaverInfoCell.swift */; };
+		3CB6E84B22B8EFF2008F382C /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB6E84A22B8EFF2008F382C /* ShortcutManager.swift */; };
+		3CB6E84D22B9C518008F382C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB6E84C22B9C518008F382C /* MainTabBarController.swift */; };
 		3CBD5EB422960DF7005A24E4 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD5EB322960DF7005A24E4 /* MovieDetailViewController.swift */; };
 		3CBD5EB622960EA5005A24E4 /* FutureMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD5EB522960EA5005A24E4 /* FutureMovieViewController.swift */; };
 		3CF5B8D1229ACE5F00A4C2BB /* Pods-Moop-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CF5B8D0229ACE5F00A4C2BB /* Pods-Moop-acknowledgements.plist */; };
@@ -83,6 +85,8 @@
 		3CB52E6A22B4DF84009FD7D1 /* TrailerFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerFooterCell.swift; sourceTree = "<group>"; };
 		3CB52E6C22B4F0B5009FD7D1 /* TrailerHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerHeaderCell.swift; sourceTree = "<group>"; };
 		3CB52E6E22B4F3BA009FD7D1 /* NaverInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverInfoCell.swift; sourceTree = "<group>"; };
+		3CB6E84A22B8EFF2008F382C /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
+		3CB6E84C22B9C518008F382C /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3CBD5EB322960DF7005A24E4 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		3CBD5EB522960EA5005A24E4 /* FutureMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureMovieViewController.swift; sourceTree = "<group>"; };
 		3CF5B8D0229ACE5F00A4C2BB /* Pods-Moop-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-Moop-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-Moop/Pods-Moop-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
@@ -136,6 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				3C6601F322956D38000BA333 /* AppDelegate.swift */,
+				3CB6E84A22B8EFF2008F382C /* ShortcutManager.swift */,
+				3CB6E84C22B9C518008F382C /* MainTabBarController.swift */,
 				3C767535229954AF0052BEB6 /* Setting */,
 				3CB52E6722B4D8BA009FD7D1 /* Detail */,
 				3C660216229596D3000BA333 /* CurrentMovieViewController.swift */,
@@ -457,8 +463,10 @@
 				3C1B6E692297A80E009CB740 /* TheaterRankView.swift in Sources */,
 				3C767533229954A80052BEB6 /* SettingDividerCell.swift in Sources */,
 				3C6601F422956D38000BA333 /* AppDelegate.swift in Sources */,
+				3CB6E84D22B9C518008F382C /* MainTabBarController.swift in Sources */,
 				3CB52E6D22B4F0B5009FD7D1 /* TrailerHeaderCell.swift in Sources */,
 				3CB52E6922B4DC7D009FD7D1 /* TrailerCell.swift in Sources */,
+				3CB6E84B22B8EFF2008F382C /* ShortcutManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,7 +631,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UQZ9Y78ACS;
@@ -634,7 +642,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kor45cw.Moop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.kor45cw.Moop";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -647,7 +655,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = UQZ9Y78ACS;
 				INFOPLIST_FILE = Moop/Info.plist;
@@ -657,7 +665,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kor45cw.Moop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.kor45cw.Moop";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

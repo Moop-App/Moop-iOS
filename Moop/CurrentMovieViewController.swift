@@ -61,6 +61,27 @@ class CurrentMovieViewController: UIViewController {
                 }
         }
     }
+    
+    var canScrollToTop: Bool = false
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        canScrollToTop = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        canScrollToTop = false
+    }
+    
+    // Scrolls to top nicely
+    func scrollToTop() {
+        if collectionView != nil && !datas.isEmpty {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+            }
+        }
+    }
 }
 
 extension CurrentMovieViewController: UICollectionViewDataSource {
