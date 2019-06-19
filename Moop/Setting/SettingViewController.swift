@@ -101,8 +101,9 @@ class SettingViewController: UIViewController {
         super.viewWillDisappear(animated)
         canScrollToTop = false
     }
-    
-    // Scrolls to top nicely
+}
+
+extension SettingViewController: ScrollToTopDelegate {
     func scrollToTop() {
         if tableView != nil && !datas.isEmpty {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {

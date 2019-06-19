@@ -74,7 +74,10 @@ class FutureMovieViewController: UIViewController {
         canScrollToTop = false
     }
     
-    // Scrolls to top nicely
+    
+}
+
+extension FutureMovieViewController: ScrollToTopDelegate {
     func scrollToTop() {
         if collectionView != nil && !datas.isEmpty {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {

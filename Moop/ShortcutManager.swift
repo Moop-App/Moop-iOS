@@ -8,46 +8,46 @@
 
 import UIKit
 
-class ShortcutManager {
-    enum MoopShortcutItem: CaseIterable {
-        case current
-        case future
-        case setting
-        
-        init(item: UIApplicationShortcutItem) {
-            switch item.type {
-            case "CurrentAction": self = .current
-            case "FutureAction": self = .future
-            case "SettingAction": self = .setting
-            default: self = .current
-            }
-        }
-        
-        var type: String {
-            switch self {
-            case .current: return "CurrentAction"
-            case .future: return "FutureAction"
-            case .setting: return "SettingAction"
-            }
-        }
-        
-        var localizedTitle: String {
-            switch self {
-            case .current: return "현재상영"
-            case .future: return "개봉예정"
-            case .setting: return "설정"
-            }
-        }
-        
-        var icon: UIApplicationShortcutIcon {
-            switch self {
-            case .current: return UIApplicationShortcutIcon(templateImageName: "movie")
-            case .future: return UIApplicationShortcutIcon(templateImageName: "plan")
-            case .setting: return UIApplicationShortcutIcon(templateImageName: "setting")
-            }
+private enum MoopShortcutItem: CaseIterable {
+    case current
+    case future
+    case setting
+    
+    init(item: UIApplicationShortcutItem) {
+        switch item.type {
+        case "CurrentAction": self = .current
+        case "FutureAction": self = .future
+        case "SettingAction": self = .setting
+        default: self = .current
         }
     }
     
+    var type: String {
+        switch self {
+        case .current: return "CurrentAction"
+        case .future: return "FutureAction"
+        case .setting: return "SettingAction"
+        }
+    }
+    
+    var localizedTitle: String {
+        switch self {
+        case .current: return "현재상영"
+        case .future: return "개봉예정"
+        case .setting: return "설정"
+        }
+    }
+    
+    var icon: UIApplicationShortcutIcon {
+        switch self {
+        case .current: return UIApplicationShortcutIcon(templateImageName: "movie")
+        case .future: return UIApplicationShortcutIcon(templateImageName: "plan")
+        case .setting: return UIApplicationShortcutIcon(templateImageName: "setting")
+        }
+    }
+}
+
+class ShortcutManager {
     static let shared = ShortcutManager()
     
     /// Temporary variable to hold a shortcut item from the launching or activation of the app.
@@ -83,11 +83,15 @@ class ShortcutManager {
         case .setting:
             rootViewController.selectedIndex = 2
         }
-        if let navi = rootViewController.selectedViewController as? UINavigationController {
-            navi.popToRootViewController(animated: true)
-        }
+        
         // Reset the shorcut item so it's never processed twice.
         shortcutItemToProcess = nil
+        guard let navi = rootViewController.selectedViewController as? UINavigationController else { return }
+        navi.popToRootViewController(animated: true)
+        
+        guard let viewController = navi.viewControllers.first as? ScrollToTopDelegate,
+            viewController.canScrollToTop else { return }
+        viewController.scrollToTop()
     }
     
     public func applicationWillResignActive(_ application: UIApplication) {

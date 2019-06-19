@@ -73,8 +73,9 @@ class CurrentMovieViewController: UIViewController {
         super.viewWillDisappear(animated)
         canScrollToTop = false
     }
-    
-    // Scrolls to top nicely
+}
+
+extension CurrentMovieViewController: ScrollToTopDelegate {
     func scrollToTop() {
         if collectionView != nil && !datas.isEmpty {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {

@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol ScrollToTopDelegate: class {
+    var canScrollToTop: Bool { get set }
+    func scrollToTop()
+}
+
 class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
@@ -19,22 +24,8 @@ class MainTabBarController: UITabBarController {
 extension MainTabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         guard let navi = viewController as? UINavigationController else { return }
-        if let vc = navi.viewControllers.first as? CurrentMovieViewController {
-            if vc.canScrollToTop {
-                vc.scrollToTop()
-            }
-        }
-        
-        if let vc = navi.viewControllers.first as? FutureMovieViewController {
-            if vc.canScrollToTop {
-                vc.scrollToTop()
-            }
-        }
-        
-        if let vc = navi.viewControllers.first as? SettingViewController {
-            if vc.canScrollToTop {
-                vc.scrollToTop()
-            }
+        if let viewController = navi.viewControllers.first as? ScrollToTopDelegate, viewController.canScrollToTop {
+            viewController.scrollToTop()
         }
     }
 }
