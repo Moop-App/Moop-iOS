@@ -11,7 +11,8 @@ import Alamofire
 
 class CurrentMovieViewController: UIViewController {
 
-    let refreshControl = UIRefreshControl()
+    private let searchController = UISearchController(searchResultsController: nil)
+    private let refreshControl = UIRefreshControl()
     @IBOutlet private weak var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
@@ -22,11 +23,12 @@ class CurrentMovieViewController: UIViewController {
             collectionView.register(nib, forCellWithReuseIdentifier: "MovieCell")
         }
     }
-    
+        
     private var datas: [MovieInfo] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.searchController = searchController
         requestData()
     }
     

@@ -11,7 +11,8 @@ import Alamofire
 
 class FutureMovieViewController: UIViewController {
 
-    let refreshControl = UIRefreshControl()
+    private let searchController = UISearchController(searchResultsController: nil)
+    private let refreshControl = UIRefreshControl()
     @IBOutlet private weak var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
@@ -27,6 +28,7 @@ class FutureMovieViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.searchController = searchController
         requestData()
     }
     
