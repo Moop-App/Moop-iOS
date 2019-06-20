@@ -23,12 +23,17 @@ class CurrentMovieViewController: UIViewController {
             collectionView.register(nib, forCellWithReuseIdentifier: "MovieCell")
         }
     }
-        
+    
     private var datas: [MovieInfo] = []
+    private var filteredMovies: [MovieInfo] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        definesPresentationContext = true
         navigationItem.searchController = searchController
+        self.definesPresentationContext = true
         requestData()
     }
     
@@ -39,8 +44,7 @@ class CurrentMovieViewController: UIViewController {
         case "toDetails":
             guard let destination = segue.destination as? MovieDetailViewController,
                 let indexPathItem = sender as? Int else { return }
-            let item = datas[indexPathItem]
-            destination.item = item
+            destination.item = isFiltering() ? filteredMovies[indexPathItem] : datas[indexPathItem]
         default:
             break
         }
@@ -87,14 +91,30 @@ extension CurrentMovieViewController: ScrollToTopDelegate {
     }
 }
 
+extension CurrentMovieViewController: UISearchResultsUpdating {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        filteredMovies = datas.filter({ $0.title.contains(searchController.searchBar.text ?? "" ) })
+        collectionView.reloadData()
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+}
+
 extension CurrentMovieViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return datas.count
+        return isFiltering() ? filteredMovies.count : datas.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        cell.set(datas[indexPath.item])
+        cell.set(isFiltering() ? filteredMovies[indexPath.item] : datas[indexPath.item])
         return cell
     }
     
