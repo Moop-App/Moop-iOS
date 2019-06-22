@@ -129,7 +129,7 @@
         <!--Movie Detail View Controller-->
         <scene sceneID="pZe-cl-zMC">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="xIA-bh-Qh7" customClass="MovieDetailViewController" customModule="Moop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detail" hidesBottomBarWhenPushed="YES" id="xIA-bh-Qh7" customClass="MovieDetailViewController" customModule="Moop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DyV-GV-k7a">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

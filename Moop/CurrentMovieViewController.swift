@@ -34,6 +34,7 @@ class CurrentMovieViewController: UIViewController {
         definesPresentationContext = true
         navigationItem.searchController = searchController
         self.definesPresentationContext = true
+        self.registerForPreviewing(with: self, sourceView: self.collectionView)
         requestData()
     }
     
@@ -135,5 +136,21 @@ extension CurrentMovieViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+}
+
+extension CurrentMovieViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = collectionView.indexPathForItem(at: location),
+            let cell = collectionView.cellForItem(at: indexPath) else { return nil }
+        
+        previewingContext.sourceRect = cell.frame
+        guard let destination = storyboard?.instantiateViewController(withIdentifier: "detail") as? MovieDetailViewController else { return nil }
+        destination.item = isFiltering() ? filteredMovies[indexPath.item] : datas[indexPath.item]
+        return destination
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        self.navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
 }
