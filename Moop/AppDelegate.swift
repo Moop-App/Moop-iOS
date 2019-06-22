@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.configureLinearNetworkActivityIndicatorIfNeeded()
         NetworkActivityIndicatorManager.shared.isEnabled = true
         ShortcutManager.shared.application(didFinishLaunchingWithOptions: launchOptions)
+        RemoteNotificationManager.shared.register(application)
         return true
     }
     

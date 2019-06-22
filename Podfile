@@ -15,6 +15,7 @@ target 'Moop' do
   pod 'AlamofireNetworkActivityIndicator', '~> 3.0.0-beta.3'
 
   pod 'SDWebImage'
+  pod 'Firebase/Messaging'
 
   pod 'SwiftLint'
 #  pod 'Peek', :configuration => ['Debug']
