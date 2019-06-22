@@ -9,6 +9,11 @@
 import UIKit
 import SafariServices
 
+protocol MovieDetailPickAndPopDelegate: class {
+    func share(text: String)
+    func rating(type: TheaterType, id: String)
+}
+
 class MovieDetailViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView! {
@@ -21,12 +26,30 @@ class MovieDetailViewController: UIViewController {
 
     var item: MovieInfo?
     var totalCount = 0
+    weak var delegate: MovieDetailPickAndPopDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = item?.title
         headerView.set(item)
         headerView.delegate = self
+    }
+    
+    override var previewActionItems: [UIPreviewActionItem] {
+        let shareAction = UIPreviewAction(title: "Share", style: .default) { [weak self] (_, viewController) in
+            self?.delegate?.share(text: self?.item?.shareText ?? "")
+        }
+        let cgvAction = UIPreviewAction(title: "CGV", style: .default) { [weak self] (_, viewController) in
+            self?.delegate?.rating(type: .cgv, id: self?.item?.cgv?.id ?? "")
+        }
+        let lotteAction = UIPreviewAction(title: "LOTTE", style: .default) { [weak self] (_, _) in
+            self?.delegate?.rating(type: .lotte, id: self?.item?.lotte?.id ?? "")
+        }
+        let megaboxAction = UIPreviewAction(title: "MEGABOX", style: .default) { [weak self] (_, _) in
+            self?.delegate?.rating(type: .megabox, id: self?.item?.megabox?.id ?? "")
+        }
+        
+        return [shareAction, cgvAction, lotteAction, megaboxAction]
     }
 }
 
@@ -48,8 +71,7 @@ extension MovieDetailViewController: DetailHeaderDelegate {
     }
     
     func share() {
-        let shareText = "제목: \(item?.title ?? "")\n개봉일: \(item?.openDate ?? "")\n\(item?.ageBadgeText ?? "")"
-        let viewController = UIActivityViewController(activityItems: [shareText], applicationActivities: [])
+        let viewController = UIActivityViewController(activityItems: [item?.shareText ?? ""], applicationActivities: [])
         present(viewController, animated: true, completion: nil)
     }
 }

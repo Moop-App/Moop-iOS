@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SafariServices
 
 class FutureMovieViewController: UIViewController {
 
@@ -32,6 +33,7 @@ class FutureMovieViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
+        self.registerForPreviewing(with: self, sourceView: self.collectionView)
         requestData()
     }
     
@@ -144,5 +146,72 @@ extension FutureMovieViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    @available(iOS 13.0, *)
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            let share = UIAction(__title: "Share", image: UIImage(named: "share"), options: []) { action in
+                let shareText = self.isFiltering() ? self.filteredMovies[indexPath.item].shareText : self.datas[indexPath.item].shareText
+                self.share(text: shareText)
+            }
+            let cgv = UIAction(__title: "CGV", image: nil, options: []) { action in
+                let item = self.isFiltering() ? self.filteredMovies[indexPath.item] : self.datas[indexPath.item]
+                self.rating(type: .cgv, id: item.cgv?.id ?? "")
+            }
+            
+            let lotte = UIAction(__title: "LOTTE", image: nil, options: []) { action in
+                let item = self.isFiltering() ? self.filteredMovies[indexPath.item] : self.datas[indexPath.item]
+                self.rating(type: .lotte, id: item.lotte?.id ?? "")
+            }
+            
+            let megabox = UIAction(__title: "MEGABOX", image: nil, options: []) { action in
+                let item = self.isFiltering() ? self.filteredMovies[indexPath.item] : self.datas[indexPath.item]
+                self.rating(type: .megabox, id: item.megabox?.id ?? "")
+            }
+            
+            // Create and return a UIMenu with the share action
+            return UIMenu(__title: "", image: nil, identifier: nil, children: [share, cgv, lotte, megabox])
+        }
+    }
+}
+
+extension FutureMovieViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = collectionView.indexPathForItem(at: location),
+            let cell = collectionView.cellForItem(at: indexPath) else { return nil }
+        
+        previewingContext.sourceRect = cell.frame
+        guard let destination = storyboard?.instantiateViewController(withIdentifier: "detail") as? MovieDetailViewController else { return nil }
+        destination.item = isFiltering() ? filteredMovies[indexPath.item] : datas[indexPath.item]
+        destination.delegate = self
+        return destination
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        self.navigationController?.pushViewController(viewControllerToCommit, animated: true)
+    }
+}
+
+extension FutureMovieViewController: MovieDetailPickAndPopDelegate {
+    func share(text: String) {
+        let viewController = UIActivityViewController(activityItems: [text], applicationActivities: [])
+        present(viewController, animated: true, completion: nil)
+    }
+    
+    func rating(type: TheaterType, id: String) {
+        let webURL: URL?
+        switch type {
+        case .cgv:
+            webURL = URL(string: "http://m.cgv.co.kr/WebApp/MovieV4/movieDetail.aspx?MovieIdx=\(id)")
+        case .lotte:
+            webURL = URL(string: "http://www.lottecinema.co.kr/LCMW/Contents/Movie/Movie-Detail-View.aspx?movie=\(id)")
+        case .megabox:
+            webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(id)")
+        }
+        
+        guard let url = webURL else { return }
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true, completion: nil)
     }
 }

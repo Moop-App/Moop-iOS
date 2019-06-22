@@ -102,6 +102,10 @@ extension MovieInfo {
             return "미정"
         }
     }
+    
+    var shareText: String {
+        return "제목: \(title)\n개봉일: \(openDate)\n\(ageBadgeText)"
+    }
 }
 
 struct NaverInfo: Decodable {
