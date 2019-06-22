@@ -95,13 +95,8 @@ extension MovieDetailViewController: UITableViewDelegate {
         }
         
         if let cell = tableView.cellForRow(at: indexPath) as? TrailerCell {
-            guard let httpURL = URL(string: "http://www.youtube.com/watch?v=\(cell.youtubeId ?? "")"),
-                let youtubeURL = URL(string: "youtube://\(cell.youtubeId ?? "")") else { return }
-            if UIApplication.shared.canOpenURL(youtubeURL) {
-                UIApplication.shared.open(youtubeURL, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.open(httpURL, options: [:], completionHandler: nil)
-            }
+            let viewController = YoutubeVideoPlayerController(videoId: cell.youtubeId ?? "")
+            self.present(viewController, animated: true, completion: nil)
         }
         
         if tableView.cellForRow(at: indexPath) is TrailerFooterCell {
@@ -114,6 +109,5 @@ extension MovieDetailViewController: UITableViewDelegate {
                 UIApplication.shared.open(httpURL, options: [:], completionHandler: nil)
             }
         }
-        
     }
 }

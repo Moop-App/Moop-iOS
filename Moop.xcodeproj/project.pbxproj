@@ -38,6 +38,8 @@
 		3CB6E84D22B9C518008F382C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB6E84C22B9C518008F382C /* MainTabBarController.swift */; };
 		3CBD5EB422960DF7005A24E4 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD5EB322960DF7005A24E4 /* MovieDetailViewController.swift */; };
 		3CBD5EB622960EA5005A24E4 /* FutureMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD5EB522960EA5005A24E4 /* FutureMovieViewController.swift */; };
+		3CDCD78D22BDD1BD00DDD14B /* YoutubeVideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDCD78C22BDD1BD00DDD14B /* YoutubeVideoPlayerController.swift */; };
+		3CDCD78F22BDD1F000DDD14B /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDCD78E22BDD1F000DDD14B /* UIApplication+Extension.swift */; };
 		3CF5B8D1229ACE5F00A4C2BB /* Pods-Moop-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CF5B8D0229ACE5F00A4C2BB /* Pods-Moop-acknowledgements.plist */; };
 		B0C760EE98FDCCE04F4B94C2 /* Pods_MoopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D7796071955DEAF3E6A7AF /* Pods_MoopTests.framework */; };
 /* End PBXBuildFile section */
@@ -89,6 +91,8 @@
 		3CB6E84C22B9C518008F382C /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3CBD5EB322960DF7005A24E4 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		3CBD5EB522960EA5005A24E4 /* FutureMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureMovieViewController.swift; sourceTree = "<group>"; };
+		3CDCD78C22BDD1BD00DDD14B /* YoutubeVideoPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeVideoPlayerController.swift; sourceTree = "<group>"; };
+		3CDCD78E22BDD1F000DDD14B /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		3CF5B8D0229ACE5F00A4C2BB /* Pods-Moop-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-Moop-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-Moop/Pods-Moop-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
 		A748664396DF941852859EA3 /* Pods-Moop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moop.release.xcconfig"; path = "Target Support Files/Pods-Moop/Pods-Moop.release.xcconfig"; sourceTree = "<group>"; };
 		AF133E07AA84A1910C2583F7 /* Pods-MoopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoopTests.debug.xcconfig"; path = "Target Support Files/Pods-MoopTests/Pods-MoopTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 				3C66021822959A18000BA333 /* MovieCell.swift */,
 				3C66021922959A18000BA333 /* MovieCell.xib */,
 				3C6601F722956D38000BA333 /* Main.storyboard */,
+				3CDCD78C22BDD1BD00DDD14B /* YoutubeVideoPlayerController.swift */,
 				3C6601FA22956D39000BA333 /* Assets.xcassets */,
 				3C6601FC22956D39000BA333 /* LaunchScreen.storyboard */,
 				3C6602142295745A000BA333 /* GoogleService-Info.plist */,
@@ -175,6 +180,7 @@
 			children = (
 				3C767526229918890052BEB6 /* UIView+Extension.swift */,
 				3C7675242299172C0052BEB6 /* UIColor+Extension.swift */,
+				3CDCD78E22BDD1F000DDD14B /* UIApplication+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -451,6 +457,7 @@
 				3C76752B2299529C0052BEB6 /* SettingHeaderCell.swift in Sources */,
 				3C76752F229953590052BEB6 /* SettingItemCell.swift in Sources */,
 				3C1B6E672297A68F009CB740 /* MovieDetailHeaderView.swift in Sources */,
+				3CDCD78F22BDD1F000DDD14B /* UIApplication+Extension.swift in Sources */,
 				3C7675252299172C0052BEB6 /* UIColor+Extension.swift in Sources */,
 				3C66021D22959DA5000BA333 /* Config.swift in Sources */,
 				3CB52E6F22B4F3BA009FD7D1 /* NaverInfoCell.swift in Sources */,
@@ -458,6 +465,7 @@
 				3C66021A22959A18000BA333 /* MovieCell.swift in Sources */,
 				3C767527229918890052BEB6 /* UIView+Extension.swift in Sources */,
 				3CBD5EB622960EA5005A24E4 /* FutureMovieViewController.swift in Sources */,
+				3CDCD78D22BDD1BD00DDD14B /* YoutubeVideoPlayerController.swift in Sources */,
 				3CBD5EB422960DF7005A24E4 /* MovieDetailViewController.swift in Sources */,
 				3C66021F22959F04000BA333 /* MovieInfo.swift in Sources */,
 				3C1B6E692297A80E009CB740 /* TheaterRankView.swift in Sources */,

@@ -67,14 +67,14 @@ class MovieDetailHeaderView: UIView {
     }
     
     @IBAction private func cgvClick(_ sender: UIButton) {
-        self.delegate?.wrapper(type: .cgv)
+//        self.delegate?.wrapper(type: .cgv)
     }
     
     @IBAction private func lotteClick(_ sender: UIButton) {
-        self.delegate?.wrapper(type: .lotte)
+//        self.delegate?.wrapper(type: .lotte)
     }
     
     @IBAction private func megaBoxClick(_ sender: UIButton) {
-        self.delegate?.wrapper(type: .megabox)
+//        self.delegate?.wrapper(type: .megabox)
     }
 }
