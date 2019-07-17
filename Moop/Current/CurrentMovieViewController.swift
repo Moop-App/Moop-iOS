@@ -25,8 +25,22 @@ class CurrentMovieViewController: UIViewController {
         }
     }
     
-    private var datas: [MovieInfo] = []
-    private var filteredMovies: [MovieInfo] = []
+    private var datas: [MovieInfo] = [] {
+        didSet {
+            if let theaters: [TheaterType] = UserDefaults.standard.object([TheaterType].self, forKey: .theater) {
+                self.filteredMovies = datas.filter({ $0.contain(types: theaters) })
+            } else {
+                self.filteredMovies = datas
+            }
+        }
+    }
+    
+    private var filteredMovies: [MovieInfo] = [] {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    private var searchedMovies: [MovieInfo] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +60,11 @@ class CurrentMovieViewController: UIViewController {
         case "toDetails":
             guard let destination = segue.destination as? MovieDetailViewController,
                 let indexPathItem = sender as? Int else { return }
-            destination.item = isFiltering() ? filteredMovies[indexPathItem] : datas[indexPathItem]
+            destination.item = isFiltering() ? searchedMovies[indexPathItem] : filteredMovies[indexPathItem]
+        case "toFilter":
+            guard let destinationNavi = segue.destination as? UINavigationController,
+                let destination = destinationNavi.viewControllers.first as? FilterViewController else { return }
+            destination.delegate = self
         default:
             break
         }
@@ -61,7 +79,6 @@ class CurrentMovieViewController: UIViewController {
                 switch response.result {
                 case .success(let result):
                     self.datas = result.sorted(by: { $0.rank < $1.rank })
-                    self.collectionView.reloadData()
                     self.refreshControl.endRefreshing()
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -83,9 +100,19 @@ class CurrentMovieViewController: UIViewController {
     }
 }
 
+extension CurrentMovieViewController: FilterChangeDelegate {
+    func theaterChanged() {
+        if let theaters: [TheaterType] = UserDefaults.standard.object([TheaterType].self, forKey: .theater) {
+            self.filteredMovies = datas.filter({ $0.contain(types: theaters) })
+        } else {
+            self.filteredMovies = datas
+        }
+    }
+}
+
 extension CurrentMovieViewController: ScrollToTopDelegate {
     func scrollToTop() {
-        if collectionView != nil && !datas.isEmpty {
+        if collectionView != nil && !filteredMovies.isEmpty {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
                 self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
             }
@@ -96,7 +123,7 @@ extension CurrentMovieViewController: ScrollToTopDelegate {
 extension CurrentMovieViewController: UISearchResultsUpdating {
     // MARK: - UISearchResultsUpdating Delegate
     func updateSearchResults(for searchController: UISearchController) {
-        filteredMovies = datas.filter({ $0.title.contains(searchController.searchBar.text ?? "" ) })
+        searchedMovies = filteredMovies.filter({ $0.title.contains(searchController.searchBar.text ?? "" ) })
         collectionView.reloadData()
     }
     
@@ -111,12 +138,12 @@ extension CurrentMovieViewController: UISearchResultsUpdating {
 
 extension CurrentMovieViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return isFiltering() ? filteredMovies.count : datas.count
+        return isFiltering() ? searchedMovies.count : filteredMovies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        cell.set(isFiltering() ? filteredMovies[indexPath.item] : datas[indexPath.item])
+        cell.set(isFiltering() ? searchedMovies[indexPath.item] : filteredMovies[indexPath.item])
         return cell
     }
     
@@ -139,32 +166,36 @@ extension CurrentMovieViewController: UICollectionViewDelegateFlowLayout {
         return 0
     }
     
-    @available(iOS 13.0, *)
-    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
-            let share = UIAction(__title: "Share", image: UIImage(named: "share"), options: []) { action in
-                let shareText = self.isFiltering() ? self.filteredMovies[indexPath.item].shareText : self.datas[indexPath.item].shareText
-                self.share(text: shareText)
-            }
-            let cgv = UIAction(__title: "CGV", image: nil, options: []) { action in
-                let item = self.isFiltering() ? self.filteredMovies[indexPath.item] : self.datas[indexPath.item]
-                self.rating(type: .cgv, id: item.cgv?.id ?? "")
-            }
-            
-            let lotte = UIAction(__title: "LOTTE", image: nil, options: []) { action in
-                let item = self.isFiltering() ? self.filteredMovies[indexPath.item] : self.datas[indexPath.item]
-                self.rating(type: .lotte, id: item.lotte?.id ?? "")
-            }
-            
-            let megabox = UIAction(__title: "MEGABOX", image: nil, options: []) { action in
-                let item = self.isFiltering() ? self.filteredMovies[indexPath.item] : self.datas[indexPath.item]
-                self.rating(type: .megabox, id: item.megabox?.id ?? "")
-            }
-            
-            // Create and return a UIMenu with the share action
-            return UIMenu(__title: "", image: nil, identifier: nil, children: [share, cgv, lotte, megabox])
-        }
-    }
+//    @available(iOS 13.0, *)
+//    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+//        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+//            let share = UIAction(__title: "Share", image: UIImage(named: "share"), identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                let shareText = self.isFiltering() ? self.searchedMovies[indexPath.item].shareText : self.filteredMovies[indexPath.item].shareText
+//                self.share(text: shareText)
+//            }
+//            let cgv = UIAction(__title: "CGV", image: nil, identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                let item = self.isFiltering() ? self.searchedMovies[indexPath.item] : self.filteredMovies[indexPath.item]
+//                self.rating(type: .cgv, id: item.cgv?.id ?? "")
+//            }
+//
+//            let lotte = UIAction(__title: "LOTTE", image: nil, identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                let item = self.isFiltering() ? self.searchedMovies[indexPath.item] : self.filteredMovies[indexPath.item]
+//                self.rating(type: .lotte, id: item.lotte?.id ?? "")
+//            }
+//
+//            let megabox = UIAction(__title: "MEGABOX", image: nil, identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                let item = self.isFiltering() ? self.searchedMovies[indexPath.item] : self.filteredMovies[indexPath.item]
+//                self.rating(type: .megabox, id: item.megabox?.id ?? "")
+//            }
+//
+//            // Create and return a UIMenu with the share action
+//            return UIMenu(__title: "", image: nil, identifier: nil, children: [share, cgv, lotte, megabox])
+//        }
+//    }
 }
 
 extension CurrentMovieViewController: UIViewControllerPreviewingDelegate {
@@ -174,7 +205,7 @@ extension CurrentMovieViewController: UIViewControllerPreviewingDelegate {
         
         previewingContext.sourceRect = cell.frame
         guard let destination = storyboard?.instantiateViewController(withIdentifier: "detail") as? MovieDetailViewController else { return nil }
-        destination.item = isFiltering() ? filteredMovies[indexPath.item] : datas[indexPath.item]
+        destination.item = isFiltering() ? searchedMovies[indexPath.item] : filteredMovies[indexPath.item]
         destination.delegate = self
         return destination
     }

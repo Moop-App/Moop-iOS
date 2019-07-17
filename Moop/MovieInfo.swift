@@ -106,6 +106,20 @@ extension MovieInfo {
     var shareText: String {
         return "제목: \(title)\n개봉일: \(openDate)\n\(ageBadgeText)"
     }
+    
+    func contain(types: [TheaterType]) -> Bool {
+        for type in types {
+            switch type {
+            case .cgv:
+                if self.cgv == nil { return false }
+            case .lotte:
+                if self.lotte == nil { return false }
+            case .megabox:
+                if self.megabox == nil { return false }
+            }
+        }
+        return true
+    }
 }
 
 struct NaverInfo: Decodable {

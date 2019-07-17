@@ -8,10 +8,21 @@
 
 import UIKit
 
-enum TheaterType {
-    case cgv
+enum TheaterType: Int, Codable, CaseIterable {
+    case cgv = 0
     case lotte
     case megabox
+    
+    var title: String {
+        switch self {
+        case .cgv:
+            return "CGV"
+        case .lotte:
+            return "LOTTE"
+        case .megabox:
+            return "MegaBox"
+        }
+    }
 }
 
 protocol DetailHeaderDelegate: class {
