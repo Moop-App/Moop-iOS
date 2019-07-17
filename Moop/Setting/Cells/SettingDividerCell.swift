@@ -8,6 +8,6 @@
 
 import UIKit
 
-class SettingDividerCell: UITableViewCell {
+class SettingDividerCell: UITableViewCell, ReusableView, NibLoadableView {
     @IBOutlet weak var dividerView: UIView!
 }

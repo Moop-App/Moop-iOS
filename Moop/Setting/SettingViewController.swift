@@ -51,12 +51,9 @@ class SettingViewController: UIViewController {
         didSet {
             tableView.dataSource = self
             tableView.delegate = self
-            let headerNib = UINib(nibName: "SettingHeaderCell", bundle: nil)
-            tableView.register(headerNib, forCellReuseIdentifier: "SettingHeaderCell")
-            let itemNib = UINib(nibName: "SettingItemCell", bundle: nil)
-            tableView.register(itemNib, forCellReuseIdentifier: "SettingItemCell")
-            let dividerNib = UINib(nibName: "SettingDividerCell", bundle: nil)
-            tableView.register(dividerNib, forCellReuseIdentifier: "SettingDividerCell")
+            tableView.register(SettingHeaderCell.self)
+            tableView.register(SettingItemCell.self)
+            tableView.register(SettingDividerCell.self)
         }
     }
 
@@ -122,16 +119,16 @@ extension SettingViewController: UITableViewDataSource {
         let rowItem = indexPath.item % 3
         switch rowItem {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingHeaderCell", for: indexPath) as! SettingHeaderCell
+            let cell: SettingHeaderCell = tableView.dequeueReusableCell(for: indexPath)
             cell.titleLabel.text = datas[indexPath.item / 3].title
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingItemCell", for: indexPath) as! SettingItemCell
+            let cell: SettingItemCell = tableView.dequeueReusableCell(for: indexPath)
             let item = datas[indexPath.item / 3]
             cell.descriptionLabel.text = "\(item.description)" + (item == .version ? " / Latest \(currentVersion)" : "")
             return cell
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingDividerCell", for: indexPath) as! SettingDividerCell
+            let cell: SettingDividerCell = tableView.dequeueReusableCell(for: indexPath)
             cell.dividerView.backgroundColor = indexPath.item + 1 == datas.count * 3 ? .clear : .groupTableViewBackground
             return cell
         }

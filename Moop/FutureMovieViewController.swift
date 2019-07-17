@@ -20,8 +20,7 @@ class FutureMovieViewController: UIViewController {
             collectionView.dataSource = self
             refreshControl.addTarget(self, action: #selector(requestData), for: .valueChanged)
             collectionView.refreshControl = refreshControl
-            let nib = UINib(nibName: "MovieCell", bundle: nil)
-            collectionView.register(nib, forCellWithReuseIdentifier: "MovieCell")
+            collectionView.register(MovieCell.self)
         }
     }
     private var datas: [MovieInfo] = [] {
@@ -146,7 +145,7 @@ extension FutureMovieViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        let cell: MovieCell = collectionView.dequeueReusableCell(for: indexPath)
         if isFiltering() {
             cell.set(searchedMovies[indexPath.item])
         } else {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieCell: UICollectionViewCell {
+class MovieCell: UICollectionViewCell, ReusableView, NibLoadableView {
     
     @IBOutlet private weak var thumbnailImageView: UIImageView!
     @IBOutlet private weak var ageBadge: UIView!

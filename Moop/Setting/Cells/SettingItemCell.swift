@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingItemCell: UITableViewCell {
+class SettingItemCell: UITableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var descriptionLabel: UILabel!
     

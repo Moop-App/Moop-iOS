@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingHeaderCell: UITableViewCell {
+class SettingHeaderCell: UITableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var titleLabel: UILabel!
     
