@@ -46,7 +46,7 @@ class FutureMovieViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
         self.registerForPreviewing(with: self, sourceView: self.collectionView)
-        requestData()
+        self.datas = MovieInfoManager.shared.futureDatas
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -71,19 +71,10 @@ class FutureMovieViewController: UIViewController {
     }
     
     @objc private func requestData() {
-        let requestURL = URL(string: "\(Config.baseURL)/plan/list.json")!
-        AF.request(requestURL)
-            .validate(statusCode: [200])
-            .responseDecodable { [weak self] (response: DataResponse<[MovieInfo]>) in
-                guard let self = self else { return }
-                switch response.result {
-                case .success(let result):
-                    self.datas = result.sorted(by: { $0.getDay < $1.getDay })
-                    self.refreshControl.endRefreshing()
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    self.refreshControl.endRefreshing()
-                }
+        MovieInfoManager.shared.requestFutureData { [weak self] in
+            guard let self = self else { return }
+            self.datas = MovieInfoManager.shared.futureDatas
+            self.refreshControl.endRefreshing()
         }
     }
     

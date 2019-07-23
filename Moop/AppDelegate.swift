@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NetworkActivityIndicatorManager.shared.isEnabled = true
         ShortcutManager.shared.application(didFinishLaunchingWithOptions: launchOptions)
         RemoteNotificationManager.shared.register(application)
+        MovieInfoManager.shared.requestFutureData()
         return true
     }
     

@@ -74,6 +74,22 @@ extension MovieDetailViewController: DetailHeaderDelegate {
         let viewController = UIActivityViewController(activityItems: [item?.shareText ?? ""], applicationActivities: [])
         present(viewController, animated: true, completion: nil)
     }
+    
+    func favorite(isAdd: Bool) {
+        guard var array = UserDefaults.standard.array(forKey: .favorites) as? [String],
+            let itemId = item?.id else {
+            if isAdd {
+                UserDefaults.standard.set([item?.id ?? ""], forKey: .favorites)
+            }
+            return
+        }
+        if isAdd {
+            array.append(itemId)
+        } else if let index = array.firstIndex(of: itemId) {
+            array.remove(at: index)
+        }
+        UserDefaults.standard.set(array, forKey: .favorites)
+    }
 }
 
 extension MovieDetailViewController: UITableViewDataSource {

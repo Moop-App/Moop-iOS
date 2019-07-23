@@ -70,19 +70,10 @@ class CurrentMovieViewController: UIViewController {
     }
     
     @objc private func requestData() {
-        let requestURL = URL(string: "\(Config.baseURL)/now/list.json")!
-        AF.request(requestURL)
-            .validate(statusCode: [200])
-            .responseDecodable { [weak self] (response: DataResponse<[MovieInfo]>) in
-                guard let self = self else { return }
-                switch response.result {
-                case .success(let result):
-                    self.datas = result.sorted(by: { $0.rank < $1.rank })
-                    self.refreshControl.endRefreshing()
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    self.refreshControl.endRefreshing()
-                }
+        MovieInfoManager.shared.requestCurrentData { [weak self] in
+            guard let self = self else { return }
+            self.datas = MovieInfoManager.shared.currentDatas
+            self.refreshControl.endRefreshing()
         }
     }
     

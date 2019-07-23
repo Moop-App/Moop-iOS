@@ -18,7 +18,7 @@ target 'Moop' do
   pod 'Firebase/Messaging'
 
   pod 'SwiftLint'
-#  pod 'Peek', :configuration => ['Debug']
+  pod 'Peek', :configuration => ['Debug']
   pod 'Wormholy', :configurations => ['Debug']
 
   pod 'CTFeedbackSwift'

@@ -27,6 +27,7 @@ enum TheaterType: Int, Codable, CaseIterable {
 
 protocol DetailHeaderDelegate: class {
     func wrapper(type: TheaterType)
+    func favorite(isAdd: Bool)
     func share()
 }
 
@@ -37,6 +38,7 @@ class MovieDetailHeaderView: UIView {
     @IBOutlet private weak var cgvWraaper: TheaterRankView!
     @IBOutlet private weak var megaBoxWraaper: TheaterRankView!
     @IBOutlet private weak var lotteWraaper: TheaterRankView!
+    @IBOutlet private weak var favoriteButton: UIButton!
     
     @IBOutlet private weak var ageBadge: UIView!
     @IBOutlet private weak var ageLabel: UILabel!
@@ -71,21 +73,29 @@ class MovieDetailHeaderView: UIView {
         
         ageLabel.text = item.ageBadgeText
         dDayLabel.text = item.dDayText
+        
+        guard let ids = UserDefaults.standard.array(forKey: .favorites) as? [String] else { return }
+        favoriteButton.isSelected = ids.contains(item.id)
     }
     
     @IBAction private func share(_ sender: UIButton) {
         self.delegate?.share()
     }
     
+    @IBAction private func favorite(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        self.delegate?.favorite(isAdd: sender.isSelected)
+    }
+    
     @IBAction private func cgvClick(_ sender: UIButton) {
-//        self.delegate?.wrapper(type: .cgv)
+        self.delegate?.wrapper(type: .cgv)
     }
     
     @IBAction private func lotteClick(_ sender: UIButton) {
-//        self.delegate?.wrapper(type: .lotte)
+        self.delegate?.wrapper(type: .lotte)
     }
     
     @IBAction private func megaBoxClick(_ sender: UIButton) {
-//        self.delegate?.wrapper(type: .megabox)
+        self.delegate?.wrapper(type: .megabox)
     }
 }

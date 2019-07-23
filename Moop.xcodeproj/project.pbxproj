@@ -10,6 +10,8 @@
 		0EDD23484A5A214B04612924 /* Pods_Moop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0F0F28D907F86F889E893 /* Pods_Moop.framework */; };
 		3C1B6E672297A68F009CB740 /* MovieDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B6E662297A68F009CB740 /* MovieDetailHeaderView.swift */; };
 		3C1B6E692297A80E009CB740 /* TheaterRankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B6E682297A80E009CB740 /* TheaterRankView.swift */; };
+		3C34938B22E7584A00A77343 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C34938A22E7584A00A77343 /* FavoriteViewController.swift */; };
+		3C34938D22E75DA700A77343 /* MovieInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C34938C22E75DA700A77343 /* MovieInfoManager.swift */; };
 		3C61A8A122DF282D00F4A7E5 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61A8A022DF282D00F4A7E5 /* Reusable.swift */; };
 		3C6601F422956D38000BA333 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6601F322956D38000BA333 /* AppDelegate.swift */; };
 		3C6601F622956D38000BA333 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6601F522956D38000BA333 /* SettingViewController.swift */; };
@@ -67,6 +69,8 @@
 		14FCFAAA46A550D61B0571B0 /* Pods-MoopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoopTests.release.xcconfig"; path = "Target Support Files/Pods-MoopTests/Pods-MoopTests.release.xcconfig"; sourceTree = "<group>"; };
 		3C1B6E662297A68F009CB740 /* MovieDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailHeaderView.swift; sourceTree = "<group>"; };
 		3C1B6E682297A80E009CB740 /* TheaterRankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterRankView.swift; sourceTree = "<group>"; };
+		3C34938A22E7584A00A77343 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		3C34938C22E75DA700A77343 /* MovieInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoManager.swift; sourceTree = "<group>"; };
 		3C61A8A022DF282D00F4A7E5 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		3C6601F022956D38000BA333 /* Moop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C6601F322956D38000BA333 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 			children = (
 				3CDCD79222BDDAD100DDD14B /* Moop.entitlements */,
 				3C6601F322956D38000BA333 /* AppDelegate.swift */,
+				3C34938C22E75DA700A77343 /* MovieInfoManager.swift */,
 				3C61A8A222DF283300F4A7E5 /* Utils */,
 				3CB6E84A22B8EFF2008F382C /* ShortcutManager.swift */,
 				3CDCD79022BDD7C400DDD14B /* RemoteNotificationManager.swift */,
@@ -179,6 +184,7 @@
 				3CF7219522BF57480022D03E /* Current */,
 				3CBD5EB522960EA5005A24E4 /* FutureMovieViewController.swift */,
 				3C947A8B22D736170075E4DE /* FilterViewController.swift */,
+				3C34938A22E7584A00A77343 /* FavoriteViewController.swift */,
 				3C66021822959A18000BA333 /* MovieCell.swift */,
 				3C66021922959A18000BA333 /* MovieCell.xib */,
 				3C6601F722956D38000BA333 /* Main.storyboard */,
@@ -507,6 +513,7 @@
 				3C660217229596D3000BA333 /* CurrentMovieViewController.swift in Sources */,
 				3C6601F622956D38000BA333 /* SettingViewController.swift in Sources */,
 				3C76752B2299529C0052BEB6 /* SettingHeaderCell.swift in Sources */,
+				3C34938D22E75DA700A77343 /* MovieInfoManager.swift in Sources */,
 				3CF7219222BF57020022D03E /* CurrentMovieProtocols.swift in Sources */,
 				3C76752F229953590052BEB6 /* SettingItemCell.swift in Sources */,
 				3C1B6E672297A68F009CB740 /* MovieDetailHeaderView.swift in Sources */,
@@ -524,6 +531,7 @@
 				3CF7219422BF57430022D03E /* CurrentMovieView.swift in Sources */,
 				3CBD5EB422960DF7005A24E4 /* MovieDetailViewController.swift in Sources */,
 				3C66021F22959F04000BA333 /* MovieInfo.swift in Sources */,
+				3C34938B22E7584A00A77343 /* FavoriteViewController.swift in Sources */,
 				3C1B6E692297A80E009CB740 /* TheaterRankView.swift in Sources */,
 				3C767533229954A80052BEB6 /* SettingDividerCell.swift in Sources */,
 				3CF7219022BF56ED0022D03E /* CurrentMoviePresenter.swift in Sources */,
@@ -698,8 +706,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Moop/Moop.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 11;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UQZ9Y78ACS;
 				INFOPLIST_FILE = "$(SRCROOT)/Moop/Resource/Info.plist";
@@ -709,7 +717,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kor45cw.Moop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.kor45cw.Moop";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -722,9 +730,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Moop/Moop.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = UQZ9Y78ACS;
 				INFOPLIST_FILE = "$(SRCROOT)/Moop/Resource/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -733,7 +741,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kor45cw.Moop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.kor45cw.Moop";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
