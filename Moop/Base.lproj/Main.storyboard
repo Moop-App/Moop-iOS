@@ -1031,11 +1031,41 @@
                     <navigationItem key="navigationItem" title="설정" id="J4m-CG-4Oh"/>
                     <connections>
                         <outlet property="tableView" destination="dET-cH-r8p" id="zc6-OU-DSn"/>
+                        <segue destination="WyV-OI-6tC" kind="show" identifier="toMaps" id="U62-6t-5RK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M9M-2F-RZ6" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1958" y="2086"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="2SM-cd-aKa">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="WyV-OI-6tC" customClass="MapViewController" customModule="Moop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="N2b-SR-oQ3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gag-0B-w8H">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gag-0B-w8H" firstAttribute="top" secondItem="N2b-SR-oQ3" secondAttribute="top" id="d31-Qt-EvY"/>
+                            <constraint firstAttribute="trailing" secondItem="gag-0B-w8H" secondAttribute="trailing" id="gQr-Pm-pDC"/>
+                            <constraint firstItem="gag-0B-w8H" firstAttribute="leading" secondItem="N2b-SR-oQ3" secondAttribute="leading" id="iTw-Bd-0Im"/>
+                            <constraint firstAttribute="bottom" secondItem="gag-0B-w8H" secondAttribute="bottom" id="k7T-aE-n1I"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CCE-VM-Ybq"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="gag-0B-w8H" id="t9k-Jm-9yE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rpt-0e-dgu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2815.9420289855075" y="2085.9375"/>
         </scene>
         <!--개봉예정-->
         <scene sceneID="vY6-KH-i3z">

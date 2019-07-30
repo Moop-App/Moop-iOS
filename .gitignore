@@ -69,3 +69,4 @@ fastlane/test_output
 
 Moop/GoogleService-Info.plist
 Moop/Config.swift
+.DS_Store

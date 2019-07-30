@@ -13,6 +13,7 @@ import CTFeedbackSwift
 
 enum SettingSection: CaseIterable {
     case theme
+    case map
     case version
     case opensource
     case feedback
@@ -21,6 +22,8 @@ enum SettingSection: CaseIterable {
         switch self {
         case .theme:
             return "Theme"
+        case .map:
+            return "Map"
         case .version:
             return "Version"
         case .opensource:
@@ -34,6 +37,8 @@ enum SettingSection: CaseIterable {
         switch self {
         case .theme:
             return "준비중입니다."
+        case .map:
+            return "지도 확인하기"
         case .version:
             guard let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return "" }
             return "Current \(appVersion)"
@@ -146,17 +151,19 @@ extension SettingViewController: UITableViewDelegate {
         switch indexPath.item {
         case 1: // Theme
             break
-        case 4: // Version
+        case 4: // MAP
+            self.performSegue(withIdentifier: "toMaps", sender: self)
+        case 7: // Version
             guard let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
                 let url = URL(string: "itms-apps://itunes.apple.com/app/id1464896856") else { return }
             if appVersion == currentVersion { return }
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:])
             }
-        case 7: // Open Source
+        case 10: // Open Source
             let viewController = AcknowListViewController()
             navigationController?.pushViewController(viewController, animated: true)
-        case 10: // Feedback
+        case 13: // Feedback
             if MFMailComposeViewController.canSendMail() {
                 let configuration = FeedbackConfiguration(toRecipients: ["kor45cw@gmail.com"], hidesUserEmailCell: false, usesHTML: false)
                 let controller    = FeedbackViewController(configuration: configuration)
