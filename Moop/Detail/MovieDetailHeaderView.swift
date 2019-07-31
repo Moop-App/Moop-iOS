@@ -23,6 +23,15 @@ enum TheaterType: Int, Codable, CaseIterable {
             return "MegaBox"
         }
     }
+    
+    init(type: String) {
+        switch type {
+        case "C": self = .cgv
+        case "L": self = .lotte
+        case "M": self = .megabox
+        default: self = .cgv
+        }
+    }
 }
 
 protocol DetailHeaderDelegate: class {

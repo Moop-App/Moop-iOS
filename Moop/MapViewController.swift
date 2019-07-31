@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 import MapKit
 
 class MapViewController: UIViewController {
@@ -37,6 +38,20 @@ class MapViewController: UIViewController {
         
         if let coor = mapView.userLocation.location?.coordinate{
             mapView.setCenter(coor, animated: true)
+        }
+        
+        let requestURL = URL(string: "\(Config.baseURL)/code.json")!
+        AF.request(requestURL)
+            .validate(statusCode: [200])
+            .responseDecodable { [weak self] (response: DataResponse<MapInfo>) in
+                guard let self = self else { return }
+                switch response.result {
+                case .success(let result):
+                    print("Items Count", result.items.count)
+                    self.mapView.addAnnotations(result.items)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
         }
     }
 }

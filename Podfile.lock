@@ -72,7 +72,6 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Nimble (8.0.2)
-  - Peek (5.2.0)
   - Protobuf (3.9.0)
   - Quick (2.1.0)
   - SDWebImage (5.0.6):
@@ -91,7 +90,6 @@ DEPENDENCIES:
   - Firebase/Messaging
   - FTLinearActivityIndicator
   - Nimble
-  - Peek
   - Quick
   - SDWebImage
   - SwiftLint
@@ -116,7 +114,6 @@ SPEC REPOS:
     - GoogleUtilities
     - nanopb
     - Nimble
-    - Peek
     - Protobuf
     - Quick
     - SDWebImage
@@ -141,13 +138,12 @@ SPEC CHECKSUMS:
   GoogleUtilities: d2b0e277a95962e09bb27f5cd42f5f0b6a506c7d
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Nimble: 622629381bda1dd5678162f21f1368cec7cbba60
-  Peek: 77f6362167c00aab3f1147d92d51bdf80d259d45
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
   Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   SwiftLint: 79d48a17c6565dc286c37efb8322c7b450f95c67
   Wormholy: f2488b9690976459a3ce6680ec099143724418d8
 
-PODFILE CHECKSUM: 9b44a0e6f5b180b602dbb12deff6d5fb9980bbd4
+PODFILE CHECKSUM: f924dccbd08b74bafc27bad1b5e8205b17f62d21
 
 COCOAPODS: 1.7.5
