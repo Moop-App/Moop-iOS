@@ -20,7 +20,6 @@
 		3C6601FE22956D39000BA333 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C6601FC22956D39000BA333 /* LaunchScreen.storyboard */; };
 		3C66020922956D3A000BA333 /* MoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C66020822956D3A000BA333 /* MoopTests.swift */; };
 		3C6602152295745A000BA333 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C6602142295745A000BA333 /* GoogleService-Info.plist */; };
-		3C660217229596D3000BA333 /* CurrentMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C660216229596D3000BA333 /* CurrentMovieViewController.swift */; };
 		3C66021A22959A18000BA333 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C66021822959A18000BA333 /* MovieCell.swift */; };
 		3C66021B22959A18000BA333 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C66021922959A18000BA333 /* MovieCell.xib */; };
 		3C66021D22959DA5000BA333 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C66021C22959DA5000BA333 /* Config.swift */; };
@@ -86,7 +85,6 @@
 		3C66020822956D3A000BA333 /* MoopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoopTests.swift; sourceTree = "<group>"; };
 		3C66020A22956D3A000BA333 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C6602142295745A000BA333 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
-		3C660216229596D3000BA333 /* CurrentMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMovieViewController.swift; sourceTree = "<group>"; };
 		3C66021822959A18000BA333 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		3C66021922959A18000BA333 /* MovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
 		3C66021C22959DA5000BA333 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -277,7 +275,6 @@
 		3CF7219522BF57480022D03E /* Current */ = {
 			isa = PBXGroup;
 			children = (
-				3C660216229596D3000BA333 /* CurrentMovieViewController.swift */,
 				3CF7219322BF57430022D03E /* CurrentMovieView.swift */,
 				3CF7218F22BF56ED0022D03E /* CurrentMoviePresenter.swift */,
 				3CF7219622BF587B0022D03E /* CurrentMovieData.swift */,
@@ -520,7 +517,6 @@
 				A02133EF22F1934000AD6D0E /* UIViewController+Extension.swift in Sources */,
 				3CDCD79122BDD7C400DDD14B /* RemoteNotificationManager.swift in Sources */,
 				3C61A8A122DF282D00F4A7E5 /* Reusable.swift in Sources */,
-				3C660217229596D3000BA333 /* CurrentMovieViewController.swift in Sources */,
 				3C6601F622956D38000BA333 /* SettingViewController.swift in Sources */,
 				3C76752B2299529C0052BEB6 /* SettingHeaderCell.swift in Sources */,
 				3C34938D22E75DA700A77343 /* MovieInfoManager.swift in Sources */,
@@ -719,7 +715,7 @@
 				CODE_SIGN_ENTITLEMENTS = Moop/Moop.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UQZ9Y78ACS;
 				INFOPLIST_FILE = "$(SRCROOT)/Moop/Resource/Info.plist";
@@ -744,7 +740,7 @@
 				CODE_SIGN_ENTITLEMENTS = Moop/Moop.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = UQZ9Y78ACS;
 				INFOPLIST_FILE = "$(SRCROOT)/Moop/Resource/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

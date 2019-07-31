@@ -8,14 +8,23 @@
 
 import Foundation
 
-struct CurrentMovieData {
+class CurrentMovieData {
     var items: [MovieInfo] = []
     var filteredMovies: [MovieInfo] = []
+    var searchedMovies: [MovieInfo] = []
 }
 
 extension CurrentMovieData {
-    mutating func update(items: [MovieInfo]) {
+    func update(items: [MovieInfo]) {
         self.items = items.sorted(by: { $0.rank < $1.rank })
+    }
+    
+    func search(query: String) {
+        self.searchedMovies = filteredMovies.filter({ $0.title.contains(query) })
+    }
+    
+    func filter(types: [TheaterType]?) {
+        self.filteredMovies = items.filter({ $0.contain(types: types ?? []) })
     }
 }
 

@@ -24,7 +24,7 @@ class CurrentMovieView: UIViewController {
         didSet {
             collectionView.delegate = self
             collectionView.dataSource = self
-//            refreshControl.addTarget(self, action: #selector(requestData), for: .valueChanged)
+            refreshControl.addTarget(self, action: #selector(requestData), for: .valueChanged)
             collectionView.refreshControl = refreshControl
             collectionView.register(MovieCell.self)
         }
@@ -32,6 +32,16 @@ class CurrentMovieView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchController.searchResultsUpdater = presenter as? CurrentMoviePresenter
+        searchController.searchBar.delegate = presenter as? CurrentMoviePresenter
+        searchController.obscuresBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        navigationItem.searchController = searchController
+        registerForPreviewing(with: self, sourceView: self.collectionView)
+        requestData()
+    }
+    
+    @objc private func requestData() {
         presenter.fetchDatas()
     }
     
@@ -58,19 +68,9 @@ class CurrentMovieView: UIViewController {
         case "toFilter":
             guard let destinationNavi = segue.destination as? UINavigationController,
                 let destination = destinationNavi.viewControllers.first as? FilterViewController else { return }
-            destination.delegate = self
+            destination.delegate = presenter as? CurrentMoviePresenter
         default:
             break
-        }
-    }
-}
-
-extension CurrentMovieView: FilterChangeDelegate {
-    func theaterChanged() {
-        if let theaters: [TheaterType] = UserDefaults.standard.object([TheaterType].self, forKey: .theater) {
-//            self.filteredMovies = datas.filter({ $0.contain(types: theaters) })
-        } else {
-//            self.filteredMovies = datas
         }
     }
 }
@@ -127,6 +127,33 @@ extension CurrentMovieView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
+//    @available(iOS 13.0, *)
+//    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+//        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+//            let share = UIAction(__title: "Share", image: UIImage(named: "share"), identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                self.share(text: self.presenter[indexPath]?.shareText ?? "")
+//            }
+//            let cgv = UIAction(__title: "CGV", image: nil, identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                self.rating(type: .cgv, id: self.presenter[indexPath]?.cgv?.id ?? "")
+//            }
+//
+//            let lotte = UIAction(__title: "LOTTE", image: nil, identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                self.rating(type: .lotte, id: self.presenter[indexPath]?.lotte?.id ?? "")
+//            }
+//
+//            let megabox = UIAction(__title: "MEGABOX", image: nil, identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                self.rating(type: .megabox, id: self.presenter[indexPath]?.megabox?.id ?? "")
+//            }
+//
+//            // Create and return a UIMenu with the share action
+//            return UIMenu(__title: "", image: nil, identifier: nil, children: [share, cgv, lotte, megabox])
+//        }
+//    }
 }
 
 extension CurrentMovieView: UIViewControllerPreviewingDelegate {
@@ -136,7 +163,7 @@ extension CurrentMovieView: UIViewControllerPreviewingDelegate {
         
         previewingContext.sourceRect = cell.frame
         guard let destination = storyboard?.instantiateViewController(withIdentifier: "detail") as? MovieDetailViewController else { return nil }
-//        destination.item = isFiltering() ? searchedMovies[indexPath.item] : filteredMovies[indexPath.item]
+        destination.item = presenter[indexPath]
         destination.delegate = self
         return destination
     }
