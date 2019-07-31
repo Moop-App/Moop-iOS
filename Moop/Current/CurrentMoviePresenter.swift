@@ -11,9 +11,10 @@ import Alamofire
 
 class CurrentMoviePresenter {
     var movieData: CurrentMovieData
-    var view: CurrentMovieViewDelegate!
+    weak var view: CurrentMovieViewDelegate!
     
-    init() {
+    init(view: CurrentMovieViewDelegate) {
+        self.view = view
         movieData = CurrentMovieData()
     }
     
