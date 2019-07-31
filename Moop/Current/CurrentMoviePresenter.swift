@@ -9,42 +9,52 @@
 import Foundation
 import Alamofire
 
-class CurrentMoviePresenter {
-    var movieData: CurrentMovieData
-    var view: CurrentMovieViewDelegate!
+class CurrentMoviePresenter: NSObject {
+    private var movieData: CurrentMovieData
+    weak var view: CurrentMovieViewDelegate!
+    private var isSearched: Bool = false
     
-    init() {
+    
+    init(view: CurrentMovieViewDelegate) {
+        self.view = view
         movieData = CurrentMovieData()
     }
     
     var numberOfItemsInSection: Int {
-        return movieData.items.count
+        return isSearched ? movieData.searchedMovies.count : movieData.filteredMovies.count
     }
     
     var isEmpty: Bool {
-        return movieData.items.isEmpty
+        return isSearched ? movieData.searchedMovies.isEmpty : movieData.filteredMovies.isEmpty
     }
     
     subscript(indexPath: IndexPath) -> MovieInfo? {
-        return movieData.items[indexPath.item]
+        return isSearched ? movieData.searchedMovies[indexPath.item] : movieData.filteredMovies[indexPath.item]
+    }
+}
+
+extension CurrentMoviePresenter: FilterChangeDelegate {
+    func theaterChanged() {
+        movieData.filter(types: UserDefaults.standard.object([TheaterType].self, forKey: .theater))
+        self.view.loadFinished()
+    }
+}
+
+extension CurrentMoviePresenter: UISearchResultsUpdating, UISearchBarDelegate {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        self.isSearched = searchController.isActive
+        movieData.search(query: searchController.searchBar.text ?? "")
+        self.view.loadFinished()
     }
 }
 
 extension CurrentMoviePresenter: CurrentMoviePresenterDelegate {
     func fetchDatas() {
-        let requestURL = URL(string: "\(Config.baseURL)/now/list.json")!
-        AF.request(requestURL)
-            .validate(statusCode: [200])
-            .responseDecodable { [weak self] (response: DataResponse<[MovieInfo]>) in
-                guard let self = self else { return }
-                switch response.result {
-                case .success(let result):
-                    self.movieData.update(items: result)
-                    self.view.loadFinished()
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    self.view.loadFailed()
-                }
+        MovieInfoManager.shared.requestCurrentData { [weak self] in
+            guard let self = self else { return }
+            self.movieData.update(items: MovieInfoManager.shared.currentDatas)
+            self.theaterChanged()
         }
     }
 }

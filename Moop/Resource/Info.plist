@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Aways</string>
+	<string>사용자의 현재위치가 지도상에 표시되며, 전국의 영화관 위치가 표시됩니다.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>TEst1</string>
+	<string>사용자의 현재위치가 지도상에 표시되며, 전국의 영화관 위치가 표시됩니다.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
