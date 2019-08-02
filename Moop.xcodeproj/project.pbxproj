@@ -751,7 +751,7 @@
 				CODE_SIGN_ENTITLEMENTS = Moop/Resource/Moop.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UQZ9Y78ACS;
 				INFOPLIST_FILE = "$(SRCROOT)/Moop/Resource/Info.plist";
@@ -776,7 +776,7 @@
 				CODE_SIGN_ENTITLEMENTS = Moop/Resource/Moop.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UQZ9Y78ACS;
 				INFOPLIST_FILE = "$(SRCROOT)/Moop/Resource/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
