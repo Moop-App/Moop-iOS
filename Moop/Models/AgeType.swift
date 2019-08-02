@@ -8,8 +8,8 @@
 
 import UIKit
 
-enum AgeType {
-    case over19
+enum AgeType: Int, Codable, CaseIterable {
+    case over19 = 0
     case over15
     case over12
     case all

@@ -92,16 +92,42 @@ extension MovieInfo {
     }
     
     func contain(types: [TheaterType]) -> Bool {
-        for type in types {
-            switch type {
-            case .cgv:
-                if self.cgv == nil { return false }
-            case .lotte:
-                if self.lotte == nil { return false }
-            case .megabox:
-                if self.megabox == nil { return false }
-            }
+        // [.megabox] -> 메가박스 있는 것이면 뭐든
+        // [.cgv, .megabox] -> 롯데시네마만 있는것 제외
+        switch types.count {
+        case 2:
+            let removeTarget = TheaterType.allCases.filter { !types.contains($0) }.first!
+            return !onlyOne(theater: removeTarget)
+        case 1:
+            return self.contain(theater: types.first!)
+        default:
+            return true
         }
-        return true
+    }
+    
+    func onlyOne(theater: TheaterType) -> Bool {
+        switch theater {
+        case .cgv:
+            return cgv != nil && lotte == nil && megabox == nil
+        case .lotte:
+            return cgv == nil && lotte != nil && megabox == nil
+        case .megabox:
+            return cgv == nil && lotte == nil && megabox != nil
+        }
+    }
+    
+    func contain(theater: TheaterType) -> Bool {
+        switch theater {
+        case .cgv:
+            return cgv != nil
+        case .lotte:
+            return lotte != nil
+        case .megabox:
+            return megabox != nil
+        }
+    }
+    
+    func contain(ages: [AgeType]) -> Bool {
+        return ages.contains(self.ageType)
     }
 }

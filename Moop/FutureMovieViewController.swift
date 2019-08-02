@@ -25,11 +25,11 @@ class FutureMovieViewController: UIViewController {
     }
     private var datas: [MovieInfo] = [] {
         didSet {
-            if let theaters: [TheaterType] = UserDefaults.standard.object([TheaterType].self, forKey: .theater) {
-                self.filteredMovies = datas.filter({ $0.contain(types: theaters) })
-            } else {
-                self.filteredMovies = datas
-            }
+            let theaters = UserDefaults.standard.object([TheaterType].self, forKey: .theater) ?? TheaterType.allCases
+            let ages = UserDefaults.standard.object([AgeType].self, forKey: .age) ?? AgeType.allCases
+            self.filteredMovies = datas
+                                    .filter { $0.contain(types: theaters) }
+                                    .filter { $0.contain(ages: ages) }
         }
     }
 
@@ -92,12 +92,12 @@ class FutureMovieViewController: UIViewController {
 }
 
 extension FutureMovieViewController: FilterChangeDelegate {
-    func theaterChanged() {
-        if let theaters: [TheaterType] = UserDefaults.standard.object([TheaterType].self, forKey: .theater) {
-            self.filteredMovies = datas.filter({ $0.contain(types: theaters) })
-        } else {
-            self.filteredMovies = datas
-        }
+    func filterItemChanged() {
+        let theaters = UserDefaults.standard.object([TheaterType].self, forKey: .theater) ?? TheaterType.allCases
+        let ages = UserDefaults.standard.object([AgeType].self, forKey: .age) ?? AgeType.allCases
+        self.filteredMovies = datas
+                                .filter { $0.contain(types: theaters) }
+                                .filter { $0.contain(ages: ages) }
     }
 }
 

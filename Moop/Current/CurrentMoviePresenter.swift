@@ -34,8 +34,8 @@ class CurrentMoviePresenter: NSObject {
 }
 
 extension CurrentMoviePresenter: FilterChangeDelegate {
-    func theaterChanged() {
-        movieData.filter(types: UserDefaults.standard.object([TheaterType].self, forKey: .theater))
+    func filterItemChanged() {
+        movieData.filter()
         self.view.loadFinished()
     }
 }
@@ -54,7 +54,7 @@ extension CurrentMoviePresenter: CurrentMoviePresenterDelegate {
         MovieInfoManager.shared.requestCurrentData { [weak self] in
             guard let self = self else { return }
             self.movieData.update(items: MovieInfoManager.shared.currentDatas)
-            self.theaterChanged()
+            self.filterItemChanged()
         }
     }
 }

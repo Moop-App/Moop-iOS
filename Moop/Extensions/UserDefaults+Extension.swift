@@ -11,6 +11,7 @@ import UIKit
 enum UserDefaultsKey {
     case theater
     case favorites
+    case age
     
     var keyString: String {
         switch self {
@@ -18,6 +19,8 @@ enum UserDefaultsKey {
             return "Theater"
         case .favorites:
             return "Favorites"
+        case .age:
+            return "Age"
         }
     }
 }
