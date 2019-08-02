@@ -53,7 +53,7 @@ platform :ios do
     upload_to_app_store(
       username: "scw422@hanmail.net",
       app_identifier: "com.kor45cw.Moop",
-      app: 1464896856,
+      app: ENV["ITUNES_APP_ID"],
       ipa: "#{Dir.pwd}/output/Moop.ipa",
       submit_for_review: true,
       automatic_release: true,
@@ -105,7 +105,7 @@ platform :ios do
 
   lane :refresh_dsyms do
     download_dsyms(
-      min_version: "3.1.0",
+      min_version: "0.1.0",
       username: "scw422@hanmail.net",
       app_identifier: "com.kor45cw.Moop",
       output_directory: "#{Dir.pwd}/output/dSYM")                # Download dSYM files from iTC
@@ -115,7 +115,7 @@ platform :ios do
 
   after_all do |lane, options|
     slack(message: "Fastlane finish!",
-          slack_url: "https://hooks.slack.com/services/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")
+          slack_url: ENV["SLACK URL"])
   end
 
 end
