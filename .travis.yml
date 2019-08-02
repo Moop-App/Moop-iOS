@@ -1,0 +1,21 @@
+branches:
+  only:
+  - develop
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+
+matrix:
+  include:
+    - language: objective-c
+      os: osx
+      osx_image: xcode10.2
+      node_js: false
+      before_install:
+        - bundle update json
+        - echo -e "machine github.com\n  login $CI_USER_TOKEN" >> ~/.netrc
+      install:
+        - bundle install
+      script:
+        - fastlane ios travis

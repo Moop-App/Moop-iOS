@@ -1,0 +1,149 @@
+PODS:
+  - AcknowList (1.9)
+  - Alamofire (5.0.0-beta.7)
+  - AlamofireNetworkActivityIndicator (3.0.0-beta.3):
+    - Alamofire (~> 5.0.0-beta.6)
+  - Crashlytics (3.13.4):
+    - Fabric (~> 1.10.2)
+  - CTFeedbackSwift (0.1.7)
+  - Fabric (1.10.2)
+  - Firebase/Core (6.5.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 6.0.4)
+  - Firebase/CoreOnly (6.5.0):
+    - FirebaseCore (= 6.1.0)
+  - Firebase/Messaging (6.5.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 4.1.1)
+  - FirebaseAnalytics (6.0.4):
+    - FirebaseCore (~> 6.1)
+    - FirebaseInstanceID (~> 4.2)
+    - GoogleAppMeasurement (= 6.0.4)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (~> 0.3)
+  - FirebaseAnalyticsInterop (1.2.0)
+  - FirebaseCore (6.1.0):
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/Logger (~> 6.0)
+  - FirebaseInstanceID (4.2.2):
+    - FirebaseCore (~> 6.0)
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/UserDefaults (~> 6.0)
+  - FirebaseMessaging (4.1.1):
+    - FirebaseAnalyticsInterop (~> 1.1)
+    - FirebaseCore (~> 6.0)
+    - FirebaseInstanceID (~> 4.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.2)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Reachability (~> 6.2)
+    - GoogleUtilities/UserDefaults (~> 6.2)
+    - Protobuf (~> 3.1)
+  - FTLinearActivityIndicator (1.2.1)
+  - GoogleAppMeasurement (6.0.4):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (~> 0.3)
+  - GoogleUtilities/AppDelegateSwizzler (6.2.3):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.2.3)
+  - GoogleUtilities/Logger (6.2.3):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.2.3):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (6.2.3):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.2.3)"
+  - GoogleUtilities/Reachability (6.2.3):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.2.3):
+    - GoogleUtilities/Logger
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
+  - Nimble (8.0.2)
+  - Protobuf (3.9.0)
+  - Quick (2.1.0)
+  - SDWebImage (5.0.6):
+    - SDWebImage/Core (= 5.0.6)
+  - SDWebImage/Core (5.0.6)
+  - SwiftLint (0.34.0)
+  - Wormholy (1.4.1)
+
+DEPENDENCIES:
+  - AcknowList
+  - AlamofireNetworkActivityIndicator (~> 3.0.0-beta.3)
+  - Crashlytics
+  - CTFeedbackSwift
+  - Fabric
+  - Firebase/Core
+  - Firebase/Messaging
+  - FTLinearActivityIndicator
+  - Nimble
+  - Quick
+  - SDWebImage
+  - SwiftLint
+  - Wormholy
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AcknowList
+    - Alamofire
+    - AlamofireNetworkActivityIndicator
+    - Crashlytics
+    - CTFeedbackSwift
+    - Fabric
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseAnalyticsInterop
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - FTLinearActivityIndicator
+    - GoogleAppMeasurement
+    - GoogleUtilities
+    - nanopb
+    - Nimble
+    - Protobuf
+    - Quick
+    - SDWebImage
+    - SwiftLint
+    - Wormholy
+
+SPEC CHECKSUMS:
+  AcknowList: 06fde3319971dfd517ea1b1c194d78eb8cd774a2
+  Alamofire: bd07938ceecad59d2492aeecb1f785a8f2721160
+  AlamofireNetworkActivityIndicator: 592c612ef9bb2e9f55f00ad99f72b2222f0bf33f
+  Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
+  CTFeedbackSwift: 2a0d844ef8bade492f3cad59b21c8bd8300f5a91
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
+  Firebase: dedc9e48ea3f3649ad5f6b982f8a0c73508a14b5
+  FirebaseAnalytics: 3fb375bc9d13779add4039716f868d233a473fad
+  FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
+  FirebaseCore: aecf02fb2274ec361b9bebeac112f5daa18273bd
+  FirebaseInstanceID: 662b8108a09fe9ed01aafdedba100fde8536b0f6
+  FirebaseMessaging: 6bb0bdaf64c55fef7a219b7bb1e94e94a0855ced
+  FTLinearActivityIndicator: a3ef57034bd05bc80c1a7c62c8797c0361fa7bee
+  GoogleAppMeasurement: 183bd916af7f80deb67c01888368f1108d641832
+  GoogleUtilities: d2b0e277a95962e09bb27f5cd42f5f0b6a506c7d
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Nimble: 622629381bda1dd5678162f21f1368cec7cbba60
+  Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
+  Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
+  SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
+  SwiftLint: 79d48a17c6565dc286c37efb8322c7b450f95c67
+  Wormholy: f2488b9690976459a3ce6680ec099143724418d8
+
+PODFILE CHECKSUM: f924dccbd08b74bafc27bad1b5e8205b17f62d21
+
+COCOAPODS: 1.7.5
