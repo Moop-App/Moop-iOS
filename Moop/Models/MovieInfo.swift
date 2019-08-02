@@ -54,9 +54,9 @@ extension MovieInfo {
     }
     
     var isBest: Bool {
-        return (cgv?.eggIsOver(96) ?? false) ||
-            lotte?.starIsOver(8.8) ?? false ||
-            megabox?.starIsOver(8.5) ?? false
+        return (cgv?.isOver(96) ?? false) ||
+            lotte?.isOver(8.8) ?? false ||
+            megabox?.isOver(8.5) ?? false
     }
     
     var isNew: Bool {
@@ -75,32 +75,16 @@ extension MovieInfo {
         return dayRange.contains(getDay)
     }
     
+    var ageType: AgeType {
+        return AgeType(ageValue: ageValue)
+    }
+    
     var ageColor: UIColor {
-        switch ageValue {
-        case 19...:
-            return .red
-        case 15..<19:
-            return UIColor(hexString: "FFC107")
-        case 12..<15:
-            return .blue
-        default:
-            return .green
-        }
+        return ageType.color
     }
     
     var ageBadgeText: String {
-        switch ageValue {
-        case 19...:
-            return "청불"
-        case 15..<19:
-            return "15세"
-        case 12..<15:
-            return "12세"
-        case 0...:
-            return "전체"
-        default:
-            return "미정"
-        }
+        return ageType.text
     }
     
     var shareText: String {
@@ -120,52 +104,4 @@ extension MovieInfo {
         }
         return true
     }
-}
-
-struct NaverInfo: Decodable {
-    let link: String?
-    let subtitle: String
-    let title: String
-    let userRating: String
-}
-
-struct MegaBoxInfo: Decodable {
-    let id: String
-    let rank: Int
-    let star: String
-    
-    func starIsOver(_ target: Double) -> Bool {
-        guard !star.isEmpty, let starIntValue = Double(star) else { return false }
-        return starIntValue >= target
-    }
-}
-
-struct LotteInfo: Decodable {
-    let id: String
-    let rank: Int
-    let star: String // ex: 8.8
-    
-    func starIsOver(_ target: Double) -> Bool {
-        guard !star.isEmpty, let starIntValue = Double(star) else { return false }
-        return starIntValue >= target
-    }
-}
-
-struct CGVInfo: Decodable {
-    let egg: String
-    let id: String
-    let rank: Int
-    let specialTypes: [String]?
-    
-    func eggIsOver(_ target: Int) -> Bool {
-        guard !egg.isEmpty && egg != "?", let eggIntValue = Int(egg) else { return false }
-        return eggIntValue >= target
-    }
-}
-
-struct TrailerInfo: Decodable {
-    let author: String
-    let thumbnailUrl: String
-    let title: String
-    let youtubeId: String
 }
