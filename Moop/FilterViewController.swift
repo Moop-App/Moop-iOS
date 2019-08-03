@@ -17,10 +17,14 @@ class FilterViewController: UITableViewController {
     @IBOutlet private weak var doneButton: UIBarButtonItem!
     weak var delegate: FilterChangeDelegate?
     
-    var ageTypes: [AgeType] = []
+    var ageTypes: [AgeType] = [] {
+        didSet {
+            doneButton.isEnabled = !self.theaters.isEmpty && !self.ageTypes.isEmpty
+        }
+    }
     var theaters: [TheaterType] = [] {
         didSet {
-            doneButton.isEnabled = !self.theaters.isEmpty
+            doneButton.isEnabled = !self.theaters.isEmpty && !self.ageTypes.isEmpty
         }
     }
     
