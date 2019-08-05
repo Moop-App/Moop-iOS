@@ -103,13 +103,13 @@ extension MovieDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.item == 0 && item?.naver != nil {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NaverInfoCell", for: indexPath) as! NaverInfoCell
+        if indexPath.item == 0 && item?.naver != nil,
+           let cell = tableView.dequeueReusableCell(withIdentifier: "NaverInfoCell", for: indexPath) as? NaverInfoCell {
             cell.set(item?.naver)
             return cell
         }
-        if (indexPath.item == 1 && item?.naver != nil) || (indexPath.item == 0 && item?.naver == nil) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerHeaderCell", for: indexPath) as! TrailerHeaderCell
+        if (indexPath.item == 1 && item?.naver != nil) || (indexPath.item == 0 && item?.naver == nil),
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerHeaderCell", for: indexPath) as? TrailerHeaderCell {
             cell.set(item?.title ?? "")
             return cell
         }
@@ -117,10 +117,12 @@ extension MovieDetailViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerFooterCell", for: indexPath)
             return cell
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerCell", for: indexPath) as! TrailerCell
-        let targetIndex = item?.naver != nil ? 2 : 1
-        cell.set(item?.trailers?[indexPath.item - targetIndex])
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerCell", for: indexPath) as? TrailerCell {
+            let targetIndex = item?.naver != nil ? 2 : 1
+            cell.set(item?.trailers?[indexPath.item - targetIndex])
+            return cell
+        }
+        return UITableViewCell()
     }
 }
 

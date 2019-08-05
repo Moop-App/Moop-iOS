@@ -36,7 +36,7 @@ class MapViewController: UIViewController {
             locationManager.startUpdatingLocation()
         }
         
-        if let coor = mapView.userLocation.location?.coordinate{
+        if let coor = mapView.userLocation.location?.coordinate {
             mapView.setCenter(coor, animated: true)
         }
         
