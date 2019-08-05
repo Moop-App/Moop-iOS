@@ -12,6 +12,8 @@ enum UserDefaultsKey {
     case theater
     case favorites
     case age
+    case detailViewCount
+    case firstReviewDate
     
     var keyString: String {
         switch self {
@@ -21,6 +23,10 @@ enum UserDefaultsKey {
             return "Favorites"
         case .age:
             return "Age"
+        case .detailViewCount:
+            return "Detail_View_Count"
+        case .firstReviewDate:
+            return "First_Review_Date"
         }
     }
 }

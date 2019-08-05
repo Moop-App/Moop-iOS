@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 import SafariServices
 
 protocol MovieDetailPickAndPopDelegate: class {
@@ -33,6 +34,23 @@ class MovieDetailViewController: UIViewController {
         self.title = item?.title
         headerView.set(item)
         headerView.delegate = self
+        
+        if isAllowedToOpenStoreReview() {
+            SKStoreReviewController.requestReview()
+            
+        }
+    }
+    
+    func isAllowedToOpenStoreReview() -> Bool {
+        // 365일 내에 최대 3회까지 사용자에게만 표시된다는 사실을 알고있어야 합니다.
+        // TODO: 1년 지난 후에는 체크 하는 로직 만들어야
+        let launchCount = UserDefaults.standard.integer(forKey: .detailViewCount)
+        let isOpen = launchCount == 3 || launchCount == 10 || launchCount == 20
+        if launchCount == 3 {
+            UserDefaults.standard.set(Date(), forKey: .firstReviewDate)
+        }
+        UserDefaults.standard.set((launchCount + 1), forKey: .detailViewCount)
+        return isOpen
     }
     
     override var previewActionItems: [UIPreviewActionItem] {
