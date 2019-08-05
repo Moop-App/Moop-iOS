@@ -9,17 +9,17 @@
 import UIKit
 
 extension UIApplication {
-    var applicationName: String {
-        return Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String
+    var applicationName: String? {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
     }
     
     var versionString: String {
-        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-        let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+        let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
         #if DEBUG
-        return "\(version) (\(build)) Debug"
+        return "\(version ?? "1.0.0") (\(build ?? "1")) Debug"
         #else
-        return "\(version) (\(build))"
+        return "\(version ?? "1.0.0") (\(build ?? "1"))"
         #endif
     }
 }

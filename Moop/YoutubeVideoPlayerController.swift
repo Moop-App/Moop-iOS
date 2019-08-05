@@ -23,7 +23,7 @@ class YoutubeVideoPlayerController: UIViewController {
         video.onplay = function(){ window.webkit.messageHandlers.videoListener.postMessage('play'); };
         video.onpause = function(){ window.webkit.messageHandlers.videoListener.postMessage('pause'); };
         video.onended = function(){ window.webkit.messageHandlers.videoListener.postMessage('ended'); };
-        video.setAttribute("title", "\(UIApplication.shared.applicationName)");
+        video.setAttribute("title", "\(UIApplication.shared.applicationName ?? "")");
         }
         """
         let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
@@ -156,11 +156,11 @@ class YoutubeVideoPlayerController: UIViewController {
     }
 }
 
-//MARK: - Webview
+// MARK: - Webview
 extension YoutubeVideoPlayerController: WKNavigationDelegate, WKScriptMessageHandler {
     // Message
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        guard let body = message.body as? String else{ return }
+        guard let body = message.body as? String else { return }
         switch body {
         case "ready": break
         case "playing": break
