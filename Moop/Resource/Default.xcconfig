@@ -1,0 +1,48 @@
+//
+//  Default.xcconfig
+//  Moop
+//
+//  Created by kor45cw on 05/08/2019.
+//  Copyright © 2019 kor45cw. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+
+// VERSION
+CONFIG_BUNDLE_SHORT_VERSION                                     = 0.3.0
+CONFIG_BUILD_VERSION                                            = 1
+CONFIG_BUNDLE_VERSION                                           = $(CONFIG_BUNDLE_SHORT_VERSION)
+
+// PRODUCT_NAME
+CONFIG_PRODUCT_NAME_DEBUG                                       = DEV-Moop
+CONFIG_PRODUCT_NAME_APPSTORE                                    = Moop
+
+// BUNDLE_SHORT_VERSION
+CONFIG_BUNDLE_SHORT_VERSION_DEBUG                               = $(CONFIG_BUNDLE_SHORT_VERSION)
+CONFIG_BUNDLE_SHORT_VERSION_APPSTORE                            = $(CONFIG_BUNDLE_SHORT_VERSION)
+
+// BUNDLE_VERSION
+CONFIG_BUNDLE_VERSION_DEBUG                                     = $(CONFIG_BUILD_VERSION).debug
+CONFIG_BUNDLE_VERSION_APPSTORE                                  = $(CONFIG_BUILD_VERSION)
+
+// PRODUCT_BUNDLE_IDENTIFIER
+CONFIG_PRODUCT_BUNDLE_IDENTIFIER_DEBUG                          = com.kor45cw.Moop.dev
+CONFIG_PRODUCT_BUNDLE_IDENTIFIER_APPSTORE                       = com.kor45cw.Moop
+
+// CODE_SIGN_ENTITLEMENTS
+CONFIG_CODE_SIGN_ENTITLEMENTS_DEBUG                             = Supporting Files/Entitlements/development.entitlements
+CONFIG_CODE_SIGN_ENTITLEMENTS_APPSTORE                          = Supporting Files/Entitlements/appstore.entitlements
+
+// ASSETCATALOG_COMPILER_APPICON_NAME
+CONFIG_ASSETCATALOG_COMPILER_APPICON_NAME_DEBUG                 = AppIcon.debug
+CONFIG_ASSETCATALOG_COMPILER_APPICON_NAME_APPSTORE              = AppIcon
+
+// GCC_PREPROCESSOR_DEFINITIONS
+CONFIG_PREPROCESSOR_DEFINITIONS_DEBUG                           = BUILD_FOR_DEV=1 LOGGING_LEVEL_DEBUG=1
+CONFIG_PREPROCESSOR_DEFINITIONS_APPSTORE                        = BUILD_FOR_REAL=1
+
+// GCC_PREPROCESSOR_DEFINITIONS - OTHER_SWIFT_FLAGS
+CONFIG_OTHER_SWIFT_FLAGS_DEBUG                                  = "-D" "BUILD_FOR_DEV"
+CONFIG_OTHER_SWIFT_FLAGS_APPSTORE                               = "-D" "BUILD_FOR_REAL"
