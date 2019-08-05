@@ -23,8 +23,12 @@ extension CurrentMovieData {
         self.searchedMovies = filteredMovies.filter({ $0.title.contains(query) })
     }
     
-    func filter(types: [TheaterType]?) {
-        self.filteredMovies = items.filter({ $0.contain(types: types ?? []) })
+    func filter() {
+        let theaters = UserDefaults.standard.object([TheaterType].self, forKey: .theater) ?? TheaterType.allCases
+        let ages = UserDefaults.standard.object([AgeType].self, forKey: .age) ?? AgeType.allCases
+        self.filteredMovies = items
+            .filter { $0.contain(types: theaters) }
+            .filter { $0.contain(ages: ages) }
     }
 }
 
