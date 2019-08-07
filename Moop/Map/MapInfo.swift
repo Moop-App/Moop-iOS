@@ -43,7 +43,7 @@ class Theater: NSObject, Decodable, MKAnnotation {
     let lng: Double
     let lat: Double
     
-    var teaterType: TheaterType {
+    var theaterType: TheaterType {
         return TheaterType(type: type)
     }
     
@@ -52,7 +52,19 @@ class Theater: NSObject, Decodable, MKAnnotation {
     }
     
     var title: String? {
-        return "\(name) \(teaterType.title)"
+        return "\(name) \(theaterType.title)"
+    }
+    
+    var destinationName: String {
+        let dname = "도착지".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        return title?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? dname
+    }
+    
+    var mapItem: MKMapItem {
+        let placemark = MKPlacemark(coordinate: coordinate)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = title
+        return mapItem
     }
     
 //    var subtitle: String? {
