@@ -87,6 +87,7 @@ extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        mapView.removeOverlays(mapView.overlays)
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
             self.routeView.transform = CGAffineTransform(translationX: 0, y: 200)
         }, completion: { _ in
