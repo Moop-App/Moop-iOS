@@ -10,4 +10,9 @@ import UIKit
 
 class SettingDividerCell: UITableViewCell, ReusableView, NibLoadableView {
     @IBOutlet weak var dividerView: UIView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.selectionStyle = .none
+    }
 }
