@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 import SafariServices
 
 protocol MovieDetailPickAndPopDelegate: class {
@@ -33,6 +34,23 @@ class MovieDetailViewController: UIViewController {
         self.title = item?.title
         headerView.set(item)
         headerView.delegate = self
+        
+        if isAllowedToOpenStoreReview() {
+            SKStoreReviewController.requestReview()
+            
+        }
+    }
+    
+    func isAllowedToOpenStoreReview() -> Bool {
+        // 365일 내에 최대 3회까지 사용자에게만 표시된다는 사실을 알고있어야 합니다.
+        // TODO: 1년 지난 후에는 체크 하는 로직 만들어야
+        let launchCount = UserDefaults.standard.integer(forKey: .detailViewCount)
+        let isOpen = launchCount == 3 || launchCount == 10 || launchCount == 20
+        if launchCount == 3 {
+            UserDefaults.standard.set(Date(), forKey: .firstReviewDate)
+        }
+        UserDefaults.standard.set((launchCount + 1), forKey: .detailViewCount)
+        return isOpen
     }
     
     override var previewActionItems: [UIPreviewActionItem] {
@@ -103,13 +121,13 @@ extension MovieDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.item == 0 && item?.naver != nil {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NaverInfoCell", for: indexPath) as! NaverInfoCell
+        if indexPath.item == 0 && item?.naver != nil,
+           let cell = tableView.dequeueReusableCell(withIdentifier: "NaverInfoCell", for: indexPath) as? NaverInfoCell {
             cell.set(item?.naver)
             return cell
         }
-        if (indexPath.item == 1 && item?.naver != nil) || (indexPath.item == 0 && item?.naver == nil) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerHeaderCell", for: indexPath) as! TrailerHeaderCell
+        if (indexPath.item == 1 && item?.naver != nil) || (indexPath.item == 0 && item?.naver == nil),
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerHeaderCell", for: indexPath) as? TrailerHeaderCell {
             cell.set(item?.title ?? "")
             return cell
         }
@@ -117,10 +135,12 @@ extension MovieDetailViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerFooterCell", for: indexPath)
             return cell
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerCell", for: indexPath) as! TrailerCell
-        let targetIndex = item?.naver != nil ? 2 : 1
-        cell.set(item?.trailers?[indexPath.item - targetIndex])
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerCell", for: indexPath) as? TrailerCell {
+            let targetIndex = item?.naver != nil ? 2 : 1
+            cell.set(item?.trailers?[indexPath.item - targetIndex])
+            return cell
+        }
+        return UITableViewCell()
     }
 }
 

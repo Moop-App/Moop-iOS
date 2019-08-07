@@ -81,7 +81,7 @@
 		3C34938A22E7584A00A77343 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		3C34938C22E75DA700A77343 /* MovieInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoManager.swift; sourceTree = "<group>"; };
 		3C61A8A022DF282D00F4A7E5 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
-		3C6601F022956D38000BA333 /* Moop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C6601F022956D38000BA333 /* DEV-Moop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DEV-Moop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C6601F322956D38000BA333 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C6601F522956D38000BA333 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		3C6601F822956D38000BA333 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -126,6 +126,9 @@
 		A02133EE22F1934000AD6D0E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		A0434E3922F089CB004C086B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A0434E3B22F129AC004C086B /* MapInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfo.swift; sourceTree = "<group>"; };
+		A0657E1F22F8007600EA89FE /* Default.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Default.xcconfig; sourceTree = "<group>"; };
+		A0657E2122F802CF00EA89FE /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		A0657E2222F802D900EA89FE /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		A0D2461A22F3D99600F48CBA /* CGVInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGVInfo.swift; sourceTree = "<group>"; };
 		A0D2461C22F3D9A900F48CBA /* LotteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotteInfo.swift; sourceTree = "<group>"; };
 		A0D2461E22F3D9C000F48CBA /* MegaBoxInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegaBoxInfo.swift; sourceTree = "<group>"; };
@@ -181,7 +184,7 @@
 		3C6601F122956D38000BA333 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3C6601F022956D38000BA333 /* Moop.app */,
+				3C6601F022956D38000BA333 /* DEV-Moop.app */,
 				3C66020422956D39000BA333 /* MoopTests.xctest */,
 			);
 			name = Products;
@@ -268,6 +271,9 @@
 				3C6602142295745A000BA333 /* GoogleService-Info.plist */,
 				3C6601FF22956D39000BA333 /* Info.plist */,
 				3CF5B8D0229ACE5F00A4C2BB /* Pods-Moop-acknowledgements.plist */,
+				A0657E1F22F8007600EA89FE /* Default.xcconfig */,
+				A0657E2122F802CF00EA89FE /* Debug.xcconfig */,
+				A0657E2222F802D900EA89FE /* Release.xcconfig */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -345,6 +351,7 @@
 				3C6601EE22956D38000BA333 /* Resources */,
 				D0D494C35D318202EAC0412D /* [CP] Embed Pods Frameworks */,
 				3C66021322957301000BA333 /* Fabric */,
+				A0657E1E22F7F25F00EA89FE /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -352,7 +359,7 @@
 			);
 			name = Moop;
 			productName = Moop;
-			productReference = 3C6601F022956D38000BA333 /* Moop.app */;
+			productReference = 3C6601F022956D38000BA333 /* DEV-Moop.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3C66020322956D39000BA333 /* MoopTests */ = {
@@ -479,6 +486,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/Fabric/run\" a02a9ab6a0124eb073e884b5dc5f8c65be8d83ad 4b77a6b389af60eaf42f34a5044ae7e28af084bdf85f8855c32e81549d5c48a8\n";
+		};
+		A0657E1E22F7F25F00EA89FE /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		A70421C7A43B5A352EE18E2D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -628,6 +653,7 @@
 /* Begin XCBuildConfiguration section */
 		3C66020B22956D3A000BA333 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0657E2122F802CF00EA89FE /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -689,6 +715,7 @@
 		};
 		3C66020C22956D3A000BA333 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0657E2222F802D900EA89FE /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -747,11 +774,11 @@
 			baseConfigurationReference = EB355564C1BCCEADDF32A988 /* Pods-Moop.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSETCATALOG_COMPILER_APPICON_NAME)";
 				CODE_SIGN_ENTITLEMENTS = Moop/Resource/Moop.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = "$(BUNDLE_VERSION)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UQZ9Y78ACS;
 				INFOPLIST_FILE = "$(SRCROOT)/Moop/Resource/Info.plist";
@@ -759,9 +786,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kor45cw.Moop;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.kor45cw.Moop";
+				MARKETING_VERSION = "$(BUNDLE_SHORT_VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(PRODUCT_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.kor45cw.Moop.dev";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -772,19 +800,20 @@
 			baseConfigurationReference = A748664396DF941852859EA3 /* Pods-Moop.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSETCATALOG_COMPILER_APPICON_NAME)";
 				CODE_SIGN_ENTITLEMENTS = Moop/Resource/Moop.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = "$(BUNDLE_VERSION)";
 				DEVELOPMENT_TEAM = UQZ9Y78ACS;
 				INFOPLIST_FILE = "$(SRCROOT)/Moop/Resource/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kor45cw.Moop;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = "$(BUNDLE_SHORT_VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.kor45cw.Moop";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
