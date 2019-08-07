@@ -14,6 +14,6 @@ class SettingHeaderCell: UITableViewCell, ReusableView, NibLoadableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        self.selectionStyle = .none
     }
 }
