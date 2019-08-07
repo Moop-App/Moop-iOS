@@ -12,7 +12,7 @@
         <!--Filter View Controller-->
         <scene sceneID="BWI-b0-cTz">
             <objects>
-                <tableViewController id="lq1-RP-r5f" customClass="FilterViewController" customModule="Moop" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="lq1-RP-r5f" customClass="FilterViewController" customModule="DEV_Moop" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="FFP-th-bYN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -191,7 +191,7 @@
         <!--현재 상영-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="CurrentMovieView" id="BYZ-38-t0r" customClass="CurrentMovieView" customModule="Moop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CurrentMovieView" id="BYZ-38-t0r" customClass="CurrentMovieView" customModule="DEV_Moop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -255,7 +255,7 @@
         <!--Main Tab Bar Controller-->
         <scene sceneID="Pvn-ms-9CF">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="az9-91-UXy" customClass="MainTabBarController" customModule="Moop" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="az9-91-UXy" customClass="MainTabBarController" customModule="DEV_Moop" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BN5-KU-boy">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -276,7 +276,7 @@
         <!--개봉 예정-->
         <scene sceneID="l9U-Gv-mwO">
             <objects>
-                <viewController id="u0R-D9-NO2" customClass="FutureMovieViewController" customModule="Moop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="u0R-D9-NO2" customClass="FutureMovieViewController" customModule="DEV_Moop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Me-sq-92e">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -321,7 +321,7 @@
         <!--즐겨찾기-->
         <scene sceneID="Nt0-Tx-L9O">
             <objects>
-                <viewController id="O3F-5X-mrF" customClass="FavoriteViewController" customModule="Moop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="O3F-5X-mrF" customClass="FavoriteViewController" customModule="DEV_Moop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zeg-ut-k9D">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -373,7 +373,7 @@
         <!--Movie Detail View Controller-->
         <scene sceneID="pZe-cl-zMC">
             <objects>
-                <viewController storyboardIdentifier="detail" hidesBottomBarWhenPushed="YES" id="xIA-bh-Qh7" customClass="MovieDetailViewController" customModule="Moop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detail" hidesBottomBarWhenPushed="YES" id="xIA-bh-Qh7" customClass="MovieDetailViewController" customModule="DEV_Moop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DyV-GV-k7a">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -381,7 +381,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vuu-d5-rlT">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="pca-CQ-gaS" customClass="MovieDetailHeaderView" customModule="Moop" customModuleProvider="target">
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="pca-CQ-gaS" customClass="MovieDetailHeaderView" customModule="DEV_Moop" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
@@ -447,7 +447,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="q3T-1e-K9G">
                                                     <rect key="frame" x="8" y="8" width="398" height="84"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tcv-zv-D9c" customClass="TheaterRankView" customModule="Moop" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tcv-zv-D9c" customClass="TheaterRankView" customModule="DEV_Moop" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="127.5" height="84"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CGV" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbP-mz-a9c">
@@ -519,7 +519,7 @@
                                                                 <outlet property="theaterNameLabel" destination="wbP-mz-a9c" id="3Sb-uT-54Q"/>
                                                             </connections>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bO-bA-Fts" customClass="TheaterRankView" customModule="Moop" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bO-bA-Fts" customClass="TheaterRankView" customModule="DEV_Moop" customModuleProvider="target">
                                                             <rect key="frame" x="135.5" y="0.0" width="127" height="84"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="롯데시네마" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpA-0G-Ugr">
@@ -586,7 +586,7 @@
                                                                 <outlet property="theaterNameLabel" destination="vpA-0G-Ugr" id="fr2-KO-LHP"/>
                                                             </connections>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DCz-5e-Qjz" customClass="TheaterRankView" customModule="Moop" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DCz-5e-Qjz" customClass="TheaterRankView" customModule="DEV_Moop" customModuleProvider="target">
                                                             <rect key="frame" x="270.5" y="0.0" width="127.5" height="84"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메가박스" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpY-ie-eJR">
@@ -832,7 +832,7 @@
                                     </connections>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NaverInfoCell" rowHeight="80" id="ncT-6z-jPl" customClass="NaverInfoCell" customModule="Moop" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NaverInfoCell" rowHeight="80" id="ncT-6z-jPl" customClass="NaverInfoCell" customModule="DEV_Moop" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="328" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ncT-6z-jPl" id="1Aa-6E-RpS">
@@ -929,7 +929,7 @@
                                             <outlet property="wrapperView" destination="9QS-pq-NLv" id="mTM-NP-ndS"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrailerHeaderCell" rowHeight="48" id="dSq-2x-9zo" customClass="TrailerHeaderCell" customModule="Moop" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrailerHeaderCell" rowHeight="48" id="dSq-2x-9zo" customClass="TrailerHeaderCell" customModule="DEV_Moop" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="408" width="414" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dSq-2x-9zo" id="ZrN-DD-hIt">
@@ -976,7 +976,7 @@
                                             <outlet property="wrapperView" destination="kxx-3C-c6Z" id="848-Lz-C1s"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrailerCell" id="jTx-3M-VJg" customClass="TrailerCell" customModule="Moop" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrailerCell" id="jTx-3M-VJg" customClass="TrailerCell" customModule="DEV_Moop" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="456" width="414" height="121"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jTx-3M-VJg" id="Ags-j7-ktf">
@@ -1035,7 +1035,7 @@
                                             <outlet property="wrapperView" destination="cfv-dU-kye" id="QQd-1j-A8e"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrailerFooterCell" id="kWt-RU-1xc" customClass="TrailerFooterCell" customModule="Moop" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrailerFooterCell" id="kWt-RU-1xc" customClass="TrailerFooterCell" customModule="DEV_Moop" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="577" width="414" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kWt-RU-1xc" id="yhF-jE-wKT">
@@ -1095,7 +1095,7 @@
         <!--설정-->
         <scene sceneID="woQ-00-37E">
             <objects>
-                <viewController id="dOc-lB-h2k" customClass="SettingViewController" customModule="Moop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dOc-lB-h2k" customClass="SettingViewController" customModule="DEV_Moop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bkb-MF-0um">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1128,7 +1128,7 @@
         <!--Map View Controller-->
         <scene sceneID="2SM-cd-aKa">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="WyV-OI-6tC" customClass="MapViewController" customModule="Moop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="WyV-OI-6tC" customClass="MapViewController" customModule="DEV_Moop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="N2b-SR-oQ3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1136,9 +1136,31 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gag-0B-w8H">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dv0-dC-5B6">
+                                <rect key="frame" x="0.0" y="896" width="414" height="200"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oYb-2W-Rlz">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                                        <color key="backgroundColor" systemColor="separatorColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="pqf-0z-MQo"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="oYb-2W-Rlz" secondAttribute="trailing" id="23u-Zc-KDw"/>
+                                    <constraint firstItem="oYb-2W-Rlz" firstAttribute="top" secondItem="dv0-dC-5B6" secondAttribute="top" id="Ckn-cQ-jgq"/>
+                                    <constraint firstItem="oYb-2W-Rlz" firstAttribute="leading" secondItem="dv0-dC-5B6" secondAttribute="leading" id="Roy-51-ZQF"/>
+                                    <constraint firstAttribute="height" constant="200" id="TzW-Xc-mjc"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="dv0-dC-5B6" secondAttribute="trailing" id="345-XY-d3N"/>
+                            <constraint firstAttribute="bottom" secondItem="dv0-dC-5B6" secondAttribute="bottom" constant="-200" id="Yby-Td-rfg"/>
+                            <constraint firstItem="dv0-dC-5B6" firstAttribute="leading" secondItem="N2b-SR-oQ3" secondAttribute="leading" id="Zmn-I2-sSF"/>
                             <constraint firstItem="gag-0B-w8H" firstAttribute="top" secondItem="N2b-SR-oQ3" secondAttribute="top" id="d31-Qt-EvY"/>
                             <constraint firstAttribute="trailing" secondItem="gag-0B-w8H" secondAttribute="trailing" id="gQr-Pm-pDC"/>
                             <constraint firstItem="gag-0B-w8H" firstAttribute="leading" secondItem="N2b-SR-oQ3" secondAttribute="leading" id="iTw-Bd-0Im"/>
@@ -1148,6 +1170,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="gag-0B-w8H" id="t9k-Jm-9yE"/>
+                        <outlet property="wrapperView" destination="dv0-dC-5B6" id="Qf2-UZ-jhm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rpt-0e-dgu" userLabel="First Responder" sceneMemberID="firstResponder"/>

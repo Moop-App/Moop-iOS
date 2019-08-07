@@ -43,7 +43,7 @@ class Theater: NSObject, Decodable, MKAnnotation {
     let lng: Double
     let lat: Double
     
-    var teaterType: TheaterType {
+    var theaterType: TheaterType {
         return TheaterType(type: type)
     }
     
@@ -52,7 +52,7 @@ class Theater: NSObject, Decodable, MKAnnotation {
     }
     
     var title: String? {
-        return "\(name) \(teaterType.title)"
+        return "\(name) \(theaterType.title)"
     }
     
 //    var subtitle: String? {

@@ -12,6 +12,7 @@ import MapKit
 
 class MapViewController: UIViewController {
     
+    @IBOutlet private weak var wrapperView: UIView!
     @IBOutlet private weak var mapView: MKMapView! {
         didSet {
             mapView.delegate = self
@@ -24,7 +25,6 @@ class MapViewController: UIViewController {
 
     let locationManager = CLLocationManager()
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.locationManager.requestAlwaysAuthorization()
@@ -40,6 +40,10 @@ class MapViewController: UIViewController {
             mapView.setCenter(coor, animated: true)
         }
         
+        request()
+    }
+    
+    private func request() {
         let requestURL = URL(string: "\(Config.baseURL)/code.json")!
         AF.request(requestURL)
             .validate(statusCode: [200])
@@ -47,7 +51,6 @@ class MapViewController: UIViewController {
                 guard let self = self else { return }
                 switch response.result {
                 case .success(let result):
-                    print("Items Count", result.items.count)
                     self.mapView.addAnnotations(result.items)
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -65,5 +68,19 @@ extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         mapView.setRegion(region, animated: true)
         
         locationManager.stopUpdatingLocation()
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print("DID SELECT", view.annotation)
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+            self.wrapperView.transform = CGAffineTransform(translationX: 0, y: -200)
+        }, completion: nil)
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        print("DID DESELECT")
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+            self.wrapperView.transform = CGAffineTransform(translationX: 0, y: 200)
+        }, completion: nil)
     }
 }
