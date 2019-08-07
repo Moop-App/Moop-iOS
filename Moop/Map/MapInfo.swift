@@ -55,6 +55,18 @@ class Theater: NSObject, Decodable, MKAnnotation {
         return "\(name) \(theaterType.title)"
     }
     
+    var destinationName: String {
+        let dname = "도착지".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        return title?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? dname
+    }
+    
+    var mapItem: MKMapItem {
+        let placemark = MKPlacemark(coordinate: coordinate)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = title
+        return mapItem
+    }
+    
 //    var subtitle: String? {
 //        return name
 //    }

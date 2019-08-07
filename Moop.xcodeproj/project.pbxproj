@@ -53,6 +53,7 @@
 		A02133EF22F1934000AD6D0E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02133EE22F1934000AD6D0E /* UIViewController+Extension.swift */; };
 		A0434E3A22F089CB004C086B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0434E3922F089CB004C086B /* MapViewController.swift */; };
 		A0434E3C22F129AC004C086B /* MapInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0434E3B22F129AC004C086B /* MapInfo.swift */; };
+		A0CAEBBF22FAEAD800C5C662 /* MapRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CAEBBE22FAEAD800C5C662 /* MapRouteView.swift */; };
 		A0D2461B22F3D99600F48CBA /* CGVInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2461A22F3D99600F48CBA /* CGVInfo.swift */; };
 		A0D2461D22F3D9A900F48CBA /* LotteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2461C22F3D9A900F48CBA /* LotteInfo.swift */; };
 		A0D2461F22F3D9C000F48CBA /* MegaBoxInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2461E22F3D9C000F48CBA /* MegaBoxInfo.swift */; };
@@ -129,6 +130,7 @@
 		A0657E1F22F8007600EA89FE /* Default.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Default.xcconfig; sourceTree = "<group>"; };
 		A0657E2122F802CF00EA89FE /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		A0657E2222F802D900EA89FE /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		A0CAEBBE22FAEAD800C5C662 /* MapRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouteView.swift; sourceTree = "<group>"; };
 		A0D2461A22F3D99600F48CBA /* CGVInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGVInfo.swift; sourceTree = "<group>"; };
 		A0D2461C22F3D9A900F48CBA /* LotteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotteInfo.swift; sourceTree = "<group>"; };
 		A0D2461E22F3D9C000F48CBA /* MegaBoxInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegaBoxInfo.swift; sourceTree = "<group>"; };
@@ -207,8 +209,7 @@
 				3C66021822959A18000BA333 /* MovieCell.swift */,
 				3C66021922959A18000BA333 /* MovieCell.xib */,
 				3C6601F722956D38000BA333 /* Main.storyboard */,
-				A0434E3922F089CB004C086B /* MapViewController.swift */,
-				A0434E3B22F129AC004C086B /* MapInfo.swift */,
+				A0CAEBC022FAEC3800C5C662 /* Map */,
 				3CDCD78C22BDD1BD00DDD14B /* YoutubeVideoPlayerController.swift */,
 				3C66021C22959DA5000BA333 /* Config.swift */,
 				A0D2462422F3D9F800F48CBA /* Models */,
@@ -312,6 +313,16 @@
 				14FCFAAA46A550D61B0571B0 /* Pods-MoopTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A0CAEBC022FAEC3800C5C662 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				A0434E3922F089CB004C086B /* MapViewController.swift */,
+				A0CAEBBE22FAEAD800C5C662 /* MapRouteView.swift */,
+				A0434E3B22F129AC004C086B /* MapInfo.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		A0D2462422F3D9F800F48CBA /* Models */ = {
@@ -571,6 +582,7 @@
 				A02133EF22F1934000AD6D0E /* UIViewController+Extension.swift in Sources */,
 				3CDCD79122BDD7C400DDD14B /* RemoteNotificationManager.swift in Sources */,
 				3C61A8A122DF282D00F4A7E5 /* Reusable.swift in Sources */,
+				A0CAEBBF22FAEAD800C5C662 /* MapRouteView.swift in Sources */,
 				3C6601F622956D38000BA333 /* SettingViewController.swift in Sources */,
 				3C76752B2299529C0052BEB6 /* SettingHeaderCell.swift in Sources */,
 				3C34938D22E75DA700A77343 /* MovieInfoManager.swift in Sources */,

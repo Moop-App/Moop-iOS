@@ -240,7 +240,7 @@
                     <tabBarItem key="tabBarItem" title="현재상영" image="movie" selectedImage="movie_selected" id="NUX-xM-44d"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="NeI-uZ-D7o">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="103.5"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1136,7 +1136,7 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gag-0B-w8H">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dv0-dC-5B6">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dv0-dC-5B6" customClass="MapRouteView" customModule="DEV_Moop" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="896" width="414" height="200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oYb-2W-Rlz">
@@ -1146,14 +1146,86 @@
                                             <constraint firstAttribute="height" constant="1" id="pqf-0z-MQo"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2PV-yr-pe9">
+                                        <rect key="frame" x="32" y="25" width="71" height="36"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQg-R3-61w">
+                                        <rect key="frame" x="290" y="1" width="108" height="165"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="PbV-aQ-4Ba">
+                                                <rect key="frame" x="0.0" y="48.5" width="108" height="68"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ps9-xF-xhG">
+                                                        <rect key="frame" x="0.0" y="0.0" width="108" height="30"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdH-ve-6fl">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                                                                <state key="normal" title="Kakao"/>
+                                                                <connections>
+                                                                    <action selector="route:" destination="dv0-dC-5B6" eventType="touchUpInside" id="gZw-lu-zzf"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fen-iy-3ye">
+                                                                <rect key="frame" x="58" y="0.0" width="50" height="30"/>
+                                                                <state key="normal" title="Naver"/>
+                                                                <connections>
+                                                                    <action selector="route:" destination="dv0-dC-5B6" eventType="touchUpInside" id="OUn-mQ-sP9"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZSN-sw-TAg">
+                                                        <rect key="frame" x="0.0" y="38" width="108" height="30"/>
+                                                        <subviews>
+                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5YR-Ga-lwU">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                                                                <state key="normal" title="Google"/>
+                                                                <connections>
+                                                                    <action selector="route:" destination="dv0-dC-5B6" eventType="touchUpInside" id="kRN-dL-6Pl"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOL-oD-39N">
+                                                                <rect key="frame" x="58" y="0.0" width="50" height="30"/>
+                                                                <state key="normal" title="Apple"/>
+                                                                <connections>
+                                                                    <action selector="route:" destination="dv0-dC-5B6" eventType="touchUpInside" id="Wyh-Wr-pCE"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="PbV-aQ-4Ba" secondAttribute="trailing" id="e3h-iH-mL1"/>
+                                            <constraint firstItem="PbV-aQ-4Ba" firstAttribute="centerY" secondItem="WQg-R3-61w" secondAttribute="centerY" id="qKt-Z6-gwZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="PbV-aQ-4Ba" secondAttribute="trailing" id="sZd-hg-v4d"/>
+                                            <constraint firstItem="PbV-aQ-4Ba" firstAttribute="leading" secondItem="WQg-R3-61w" secondAttribute="leading" id="snL-kr-tTQ"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="oYb-2W-Rlz" secondAttribute="trailing" id="23u-Zc-KDw"/>
+                                    <constraint firstItem="WQg-R3-61w" firstAttribute="bottom" secondItem="dCz-hM-hYW" secondAttribute="bottom" id="6RA-p1-qNH"/>
+                                    <constraint firstItem="WQg-R3-61w" firstAttribute="top" secondItem="oYb-2W-Rlz" secondAttribute="bottom" id="9Th-WV-2l9"/>
+                                    <constraint firstItem="2PV-yr-pe9" firstAttribute="leading" secondItem="dv0-dC-5B6" secondAttribute="leading" constant="32" id="9qV-eM-9l7"/>
                                     <constraint firstItem="oYb-2W-Rlz" firstAttribute="top" secondItem="dv0-dC-5B6" secondAttribute="top" id="Ckn-cQ-jgq"/>
+                                    <constraint firstItem="WQg-R3-61w" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2PV-yr-pe9" secondAttribute="trailing" constant="12" id="Hr1-d0-UJE"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="2PV-yr-pe9" secondAttribute="bottom" constant="24" id="RY8-Rh-7Vf"/>
                                     <constraint firstItem="oYb-2W-Rlz" firstAttribute="leading" secondItem="dv0-dC-5B6" secondAttribute="leading" id="Roy-51-ZQF"/>
                                     <constraint firstAttribute="height" constant="200" id="TzW-Xc-mjc"/>
+                                    <constraint firstItem="2PV-yr-pe9" firstAttribute="top" secondItem="oYb-2W-Rlz" secondAttribute="bottom" constant="24" id="eJp-Zd-WmT"/>
+                                    <constraint firstItem="dCz-hM-hYW" firstAttribute="trailing" secondItem="WQg-R3-61w" secondAttribute="trailing" constant="16" id="yEo-up-2SI"/>
                                 </constraints>
+                                <viewLayoutGuide key="safeArea" id="dCz-hM-hYW"/>
+                                <connections>
+                                    <outlet property="titleLabel" destination="2PV-yr-pe9" id="rpH-wo-fS0"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1170,7 +1242,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="gag-0B-w8H" id="t9k-Jm-9yE"/>
-                        <outlet property="wrapperView" destination="dv0-dC-5B6" id="Qf2-UZ-jhm"/>
+                        <outlet property="routeView" destination="dv0-dC-5B6" id="DAY-9m-3iF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rpt-0e-dgu" userLabel="First Responder" sceneMemberID="firstResponder"/>
