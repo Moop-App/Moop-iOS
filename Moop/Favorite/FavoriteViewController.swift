@@ -50,7 +50,7 @@ extension FavoriteViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: MovieCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.set(datas[indexPath.item])
+        cell.set(datas[indexPath.item], isFavorite: true)
         return cell
     }
     
