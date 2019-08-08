@@ -107,13 +107,16 @@ extension MovieDetailViewController: DetailHeaderDelegate {
             let itemId = item?.id else {
             if isAdd {
                 UserDefaults.standard.set([item?.id ?? ""], forKey: .favorites)
+                NotificationManager.shared.addNotification(item: item)
             }
             return
         }
         if isAdd {
             array.append(itemId)
+            NotificationManager.shared.addNotification(item: item)
         } else if let index = array.firstIndex(of: itemId) {
             array.remove(at: index)
+            NotificationManager.shared.removeNotification(item: item)
         }
         UserDefaults.standard.set(array, forKey: .favorites)
     }

@@ -43,6 +43,12 @@ extension MovieInfo {
         return Double(rank) / Double(count)
     }
     
+    var releaseDate: Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        return formatter.date(from: openDate) ?? Date()
+    }
+    
     var getDay: Int {
         let calendar = Calendar.current
         let formatter = DateFormatter()

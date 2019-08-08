@@ -1,5 +1,5 @@
 //
-//  RemoteNotificationManager.swift
+//  NotificationManager.swift
 //  Moop
 //
 //  Created by Chang Woo Son on 2019/06/22.
@@ -10,9 +10,11 @@ import UIKit
 import FirebaseMessaging
 import UserNotifications
 
-class RemoteNotificationManager: NSObject {
-    static let shared = RemoteNotificationManager()
+class NotificationManager: NSObject {
+    static let shared = NotificationManager()
     let gcmMessageIDKey = "gcm.message_id"
+    
+    private override init() { }
     
     func register(_ application: UIApplication) {
         // [START set_messaging_delegate]
@@ -24,9 +26,32 @@ class RemoteNotificationManager: NSObject {
                                                                 completionHandler: {_, _ in })
         application.registerForRemoteNotifications()
     }
+    
+    public func addNotification(item: MovieInfo?) {
+        guard let item = item else { return }
+        let content = UNMutableNotificationContent()
+        content.title = item.title
+        content.body = "\(item.title)이 오늘 개봉합니다."
+        content.sound = UNNotificationSound.default
+        let triggerDate = Calendar.current.dateComponents([.year,.month,.day], from: item.releaseDate)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: item.id, content: content, trigger: trigger)
+
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if let error = error {
+                print("Error \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    public func removeNotification(item: MovieInfo?) {
+        guard let item = item else { return }
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [item.id])
+    }
 }
 
-extension RemoteNotificationManager: MessagingDelegate {
+extension NotificationManager: MessagingDelegate {
     // [START refresh_token]
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
@@ -38,8 +63,8 @@ extension RemoteNotificationManager: MessagingDelegate {
     }
 }
 
-extension RemoteNotificationManager: UNUserNotificationCenterDelegate {
-    // Receive displayed notifications for iOS 10 devices.
+extension NotificationManager: UNUserNotificationCenterDelegate {
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -56,13 +81,19 @@ extension RemoteNotificationManager: UNUserNotificationCenterDelegate {
         print(userInfo)
         
         // Change this to your preferred presentation option
-        completionHandler([])
+        completionHandler([.alert, .sound])
     }
+    
+    
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
+        
+        // TODO: Notification click event
+        // let identifier = response.notification.request.identifier
+        
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")

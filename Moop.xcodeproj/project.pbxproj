@@ -43,7 +43,7 @@
 		3CBD5EB422960DF7005A24E4 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD5EB322960DF7005A24E4 /* MovieDetailViewController.swift */; };
 		3CDCD78D22BDD1BD00DDD14B /* YoutubeVideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDCD78C22BDD1BD00DDD14B /* YoutubeVideoPlayerController.swift */; };
 		3CDCD78F22BDD1F000DDD14B /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDCD78E22BDD1F000DDD14B /* UIApplication+Extension.swift */; };
-		3CDCD79122BDD7C400DDD14B /* RemoteNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDCD79022BDD7C400DDD14B /* RemoteNotificationManager.swift */; };
+		3CDCD79122BDD7C400DDD14B /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDCD79022BDD7C400DDD14B /* NotificationManager.swift */; };
 		3CF5B8D1229ACE5F00A4C2BB /* Pods-Moop-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CF5B8D0229ACE5F00A4C2BB /* Pods-Moop-acknowledgements.plist */; };
 		3CF7219022BF56ED0022D03E /* CurrentMoviePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF7218F22BF56ED0022D03E /* CurrentMoviePresenter.swift */; };
 		3CF7219222BF57020022D03E /* CurrentMovieProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF7219122BF57020022D03E /* CurrentMovieProtocols.swift */; };
@@ -127,7 +127,7 @@
 		3CBD5EB322960DF7005A24E4 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		3CDCD78C22BDD1BD00DDD14B /* YoutubeVideoPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeVideoPlayerController.swift; sourceTree = "<group>"; };
 		3CDCD78E22BDD1F000DDD14B /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
-		3CDCD79022BDD7C400DDD14B /* RemoteNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNotificationManager.swift; sourceTree = "<group>"; };
+		3CDCD79022BDD7C400DDD14B /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		3CDCD79222BDDAD100DDD14B /* Moop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Moop.entitlements; sourceTree = "<group>"; };
 		3CF5B8D0229ACE5F00A4C2BB /* Pods-Moop-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-Moop-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-Moop/Pods-Moop-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
 		3CF7218F22BF56ED0022D03E /* CurrentMoviePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMoviePresenter.swift; sourceTree = "<group>"; };
@@ -246,7 +246,7 @@
 				3C947A8B22D736170075E4DE /* FilterViewController.swift */,
 				3C34938C22E75DA700A77343 /* MovieInfoManager.swift */,
 				3CB6E84A22B8EFF2008F382C /* ShortcutManager.swift */,
-				3CDCD79022BDD7C400DDD14B /* RemoteNotificationManager.swift */,
+				3CDCD79022BDD7C400DDD14B /* NotificationManager.swift */,
 				3C66021822959A18000BA333 /* MovieCell.swift */,
 				3C66021922959A18000BA333 /* MovieCell.xib */,
 				3C66021C22959DA5000BA333 /* Config.swift */,
@@ -654,7 +654,7 @@
 			files = (
 				A02133EF22F1934000AD6D0E /* UIViewController+Extension.swift in Sources */,
 				A00671D122FBC119002FE813 /* FutureMovieView.swift in Sources */,
-				3CDCD79122BDD7C400DDD14B /* RemoteNotificationManager.swift in Sources */,
+				3CDCD79122BDD7C400DDD14B /* NotificationManager.swift in Sources */,
 				3C61A8A122DF282D00F4A7E5 /* Reusable.swift in Sources */,
 				A0CAEBBF22FAEAD800C5C662 /* MapRouteView.swift in Sources */,
 				3C6601F622956D38000BA333 /* SettingViewController.swift in Sources */,
