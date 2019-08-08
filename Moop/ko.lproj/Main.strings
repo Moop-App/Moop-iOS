@@ -1,0 +1,135 @@
+
+/* Class = "UILabel"; text = "개봉 알림이 필요한 영화를 \n추가해주세요"; ObjectID = "01u-ia-9wR"; */
+"01u-ia-9wR.text" = "개봉 알림이 필요한 영화를 \n추가해주세요";
+
+/* Class = "UIButton"; normalTitle = "자세히보기"; ObjectID = "1r9-6O-f40"; */
+"1r9-6O-f40.normalTitle" = "자세히보기";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "2PV-yr-pe9"; */
+"2PV-yr-pe9.text" = "Label";
+
+/* Class = "UILabel"; text = "Lotte"; ObjectID = "3zP-jT-dgA"; */
+"3zP-jT-dgA.text" = "Lotte";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "47H-he-5xd"; */
+"47H-he-5xd.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Google"; ObjectID = "5YR-Ga-lwU"; */
+"5YR-Ga-lwU.normalTitle" = "Google";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "7al-Ae-9cJ"; */
+"7al-Ae-9cJ.text" = "Label";
+
+/* Class = "UILabel"; text = "NEW"; ObjectID = "9gL-Wd-JfO"; */
+"9gL-Wd-JfO.text" = "NEW";
+
+/* Class = "UIBarButtonItem"; title = "Filter"; ObjectID = "ByR-Lq-KPq"; */
+"ByR-Lq-KPq.title" = "Filter";
+
+/* Class = "UILabel"; text = "Lotte"; ObjectID = "Dr9-DQ-CRA"; */
+"Dr9-DQ-CRA.text" = "Lotte";
+
+/* Class = "UIButton"; normalTitle = "Naver"; ObjectID = "Fen-iy-3ye"; */
+"Fen-iy-3ye.normalTitle" = "Naver";
+
+/* Class = "UILabel"; text = "Lotte"; ObjectID = "GEB-Ka-ePC"; */
+"GEB-Ka-ePC.text" = "Lotte";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "GwK-dF-438"; */
+"GwK-dF-438.text" = "Label";
+
+/* Class = "UILabel"; text = "Megabox"; ObjectID = "IGe-GM-uvM"; */
+"IGe-GM-uvM.text" = "Megabox";
+
+/* Class = "UIButton"; normalTitle = "Apple"; ObjectID = "IOL-oD-39N"; */
+"IOL-oD-39N.normalTitle" = "Apple";
+
+/* Class = "UINavigationItem"; title = "설정"; ObjectID = "J4m-CG-4Oh"; */
+"J4m-CG-4Oh.title" = "설정";
+
+/* Class = "UILabel"; text = "전체 관람가"; ObjectID = "Lep-VP-Wth"; */
+"Lep-VP-Wth.text" = "전체 관람가";
+
+/* Class = "UITabBarItem"; title = "현재상영"; ObjectID = "NUX-xM-44d"; */
+"NUX-xM-44d.title" = "현재상영";
+
+/* Class = "UITabBarItem"; title = "설정"; ObjectID = "Pb1-Mr-WcG"; */
+"Pb1-Mr-WcG.title" = "설정";
+
+/* Class = "UIBarButtonItem"; title = "Filter"; ObjectID = "Pqr-TJ-qdO"; */
+"Pqr-TJ-qdO.title" = "Filter";
+
+/* Class = "UITabBarItem"; title = "개봉예정"; ObjectID = "RK2-Lk-d89"; */
+"RK2-Lk-d89.title" = "개봉예정";
+
+/* Class = "UITableViewSection"; headerTitle = "Theater"; ObjectID = "TFn-jW-c0F"; */
+"TFn-jW-c0F.headerTitle" = "Theater";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "TdV-1j-x09"; */
+"TdV-1j-x09.text" = "Label";
+
+/* Class = "UILabel"; text = "BEST"; ObjectID = "UkK-8s-dRe"; */
+"UkK-8s-dRe.text" = "BEST";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Vvg-Ou-Zdm"; */
+"Vvg-Ou-Zdm.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "WDN-kC-RnT"; */
+"WDN-kC-RnT.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Zne-X8-JVr"; */
+"Zne-X8-JVr.text" = "Label";
+
+/* Class = "UILabel"; text = "Lotte"; ObjectID = "c2O-aw-yix"; */
+"c2O-aw-yix.text" = "Lotte";
+
+/* Class = "UILabel"; text = "Megabox"; ObjectID = "dAb-Xg-mpI"; */
+"dAb-Xg-mpI.text" = "Megabox";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fzg-Ur-eXP"; */
+"fzg-Ur-eXP.text" = "Label";
+
+/* Class = "UILabel"; text = "CGV"; ObjectID = "gSw-ZH-tEL"; */
+"gSw-ZH-tEL.text" = "CGV";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "gfH-qP-j17"; */
+"gfH-qP-j17.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "즐겨찾기"; ObjectID = "gtd-lh-ZZy"; */
+"gtd-lh-ZZy.title" = "즐겨찾기";
+
+/* Class = "UIButton"; normalTitle = "Kakao"; ObjectID = "hdH-ve-6fl"; */
+"hdH-ve-6fl.normalTitle" = "Kakao";
+
+/* Class = "UILabel"; text = "네이버"; ObjectID = "k8a-t2-RX4"; */
+"k8a-t2-RX4.text" = "네이버";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "lEn-44-Gtf"; */
+"lEn-44-Gtf.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "llY-Qb-QbK"; */
+"llY-Qb-QbK.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "Age"; ObjectID = "m3u-dh-xtt"; */
+"m3u-dh-xtt.headerTitle" = "Age";
+
+/* Class = "UILabel"; text = "메가박스"; ObjectID = "mpY-ie-eJR"; */
+"mpY-ie-eJR.text" = "메가박스";
+
+/* Class = "UINavigationItem"; title = "현재 상영"; ObjectID = "nck-SN-UnG"; */
+"nck-SN-UnG.title" = "현재 상영";
+
+/* Class = "UITabBarItem"; title = "즐겨찾기"; ObjectID = "tLg-4V-RW5"; */
+"tLg-4V-RW5.title" = "즐겨찾기";
+
+/* Class = "UINavigationItem"; title = "개봉 예정"; ObjectID = "uZp-3g-cau"; */
+"uZp-3g-cau.title" = "개봉 예정";
+
+/* Class = "UILabel"; text = "더보기"; ObjectID = "v5M-Ed-SSv"; */
+"v5M-Ed-SSv.text" = "더보기";
+
+/* Class = "UILabel"; text = "롯데시네마"; ObjectID = "vpA-0G-Ugr"; */
+"vpA-0G-Ugr.text" = "롯데시네마";
+
+/* Class = "UILabel"; text = "CGV"; ObjectID = "wbP-mz-a9c"; */
+"wbP-mz-a9c.text" = "CGV";

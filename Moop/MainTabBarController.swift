@@ -19,9 +19,13 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         self.delegate = self
         
+        self.addCurrentMovieViewController()
+    }
+    
+    private func addCurrentMovieViewController() {
         let currentNavigationController = UINavigationController(rootViewController: CurrentMovieView.instance())
         currentNavigationController.navigationBar.prefersLargeTitles = true
-        let currentTabBarItem = UITabBarItem(title: "현재상영", image: UIImage(named: "movie"), tag: 0)
+        let currentTabBarItem = UITabBarItem(title: "현재상영".localized, image: UIImage(named: "movie"), tag: 0)
         currentTabBarItem.selectedImage = UIImage(named: "movie_selected")
         currentNavigationController.tabBarItem = currentTabBarItem
         self.viewControllers?[0] = currentNavigationController

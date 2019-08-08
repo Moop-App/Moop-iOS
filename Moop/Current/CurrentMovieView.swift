@@ -11,7 +11,7 @@ import SafariServices
 
 class CurrentMovieView: UIViewController {
     static func instance() -> CurrentMovieView {
-        let vc: CurrentMovieView = instance(storyboardName: .main)
+        let vc: CurrentMovieView = instance(storyboardName: .currentMovie)
         vc.presenter = CurrentMoviePresenter(view: vc)
         return vc
     }

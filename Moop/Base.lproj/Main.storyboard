@@ -188,70 +188,6 @@
             </objects>
             <point key="canvasLocation" x="2729" y="-591"/>
         </scene>
-        <!--현재 상영-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController storyboardIdentifier="CurrentMovieView" id="BYZ-38-t0r" customClass="CurrentMovieView" customModule="DEV_Moop" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="spo-49-roq">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="C1i-SC-L7Z">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="8"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="spo-49-roq" secondAttribute="bottom" id="Ckw-aF-Rg7"/>
-                            <constraint firstItem="spo-49-roq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="L8i-HP-4cS"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="spo-49-roq" secondAttribute="trailing" id="lgO-U1-ELl"/>
-                            <constraint firstItem="spo-49-roq" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="oc5-iD-oyv"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="현재 상영" id="nck-SN-UnG">
-                        <barButtonItem key="rightBarButtonItem" title="Filter" id="ByR-Lq-KPq">
-                            <connections>
-                                <segue destination="IBA-pc-3dh" kind="presentation" identifier="toFilter" id="40H-vW-UEX"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="collectionView" destination="spo-49-roq" id="yqi-cH-bdn"/>
-                        <segue destination="xIA-bh-Qh7" kind="show" identifier="toDetails" id="5o6-kp-k48"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1957.9710144927537" y="127.90178571428571"/>
-        </scene>
-        <!--현재상영-->
-        <scene sceneID="KSr-Aj-eaE">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AO5-80-hPM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="현재상영" image="movie" selectedImage="movie_selected" id="NUX-xM-44d"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="NeI-uZ-D7o">
-                        <rect key="frame" x="0.0" y="44" width="414" height="103.5"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Ucc-Ka-x1G"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nSb-Gg-9Jh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1069.5652173913045" y="127.90178571428571"/>
-        </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="Pvn-ms-9CF">
             <objects>
@@ -263,7 +199,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="AO5-80-hPM" kind="relationship" relationship="viewControllers" id="spJ-8f-8ap"/>
                         <segue destination="OwT-hG-5Vu" kind="relationship" relationship="viewControllers" id="vkV-r0-sNP"/>
                         <segue destination="LN8-Gh-LpE" kind="relationship" relationship="viewControllers" id="PBF-ce-2Nk"/>
                         <segue destination="twT-cc-Isq" kind="relationship" relationship="viewControllers" id="8Jx-eo-wXf"/>
@@ -1141,7 +1076,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oYb-2W-Rlz">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
-                                        <color key="backgroundColor" systemColor="separatorColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="pqf-0z-MQo"/>
                                         </constraints>
@@ -1275,7 +1210,7 @@
                     <tabBarItem key="tabBarItem" title="설정" image="setting" selectedImage="setting_selected" id="Pb1-Mr-WcG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="t0N-MR-ldI">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="103.5"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1312,7 +1247,7 @@
                     <tabBarItem key="tabBarItem" title="즐겨찾기" image="heart" selectedImage="heart_fill" id="tLg-4V-RW5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="cT6-IC-G34">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="103.5"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1329,8 +1264,6 @@
         <image name="heart" width="24" height="24"/>
         <image name="heart_fill" width="24" height="24"/>
         <image name="kakaotalk" width="2500" height="2500"/>
-        <image name="movie" width="30" height="30"/>
-        <image name="movie_selected" width="30" height="30"/>
         <image name="plan" width="30" height="30"/>
         <image name="plan_selected" width="30" height="30"/>
         <image name="setting" width="30" height="30"/>
@@ -1340,7 +1273,6 @@
         <image name="youtube" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="40H-vW-UEX"/>
-        <segue reference="5o6-kp-k48"/>
+        <segue reference="TBL-td-BGn"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -50,6 +50,10 @@
 		3CF7219222BF57020022D03E /* CurrentMovieProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF7219122BF57020022D03E /* CurrentMovieProtocols.swift */; };
 		3CF7219422BF57430022D03E /* CurrentMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF7219322BF57430022D03E /* CurrentMovieView.swift */; };
 		3CF7219722BF587B0022D03E /* CurrentMovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF7219622BF587B0022D03E /* CurrentMovieData.swift */; };
+		A00671B922FBB937002FE813 /* CurrentMovie.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A00671BB22FBB937002FE813 /* CurrentMovie.storyboard */; };
+		A00671C322FBBAAB002FE813 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00671C222FBBAAB002FE813 /* String+Extension.swift */; };
+		A00671C622FBBBE9002FE813 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A00671C822FBBBE9002FE813 /* Localizable.strings */; };
+		A00671CE22FBBC2B002FE813 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A00671CD22FBBC2B002FE813 /* InfoPlist.strings */; };
 		A02133EF22F1934000AD6D0E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02133EE22F1934000AD6D0E /* UIViewController+Extension.swift */; };
 		A0434E3A22F089CB004C086B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0434E3922F089CB004C086B /* MapViewController.swift */; };
 		A0434E3C22F129AC004C086B /* MapInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0434E3B22F129AC004C086B /* MapInfo.swift */; };
@@ -124,6 +128,17 @@
 		3CF7219122BF57020022D03E /* CurrentMovieProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMovieProtocols.swift; sourceTree = "<group>"; };
 		3CF7219322BF57430022D03E /* CurrentMovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMovieView.swift; sourceTree = "<group>"; };
 		3CF7219622BF587B0022D03E /* CurrentMovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMovieData.swift; sourceTree = "<group>"; };
+		A00671B722FBB916002FE813 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		A00671B822FBB923002FE813 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		A00671BA22FBB937002FE813 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CurrentMovie.storyboard; sourceTree = "<group>"; };
+		A00671BD22FBB93D002FE813 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/CurrentMovie.strings; sourceTree = "<group>"; };
+		A00671BF22FBB944002FE813 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/CurrentMovie.strings; sourceTree = "<group>"; };
+		A00671C122FBB947002FE813 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CurrentMovie.strings; sourceTree = "<group>"; };
+		A00671C222FBBAAB002FE813 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		A00671C722FBBBE9002FE813 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A00671C922FBBBEA002FE813 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A00671CA22FBBBEA002FE813 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A00671CD22FBBC2B002FE813 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		A02133EE22F1934000AD6D0E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		A0434E3922F089CB004C086B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A0434E3B22F129AC004C086B /* MapInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfo.swift; sourceTree = "<group>"; };
@@ -196,11 +211,11 @@
 			isa = PBXGroup;
 			children = (
 				3C6601F322956D38000BA333 /* AppDelegate.swift */,
+				3CB6E84C22B9C518008F382C /* MainTabBarController.swift */,
 				3CF7219522BF57480022D03E /* Current */,
 				3C34938C22E75DA700A77343 /* MovieInfoManager.swift */,
 				3CB6E84A22B8EFF2008F382C /* ShortcutManager.swift */,
 				3CDCD79022BDD7C400DDD14B /* RemoteNotificationManager.swift */,
-				3CB6E84C22B9C518008F382C /* MainTabBarController.swift */,
 				3C767535229954AF0052BEB6 /* Setting */,
 				3CB52E6722B4D8BA009FD7D1 /* Detail */,
 				3CBD5EB522960EA5005A24E4 /* FutureMovieViewController.swift */,
@@ -237,6 +252,7 @@
 				3CDCD78E22BDD1F000DDD14B /* UIApplication+Extension.swift */,
 				3C947A8D22D73C120075E4DE /* UserDefaults+Extension.swift */,
 				A02133EE22F1934000AD6D0E /* UIViewController+Extension.swift */,
+				A00671C222FBBAAB002FE813 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -275,6 +291,8 @@
 				A0657E1F22F8007600EA89FE /* Default.xcconfig */,
 				A0657E2122F802CF00EA89FE /* Debug.xcconfig */,
 				A0657E2222F802D900EA89FE /* Release.xcconfig */,
+				A00671C822FBBBE9002FE813 /* Localizable.strings */,
+				A00671CD22FBBC2B002FE813 /* InfoPlist.strings */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -300,6 +318,7 @@
 				3CF7218F22BF56ED0022D03E /* CurrentMoviePresenter.swift */,
 				3CF7219622BF587B0022D03E /* CurrentMovieData.swift */,
 				3CF7219122BF57020022D03E /* CurrentMovieProtocols.swift */,
+				A00671BB22FBB937002FE813 /* CurrentMovie.storyboard */,
 			);
 			path = Current;
 			sourceTree = "<group>";
@@ -419,6 +438,8 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
+				ja,
 			);
 			mainGroup = 3C6601E722956D38000BA333;
 			productRefGroup = 3C6601F122956D38000BA333 /* Products */;
@@ -437,12 +458,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C767530229953590052BEB6 /* SettingItemCell.xib in Resources */,
+				A00671CE22FBBC2B002FE813 /* InfoPlist.strings in Resources */,
 				3C6601FE22956D39000BA333 /* LaunchScreen.storyboard in Resources */,
+				A00671C622FBBBE9002FE813 /* Localizable.strings in Resources */,
 				3C6602152295745A000BA333 /* GoogleService-Info.plist in Resources */,
 				3C6601FB22956D39000BA333 /* Assets.xcassets in Resources */,
 				3C767534229954A80052BEB6 /* SettingDividerCell.xib in Resources */,
 				3C76752C2299529C0052BEB6 /* SettingHeaderCell.xib in Resources */,
 				3C6601F922956D38000BA333 /* Main.storyboard in Resources */,
+				A00671B922FBB937002FE813 /* CurrentMovie.storyboard in Resources */,
 				3C66021B22959A18000BA333 /* MovieCell.xib in Resources */,
 				3CF5B8D1229ACE5F00A4C2BB /* Pods-Moop-acknowledgements.plist in Resources */,
 			);
@@ -591,6 +615,7 @@
 				3C1B6E672297A68F009CB740 /* MovieDetailHeaderView.swift in Sources */,
 				3CDCD78F22BDD1F000DDD14B /* UIApplication+Extension.swift in Sources */,
 				A0D2462322F3D9E400F48CBA /* NaverInfo.swift in Sources */,
+				A00671C322FBBAAB002FE813 /* String+Extension.swift in Sources */,
 				A0D2462622F3DA4800F48CBA /* BestCheckDelegate.swift in Sources */,
 				3C7675252299172C0052BEB6 /* UIColor+Extension.swift in Sources */,
 				3C66021D22959DA5000BA333 /* Config.swift in Sources */,
@@ -648,6 +673,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				3C6601F822956D38000BA333 /* Base */,
+				A00671B722FBB916002FE813 /* ko */,
+				A00671B822FBB923002FE813 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -660,6 +687,27 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		A00671BB22FBB937002FE813 /* CurrentMovie.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A00671BA22FBB937002FE813 /* Base */,
+				A00671BD22FBB93D002FE813 /* ja */,
+				A00671BF22FBB944002FE813 /* ko */,
+				A00671C122FBB947002FE813 /* en */,
+			);
+			name = CurrentMovie.storyboard;
+			sourceTree = "<group>";
+		};
+		A00671C822FBBBE9002FE813 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A00671C722FBBBE9002FE813 /* en */,
+				A00671C922FBBBEA002FE813 /* ja */,
+				A00671CA22FBBBEA002FE813 /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -668,6 +716,7 @@
 			baseConfigurationReference = A0657E2122F802CF00EA89FE /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -730,6 +779,7 @@
 			baseConfigurationReference = A0657E2222F802D900EA89FE /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
