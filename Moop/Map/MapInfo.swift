@@ -56,7 +56,7 @@ class Theater: NSObject, Decodable, MKAnnotation {
     }
     
     var destinationName: String {
-        let dname = "도착지".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let dname = "도착지".localized.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         return title?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? dname
     }
     
@@ -66,8 +66,4 @@ class Theater: NSObject, Decodable, MKAnnotation {
         mapItem.name = title
         return mapItem
     }
-    
-//    var subtitle: String? {
-//        return name
-//    }
 }

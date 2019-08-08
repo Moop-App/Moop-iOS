@@ -38,7 +38,11 @@
                         <viewLayoutGuide key="safeArea" id="oKa-9a-7lA"/>
                     </view>
                     <navigationItem key="navigationItem" title="Current screening" id="7ZF-2q-j1n">
-                        <barButtonItem key="rightBarButtonItem" title="filter" id="a14-As-qw5"/>
+                        <barButtonItem key="rightBarButtonItem" title="filter" id="a14-As-qw5">
+                            <connections>
+                                <action selector="filter:" destination="fE7-Zb-vwk" id="4q6-uk-svI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="X4j-hI-7UM" id="PX9-FG-WqW"/>

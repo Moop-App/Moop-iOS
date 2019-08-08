@@ -38,7 +38,11 @@
                         <viewLayoutGuide key="safeArea" id="wj1-iG-XE8"/>
                     </view>
                     <navigationItem key="navigationItem" title="Expected Release" id="X11-Rc-P9b">
-                        <barButtonItem key="rightBarButtonItem" title="filter" id="PiD-HS-K3O"/>
+                        <barButtonItem key="rightBarButtonItem" title="filter" id="PiD-HS-K3O">
+                            <connections>
+                                <action selector="filter:" destination="89O-ov-o7B" id="sAF-fQ-PqE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="cw3-0F-0V7" id="Sdb-CG-rL2"/>

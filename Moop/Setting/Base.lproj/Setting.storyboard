@@ -70,23 +70,25 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJh-oW-AJG">
-                                        <rect key="frame" x="290" y="1" width="108" height="165"/>
+                                        <rect key="frame" x="280" y="1" width="118" height="165"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BFK-Hk-cYv">
-                                                <rect key="frame" x="0.0" y="48.5" width="108" height="68"/>
+                                                <rect key="frame" x="0.0" y="45.5" width="118" height="74"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="NrP-NL-r1N">
-                                                        <rect key="frame" x="0.0" y="0.0" width="108" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="118" height="33"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sj-Yf-mmm">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="55" height="33"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                 <state key="normal" title="Kakao"/>
                                                                 <connections>
                                                                     <action selector="route:" destination="mJE-gg-wma" eventType="touchUpInside" id="jgc-vd-Bor"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2T-Py-VWc">
-                                                                <rect key="frame" x="58" y="0.0" width="50" height="30"/>
+                                                                <rect key="frame" x="63" y="0.0" width="55" height="33"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                 <state key="normal" title="Naver"/>
                                                                 <connections>
                                                                     <action selector="route:" destination="mJE-gg-wma" eventType="touchUpInside" id="Sfp-YR-18b"/>
@@ -95,17 +97,19 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="w7m-1L-WJ1">
-                                                        <rect key="frame" x="0.0" y="38" width="108" height="30"/>
+                                                        <rect key="frame" x="0.0" y="41" width="118" height="33"/>
                                                         <subviews>
                                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5GI-tf-NFG">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="55" height="33"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                 <state key="normal" title="Google"/>
                                                                 <connections>
                                                                     <action selector="route:" destination="mJE-gg-wma" eventType="touchUpInside" id="hg4-k7-uY4"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKs-ZI-eQc">
-                                                                <rect key="frame" x="58" y="0.0" width="50" height="30"/>
+                                                                <rect key="frame" x="63" y="0.0" width="55" height="33"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                 <state key="normal" title="Apple"/>
                                                                 <connections>
                                                                     <action selector="route:" destination="mJE-gg-wma" eventType="touchUpInside" id="lZq-L6-ryc"/>

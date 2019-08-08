@@ -20,7 +20,8 @@ class MainTabBarController: UITabBarController {
         self.delegate = self
         
         
-        self.viewControllers = [currentMovieViewController(), futureMovieViewController(), settingViewController()]
+        self.viewControllers = [currentMovieViewController(), futureMovieViewController(),
+                                favoriteViewController(), settingViewController()]
     }
     
     private func currentMovieViewController() -> UINavigationController {
@@ -39,6 +40,15 @@ class MainTabBarController: UITabBarController {
         futureTabBarItem.selectedImage = UIImage(named: "plan_selected")
         futureNavigationController.tabBarItem = futureTabBarItem
         return futureNavigationController
+    }
+    
+    private func favoriteViewController() -> UINavigationController {
+        let favoriteNavigationController = UINavigationController(rootViewController: FavoriteViewController.instance())
+        favoriteNavigationController.navigationBar.prefersLargeTitles = true
+        let favoriteTabBarItem = UITabBarItem(title: "즐겨찾기".localized, image: UIImage(named: "heart"), tag: 2)
+        favoriteTabBarItem.selectedImage = UIImage(named: "heart_fill")
+        favoriteNavigationController.tabBarItem = favoriteTabBarItem
+        return favoriteNavigationController
     }
     
     private func settingViewController() -> UINavigationController {

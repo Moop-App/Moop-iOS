@@ -166,7 +166,8 @@ extension SettingViewController: UITableViewDelegate {
                 UIApplication.shared.open(url, options: [:])
             }
         case 10: // Open Source
-            let viewController = AcknowListViewController()
+            let path = Bundle.main.path(forResource: "Pods-Moop-acknowledgements", ofType: "plist")
+            let viewController = AcknowListViewController(acknowledgementsPlistPath: path)
             navigationController?.pushViewController(viewController, animated: true)
         case 13: // Feedback
             if MFMailComposeViewController.canSendMail() {

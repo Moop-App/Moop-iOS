@@ -113,6 +113,7 @@ extension MovieInfo {
             return cgv == nil && lotte != nil && megabox == nil
         case .megabox:
             return cgv == nil && lotte == nil && megabox != nil
+        case .naver: return false
         }
     }
     
@@ -124,6 +125,8 @@ extension MovieInfo {
             return lotte != nil
         case .megabox:
             return megabox != nil
+        case .naver:
+            return false
         }
     }
     

@@ -50,7 +50,7 @@ extension FutureMoviePresenter: UISearchResultsUpdating, UISearchBarDelegate {
 
 extension FutureMoviePresenter: FutureMoviePresenterDelegate {
     func fetchDatas() {
-        MovieInfoManager.shared.requestFutureData() { [weak self] in
+        MovieInfoManager.shared.requestFutureData { [weak self] in
             guard let self = self else { return }
             self.movieData.update(items: MovieInfoManager.shared.futureDatas)
             self.filterItemChanged()
