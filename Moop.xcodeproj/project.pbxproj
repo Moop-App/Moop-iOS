@@ -60,6 +60,7 @@
 		A00671DA22FBC163002FE813 /* FutureMovie.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A00671DC22FBC163002FE813 /* FutureMovie.storyboard */; };
 		A00671E522FC018A002FE813 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A00671E722FC018A002FE813 /* Setting.storyboard */; };
 		A00671F122FC095E002FE813 /* Favorite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A00671F322FC095E002FE813 /* Favorite.storyboard */; };
+		A00671FB22FC1636002FE813 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00671FA22FC1636002FE813 /* UIImage+Extension.swift */; };
 		A02133EF22F1934000AD6D0E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02133EE22F1934000AD6D0E /* UIViewController+Extension.swift */; };
 		A0434E3A22F089CB004C086B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0434E3922F089CB004C086B /* MapViewController.swift */; };
 		A0434E3C22F129AC004C086B /* MapInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0434E3B22F129AC004C086B /* MapInfo.swift */; };
@@ -160,6 +161,7 @@
 		A00671F522FC0963002FE813 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Favorite.strings; sourceTree = "<group>"; };
 		A00671F722FC0964002FE813 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Favorite.strings; sourceTree = "<group>"; };
 		A00671F922FC0965002FE813 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Favorite.strings; sourceTree = "<group>"; };
+		A00671FA22FC1636002FE813 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		A02133EE22F1934000AD6D0E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		A0434E3922F089CB004C086B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A0434E3B22F129AC004C086B /* MapInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfo.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				3C947A8D22D73C120075E4DE /* UserDefaults+Extension.swift */,
 				A02133EE22F1934000AD6D0E /* UIViewController+Extension.swift */,
 				A00671C222FBBAAB002FE813 /* String+Extension.swift */,
+				A00671FA22FC1636002FE813 /* UIImage+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -676,6 +679,7 @@
 				3C767527229918890052BEB6 /* UIView+Extension.swift in Sources */,
 				A0D2461F22F3D9C000F48CBA /* MegaBoxInfo.swift in Sources */,
 				3CF7219722BF587B0022D03E /* CurrentMovieData.swift in Sources */,
+				A00671FB22FC1636002FE813 /* UIImage+Extension.swift in Sources */,
 				3C947A8C22D736170075E4DE /* FilterViewController.swift in Sources */,
 				A0D2462122F3D9D500F48CBA /* TrailerInfo.swift in Sources */,
 				3CDCD78D22BDD1BD00DDD14B /* YoutubeVideoPlayerController.swift in Sources */,
