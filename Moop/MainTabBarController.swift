@@ -20,6 +20,7 @@ class MainTabBarController: UITabBarController {
         self.delegate = self
         
         self.addCurrentMovieViewController()
+        self.addFutureMovieViewController()
     }
     
     private func addCurrentMovieViewController() {
@@ -29,6 +30,15 @@ class MainTabBarController: UITabBarController {
         currentTabBarItem.selectedImage = UIImage(named: "movie_selected")
         currentNavigationController.tabBarItem = currentTabBarItem
         self.viewControllers?[0] = currentNavigationController
+    }
+    
+    private func addFutureMovieViewController() {
+        let currentNavigationController = UINavigationController(rootViewController: FutureMovieView.instance())
+        currentNavigationController.navigationBar.prefersLargeTitles = true
+        let currentTabBarItem = UITabBarItem(title: "개봉예정".localized, image: UIImage(named: "plan"), tag: 1)
+        currentTabBarItem.selectedImage = UIImage(named: "plan_selected")
+        currentNavigationController.tabBarItem = currentTabBarItem
+        self.viewControllers?[1] = currentNavigationController
     }
 }
 

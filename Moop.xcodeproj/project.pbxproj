@@ -41,7 +41,6 @@
 		3CB6E84B22B8EFF2008F382C /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB6E84A22B8EFF2008F382C /* ShortcutManager.swift */; };
 		3CB6E84D22B9C518008F382C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB6E84C22B9C518008F382C /* MainTabBarController.swift */; };
 		3CBD5EB422960DF7005A24E4 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD5EB322960DF7005A24E4 /* MovieDetailViewController.swift */; };
-		3CBD5EB622960EA5005A24E4 /* FutureMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD5EB522960EA5005A24E4 /* FutureMovieViewController.swift */; };
 		3CDCD78D22BDD1BD00DDD14B /* YoutubeVideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDCD78C22BDD1BD00DDD14B /* YoutubeVideoPlayerController.swift */; };
 		3CDCD78F22BDD1F000DDD14B /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDCD78E22BDD1F000DDD14B /* UIApplication+Extension.swift */; };
 		3CDCD79122BDD7C400DDD14B /* RemoteNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDCD79022BDD7C400DDD14B /* RemoteNotificationManager.swift */; };
@@ -54,6 +53,11 @@
 		A00671C322FBBAAB002FE813 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00671C222FBBAAB002FE813 /* String+Extension.swift */; };
 		A00671C622FBBBE9002FE813 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A00671C822FBBBE9002FE813 /* Localizable.strings */; };
 		A00671CE22FBBC2B002FE813 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A00671CD22FBBC2B002FE813 /* InfoPlist.strings */; };
+		A00671D122FBC119002FE813 /* FutureMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00671D022FBC119002FE813 /* FutureMovieView.swift */; };
+		A00671D322FBC123002FE813 /* FutureMoviePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00671D222FBC123002FE813 /* FutureMoviePresenter.swift */; };
+		A00671D522FBC12C002FE813 /* FutureMovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00671D422FBC12C002FE813 /* FutureMovieData.swift */; };
+		A00671D722FBC135002FE813 /* FutureMovieProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00671D622FBC135002FE813 /* FutureMovieProtocols.swift */; };
+		A00671DA22FBC163002FE813 /* FutureMovie.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A00671DC22FBC163002FE813 /* FutureMovie.storyboard */; };
 		A02133EF22F1934000AD6D0E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02133EE22F1934000AD6D0E /* UIViewController+Extension.swift */; };
 		A0434E3A22F089CB004C086B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0434E3922F089CB004C086B /* MapViewController.swift */; };
 		A0434E3C22F129AC004C086B /* MapInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0434E3B22F129AC004C086B /* MapInfo.swift */; };
@@ -118,7 +122,6 @@
 		3CB6E84A22B8EFF2008F382C /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
 		3CB6E84C22B9C518008F382C /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3CBD5EB322960DF7005A24E4 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
-		3CBD5EB522960EA5005A24E4 /* FutureMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureMovieViewController.swift; sourceTree = "<group>"; };
 		3CDCD78C22BDD1BD00DDD14B /* YoutubeVideoPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeVideoPlayerController.swift; sourceTree = "<group>"; };
 		3CDCD78E22BDD1F000DDD14B /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		3CDCD79022BDD7C400DDD14B /* RemoteNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNotificationManager.swift; sourceTree = "<group>"; };
@@ -139,6 +142,14 @@
 		A00671C922FBBBEA002FE813 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A00671CA22FBBBEA002FE813 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A00671CD22FBBC2B002FE813 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		A00671D022FBC119002FE813 /* FutureMovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureMovieView.swift; sourceTree = "<group>"; };
+		A00671D222FBC123002FE813 /* FutureMoviePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureMoviePresenter.swift; sourceTree = "<group>"; };
+		A00671D422FBC12C002FE813 /* FutureMovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureMovieData.swift; sourceTree = "<group>"; };
+		A00671D622FBC135002FE813 /* FutureMovieProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureMovieProtocols.swift; sourceTree = "<group>"; };
+		A00671DB22FBC163002FE813 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FutureMovie.storyboard; sourceTree = "<group>"; };
+		A00671DE22FBC167002FE813 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FutureMovie.strings; sourceTree = "<group>"; };
+		A00671E022FBC168002FE813 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/FutureMovie.strings; sourceTree = "<group>"; };
+		A00671E222FBC169002FE813 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FutureMovie.strings; sourceTree = "<group>"; };
 		A02133EE22F1934000AD6D0E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		A0434E3922F089CB004C086B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A0434E3B22F129AC004C086B /* MapInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfo.swift; sourceTree = "<group>"; };
@@ -213,12 +224,12 @@
 				3C6601F322956D38000BA333 /* AppDelegate.swift */,
 				3CB6E84C22B9C518008F382C /* MainTabBarController.swift */,
 				3CF7219522BF57480022D03E /* Current */,
+				A00671CF22FBBF47002FE813 /* Future */,
 				3C34938C22E75DA700A77343 /* MovieInfoManager.swift */,
 				3CB6E84A22B8EFF2008F382C /* ShortcutManager.swift */,
 				3CDCD79022BDD7C400DDD14B /* RemoteNotificationManager.swift */,
 				3C767535229954AF0052BEB6 /* Setting */,
 				3CB52E6722B4D8BA009FD7D1 /* Detail */,
-				3CBD5EB522960EA5005A24E4 /* FutureMovieViewController.swift */,
 				3C947A8B22D736170075E4DE /* FilterViewController.swift */,
 				3C34938A22E7584A00A77343 /* FavoriteViewController.swift */,
 				3C66021822959A18000BA333 /* MovieCell.swift */,
@@ -332,6 +343,18 @@
 				14FCFAAA46A550D61B0571B0 /* Pods-MoopTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A00671CF22FBBF47002FE813 /* Future */ = {
+			isa = PBXGroup;
+			children = (
+				A00671D022FBC119002FE813 /* FutureMovieView.swift */,
+				A00671D222FBC123002FE813 /* FutureMoviePresenter.swift */,
+				A00671D422FBC12C002FE813 /* FutureMovieData.swift */,
+				A00671D622FBC135002FE813 /* FutureMovieProtocols.swift */,
+				A00671DC22FBC163002FE813 /* FutureMovie.storyboard */,
+			);
+			path = Future;
 			sourceTree = "<group>";
 		};
 		A0CAEBC022FAEC3800C5C662 /* Map */ = {
@@ -465,6 +488,7 @@
 				3C6601FB22956D39000BA333 /* Assets.xcassets in Resources */,
 				3C767534229954A80052BEB6 /* SettingDividerCell.xib in Resources */,
 				3C76752C2299529C0052BEB6 /* SettingHeaderCell.xib in Resources */,
+				A00671DA22FBC163002FE813 /* FutureMovie.storyboard in Resources */,
 				3C6601F922956D38000BA333 /* Main.storyboard in Resources */,
 				A00671B922FBB937002FE813 /* CurrentMovie.storyboard in Resources */,
 				3C66021B22959A18000BA333 /* MovieCell.xib in Resources */,
@@ -604,6 +628,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A02133EF22F1934000AD6D0E /* UIViewController+Extension.swift in Sources */,
+				A00671D122FBC119002FE813 /* FutureMovieView.swift in Sources */,
 				3CDCD79122BDD7C400DDD14B /* RemoteNotificationManager.swift in Sources */,
 				3C61A8A122DF282D00F4A7E5 /* Reusable.swift in Sources */,
 				A0CAEBBF22FAEAD800C5C662 /* MapRouteView.swift in Sources */,
@@ -614,6 +639,8 @@
 				3C76752F229953590052BEB6 /* SettingItemCell.swift in Sources */,
 				3C1B6E672297A68F009CB740 /* MovieDetailHeaderView.swift in Sources */,
 				3CDCD78F22BDD1F000DDD14B /* UIApplication+Extension.swift in Sources */,
+				A00671D522FBC12C002FE813 /* FutureMovieData.swift in Sources */,
+				A00671D322FBC123002FE813 /* FutureMoviePresenter.swift in Sources */,
 				A0D2462322F3D9E400F48CBA /* NaverInfo.swift in Sources */,
 				A00671C322FBBAAB002FE813 /* String+Extension.swift in Sources */,
 				A0D2462622F3DA4800F48CBA /* BestCheckDelegate.swift in Sources */,
@@ -627,7 +654,6 @@
 				3C767527229918890052BEB6 /* UIView+Extension.swift in Sources */,
 				A0D2461F22F3D9C000F48CBA /* MegaBoxInfo.swift in Sources */,
 				3CF7219722BF587B0022D03E /* CurrentMovieData.swift in Sources */,
-				3CBD5EB622960EA5005A24E4 /* FutureMovieViewController.swift in Sources */,
 				3C947A8C22D736170075E4DE /* FilterViewController.swift in Sources */,
 				A0D2462122F3D9D500F48CBA /* TrailerInfo.swift in Sources */,
 				3CDCD78D22BDD1BD00DDD14B /* YoutubeVideoPlayerController.swift in Sources */,
@@ -637,6 +663,7 @@
 				3C34938B22E7584A00A77343 /* FavoriteViewController.swift in Sources */,
 				A0D2461B22F3D99600F48CBA /* CGVInfo.swift in Sources */,
 				3C1B6E692297A80E009CB740 /* TheaterRankView.swift in Sources */,
+				A00671D722FBC135002FE813 /* FutureMovieProtocols.swift in Sources */,
 				3C767533229954A80052BEB6 /* SettingDividerCell.swift in Sources */,
 				3CF7219022BF56ED0022D03E /* CurrentMoviePresenter.swift in Sources */,
 				3C6601F422956D38000BA333 /* AppDelegate.swift in Sources */,
@@ -706,6 +733,17 @@
 				A00671CA22FBBBEA002FE813 /* ko */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		A00671DC22FBC163002FE813 /* FutureMovie.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A00671DB22FBC163002FE813 /* Base */,
+				A00671DE22FBC167002FE813 /* en */,
+				A00671E022FBC168002FE813 /* ko */,
+				A00671E222FBC169002FE813 /* ja */,
+			);
+			name = FutureMovie.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

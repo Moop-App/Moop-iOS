@@ -16,6 +16,12 @@ protocol MovieDetailPickAndPopDelegate: class {
 }
 
 class MovieDetailViewController: UIViewController {
+    static func instance(item: MovieInfo? = nil) -> MovieDetailViewController {
+        let vc: MovieDetailViewController = instance(storyboardName: .main)
+        vc.item = item
+        return vc
+    }
+    
     
     @IBOutlet private weak var tableView: UITableView! {
         didSet {

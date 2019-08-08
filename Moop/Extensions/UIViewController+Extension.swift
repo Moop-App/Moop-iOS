@@ -11,6 +11,7 @@ import UIKit
 enum StoryboardName: String {
     case main = "Main"
     case currentMovie = "CurrentMovie"
+    case futureMovie = "FutureMovie"
 }
 
 extension UIViewController {
