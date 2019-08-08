@@ -116,37 +116,37 @@ extension FutureMovieView: UICollectionViewDelegateFlowLayout {
         return 0
     }
     
-    @available(iOS 13.0, *)
-    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
-            let share = UIAction(__title: "Share", image: UIImage(named: "share"), identifier: nil) { [weak self] _ in
-                guard let self = self else { return }
-                self.share(text: self.presenter[indexPath]?.shareText ?? "")
-            }
-            let cgv = UIAction(__title: "CGV", image: nil, identifier: nil) { [weak self] _ in
-                guard let self = self else { return }
-                self.rating(type: .cgv, id: self.presenter[indexPath]?.cgv?.id ?? "")
-            }
-
-            let lotte = UIAction(__title: "LOTTE", image: nil, identifier: nil) { [weak self] _ in
-                guard let self = self else { return }
-                self.rating(type: .lotte, id: self.presenter[indexPath]?.lotte?.id ?? "")
-            }
-
-            let megabox = UIAction(__title: "MEGABOX", image: nil, identifier: nil) { [weak self] _ in
-                guard let self = self else { return }
-                self.rating(type: .megabox, id: self.presenter[indexPath]?.megabox?.id ?? "")
-            }
-            
-            let naver = UIAction(__title: "NAVER", image: nil, identifier: nil) { [weak self] _ in
-                guard let self = self else { return }
-                self.rating(type: .naver, id: self.presenter[indexPath]?.naver?.link ?? "")
-            }
-
-            // Create and return a UIMenu with the share action
-            return UIMenu(__title: "", image: nil, identifier: nil, children: [share, cgv, lotte, megabox, naver])
-        }
-    }
+//    @available(iOS 13.0, *)
+//    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+//        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+//            let share = UIAction(__title: "Share", image: UIImage(named: "share"), identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                self.share(text: self.presenter[indexPath]?.shareText ?? "")
+//            }
+//            let cgv = UIAction(__title: "CGV", image: nil, identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                self.rating(type: .cgv, id: self.presenter[indexPath]?.cgv?.id ?? "")
+//            }
+//
+//            let lotte = UIAction(__title: "LOTTE", image: nil, identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                self.rating(type: .lotte, id: self.presenter[indexPath]?.lotte?.id ?? "")
+//            }
+//
+//            let megabox = UIAction(__title: "MEGABOX", image: nil, identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                self.rating(type: .megabox, id: self.presenter[indexPath]?.megabox?.id ?? "")
+//            }
+//
+//            let naver = UIAction(__title: "NAVER", image: nil, identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                self.rating(type: .naver, id: self.presenter[indexPath]?.naver?.link ?? "")
+//            }
+//
+//            // Create and return a UIMenu with the share action
+//            return UIMenu(__title: "", image: nil, identifier: nil, children: [share, cgv, lotte, megabox, naver])
+//        }
+//    }
 }
 
 extension FutureMovieView: UIViewControllerPreviewingDelegate {
