@@ -12,6 +12,7 @@ enum StoryboardName: String {
     case main = "Main"
     case currentMovie = "CurrentMovie"
     case futureMovie = "FutureMovie"
+    case setting = "Setting"
 }
 
 extension UIViewController {

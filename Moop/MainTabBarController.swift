@@ -19,26 +19,35 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         self.delegate = self
         
-        self.addCurrentMovieViewController()
-        self.addFutureMovieViewController()
+        
+        self.viewControllers = [currentMovieViewController(), futureMovieViewController(), settingViewController()]
     }
     
-    private func addCurrentMovieViewController() {
+    private func currentMovieViewController() -> UINavigationController {
         let currentNavigationController = UINavigationController(rootViewController: CurrentMovieView.instance())
         currentNavigationController.navigationBar.prefersLargeTitles = true
         let currentTabBarItem = UITabBarItem(title: "현재상영".localized, image: UIImage(named: "movie"), tag: 0)
         currentTabBarItem.selectedImage = UIImage(named: "movie_selected")
         currentNavigationController.tabBarItem = currentTabBarItem
-        self.viewControllers?[0] = currentNavigationController
+        return currentNavigationController
     }
     
-    private func addFutureMovieViewController() {
-        let currentNavigationController = UINavigationController(rootViewController: FutureMovieView.instance())
-        currentNavigationController.navigationBar.prefersLargeTitles = true
-        let currentTabBarItem = UITabBarItem(title: "개봉예정".localized, image: UIImage(named: "plan"), tag: 1)
-        currentTabBarItem.selectedImage = UIImage(named: "plan_selected")
-        currentNavigationController.tabBarItem = currentTabBarItem
-        self.viewControllers?[1] = currentNavigationController
+    private func futureMovieViewController() -> UINavigationController {
+        let futureNavigationController = UINavigationController(rootViewController: FutureMovieView.instance())
+        futureNavigationController.navigationBar.prefersLargeTitles = true
+        let futureTabBarItem = UITabBarItem(title: "개봉예정".localized, image: UIImage(named: "plan"), tag: 1)
+        futureTabBarItem.selectedImage = UIImage(named: "plan_selected")
+        futureNavigationController.tabBarItem = futureTabBarItem
+        return futureNavigationController
+    }
+    
+    private func settingViewController() -> UINavigationController {
+        let settingNavigationController = UINavigationController(rootViewController: SettingViewController.instance())
+        settingNavigationController.navigationBar.prefersLargeTitles = true
+        let settingTabBarItem = UITabBarItem(title: "설정".localized, image: UIImage(named: "setting"), tag: 3)
+        settingTabBarItem.selectedImage = UIImage(named: "setting_selected")
+        settingNavigationController.tabBarItem = settingTabBarItem
+        return settingNavigationController
     }
 }
 

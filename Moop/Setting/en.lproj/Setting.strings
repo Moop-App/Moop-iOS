@@ -1,0 +1,18 @@
+
+/* Class = "UIButton"; normalTitle = "Kakao"; ObjectID = "2sj-Yf-mmm"; */
+"2sj-Yf-mmm.normalTitle" = "Kakao";
+
+/* Class = "UIButton"; normalTitle = "Google"; ObjectID = "5GI-tf-NFG"; */
+"5GI-tf-NFG.normalTitle" = "Google";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "8UO-tK-lqt"; */
+"8UO-tK-lqt.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "설정"; ObjectID = "P8P-Sl-uul"; */
+"P8P-Sl-uul.title" = "Settings";
+
+/* Class = "UIButton"; normalTitle = "Apple"; ObjectID = "hKs-ZI-eQc"; */
+"hKs-ZI-eQc.normalTitle" = "Apple";
+
+/* Class = "UIButton"; normalTitle = "Naver"; ObjectID = "w2T-Py-VWc"; */
+"w2T-Py-VWc.normalTitle" = "Naver";
