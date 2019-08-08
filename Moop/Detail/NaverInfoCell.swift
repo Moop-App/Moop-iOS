@@ -13,6 +13,8 @@ class NaverInfoCell: UITableViewCell {
     @IBOutlet private weak var wrapperView: UIView!
     @IBOutlet private weak var rankLabel: UILabel!
 
+    weak var delegate: DetailHeaderDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
@@ -25,6 +27,6 @@ class NaverInfoCell: UITableViewCell {
     }
     
     @IBAction private func more(_ sender: UIButton) {
-        
+        delegate?.wrapper(type: .naver)
     }
 }

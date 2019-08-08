@@ -13,6 +13,10 @@ protocol FilterChangeDelegate: class {
 }
 
 class FilterViewController: UITableViewController {
+    static func instance() -> FilterViewController {
+        let vc: FilterViewController = instance(storyboardName: .main)
+        return vc
+    }
     
     @IBOutlet private weak var doneButton: UIBarButtonItem!
     weak var delegate: FilterChangeDelegate?

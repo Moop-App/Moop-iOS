@@ -8,10 +8,11 @@
 
 import UIKit
 
-enum TheaterType: Int, Codable, CaseIterable {
+enum TheaterType: Int, Codable {
     case cgv = 0
     case lotte
     case megabox
+    case naver
     
     var title: String {
         switch self {
@@ -21,6 +22,8 @@ enum TheaterType: Int, Codable, CaseIterable {
             return "LOTTE"
         case .megabox:
             return "MegaBox"
+        case .naver:
+            return "Naver"
         }
     }
     
@@ -31,6 +34,10 @@ enum TheaterType: Int, Codable, CaseIterable {
         case "M": self = .megabox
         default: self = .cgv
         }
+    }
+    
+    static var allCases: [TheaterType] {
+        return [.cgv, .lotte, .megabox]
     }
 }
 

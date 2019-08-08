@@ -21,36 +21,41 @@ enum SettingSection: CaseIterable {
     var title: String {
         switch self {
         case .theme:
-            return "Theme"
+            return "테마".localized
         case .map:
-            return "Map"
+            return "지도".localized
         case .version:
-            return "Version"
+            return "버전".localized
         case .opensource:
-            return "Open Source"
+            return "오픈소스".localized
         case .feedback:
-            return "Feedback"
+            return "피드백".localized
         }
     }
     
     var description: String {
         switch self {
         case .theme:
-            return "준비중입니다."
+            return "준비중입니다".localized
         case .map:
-            return "지도 확인하기"
+            return "지도확인하기".localized
         case .version:
             guard let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return "" }
-            return "Current \(appVersion)"
+            return "\("현재".localized) \(appVersion)"
         case .opensource:
-            return "자세히 보기"
+            return "자세히보기".localized
         case .feedback:
-            return "개발자에게 버그 신고하기"
+            return "개발자에게버그신고하기".localized
         }
     }
 }
 
 class SettingViewController: UIViewController {
+    static func instance() -> SettingViewController {
+        let vc: SettingViewController = instance(storyboardName: .setting)
+        return vc
+    }
+    
     
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -68,7 +73,7 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .userInitiated).async {
             self.currentVersion = self.currentAppstoreVersion() ?? ""
             DispatchQueue.main.async {
                 self.tableView.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .automatic)
@@ -79,7 +84,7 @@ class SettingViewController: UIViewController {
     func currentAppstoreVersion() -> String? {
         guard let info = Bundle.main.infoDictionary,
             let identifier = info["CFBundleIdentifier"] as? String,
-            let url = URL(string: "http://itunes.apple.com/lookup?bundleId=\(identifier)") else {
+            let url = URL(string: "https://itunes.apple.com/lookup?bundleId=\(identifier)") else {
                 return nil
         }
         do {
@@ -130,7 +135,7 @@ extension SettingViewController: UITableViewDataSource {
         case 1:
             let cell: SettingItemCell = tableView.dequeueReusableCell(for: indexPath)
             let item = datas[indexPath.item / 3]
-            cell.descriptionLabel.text = "\(item.description)" + (item == .version ? " / Latest \(currentVersion)" : "")
+            cell.descriptionLabel.text = "\(item.description)" + (item == .version ? " / \("최신".localized) \(currentVersion)" : "")
             return cell
         default:
             let cell: SettingDividerCell = tableView.dequeueReusableCell(for: indexPath)
@@ -161,7 +166,8 @@ extension SettingViewController: UITableViewDelegate {
                 UIApplication.shared.open(url, options: [:])
             }
         case 10: // Open Source
-            let viewController = AcknowListViewController()
+            let path = Bundle.main.path(forResource: "Pods-Moop-acknowledgements", ofType: "plist")
+            let viewController = AcknowListViewController(acknowledgementsPlistPath: path)
             navigationController?.pushViewController(viewController, animated: true)
         case 13: // Feedback
             if MFMailComposeViewController.canSendMail() {
