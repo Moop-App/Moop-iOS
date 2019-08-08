@@ -76,7 +76,7 @@ class SettingViewController: UIViewController {
         DispatchQueue.global(qos: .userInitiated).async {
             self.currentVersion = self.currentAppstoreVersion() ?? ""
             DispatchQueue.main.async {
-                self.tableView.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .automatic)
+                self.tableView.reloadRows(at: [IndexPath(row: 7, section: 0)], with: .automatic)
             }
         }
     }
