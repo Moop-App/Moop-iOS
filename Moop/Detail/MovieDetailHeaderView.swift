@@ -45,6 +45,7 @@ protocol DetailHeaderDelegate: class {
     func wrapper(type: TheaterType)
     func favorite(isAdd: Bool)
     func share()
+    func poster(_ image: UIImage)
 }
 
 class MovieDetailHeaderView: UIView {
@@ -92,6 +93,11 @@ class MovieDetailHeaderView: UIView {
         
         guard let ids = UserDefaults.standard.array(forKey: .favorites) as? [String] else { return }
         favoriteButton.isSelected = ids.contains(item.id)
+    }
+    
+    @IBAction private func poster(_ sender: UIButton) {
+        guard let image = posterImageView.image else { return }
+        self.delegate?.poster(image)
     }
     
     @IBAction private func share(_ sender: UIButton) {
