@@ -186,7 +186,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uP3-QZ-pUa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1768" y="-331"/>
+            <point key="canvasLocation" x="981" y="-544"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="Pvn-ms-9CF">
@@ -923,25 +923,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpK-mQ-gq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2530" y="128"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="bE9-Ne-FQz">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IBA-pc-3dh" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LcB-0l-Vsy">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="lq1-RP-r5f" kind="relationship" relationship="rootViewController" id="Uai-vd-A3c"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hZX-5g-2mw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="946" y="-331"/>
+            <point key="canvasLocation" x="945" y="128"/>
         </scene>
     </scenes>
     <resources>
