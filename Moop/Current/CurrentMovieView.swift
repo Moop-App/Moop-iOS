@@ -11,7 +11,7 @@ import SafariServices
 
 class CurrentMovieView: UIViewController {
     static func instance() -> CurrentMovieView {
-        let vc: CurrentMovieView = instance(storyboardName: .main)
+        let vc: CurrentMovieView = instance(storyboardName: .currentMovie)
         vc.presenter = CurrentMoviePresenter(view: vc)
         return vc
     }
@@ -57,21 +57,10 @@ class CurrentMovieView: UIViewController {
         canScrollToTop = false
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let identifier = segue.identifier else { return }
-        
-        switch identifier {
-        case "toDetails":
-            guard let destination = segue.destination as? MovieDetailViewController,
-                let indexPath = sender as? IndexPath else { return }
-            destination.item = presenter[indexPath]
-        case "toFilter":
-            guard let destinationNavi = segue.destination as? UINavigationController,
-                let destination = destinationNavi.viewControllers.first as? FilterViewController else { return }
-            destination.delegate = presenter as? CurrentMoviePresenter
-        default:
-            break
-        }
+    @IBAction private func filter(_ sender: UIBarButtonItem) {
+        let destination = FilterViewController.instance()
+        destination.delegate = presenter as? CurrentMoviePresenter
+        self.present(UINavigationController(rootViewController: destination), animated: true)
     }
 }
 
@@ -109,9 +98,9 @@ extension CurrentMovieView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "toDetails", sender: indexPath)
+        let destination = MovieDetailViewController.instance(item: presenter[indexPath])
+        self.navigationController?.pushViewController(destination, animated: true)
     }
-
 }
 
 extension CurrentMovieView: UICollectionViewDelegateFlowLayout {
@@ -150,8 +139,13 @@ extension CurrentMovieView: UICollectionViewDelegateFlowLayout {
 //                self.rating(type: .megabox, id: self.presenter[indexPath]?.megabox?.id ?? "")
 //            }
 //
+//            let naver = UIAction(__title: "NAVER", image: nil, identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                self.rating(type: .naver, id: self.presenter[indexPath]?.naver?.link ?? "")
+//            }
+//
 //            // Create and return a UIMenu with the share action
-//            return UIMenu(__title: "", image: nil, identifier: nil, children: [share, cgv, lotte, megabox])
+//            return UIMenu(__title: "", image: nil, identifier: nil, children: [share, cgv, lotte, megabox, naver])
 //        }
 //    }
 }
@@ -162,8 +156,7 @@ extension CurrentMovieView: UIViewControllerPreviewingDelegate {
             let cell = collectionView.cellForItem(at: indexPath) else { return nil }
         
         previewingContext.sourceRect = cell.frame
-        guard let destination = storyboard?.instantiateViewController(withIdentifier: "detail") as? MovieDetailViewController else { return nil }
-        destination.item = presenter[indexPath]
+        let destination = MovieDetailViewController.instance(item: presenter[indexPath])
         destination.delegate = self
         return destination
     }
@@ -188,6 +181,8 @@ extension CurrentMovieView: MovieDetailPickAndPopDelegate {
             webURL = URL(string: "http://www.lottecinema.co.kr/LCMW/Contents/Movie/Movie-Detail-View.aspx?movie=\(id)")
         case .megabox:
             webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(id)")
+        case .naver:
+            webURL = URL(string: id)
         }
         
         guard let url = webURL else { return }

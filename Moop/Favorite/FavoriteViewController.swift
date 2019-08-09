@@ -10,6 +10,11 @@ import UIKit
 import SafariServices
 
 class FavoriteViewController: UIViewController {
+    static func instance() -> FavoriteViewController {
+        let vc: FavoriteViewController = instance(storyboardName: .favorite)
+        return vc
+    }
+    
     
     @IBOutlet private weak var emptyLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView! {
@@ -36,19 +41,6 @@ class FavoriteViewController: UIViewController {
         super.viewWillAppear(animated)
         datas = MovieInfoManager.shared.favorites()
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let identifier = segue.identifier else { return }
-        
-        switch identifier {
-        case "toDetails":
-            guard let destination = segue.destination as? MovieDetailViewController,
-                let indexPathItem = sender as? Int else { return }
-            destination.item = datas[indexPathItem]
-        default:
-            break
-        }
-    }
 }
 
 extension FavoriteViewController: UICollectionViewDataSource {
@@ -58,12 +50,13 @@ extension FavoriteViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: MovieCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.set(datas[indexPath.item])
+        cell.set(datas[indexPath.item], isFavorite: true)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "toDetails", sender: indexPath.item)
+        let destination = MovieDetailViewController.instance(item: datas[indexPath.item])
+        self.navigationController?.pushViewController(destination, animated: true)
     }
 }
 
@@ -88,8 +81,7 @@ extension FavoriteViewController: UIViewControllerPreviewingDelegate {
             let cell = collectionView.cellForItem(at: indexPath) else { return nil }
         
         previewingContext.sourceRect = cell.frame
-        guard let destination = storyboard?.instantiateViewController(withIdentifier: "detail") as? MovieDetailViewController else { return nil }
-        destination.item = datas[indexPath.item]
+        let destination = MovieDetailViewController.instance(item: datas[indexPath.item])
         destination.delegate = self
         return destination
     }
@@ -114,6 +106,8 @@ extension FavoriteViewController: MovieDetailPickAndPopDelegate {
             webURL = URL(string: "http://www.lottecinema.co.kr/LCMW/Contents/Movie/Movie-Detail-View.aspx?movie=\(id)")
         case .megabox:
             webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(id)")
+        case .naver:
+            webURL = URL(string: id)
         }
         
         guard let url = webURL else { return }

@@ -16,6 +16,11 @@ protocol MovieDetailPickAndPopDelegate: class {
 }
 
 class MovieDetailViewController: UIViewController {
+    static func instance(item: MovieInfo? = nil) -> MovieDetailViewController {
+        let vc: MovieDetailViewController = instance(storyboardName: .main)
+        vc.item = item
+        return vc
+    }
     
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -25,8 +30,8 @@ class MovieDetailViewController: UIViewController {
     }
     @IBOutlet private weak var headerView: MovieDetailHeaderView!
 
-    var item: MovieInfo?
-    var totalCount = 0
+    private var item: MovieInfo?
+    private var totalCount = 0
     weak var delegate: MovieDetailPickAndPopDelegate?
     
     override func viewDidLoad() {
@@ -37,7 +42,6 @@ class MovieDetailViewController: UIViewController {
         
         if isAllowedToOpenStoreReview() {
             SKStoreReviewController.requestReview()
-            
         }
     }
     
@@ -66,8 +70,11 @@ class MovieDetailViewController: UIViewController {
         let megaboxAction = UIPreviewAction(title: "MEGABOX", style: .default) { [weak self] (_, _) in
             self?.delegate?.rating(type: .megabox, id: self?.item?.megabox?.id ?? "")
         }
+        let naverAction = UIPreviewAction(title: "NAVER", style: .default) { [weak self] (_, _) in
+            self?.delegate?.rating(type: .naver, id: self?.item?.naver?.link ?? "")
+        }
         
-        return [shareAction, cgvAction, lotteAction, megaboxAction]
+        return [shareAction, cgvAction, lotteAction, megaboxAction, naverAction]
     }
 }
 
@@ -81,6 +88,8 @@ extension MovieDetailViewController: DetailHeaderDelegate {
             webURL = URL(string: "http://www.lottecinema.co.kr/LCMW/Contents/Movie/Movie-Detail-View.aspx?movie=\(item?.lotte?.id ?? "")")
         case .megabox:
             webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(item?.megabox?.id ?? "")")
+        case .naver:
+            webURL = URL(string: item?.naver?.link ?? "")
         }
         
         guard let url = webURL else { return }
@@ -98,13 +107,16 @@ extension MovieDetailViewController: DetailHeaderDelegate {
             let itemId = item?.id else {
             if isAdd {
                 UserDefaults.standard.set([item?.id ?? ""], forKey: .favorites)
+                NotificationManager.shared.addNotification(item: item)
             }
             return
         }
         if isAdd {
             array.append(itemId)
+            NotificationManager.shared.addNotification(item: item)
         } else if let index = array.firstIndex(of: itemId) {
             array.remove(at: index)
+            NotificationManager.shared.removeNotification(item: item)
         }
         UserDefaults.standard.set(array, forKey: .favorites)
     }
@@ -124,6 +136,7 @@ extension MovieDetailViewController: UITableViewDataSource {
         if indexPath.item == 0 && item?.naver != nil,
            let cell = tableView.dequeueReusableCell(withIdentifier: "NaverInfoCell", for: indexPath) as? NaverInfoCell {
             cell.set(item?.naver)
+            cell.delegate = self
             return cell
         }
         if (indexPath.item == 1 && item?.naver != nil) || (indexPath.item == 0 && item?.naver == nil),
