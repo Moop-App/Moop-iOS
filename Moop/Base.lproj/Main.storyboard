@@ -627,15 +627,25 @@
                                                 </view>
                                             </subviews>
                                         </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xS3-8I-EJZ">
+                                            <rect key="frame" x="16" y="8" width="129" height="184"/>
+                                            <connections>
+                                                <action selector="poster:" destination="pca-CQ-gaS" eventType="touchUpInside" id="7K5-9l-aT6"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="8sF-xV-eBH" secondAttribute="trailing" constant="16" id="2sB-bv-fjW"/>
+                                        <constraint firstItem="xS3-8I-EJZ" firstAttribute="top" secondItem="wfv-z4-URV" secondAttribute="top" id="5ca-6l-lyL"/>
                                         <constraint firstItem="WDN-kC-RnT" firstAttribute="leading" secondItem="wfv-z4-URV" secondAttribute="trailing" constant="30" id="6gb-s2-C2x"/>
+                                        <constraint firstItem="xS3-8I-EJZ" firstAttribute="trailing" secondItem="wfv-z4-URV" secondAttribute="trailing" id="97b-pv-dLU"/>
                                         <constraint firstItem="8sF-xV-eBH" firstAttribute="top" relation="greaterThanOrEqual" secondItem="GwK-dF-438" secondAttribute="bottom" constant="8" id="9DC-3F-sYY"/>
+                                        <constraint firstItem="xS3-8I-EJZ" firstAttribute="bottom" secondItem="wfv-z4-URV" secondAttribute="bottom" id="9aj-ct-F5i"/>
                                         <constraint firstItem="iO9-vt-db9" firstAttribute="trailing" secondItem="wfv-z4-URV" secondAttribute="trailing" constant="18" id="Bu1-yc-oAg"/>
                                         <constraint firstAttribute="trailing" secondItem="WDN-kC-RnT" secondAttribute="trailing" constant="12" id="G11-5t-bhg"/>
                                         <constraint firstItem="iO9-vt-db9" firstAttribute="top" secondItem="wfv-z4-URV" secondAttribute="top" constant="8" id="GLt-zM-ZNR"/>
+                                        <constraint firstItem="xS3-8I-EJZ" firstAttribute="leading" secondItem="wfv-z4-URV" secondAttribute="leading" id="RJI-fI-3PI"/>
                                         <constraint firstAttribute="trailing" secondItem="GwK-dF-438" secondAttribute="trailing" constant="12" id="aA6-8E-wN1"/>
                                         <constraint firstItem="YXF-7y-CbD" firstAttribute="top" secondItem="8sF-xV-eBH" secondAttribute="bottom" constant="16" id="bBM-7E-JtF"/>
                                         <constraint firstAttribute="trailing" secondItem="YXF-7y-CbD" secondAttribute="trailing" id="bzu-Z7-hpZ"/>
