@@ -120,6 +120,11 @@ extension MovieDetailViewController: DetailHeaderDelegate {
         }
         UserDefaults.standard.set(array, forKey: .favorites)
     }
+    
+    func poster(_ image: UIImage) {
+        let posterViewController = PosterViewController.instance(image: image)
+        self.present(posterViewController, animated: true)
+    }
 }
 
 extension MovieDetailViewController: UITableViewDataSource {

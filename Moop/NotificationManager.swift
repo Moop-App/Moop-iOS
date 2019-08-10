@@ -30,8 +30,8 @@ class NotificationManager: NSObject {
     public func addNotification(item: MovieInfo?) {
         guard let item = item else { return }
         let content = UNMutableNotificationContent()
-        content.title = item.title
-        content.body = "\(item.title)이 오늘 개봉합니다."
+        content.title = "오늘개봉작".localized
+        content.body = "\(item.title)\n\("뭅에서확인하세요".localized)"
         content.sound = UNNotificationSound.default
         let triggerDate = Calendar.current.dateComponents([.year,.month,.day], from: item.releaseDate)
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
