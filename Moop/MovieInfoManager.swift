@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Alamofire
+import Networking
 
 class MovieInfoManager {
     static let shared: MovieInfoManager = MovieInfoManager()
@@ -17,34 +17,30 @@ class MovieInfoManager {
     var futureDatas: [MovieInfo] = []
     
     func requestCurrentData(completionHandler: (() -> Void)? = nil) {
-        let requestURL = URL(string: "\(Config.baseURL)/now/list.json")!
-        AF.request(requestURL)
-            .validate(statusCode: [200])
-            .responseDecodable { [weak self] (response: DataResponse<[MovieInfo]>) in
-                guard let self = self else { return }
-                switch response.result {
-                case .success(let result):
-                    self.currentDatas = result.sorted(by: { $0.rank < $1.rank })
-                    completionHandler?()
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+        API.shared.requestCurrent { [weak self] (result: Result<[MovieInfo], Error>) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let result):
+                self.currentDatas = result.sorted(by: { $0.rank < $1.rank })
+                completionHandler?()
+            case .failure(let error):
+                print(error.localizedDescription)
+                completionHandler?()
+            }
         }
     }
     
     func requestFutureData(completionHandler: (() -> Void)? = nil) {
-        let requestURL = URL(string: "\(Config.baseURL)/plan/list.json")!
-        AF.request(requestURL)
-            .validate(statusCode: [200])
-            .responseDecodable { [weak self] (response: DataResponse<[MovieInfo]>) in
-                guard let self = self else { return }
-                switch response.result {
-                case .success(let result):
-                    self.futureDatas = result.sorted(by: { $0.rank < $1.rank })
-                    completionHandler?()
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+        API.shared.requestFuture { [weak self] (result: Result<[MovieInfo], Error>) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let result):
+                self.futureDatas = result.sorted(by: { $0.rank < $1.rank })
+                completionHandler?()
+            case .failure(let error):
+                print(error.localizedDescription)
+                completionHandler?()
+            }
         }
     }
     
