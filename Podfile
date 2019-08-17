@@ -11,9 +11,6 @@ target 'Moop' do
   pod 'Fabric'
   pod 'Crashlytics'
 
-  pod 'FTLinearActivityIndicator'
-  pod 'AlamofireNetworkActivityIndicator', '~> 3.0.0-beta.3'
-
   pod 'SDWebImage'
   pod 'Firebase/Messaging'
 
@@ -23,6 +20,12 @@ target 'Moop' do
 
   pod 'CTFeedbackSwift'
   pod 'AcknowList'
+
+  target 'Networking' do
+    inherit! :search_paths
+    pod 'FTLinearActivityIndicator'
+    pod 'AlamofireNetworkActivityIndicator', '~> 3.0.0-beta.3'
+  end
 
   target 'MoopTests' do
     inherit! :search_paths
