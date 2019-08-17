@@ -15,6 +15,6 @@ public struct APISetupManager {
         NetworkActivityIndicatorManager.shared.isEnabled = true
     }
     
-    internal static let currentRequestURL = URL(string: "\(Config.baseURL)/now/list.json")!
-    internal static let futureRequestURL = URL(string: "\(Config.baseURL)/plan/list.json")!
+    internal static let currentRequestURL = "\(Config.baseURL)/now/list.json"
+    internal static let futureRequestURL = "\(Config.baseURL)/plan/list.json"
 }
