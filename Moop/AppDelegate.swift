@@ -7,12 +7,8 @@
 //
 
 import UIKit
-import Fabric
-import Crashlytics
 import Firebase
-import FTLinearActivityIndicator
-import AlamofireNetworkActivityIndicator
-import SDWebImage
+import Networking
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,10 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        FirebaseApp.configure()
-        Fabric.with([Crashlytics.self])
-        UIApplication.configureLinearNetworkActivityIndicatorIfNeeded()
-        NetworkActivityIndicatorManager.shared.isEnabled = true
+        librarySetup()
         ShortcutManager.shared.application(didFinishLaunchingWithOptions: launchOptions)
         NotificationManager.shared.register(application)
         MovieInfoManager.shared.requestFutureData()
@@ -45,6 +38,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(_ application: UIApplication) {
         ShortcutManager.shared.applicationWillResignActive(application)
     }
-
 }
 
+extension AppDelegate {
+    func librarySetup() {
+        FirebaseApp.configure()
+        Fabric.with([Crashlytics.self])
+        APISetupManager.setup()
+    }
+}

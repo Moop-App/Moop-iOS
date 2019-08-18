@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0EDD23484A5A214B04612924 /* Pods_Moop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0F0F28D907F86F889E893 /* Pods_Moop.framework */; };
+		221FA43CED0AA47B7BF7E5FD /* Pods_Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77CA98EA67509EB217ECF11 /* Pods_Networking.framework */; };
 		3C1B6E672297A68F009CB740 /* MovieDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B6E662297A68F009CB740 /* MovieDetailHeaderView.swift */; };
 		3C1B6E692297A80E009CB740 /* TheaterRankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B6E682297A80E009CB740 /* TheaterRankView.swift */; };
 		3C34938B22E7584A00A77343 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C34938A22E7584A00A77343 /* FavoriteViewController.swift */; };
@@ -65,6 +66,15 @@
 		A02133EF22F1934000AD6D0E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02133EE22F1934000AD6D0E /* UIViewController+Extension.swift */; };
 		A0434E3A22F089CB004C086B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0434E3922F089CB004C086B /* MapViewController.swift */; };
 		A0434E3C22F129AC004C086B /* MapInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0434E3B22F129AC004C086B /* MapInfo.swift */; };
+		A04A4EA82307E884008B0944 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A04A4E9F2307E884008B0944 /* Networking.framework */; };
+		A04A4EAF2307E884008B0944 /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04A4EAE2307E884008B0944 /* NetworkingTests.swift */; };
+		A04A4EB12307E884008B0944 /* Networking.h in Headers */ = {isa = PBXBuildFile; fileRef = A04A4EA12307E884008B0944 /* Networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A04A4EB42307E884008B0944 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A04A4E9F2307E884008B0944 /* Networking.framework */; };
+		A04A4EB52307E884008B0944 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A04A4E9F2307E884008B0944 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A04A4EBE2307E8F4008B0944 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04A4EBD2307E8F4008B0944 /* API.swift */; };
+		A04A4EBF2307EAF4008B0944 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C66021C22959DA5000BA333 /* Config.swift */; };
+		A04A4EC12307EF5D008B0944 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04A4EC02307EF5D008B0944 /* APIError.swift */; };
+		A0B6F7BF2307EA2F008A3949 /* APISetupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B6F7BE2307EA2F008A3949 /* APISetupManager.swift */; };
 		A0CAEBBF22FAEAD800C5C662 /* MapRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CAEBBE22FAEAD800C5C662 /* MapRouteView.swift */; };
 		A0D2461B22F3D99600F48CBA /* CGVInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2461A22F3D99600F48CBA /* CGVInfo.swift */; };
 		A0D2461D22F3D9A900F48CBA /* LotteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2461C22F3D9A900F48CBA /* LotteInfo.swift */; };
@@ -84,11 +94,47 @@
 			remoteGlobalIDString = 3C6601EF22956D38000BA333;
 			remoteInfo = Moop;
 		};
+		A04A4EA92307E884008B0944 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C6601E822956D38000BA333 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A04A4E9E2307E884008B0944;
+			remoteInfo = Networking;
+		};
+		A04A4EAB2307E884008B0944 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C6601E822956D38000BA333 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C6601EF22956D38000BA333;
+			remoteInfo = Moop;
+		};
+		A04A4EB22307E884008B0944 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C6601E822956D38000BA333 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A04A4E9E2307E884008B0944;
+			remoteInfo = Networking;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A04A4EB62307E884008B0944 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A04A4EB52307E884008B0944 /* Networking.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0FB0F0F28D907F86F889E893 /* Pods_Moop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FCFAAA46A550D61B0571B0 /* Pods-MoopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoopTests.release.xcconfig"; path = "Target Support Files/Pods-MoopTests/Pods-MoopTests.release.xcconfig"; sourceTree = "<group>"; };
+		353A0FABCEE2360CA22903D0 /* Pods-Networking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Networking.debug.xcconfig"; path = "Target Support Files/Pods-Networking/Pods-Networking.debug.xcconfig"; sourceTree = "<group>"; };
 		3C1B6E662297A68F009CB740 /* MovieDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailHeaderView.swift; sourceTree = "<group>"; };
 		3C1B6E682297A80E009CB740 /* TheaterRankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterRankView.swift; sourceTree = "<group>"; };
 		3C34938A22E7584A00A77343 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
@@ -167,9 +213,18 @@
 		A02133EE22F1934000AD6D0E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		A0434E3922F089CB004C086B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A0434E3B22F129AC004C086B /* MapInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfo.swift; sourceTree = "<group>"; };
+		A04A4E9F2307E884008B0944 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A04A4EA12307E884008B0944 /* Networking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
+		A04A4EA22307E884008B0944 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A04A4EA72307E884008B0944 /* NetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A04A4EAE2307E884008B0944 /* NetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingTests.swift; sourceTree = "<group>"; };
+		A04A4EB02307E884008B0944 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A04A4EBD2307E8F4008B0944 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		A04A4EC02307EF5D008B0944 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		A0657E1F22F8007600EA89FE /* Default.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Default.xcconfig; sourceTree = "<group>"; };
 		A0657E2122F802CF00EA89FE /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		A0657E2222F802D900EA89FE /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		A0B6F7BE2307EA2F008A3949 /* APISetupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISetupManager.swift; sourceTree = "<group>"; };
 		A0CAEBBE22FAEAD800C5C662 /* MapRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouteView.swift; sourceTree = "<group>"; };
 		A0D2461A22F3D99600F48CBA /* CGVInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGVInfo.swift; sourceTree = "<group>"; };
 		A0D2461C22F3D9A900F48CBA /* LotteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotteInfo.swift; sourceTree = "<group>"; };
@@ -180,6 +235,8 @@
 		A0D2462722F3DCF100F48CBA /* AgeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeType.swift; sourceTree = "<group>"; };
 		A748664396DF941852859EA3 /* Pods-Moop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moop.release.xcconfig"; path = "Target Support Files/Pods-Moop/Pods-Moop.release.xcconfig"; sourceTree = "<group>"; };
 		AF133E07AA84A1910C2583F7 /* Pods-MoopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoopTests.debug.xcconfig"; path = "Target Support Files/Pods-MoopTests/Pods-MoopTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B71D5F6B31E2569BEB371CA5 /* Pods-Networking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Networking.release.xcconfig"; path = "Target Support Files/Pods-Networking/Pods-Networking.release.xcconfig"; sourceTree = "<group>"; };
+		B77CA98EA67509EB217ECF11 /* Pods_Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB355564C1BCCEADDF32A988 /* Pods-Moop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moop.debug.xcconfig"; path = "Target Support Files/Pods-Moop/Pods-Moop.debug.xcconfig"; sourceTree = "<group>"; };
 		F6D7796071955DEAF3E6A7AF /* Pods_MoopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -189,6 +246,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A04A4EB42307E884008B0944 /* Networking.framework in Frameworks */,
 				0EDD23484A5A214B04612924 /* Pods_Moop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -198,6 +256,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0C760EE98FDCCE04F4B94C2 /* Pods_MoopTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A04A4E9C2307E884008B0944 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				221FA43CED0AA47B7BF7E5FD /* Pods_Networking.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A04A4EA42307E884008B0944 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A04A4EA82307E884008B0944 /* Networking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +292,8 @@
 			children = (
 				3C6601F222956D38000BA333 /* Moop */,
 				3C66020722956D3A000BA333 /* MoopTests */,
+				A04A4EA02307E884008B0944 /* Networking */,
+				A04A4EAD2307E884008B0944 /* NetworkingTests */,
 				3C6601F122956D38000BA333 /* Products */,
 				7CC273ECE369A706D587E64E /* Pods */,
 				FC4485EF88D37C6645F15DFF /* Frameworks */,
@@ -229,6 +305,8 @@
 			children = (
 				3C6601F022956D38000BA333 /* DEV-Moop.app */,
 				3C66020422956D39000BA333 /* MoopTests.xctest */,
+				A04A4E9F2307E884008B0944 /* Networking.framework */,
+				A04A4EA72307E884008B0944 /* NetworkingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -358,6 +436,8 @@
 				A748664396DF941852859EA3 /* Pods-Moop.release.xcconfig */,
 				AF133E07AA84A1910C2583F7 /* Pods-MoopTests.debug.xcconfig */,
 				14FCFAAA46A550D61B0571B0 /* Pods-MoopTests.release.xcconfig */,
+				353A0FABCEE2360CA22903D0 /* Pods-Networking.debug.xcconfig */,
+				B71D5F6B31E2569BEB371CA5 /* Pods-Networking.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -381,6 +461,27 @@
 				A00671F322FC095E002FE813 /* Favorite.storyboard */,
 			);
 			path = Favorite;
+			sourceTree = "<group>";
+		};
+		A04A4EA02307E884008B0944 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A04A4EA12307E884008B0944 /* Networking.h */,
+				A04A4EA22307E884008B0944 /* Info.plist */,
+				A04A4EBD2307E8F4008B0944 /* API.swift */,
+				A04A4EC02307EF5D008B0944 /* APIError.swift */,
+				A0B6F7BE2307EA2F008A3949 /* APISetupManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		A04A4EAD2307E884008B0944 /* NetworkingTests */ = {
+			isa = PBXGroup;
+			children = (
+				A04A4EAE2307E884008B0944 /* NetworkingTests.swift */,
+				A04A4EB02307E884008B0944 /* Info.plist */,
+			);
+			path = NetworkingTests;
 			sourceTree = "<group>";
 		};
 		A0CAEBC022FAEC3800C5C662 /* Map */ = {
@@ -413,11 +514,23 @@
 			children = (
 				0FB0F0F28D907F86F889E893 /* Pods_Moop.framework */,
 				F6D7796071955DEAF3E6A7AF /* Pods_MoopTests.framework */,
+				B77CA98EA67509EB217ECF11 /* Pods_Networking.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A04A4E9A2307E884008B0944 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A04A4EB12307E884008B0944 /* Networking.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		3C6601EF22956D38000BA333 /* Moop */ = {
@@ -431,10 +544,12 @@
 				D0D494C35D318202EAC0412D /* [CP] Embed Pods Frameworks */,
 				3C66021322957301000BA333 /* Fabric */,
 				A0657E1E22F7F25F00EA89FE /* SwiftLint */,
+				A04A4EB62307E884008B0944 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A04A4EB32307E884008B0944 /* PBXTargetDependency */,
 			);
 			name = Moop;
 			productName = Moop;
@@ -461,14 +576,52 @@
 			productReference = 3C66020422956D39000BA333 /* MoopTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		A04A4E9E2307E884008B0944 /* Networking */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A04A4EBB2307E884008B0944 /* Build configuration list for PBXNativeTarget "Networking" */;
+			buildPhases = (
+				34E3B05A5A9BC441781EFA27 /* [CP] Check Pods Manifest.lock */,
+				A04A4E9A2307E884008B0944 /* Headers */,
+				A04A4E9B2307E884008B0944 /* Sources */,
+				A04A4E9C2307E884008B0944 /* Frameworks */,
+				A04A4E9D2307E884008B0944 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Networking;
+			productName = Networking;
+			productReference = A04A4E9F2307E884008B0944 /* Networking.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A04A4EA62307E884008B0944 /* NetworkingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A04A4EBC2307E884008B0944 /* Build configuration list for PBXNativeTarget "NetworkingTests" */;
+			buildPhases = (
+				A04A4EA32307E884008B0944 /* Sources */,
+				A04A4EA42307E884008B0944 /* Frameworks */,
+				A04A4EA52307E884008B0944 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A04A4EAA2307E884008B0944 /* PBXTargetDependency */,
+				A04A4EAC2307E884008B0944 /* PBXTargetDependency */,
+			);
+			name = NetworkingTests;
+			productName = NetworkingTests;
+			productReference = A04A4EA72307E884008B0944 /* NetworkingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		3C6601E822956D38000BA333 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1020;
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = kor45cw;
 				TargetAttributes = {
 					3C6601EF22956D38000BA333 = {
@@ -476,6 +629,14 @@
 					};
 					3C66020322956D39000BA333 = {
 						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 3C6601EF22956D38000BA333;
+					};
+					A04A4E9E2307E884008B0944 = {
+						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
+					};
+					A04A4EA62307E884008B0944 = {
+						CreatedOnToolsVersion = 11.0;
 						TestTargetID = 3C6601EF22956D38000BA333;
 					};
 				};
@@ -497,6 +658,8 @@
 			targets = (
 				3C6601EF22956D38000BA333 /* Moop */,
 				3C66020322956D39000BA333 /* MoopTests */,
+				A04A4E9E2307E884008B0944 /* Networking */,
+				A04A4EA62307E884008B0944 /* NetworkingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -531,6 +694,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A04A4E9D2307E884008B0944 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A04A4EA52307E884008B0944 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -550,6 +727,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-MoopTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		34E3B05A5A9BC441781EFA27 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Networking-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -715,6 +914,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A04A4E9B2307E884008B0944 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0B6F7BF2307EA2F008A3949 /* APISetupManager.swift in Sources */,
+				A04A4EC12307EF5D008B0944 /* APIError.swift in Sources */,
+				A04A4EBE2307E8F4008B0944 /* API.swift in Sources */,
+				A04A4EBF2307EAF4008B0944 /* Config.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A04A4EA32307E884008B0944 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A04A4EAF2307E884008B0944 /* NetworkingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -722,6 +940,21 @@
 			isa = PBXTargetDependency;
 			target = 3C6601EF22956D38000BA333 /* Moop */;
 			targetProxy = 3C66020522956D3A000BA333 /* PBXContainerItemProxy */;
+		};
+		A04A4EAA2307E884008B0944 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A04A4E9E2307E884008B0944 /* Networking */;
+			targetProxy = A04A4EA92307E884008B0944 /* PBXContainerItemProxy */;
+		};
+		A04A4EAC2307E884008B0944 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3C6601EF22956D38000BA333 /* Moop */;
+			targetProxy = A04A4EAB2307E884008B0944 /* PBXContainerItemProxy */;
+		};
+		A04A4EB32307E884008B0944 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A04A4E9E2307E884008B0944 /* Networking */;
+			targetProxy = A04A4EB22307E884008B0944 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1016,6 +1249,113 @@
 			};
 			name = Release;
 		};
+		A04A4EB72307E884008B0944 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 353A0FABCEE2360CA22903D0 /* Pods-Networking.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = UQZ9Y78ACS;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Networking/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.6.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kor45cw.Networking;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A04A4EB82307E884008B0944 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B71D5F6B31E2569BEB371CA5 /* Pods-Networking.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = UQZ9Y78ACS;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Networking/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.6.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kor45cw.Networking;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A04A4EB92307E884008B0944 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UQZ9Y78ACS;
+				INFOPLIST_FILE = NetworkingTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kor45cw.NetworkingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DEV-Moop.app/DEV-Moop";
+			};
+			name = Debug;
+		};
+		A04A4EBA2307E884008B0944 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UQZ9Y78ACS;
+				INFOPLIST_FILE = NetworkingTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kor45cw.NetworkingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DEV-Moop.app/DEV-Moop";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1042,6 +1382,24 @@
 			buildConfigurations = (
 				3C66021122956D3A000BA333 /* Debug */,
 				3C66021222956D3A000BA333 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A04A4EBB2307E884008B0944 /* Build configuration list for PBXNativeTarget "Networking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A04A4EB72307E884008B0944 /* Debug */,
+				A04A4EB82307E884008B0944 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A04A4EBC2307E884008B0944 /* Build configuration list for PBXNativeTarget "NetworkingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A04A4EB92307E884008B0944 /* Debug */,
+				A04A4EBA2307E884008B0944 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
