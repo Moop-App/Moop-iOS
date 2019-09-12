@@ -173,6 +173,7 @@ extension MovieDetailViewController: UITableViewDelegate {
         
         if let cell = tableView.cellForRow(at: indexPath) as? TrailerCell {
             let viewController = YoutubeVideoPlayerController(videoId: cell.youtubeId ?? "")
+            viewController.modalPresentationStyle = .fullScreen
             self.present(viewController, animated: true, completion: nil)
         }
         

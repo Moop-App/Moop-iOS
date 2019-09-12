@@ -3,6 +3,16 @@
     {
       "idiom" : "universal",
       "filename" : "baseline-share-24px.pdf"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "24px.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     }
   ],
   "info" : {
