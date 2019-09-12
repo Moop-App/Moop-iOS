@@ -123,6 +123,7 @@ extension MovieDetailViewController: DetailHeaderDelegate {
     
     func poster(_ image: UIImage) {
         let posterViewController = PosterViewController.instance(image: image)
+        posterViewController.modalPresentationStyle = .fullScreen
         self.present(posterViewController, animated: true)
     }
 }
