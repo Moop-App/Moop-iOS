@@ -139,7 +139,9 @@ extension SettingViewController: UITableViewDataSource {
             return cell
         default:
             let cell: SettingDividerCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.dividerView.backgroundColor = indexPath.item + 1 == datas.count * 3 ? .clear : .groupTableViewBackground
+            if indexPath.item + 1 == datas.count * 3 {
+                cell.dividerView.backgroundColor = .clear
+            }
             return cell
         }
     }
