@@ -67,6 +67,6 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 
-Moop/GoogleService-Info.plist
-Moop/Config.swift
+Moop/Resource/GoogleService-Info.plist
+Networking/Config.swift
 .DS_Store
