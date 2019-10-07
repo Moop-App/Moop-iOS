@@ -123,6 +123,7 @@ extension MovieDetailViewController: DetailHeaderDelegate {
     
     func poster(_ image: UIImage) {
         let posterViewController = PosterViewController.instance(image: image)
+        posterViewController.modalPresentationStyle = .fullScreen
         self.present(posterViewController, animated: true)
     }
 }
@@ -172,6 +173,7 @@ extension MovieDetailViewController: UITableViewDelegate {
         
         if let cell = tableView.cellForRow(at: indexPath) as? TrailerCell {
             let viewController = YoutubeVideoPlayerController(videoId: cell.youtubeId ?? "")
+            viewController.modalPresentationStyle = .fullScreen
             self.present(viewController, animated: true, completion: nil)
         }
         

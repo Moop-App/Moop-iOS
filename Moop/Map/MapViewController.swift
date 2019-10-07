@@ -51,7 +51,7 @@ class MapViewController: UIViewController {
         let requestURL = URL(string: "\(Config.baseURL)/code.json")!
         AF.request(requestURL)
             .validate(statusCode: [200])
-            .responseDecodable { [weak self] (response: DataResponse<MapInfo>) in
+            .responseDecodable { [weak self] (response: AFDataResponse<MapInfo>) in
                 guard let self = self else { return }
                 switch response.result {
                 case .success(let result):

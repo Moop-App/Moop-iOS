@@ -4,7 +4,7 @@ use_frameworks!
 
 target 'Moop' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  platform :ios, '11.0'
+  platform :ios, '12.0'
 
   # Analytics
   pod 'Firebase/Core'
@@ -15,7 +15,6 @@ target 'Moop' do
   pod 'Firebase/Messaging'
 
   pod 'SwiftLint'
-#  pod 'Peek', :configuration => ['Debug']
   pod 'Wormholy', :configurations => ['Debug']
 
   pod 'CTFeedbackSwift'

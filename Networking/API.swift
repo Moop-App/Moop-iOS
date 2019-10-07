@@ -37,14 +37,10 @@ public final class API {
     }
     
     private func monitorReachability() {
-        reachability = NetworkReachabilityManager(host: "www.apple.com")
-        
-        reachability.listener = { [weak self] status in
+        NetworkReachabilityManager.default?.startListening { [weak self] status in
             guard let self = self else { return }
             self.reachabilityStatus = status
         }
-        
-        reachability.startListening()
     }
     
     private func requestRepeated() {
@@ -67,7 +63,7 @@ public final class API {
         self.requestURL = APISetupManager.currentRequestURL
         self.request = AF.request(requestURL)
                         .validate(statusCode: [200])
-                        .responseDecodable { (response: DataResponse<[T]>) in
+                        .responseDecodable { (response: AFDataResponse<[T]>) in
                             switch response.result {
                             case .success(let items):
                                 completionHandler(.success(items))
@@ -81,7 +77,7 @@ public final class API {
         self.requestURL = APISetupManager.futureRequestURL
         self.request = AF.request(requestURL)
                         .validate(statusCode: [200])
-                        .responseDecodable { (response: DataResponse<[T]>) in
+                        .responseDecodable { (response: AFDataResponse<[T]>) in
                             switch response.result {
                             case .success(let items):
                                 completionHandler(.success(items))
