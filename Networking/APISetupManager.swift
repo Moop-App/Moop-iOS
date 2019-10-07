@@ -17,4 +17,5 @@ public struct APISetupManager {
     
     internal static let currentRequestURL = "\(Config.baseURL)/now/list.json"
     internal static let futureRequestURL = "\(Config.baseURL)/plan/list.json"
+    internal static let locationRequestURL = "\(Config.baseURL)/code.json"
 }
