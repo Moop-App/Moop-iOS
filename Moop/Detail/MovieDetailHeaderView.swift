@@ -48,8 +48,6 @@ protocol DetailHeaderDelegate: class {
 
 class MovieDetailHeaderView: UIView {
     @IBOutlet private weak var posterImageView: UIImageView!
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var openDateLabel: UILabel!
     @IBOutlet private weak var cgvWraaper: TheaterRankView!
     @IBOutlet private weak var megaBoxWraaper: TheaterRankView!
     @IBOutlet private weak var lotteWraaper: TheaterRankView!
@@ -60,6 +58,13 @@ class MovieDetailHeaderView: UIView {
     @IBOutlet private weak var bestBadge: UIView!
     @IBOutlet private weak var dDayBadge: UIView!
     @IBOutlet private weak var dDayLabel: UILabel!
+    
+    @IBOutlet private weak var openDateView: MovieInfoLabelView!
+    @IBOutlet private weak var ratingView: MovieInfoLabelView!
+    @IBOutlet private weak var genreView: MovieInfoLabelView!
+    @IBOutlet private weak var nationView: MovieInfoLabelView!
+    @IBOutlet private weak var runningTimeView: MovieInfoLabelView!
+    @IBOutlet private weak var providerView: MovieInfoLabelView!
     
     weak var delegate: DetailHeaderDelegate?
     
@@ -73,8 +78,6 @@ class MovieDetailHeaderView: UIView {
     func set(_ item: MovieInfo?) {
         guard let item = item else { return }
         posterImageView.sd_setImage(with: URL(string: item.posterUrl))
-        titleLabel.text = item.title
-        openDateLabel.text = item.openDate
         
         cgvWraaper.set(item.cgv)
         megaBoxWraaper.set(item.megabox)
@@ -87,6 +90,13 @@ class MovieDetailHeaderView: UIView {
         
         ageLabel.text = item.ageBadgeText
         dDayLabel.text = item.dDayText
+        
+        openDateView.configure(.openDate, item: item)
+        ratingView.configure(.rating, item: item)
+        genreView.configure(.genre, item: item)
+        nationView.configure(.nation, item: item)
+        runningTimeView.configure(.runningTime, item: item)
+        providerView.configure(.provider, item: item)
     }
     
     @IBAction private func poster(_ sender: UIButton) {
