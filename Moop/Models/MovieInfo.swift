@@ -14,6 +14,8 @@ struct MovieInfo: Decodable {
     let ageValue: Int
     let cgv: CGVInfo?
     let id: String
+    let imdb: Imdb?
+    let plot: String?
     let isNow: Bool
     let lotte: LotteInfo?
     let megabox: MegaBoxInfo?

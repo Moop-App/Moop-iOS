@@ -75,6 +75,8 @@
 		A08E90552349E349007BFA96 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E90542349E349007BFA96 /* Config.swift */; };
 		A08E90562349E363007BFA96 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E90542349E349007BFA96 /* Config.swift */; };
 		A08E905A2349E447007BFA96 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A08E90592349E447007BFA96 /* GoogleService-Info.plist */; };
+		A08E905C234B59C2007BFA96 /* Imdb.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E905B234B59C2007BFA96 /* Imdb.swift */; };
+		A08E905E234B5A4B007BFA96 /* Kobis.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E905D234B5A4B007BFA96 /* Kobis.swift */; };
 		A0B6F7BF2307EA2F008A3949 /* APISetupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B6F7BE2307EA2F008A3949 /* APISetupManager.swift */; };
 		A0CAEBBF22FAEAD800C5C662 /* MapRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CAEBBE22FAEAD800C5C662 /* MapRouteView.swift */; };
 		A0D2461B22F3D99600F48CBA /* CGVInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2461A22F3D99600F48CBA /* CGVInfo.swift */; };
@@ -226,6 +228,8 @@
 		A0657E2222F802D900EA89FE /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		A08E90542349E349007BFA96 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		A08E90592349E447007BFA96 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A08E905B234B59C2007BFA96 /* Imdb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Imdb.swift; sourceTree = "<group>"; };
+		A08E905D234B5A4B007BFA96 /* Kobis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kobis.swift; sourceTree = "<group>"; };
 		A0B6F7BE2307EA2F008A3949 /* APISetupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISetupManager.swift; sourceTree = "<group>"; };
 		A0CAEBBE22FAEAD800C5C662 /* MapRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouteView.swift; sourceTree = "<group>"; };
 		A0D2461A22F3D99600F48CBA /* CGVInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGVInfo.swift; sourceTree = "<group>"; };
@@ -508,6 +512,8 @@
 				A0D2461A22F3D99600F48CBA /* CGVInfo.swift */,
 				A0D2462522F3DA4800F48CBA /* BestCheckDelegate.swift */,
 				A0D2462722F3DCF100F48CBA /* AgeType.swift */,
+				A08E905B234B59C2007BFA96 /* Imdb.swift */,
+				A08E905D234B5A4B007BFA96 /* Kobis.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -883,6 +889,7 @@
 				3C66021A22959A18000BA333 /* MovieCell.swift in Sources */,
 				3C767527229918890052BEB6 /* UIView+Extension.swift in Sources */,
 				A0D2461F22F3D9C000F48CBA /* MegaBoxInfo.swift in Sources */,
+				A08E905E234B5A4B007BFA96 /* Kobis.swift in Sources */,
 				3CF7219722BF587B0022D03E /* CurrentMovieData.swift in Sources */,
 				A00671FB22FC1636002FE813 /* UIImage+Extension.swift in Sources */,
 				3C947A8C22D736170075E4DE /* FilterViewController.swift in Sources */,
@@ -894,6 +901,7 @@
 				3C66021F22959F04000BA333 /* MovieInfo.swift in Sources */,
 				3C34938B22E7584A00A77343 /* FavoriteViewController.swift in Sources */,
 				A0D2461B22F3D99600F48CBA /* CGVInfo.swift in Sources */,
+				A08E905C234B59C2007BFA96 /* Imdb.swift in Sources */,
 				A08E90562349E363007BFA96 /* Config.swift in Sources */,
 				3C1B6E692297A80E009CB740 /* TheaterRankView.swift in Sources */,
 				A00671D722FBC135002FE813 /* FutureMovieProtocols.swift in Sources */,
