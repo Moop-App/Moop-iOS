@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import Alamofire
 import MapKit
+import Networking
 
 class MapViewController: UIViewController {
     
@@ -48,17 +48,27 @@ class MapViewController: UIViewController {
     }
     
     private func request() {
-        let requestURL = URL(string: "\(Config.baseURL)/code.json")!
-        AF.request(requestURL)
-            .validate(statusCode: [200])
-            .responseDecodable { [weak self] (response: AFDataResponse<MapInfo>) in
-                guard let self = self else { return }
-                switch response.result {
-                case .success(let result):
-                    self.mapView.addAnnotations(result.items)
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+//        let requestURL = URL(string: "\(Config.baseURL)/code.json")!
+//        AF.request(requestURL)
+//            .validate(statusCode: [200])
+//            .responseDecodable { [weak self] (response: AFDataResponse<MapInfo>) in
+//                guard let self = self else { return }
+//                switch response.result {
+//                case .success(let result):
+//                    self.mapView.addAnnotations(result.items)
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//        }
+        
+        API.shared.requestMapData { [weak self] (result: Result<MapInfo, Error>) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let result):
+                self.mapView.addAnnotations(result.items)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
 }
