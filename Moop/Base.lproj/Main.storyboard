@@ -236,44 +236,6 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8sF-xV-eBH">
-                                            <rect key="frame" x="318" y="148" width="80" height="36"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azi-xy-M4e">
-                                                    <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="36" id="2et-bY-f5J"/>
-                                                        <constraint firstAttribute="height" constant="36" id="l1p-AI-8ar"/>
-                                                    </constraints>
-                                                    <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
-                                                    <state key="normal" image="heart"/>
-                                                    <state key="selected" image="heart_fill"/>
-                                                    <connections>
-                                                        <action selector="favorite:" destination="pca-CQ-gaS" eventType="touchUpInside" id="JHL-7P-QLW"/>
-                                                    </connections>
-                                                </button>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tof-H6-crV">
-                                                    <rect key="frame" x="40" y="0.0" width="36" height="36"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="36" id="DIU-4X-aRU"/>
-                                                        <constraint firstAttribute="height" constant="36" id="ulB-co-zuI"/>
-                                                    </constraints>
-                                                    <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
-                                                    <state key="normal" image="kakaotalk"/>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qpU-qk-0OP">
-                                                    <rect key="frame" x="44" y="0.0" width="36" height="36"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="36" id="Vxa-iZ-rhS"/>
-                                                        <constraint firstAttribute="height" constant="36" id="kMn-pO-2FI"/>
-                                                    </constraints>
-                                                    <state key="normal" image="share"/>
-                                                    <connections>
-                                                        <action selector="share:" destination="pca-CQ-gaS" eventType="touchUpInside" id="Nwq-tx-T5y"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YXF-7y-CbD">
                                             <rect key="frame" x="0.0" y="200" width="414" height="100"/>
                                             <subviews>
@@ -631,18 +593,15 @@
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="8sF-xV-eBH" secondAttribute="trailing" constant="16" id="2sB-bv-fjW"/>
                                         <constraint firstItem="xS3-8I-EJZ" firstAttribute="top" secondItem="wfv-z4-URV" secondAttribute="top" id="5ca-6l-lyL"/>
                                         <constraint firstItem="WDN-kC-RnT" firstAttribute="leading" secondItem="wfv-z4-URV" secondAttribute="trailing" constant="30" id="6gb-s2-C2x"/>
                                         <constraint firstItem="xS3-8I-EJZ" firstAttribute="trailing" secondItem="wfv-z4-URV" secondAttribute="trailing" id="97b-pv-dLU"/>
-                                        <constraint firstItem="8sF-xV-eBH" firstAttribute="top" relation="greaterThanOrEqual" secondItem="GwK-dF-438" secondAttribute="bottom" constant="8" id="9DC-3F-sYY"/>
                                         <constraint firstItem="xS3-8I-EJZ" firstAttribute="bottom" secondItem="wfv-z4-URV" secondAttribute="bottom" id="9aj-ct-F5i"/>
                                         <constraint firstItem="iO9-vt-db9" firstAttribute="trailing" secondItem="wfv-z4-URV" secondAttribute="trailing" constant="18" id="Bu1-yc-oAg"/>
                                         <constraint firstAttribute="trailing" secondItem="WDN-kC-RnT" secondAttribute="trailing" constant="12" id="G11-5t-bhg"/>
                                         <constraint firstItem="iO9-vt-db9" firstAttribute="top" secondItem="wfv-z4-URV" secondAttribute="top" constant="8" id="GLt-zM-ZNR"/>
                                         <constraint firstItem="xS3-8I-EJZ" firstAttribute="leading" secondItem="wfv-z4-URV" secondAttribute="leading" id="RJI-fI-3PI"/>
                                         <constraint firstAttribute="trailing" secondItem="GwK-dF-438" secondAttribute="trailing" constant="12" id="aA6-8E-wN1"/>
-                                        <constraint firstItem="YXF-7y-CbD" firstAttribute="top" secondItem="8sF-xV-eBH" secondAttribute="bottom" constant="16" id="bBM-7E-JtF"/>
                                         <constraint firstAttribute="trailing" secondItem="YXF-7y-CbD" secondAttribute="trailing" id="bzu-Z7-hpZ"/>
                                         <constraint firstItem="wfv-z4-URV" firstAttribute="top" secondItem="pca-CQ-gaS" secondAttribute="top" constant="8" id="c7K-4d-Jq9"/>
                                         <constraint firstItem="GwK-dF-438" firstAttribute="leading" secondItem="WDN-kC-RnT" secondAttribute="leading" id="duy-Hv-HrW"/>
@@ -660,7 +619,6 @@
                                         <outlet property="cgvWraaper" destination="tcv-zv-D9c" id="xZW-5K-xa2"/>
                                         <outlet property="dDayBadge" destination="v61-UB-n39" id="5M9-qc-vkf"/>
                                         <outlet property="dDayLabel" destination="7al-Ae-9cJ" id="1uA-pW-CUx"/>
-                                        <outlet property="favoriteButton" destination="azi-xy-M4e" id="qwm-R1-pGo"/>
                                         <outlet property="lotteWraaper" destination="8bO-bA-Fts" id="0lc-DI-T8w"/>
                                         <outlet property="megaBoxWraaper" destination="DCz-5e-Qjz" id="Ebr-Ag-49N"/>
                                         <outlet property="newBadge" destination="nkZ-Au-j9U" id="4BC-X5-1nD"/>
@@ -920,20 +878,72 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="60z-eX-jS2"/>
                     </view>
+                    <navigationItem key="navigationItem" id="AOQ-tR-yuz">
+                        <rightBarButtonItems>
+                            <barButtonItem image="share" style="plain" id="adb-R4-PY9">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Iop-Py-KfL">
+                                    <rect key="frame" x="346" y="0.0" width="48" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="36" id="MeY-zf-gVe"/>
+                                        <constraint firstAttribute="width" constant="36" id="bZO-Af-roe"/>
+                                    </constraints>
+                                    <state key="normal" image="share"/>
+                                    <connections>
+                                        <action selector="share:" destination="xIA-bh-Qh7" eventType="touchUpInside" id="3dz-EI-led"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem image="heart" style="plain" id="SYa-rd-4IU">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5bi-xr-AJi">
+                                    <rect key="frame" x="290" y="0.0" width="48" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="36" id="Cmy-In-THz"/>
+                                        <constraint firstAttribute="height" constant="36" id="iiP-TK-GPq"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
+                                    <state key="normal" image="heart"/>
+                                    <state key="selected" image="heart_fill"/>
+                                    <connections>
+                                        <action selector="favorite:" destination="xIA-bh-Qh7" eventType="touchUpInside" id="H0i-Gc-MtO"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
+                        <outlet property="favoriteButton" destination="5bi-xr-AJi" id="vo3-a4-tF2"/>
                         <outlet property="headerView" destination="pca-CQ-gaS" id="JyT-32-MIh"/>
                         <outlet property="tableView" destination="Vuu-d5-rlT" id="KqF-JM-4UZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpK-mQ-gq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="945" y="128"/>
+            <point key="canvasLocation" x="1855.072463768116" y="127.90178571428571"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Goi-bY-uVR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vuL-if-pKp" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fm8-2Q-0Ys">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xIA-bh-Qh7" kind="relationship" relationship="rootViewController" id="nZh-Xc-bqr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BI4-kU-Vgw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="944.92753623188412" y="127.90178571428571"/>
         </scene>
     </scenes>
     <resources>
         <image name="heart" width="24" height="24"/>
         <image name="heart_fill" width="24" height="24"/>
-        <image name="kakaotalk" width="2500" height="2500"/>
         <image name="share" width="24" height="24"/>
         <image name="star" width="24" height="24"/>
         <image name="youtube" width="300" height="300"/>

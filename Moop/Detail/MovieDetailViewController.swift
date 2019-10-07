@@ -29,6 +29,7 @@ class MovieDetailViewController: UIViewController {
         }
     }
     @IBOutlet private weak var headerView: MovieDetailHeaderView!
+    @IBOutlet private weak var favoriteButton: UIButton!
 
     private var item: MovieInfo?
     private var totalCount = 0
@@ -43,6 +44,10 @@ class MovieDetailViewController: UIViewController {
         if isAllowedToOpenStoreReview() {
             SKStoreReviewController.requestReview()
         }
+        
+        guard let ids = UserDefaults.standard.array(forKey: .favorites) as? [String] else { return }
+        favoriteButton.tag = ids.contains(item?.id ?? "") ? 1 : 0
+        favoriteButton.setImage(favoriteButton.tag == 1 ? UIImage(named: "heart_fill") : UIImage(named: "heart"), for: .normal)
     }
     
     func isAllowedToOpenStoreReview() -> Bool {
@@ -55,6 +60,16 @@ class MovieDetailViewController: UIViewController {
         }
         UserDefaults.standard.set((launchCount + 1), forKey: .detailViewCount)
         return isOpen
+    }
+    
+    @IBAction private func share(_ sender: UIBarButtonItem) {
+        share()
+    }
+    
+    @IBAction private func favorite(_ sender: UIButton) {
+        sender.tag = sender.tag == 0 ? 1 : 0
+        sender.setImage(sender.tag == 1 ? UIImage(named: "heart_fill") : UIImage(named: "heart"), for: .normal)
+        favorite(isAdd: sender.tag == 1)
     }
     
     override var previewActionItems: [UIPreviewActionItem] {
