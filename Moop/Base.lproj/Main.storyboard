@@ -229,20 +229,20 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CcK-7m-yO8">
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="CcK-7m-yO8">
                                             <rect key="frame" x="175" y="8" width="231" height="176"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fXE-5G-cgA" customClass="MovieInfoLabelView" customModule="DEV_Moop" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="231" height="22.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="231" height="19.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="개봉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0u-5b-Rse">
-                                                            <rect key="frame" x="0.0" y="0.0" width="24.5" height="22.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="24.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sdaklsd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GwK-dF-438">
-                                                            <rect key="frame" x="32.5" y="0.0" width="198.5" height="22.5"/>
+                                                            <rect key="frame" x="32.5" y="0.0" width="198.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -264,16 +264,16 @@
                                                     </connections>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWQ-on-lfe" customClass="MovieInfoLabelView" customModule="DEV_Moop" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="30.5" width="231" height="23"/>
+                                                    <rect key="frame" x="0.0" y="31.5" width="231" height="19"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="등급" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JjO-oI-HPn">
-                                                            <rect key="frame" x="0.0" y="0.0" width="24.5" height="23"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="24.5" height="19"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sdaklsd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ljs-Jn-jPb">
-                                                            <rect key="frame" x="32.5" y="0.0" width="198.5" height="23"/>
+                                                            <rect key="frame" x="32.5" y="0.0" width="198.5" height="19"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -295,16 +295,16 @@
                                                     </connections>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aPU-R3-Yja" customClass="MovieInfoLabelView" customModule="DEV_Moop" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="61.5" width="231" height="22.5"/>
+                                                    <rect key="frame" x="0.0" y="62.5" width="231" height="19.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="등급" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tvb-75-Ygr">
-                                                            <rect key="frame" x="0.0" y="0.0" width="24.5" height="22.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="24.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sdaklsd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZxP-6X-Q0b">
-                                                            <rect key="frame" x="32.5" y="0.0" width="198.5" height="22.5"/>
+                                                            <rect key="frame" x="32.5" y="0.0" width="198.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -326,16 +326,16 @@
                                                     </connections>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a69-XT-8EC" customClass="MovieInfoLabelView" customModule="DEV_Moop" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="92" width="231" height="22.5"/>
+                                                    <rect key="frame" x="0.0" y="94" width="231" height="19.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="등급" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooe-Aj-cX3">
-                                                            <rect key="frame" x="0.0" y="0.0" width="24.5" height="22.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="24.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sdaklsd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VhD-mx-8Oj">
-                                                            <rect key="frame" x="32.5" y="0.0" width="198.5" height="22.5"/>
+                                                            <rect key="frame" x="32.5" y="0.0" width="198.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -357,16 +357,16 @@
                                                     </connections>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BDf-Xp-sc2" customClass="MovieInfoLabelView" customModule="DEV_Moop" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="122.5" width="231" height="23"/>
+                                                    <rect key="frame" x="0.0" y="125.5" width="231" height="19"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="등급" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eC-fs-3oX">
-                                                            <rect key="frame" x="0.0" y="0.0" width="24.5" height="23"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="24.5" height="19"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sdaklsd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QsR-zJ-7KD">
-                                                            <rect key="frame" x="32.5" y="0.0" width="198.5" height="23"/>
+                                                            <rect key="frame" x="32.5" y="0.0" width="198.5" height="19"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -388,16 +388,16 @@
                                                     </connections>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0dN-ub-R6Q" customClass="MovieInfoLabelView" customModule="DEV_Moop" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="153.5" width="231" height="22.5"/>
+                                                    <rect key="frame" x="0.0" y="156.5" width="231" height="19.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="등급" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BE0-Pr-KKX">
-                                                            <rect key="frame" x="0.0" y="0.0" width="24.5" height="22.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="24.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sdaklsd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7Z-h7-AOV">
-                                                            <rect key="frame" x="32.5" y="0.0" width="198.5" height="22.5"/>
+                                                            <rect key="frame" x="32.5" y="0.0" width="198.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -789,7 +789,7 @@
                                         <constraint firstItem="wfv-z4-URV" firstAttribute="leading" secondItem="pca-CQ-gaS" secondAttribute="leading" constant="16" id="ehr-OV-AIQ"/>
                                         <constraint firstItem="YXF-7y-CbD" firstAttribute="top" secondItem="wfv-z4-URV" secondAttribute="bottom" constant="8" id="f4E-uY-HDr"/>
                                         <constraint firstItem="YXF-7y-CbD" firstAttribute="leading" secondItem="pca-CQ-gaS" secondAttribute="leading" id="krS-MH-GsM"/>
-                                        <constraint firstItem="CcK-7m-yO8" firstAttribute="bottom" secondItem="xS3-8I-EJZ" secondAttribute="bottom" constant="-8" id="pDq-sz-aAX"/>
+                                        <constraint firstItem="CcK-7m-yO8" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="xS3-8I-EJZ" secondAttribute="bottom" constant="-8" id="pDq-sz-aAX"/>
                                         <constraint firstItem="CcK-7m-yO8" firstAttribute="top" secondItem="pca-CQ-gaS" secondAttribute="top" constant="8" id="qoJ-Ve-BoF"/>
                                         <constraint firstAttribute="bottom" secondItem="YXF-7y-CbD" secondAttribute="bottom" id="raz-Cc-xao"/>
                                         <constraint firstItem="CcK-7m-yO8" firstAttribute="leading" secondItem="xS3-8I-EJZ" secondAttribute="trailing" constant="30" id="yVl-cv-lII"/>

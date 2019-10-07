@@ -98,16 +98,19 @@ extension MovieInfo {
         "제목: \(title)\n개봉일: \(openDate)\n\(ageBadgeText)"
     }
     
-    var genreText: String {
-        kobis?.genres?.reduce(into: "", { "\($0)\($1), " }) ?? ""
+    var genreText: String? {
+        guard let genres = kobis?.genres else { return nil }
+        return String(genres.reduce("") { (result, newValue) -> String in
+            return "\(result)\(newValue), "
+        }.dropLast().dropLast())
     }
     
-    var nation: String {
-        kobis?.nations?.first ?? ""
+    var nation: String? {
+        kobis?.nations?.first
     }
     
-    var showTime: Int {
-        kobis?.showTm ?? 0
+    var showTime: Int? {
+        kobis?.showTm
     }
     
     var provider: String? {

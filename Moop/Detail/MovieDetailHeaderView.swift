@@ -91,6 +91,13 @@ class MovieDetailHeaderView: UIView {
         ageLabel.text = item.ageBadgeText
         dDayLabel.text = item.dDayText
         
+        openDateView.isHidden = item.openDate.isEmpty
+        ratingView.isHidden = item.age.isEmpty
+        genreView.isHidden = item.genreText == nil
+        nationView.isHidden = item.nation == nil
+        runningTimeView.isHidden = item.showTime == nil
+        providerView.isHidden = item.provider == nil
+        
         openDateView.configure(.openDate, item: item)
         ratingView.configure(.rating, item: item)
         genreView.configure(.genre, item: item)

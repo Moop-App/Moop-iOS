@@ -28,7 +28,7 @@ class MovieInfoLabelView: UIView {
             descriptionLabel.text = item.nation
         case .runningTime:
             titleLabel.text = "러닝타임"
-            descriptionLabel.text = "\(item.showTime)분"
+            descriptionLabel.text = "\(item.showTime ?? 0)분"
         case .provider:
             titleLabel.text = "배급"
             descriptionLabel.text = item.provider
