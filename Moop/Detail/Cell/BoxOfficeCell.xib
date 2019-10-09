@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="107" id="KGk-i7-Jjw" customClass="BoxOfficeCell" customModule="DEV_Moop" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="382" height="107"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="382" height="107"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DbB-zr-NS9">
+                        <rect key="frame" x="8" y="8" width="366" height="91"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="m2D-xL-dgw">
+                                <rect key="frame" x="0.0" y="0.0" width="366" height="91"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9kA-gO-opK">
+                                        <rect key="frame" x="0.0" y="0.0" width="122" height="91"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="박스오피스" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTv-bX-vvl">
+                                                <rect key="frame" x="30.5" y="12" width="61" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1위" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vcd-Ts-MrV">
+                                                <rect key="frame" x="49" y="31" width="24.5" height="21.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.08 기준" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGt-8w-eTD" customClass="PaddingLabel" customModule="DEV_Moop" customModuleProvider="target">
+                                                <rect key="frame" x="22" y="63" width="78.5" height="20"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="Vcd-Ts-MrV" firstAttribute="top" secondItem="xTv-bX-vvl" secondAttribute="bottom" constant="2" id="3sl-Dn-u7E"/>
+                                            <constraint firstItem="Vcd-Ts-MrV" firstAttribute="centerX" secondItem="9kA-gO-opK" secondAttribute="centerX" id="7so-4C-ClL"/>
+                                            <constraint firstItem="JGt-8w-eTD" firstAttribute="centerX" secondItem="9kA-gO-opK" secondAttribute="centerX" id="8ny-6V-ayV"/>
+                                            <constraint firstItem="xTv-bX-vvl" firstAttribute="centerX" secondItem="9kA-gO-opK" secondAttribute="centerX" id="CJ2-fE-5pA"/>
+                                            <constraint firstItem="JGt-8w-eTD" firstAttribute="top" secondItem="Vcd-Ts-MrV" secondAttribute="bottom" constant="10.5" id="KFT-7m-sni"/>
+                                            <constraint firstAttribute="bottom" secondItem="JGt-8w-eTD" secondAttribute="bottom" constant="8" id="NYu-gD-YT1"/>
+                                            <constraint firstItem="xTv-bX-vvl" firstAttribute="top" secondItem="9kA-gO-opK" secondAttribute="top" constant="12" id="To5-aq-e1P"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NgK-bg-twv">
+                                        <rect key="frame" x="122" y="0.0" width="122" height="91"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="누적 관객수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipL-n7-rf1">
+                                                <rect key="frame" x="29" y="12" width="64.5" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bj-Vq-K14">
+                                                <rect key="frame" x="49" y="31" width="24.5" height="21.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개봉 7일차" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCw-6J-1CW" customClass="PaddingLabel" customModule="DEV_Moop" customModuleProvider="target">
+                                                <rect key="frame" x="25" y="63" width="72.5" height="20"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="oCw-6J-1CW" firstAttribute="centerX" secondItem="NgK-bg-twv" secondAttribute="centerX" id="CqS-9C-Uyd"/>
+                                            <constraint firstItem="5bj-Vq-K14" firstAttribute="centerX" secondItem="NgK-bg-twv" secondAttribute="centerX" id="DxP-uL-GLR"/>
+                                            <constraint firstItem="ipL-n7-rf1" firstAttribute="top" secondItem="NgK-bg-twv" secondAttribute="top" constant="12" id="Znk-lQ-Ela"/>
+                                            <constraint firstAttribute="bottom" secondItem="oCw-6J-1CW" secondAttribute="bottom" constant="8" id="bWe-Vi-8rb"/>
+                                            <constraint firstItem="ipL-n7-rf1" firstAttribute="centerX" secondItem="NgK-bg-twv" secondAttribute="centerX" id="egS-Ac-wI7"/>
+                                            <constraint firstItem="5bj-Vq-K14" firstAttribute="top" secondItem="ipL-n7-rf1" secondAttribute="bottom" constant="2" id="sby-pH-jKH"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qct-Rv-2d8">
+                                        <rect key="frame" x="244" y="0.0" width="122" height="91"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAVER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="suU-vs-nJe" customClass="PaddingLabel" customModule="DEV_Moop" customModuleProvider="target">
+                                                <rect key="frame" x="30.5" y="63" width="61" height="20"/>
+                                                <color key="backgroundColor" red="0.1176470588" green="0.7843137255" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="QDP-AQ-eQz">
+                                                <rect key="frame" x="28" y="34" width="66" height="16"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="Zeb-dh-6K6">
+                                                        <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="16" id="Aiv-Kk-HCu"/>
+                                                            <constraint firstAttribute="height" constant="16" id="cjG-ij-G7l"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJG-Xb-8qE">
+                                                        <rect key="frame" x="20" y="0.0" width="46" height="16"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="평점" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txt-fW-3Tt">
+                                                <rect key="frame" x="49" y="12" width="24.5" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="suU-vs-nJe" secondAttribute="bottom" constant="8" id="2nv-FC-dVN"/>
+                                            <constraint firstItem="Txt-fW-3Tt" firstAttribute="top" secondItem="Qct-Rv-2d8" secondAttribute="top" constant="12" id="Gwg-XR-aTZ"/>
+                                            <constraint firstItem="suU-vs-nJe" firstAttribute="centerX" secondItem="Qct-Rv-2d8" secondAttribute="centerX" id="J9x-ui-dLJ"/>
+                                            <constraint firstItem="QDP-AQ-eQz" firstAttribute="centerX" secondItem="Qct-Rv-2d8" secondAttribute="centerX" id="aCK-t7-kTz"/>
+                                            <constraint firstItem="Txt-fW-3Tt" firstAttribute="centerX" secondItem="Qct-Rv-2d8" secondAttribute="centerX" id="fpD-xu-Q78"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="QDP-AQ-eQz" firstAttribute="centerY" secondItem="5bj-Vq-K14" secondAttribute="centerY" id="CqQ-ZR-b73"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="m2D-xL-dgw" secondAttribute="trailing" id="XDw-5b-Ird"/>
+                            <constraint firstItem="m2D-xL-dgw" firstAttribute="leading" secondItem="DbB-zr-NS9" secondAttribute="leading" id="lQZ-UP-mTn"/>
+                            <constraint firstItem="m2D-xL-dgw" firstAttribute="top" secondItem="DbB-zr-NS9" secondAttribute="top" id="oZx-9b-Lbn"/>
+                            <constraint firstAttribute="bottom" secondItem="m2D-xL-dgw" secondAttribute="bottom" id="yvg-1c-qL9"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="DbB-zr-NS9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="6Is-FK-LxA"/>
+                    <constraint firstAttribute="trailing" secondItem="DbB-zr-NS9" secondAttribute="trailing" constant="8" id="hEF-iw-5fl"/>
+                    <constraint firstItem="DbB-zr-NS9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="lG3-5p-GJJ"/>
+                    <constraint firstAttribute="bottom" secondItem="DbB-zr-NS9" secondAttribute="bottom" constant="8" id="tlp-VZ-Tho"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="audienceCountLabel" destination="5bj-Vq-K14" id="ggB-Pe-oHY"/>
+                <outlet property="audienceReferenceDateLabel" destination="oCw-6J-1CW" id="PEn-3q-sJ0"/>
+                <outlet property="naverStarLabel" destination="SJG-Xb-8qE" id="Iao-Vv-wHF"/>
+                <outlet property="rankLabel" destination="Vcd-Ts-MrV" id="Gcv-pW-W9l"/>
+                <outlet property="rankReferenceDateLabel" destination="JGt-8w-eTD" id="7Ws-A4-x7s"/>
+                <outlet property="wrapperView" destination="DbB-zr-NS9" id="IEA-dN-ylP"/>
+            </connections>
+            <point key="canvasLocation" x="181.15942028985509" y="124.21875"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="star" width="24" height="24"/>
+    </resources>
+</document>
