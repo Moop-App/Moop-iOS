@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NaverInfoCell: UITableViewCell {
+class NaverInfoCell: UITableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet private weak var wrapperView: UIView!
     @IBOutlet private weak var rankLabel: UILabel!

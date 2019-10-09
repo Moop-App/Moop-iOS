@@ -17,6 +17,7 @@ struct MovieInfo: Decodable {
     let imdb: Imdb?
     let plot: String?
     let isNow: Bool
+    let kobis: Kobis?
     let lotte: LotteInfo?
     let megabox: MegaBoxInfo?
     let naver: NaverInfo?
@@ -62,41 +63,58 @@ extension MovieInfo {
     }
     
     var isBest: Bool {
-        return (cgv?.isOver(96) ?? false) ||
-            lotte?.isOver(8.8) ?? false ||
-            megabox?.isOver(8.5) ?? false
+        (cgv?.isOver(96) ?? false) || (lotte?.isOver(8.8) ?? false) || (megabox?.isOver(8.5) ?? false)
     }
     
     var isNew: Bool {
-        return isNow && isIn(dayRange: [Int](-6...0))
+        isNow && isIn(dayRange: [Int](-6...0))
     }
     
     var isDDay: Bool {
-        return !isNow && getDay != 999
+        !isNow && getDay != 999
     }
     
     var dDayText: String {
-        return getDay <= 0 ? "NOW" : "D-\(getDay)"
+        getDay <= 0 ? "NOW" : "D-\(getDay)"
     }
     
     func isIn(dayRange: [Int]) -> Bool {
-        return dayRange.contains(getDay)
+        dayRange.contains(getDay)
     }
     
     var ageType: AgeType {
-        return AgeType(ageValue: ageValue)
+        AgeType(ageValue: ageValue)
     }
     
     var ageColor: UIColor {
-        return ageType.color
+        ageType.color
     }
     
     var ageBadgeText: String {
-        return ageType.text
+        ageType.text
     }
     
     var shareText: String {
-        return "제목: \(title)\n개봉일: \(openDate)\n\(ageBadgeText)"
+        "제목: \(title)\n개봉일: \(openDate)\n\(ageBadgeText)"
+    }
+    
+    var genreText: String? {
+        guard let genres = kobis?.genres else { return nil }
+        return String(genres.reduce("") { (result, newValue) -> String in
+            return "\(result)\(newValue), "
+        }.dropLast().dropLast())
+    }
+    
+    var nation: String? {
+        kobis?.nations?.first
+    }
+    
+    var showTime: Int? {
+        kobis?.showTm
+    }
+    
+    var provider: String? {
+        kobis?.companys?.first(where: { $0.companyPartNm == "배급사" })?.companyNm
     }
     
     func contain(types: [TheaterType]) -> Bool {

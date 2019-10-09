@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrailerHeaderCell" rowHeight="48" id="aVL-x5-cIK" customClass="TrailerHeaderCell" customModule="DEV_Moop" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aVL-x5-cIK" id="yUb-f9-bJa">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AEO-la-Tbk">
+                        <rect key="frame" x="8" y="4" width="398" height="44"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="youtube" translatesAutoresizingMaskIntoConstraints="NO" id="Tz4-FK-ZuQ">
+                                <rect key="frame" x="8" y="0.0" width="48" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="8dz-MC-q5D"/>
+                                    <constraint firstAttribute="height" constant="44" id="YYb-CF-WAB"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F03-aP-icd">
+                                <rect key="frame" x="60" y="13.5" width="322" height="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Tz4-FK-ZuQ" secondAttribute="bottom" id="2d3-bs-bIp"/>
+                            <constraint firstItem="F03-aP-icd" firstAttribute="centerY" secondItem="Tz4-FK-ZuQ" secondAttribute="centerY" id="B3X-ha-W3b"/>
+                            <constraint firstItem="Tz4-FK-ZuQ" firstAttribute="leading" secondItem="AEO-la-Tbk" secondAttribute="leading" constant="8" id="FKs-a8-cE4"/>
+                            <constraint firstAttribute="trailing" secondItem="F03-aP-icd" secondAttribute="trailing" constant="16" id="UBW-Os-B4w"/>
+                            <constraint firstItem="F03-aP-icd" firstAttribute="leading" secondItem="Tz4-FK-ZuQ" secondAttribute="trailing" constant="4" id="lVg-2k-oNi"/>
+                            <constraint firstItem="Tz4-FK-ZuQ" firstAttribute="top" secondItem="AEO-la-Tbk" secondAttribute="top" id="n5z-Qh-2SM"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="AEO-la-Tbk" firstAttribute="leading" secondItem="yUb-f9-bJa" secondAttribute="leading" constant="8" id="NcR-id-8Bk"/>
+                    <constraint firstAttribute="trailing" secondItem="AEO-la-Tbk" secondAttribute="trailing" constant="8" id="UDr-aH-MD3"/>
+                    <constraint firstItem="AEO-la-Tbk" firstAttribute="top" secondItem="yUb-f9-bJa" secondAttribute="top" constant="4" id="ZW4-pa-zLt"/>
+                    <constraint firstAttribute="bottom" secondItem="AEO-la-Tbk" secondAttribute="bottom" id="uwu-z5-1jz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="titleLabel" destination="F03-aP-icd" id="SfW-w6-7vY"/>
+                <outlet property="wrapperView" destination="AEO-la-Tbk" id="4lF-O6-gtx"/>
+            </connections>
+            <point key="canvasLocation" x="836" y="120"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="youtube" width="300" height="300"/>
+    </resources>
+</document>
