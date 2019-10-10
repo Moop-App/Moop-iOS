@@ -87,4 +87,18 @@ public final class API {
                         }
             
     }
+    
+    public func requestMapData<T: Decodable>(completionHandler: @escaping (Result<T, Error>) -> Void) {
+        self.requestURL = APISetupManager.locationRequestURL
+        self.request = AF.request(requestURL)
+            .validate(statusCode: [200])
+            .responseDecodable { (response: AFDataResponse<T>) in
+            switch response.result {
+            case .success(let item):
+                completionHandler(.success(item))
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
+        }
+    }
 }

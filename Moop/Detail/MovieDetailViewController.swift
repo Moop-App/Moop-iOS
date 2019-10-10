@@ -15,6 +15,11 @@ protocol MovieDetailPickAndPopDelegate: class {
     func rating(type: TheaterType, id: String)
 }
 
+protocol DetailHeaderDelegate: class {
+    func wrapper(type: TheaterType)
+    func poster(_ image: UIImage)
+}
+
 class MovieDetailViewController: UIViewController {
     static func instance(item: MovieInfo? = nil) -> MovieDetailViewController {
         let vc: MovieDetailViewController = instance(storyboardName: .main)
@@ -22,27 +27,73 @@ class MovieDetailViewController: UIViewController {
         return vc
     }
     
+    @IBOutlet private weak var favoriteButton: UIButton!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
+            tableView.register(MovieInfoPlotCell.self)
+            tableView.register(TrailerHeaderCell.self)
+            tableView.register(TrailerCell.self)
+            tableView.register(TrailerFooterCell.self)
+            tableView.register(NaverInfoCell.self)
+            tableView.register(TheaterCell.self)
+            tableView.register(PosterWithInfoCell.self)
+            tableView.register(BoxOfficeCell.self)
+            tableView.register(ImdbCell.self)
         }
     }
-    @IBOutlet private weak var headerView: MovieDetailHeaderView!
 
     private var item: MovieInfo?
-    private var totalCount = 0
+    private var totalCell: [CellType] = []
     weak var delegate: MovieDetailPickAndPopDelegate?
+    
+    enum CellType {
+        case header
+        case boxOffice
+        case imdb
+        case cgv
+        case plot
+        case naver
+        case trailer(TrailerInfo)
+        case trailerHeader
+        case trailerFooter
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = item?.title
-        headerView.set(item)
-        headerView.delegate = self
+        totalCell = calculateCell(info: item)
         
         if isAllowedToOpenStoreReview() {
             SKStoreReviewController.requestReview()
         }
+        
+        guard let ids = UserDefaults.standard.array(forKey: .favorites) as? [String] else { return }
+        favoriteButton.tag = ids.contains(item?.id ?? "") ? 1 : 0
+        favoriteButton.setImage(favoriteButton.tag == 1 ? UIImage(named: "heart_fill") : UIImage(named: "heart"), for: .normal)
+    }
+    
+    private func calculateCell(info: MovieInfo?) -> [CellType] {
+        guard let info = info else { return [] }
+        var result = [CellType.header]
+        if info.kobis?.boxOffice != nil {
+            result.append(.boxOffice)
+        }
+        if info.imdb != nil {
+            result.append(.imdb)
+        }
+        result.append(.cgv)
+        if info.kobis?.boxOffice == nil && info.naver != nil {
+            result.append(.naver)
+        }
+        if info.plot != nil {
+            result.append(.plot)
+        }
+        result.append(.trailerHeader)
+        info.trailers?.forEach { result.append(.trailer($0)) }
+        result.append(.trailerFooter)
+        return result
     }
     
     func isAllowedToOpenStoreReview() -> Bool {
@@ -55,6 +106,16 @@ class MovieDetailViewController: UIViewController {
         }
         UserDefaults.standard.set((launchCount + 1), forKey: .detailViewCount)
         return isOpen
+    }
+    
+    @IBAction private func share(_ sender: UIBarButtonItem) {
+        share()
+    }
+    
+    @IBAction private func favorite(_ sender: UIButton) {
+        sender.tag = sender.tag == 0 ? 1 : 0
+        sender.setImage(sender.tag == 1 ? UIImage(named: "heart_fill") : UIImage(named: "heart"), for: .normal)
+        favorite(isAdd: sender.tag == 1)
     }
     
     override var previewActionItems: [UIPreviewActionItem] {
@@ -130,54 +191,66 @@ extension MovieDetailViewController: DetailHeaderDelegate {
 
 extension MovieDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var numberOfRows = 0
-        numberOfRows += item?.naver != nil ? 1 : 0
-        numberOfRows += (item?.trailers?.isEmpty ?? true) ? 0 : 2
-        numberOfRows += item?.trailers?.count ?? 0
-        totalCount = numberOfRows
-        return numberOfRows
+        return totalCell.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.item == 0 && item?.naver != nil,
-           let cell = tableView.dequeueReusableCell(withIdentifier: "NaverInfoCell", for: indexPath) as? NaverInfoCell {
-            cell.set(item?.naver)
+        let cellType = totalCell[indexPath.item]
+        
+        switch cellType {
+        case .header:
+            let cell: PosterWithInfoCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.set(item)
             cell.delegate = self
             return cell
-        }
-        if (indexPath.item == 1 && item?.naver != nil) || (indexPath.item == 0 && item?.naver == nil),
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerHeaderCell", for: indexPath) as? TrailerHeaderCell {
+        case .boxOffice:
+            let cell: BoxOfficeCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.set(item)
+            return cell
+        case .imdb:
+            let cell: ImdbCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.set(item?.imdb)
+            return cell
+        case .cgv:
+            let cell: TheaterCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.set(item)
+            cell.delegate = self
+            return cell
+        case .naver:
+            let cell: NaverInfoCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.set(item?.naver)
+            return cell
+        case .plot:
+            let cell: MovieInfoPlotCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.configure(item?.plot)
+            return cell
+        case .trailerHeader:
+            let cell: TrailerHeaderCell = tableView.dequeueReusableCell(for: indexPath)
             cell.set(item?.title ?? "")
             return cell
-        }
-        if totalCount - 1 == indexPath.item {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerFooterCell", for: indexPath)
+        case .trailer(let trailerInfo):
+            let cell: TrailerCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.set(trailerInfo)
+            return cell
+        case .trailerFooter:
+            let cell: TrailerFooterCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         }
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerCell", for: indexPath) as? TrailerCell {
-            let targetIndex = item?.naver != nil ? 2 : 1
-            cell.set(item?.trailers?[indexPath.item - targetIndex])
-            return cell
-        }
-        return UITableViewCell()
     }
 }
 
 extension MovieDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView.cellForRow(at: indexPath) is NaverInfoCell {
-            guard let url = URL(string: item?.naver?.link ?? "") else { return }
-            let safariViewController = SFSafariViewController(url: url)
-            present(safariViewController, animated: true, completion: nil)
-        }
+        let cellType = totalCell[indexPath.item]
         
-        if let cell = tableView.cellForRow(at: indexPath) as? TrailerCell {
-            let viewController = YoutubeVideoPlayerController(videoId: cell.youtubeId ?? "")
+        switch cellType {
+        case .boxOffice, .naver:
+            wrapper(type: .naver)
+        case .trailer(let trailerInfo):
+            let viewController = YoutubeVideoPlayerController(videoId: trailerInfo.youtubeId)
             viewController.modalPresentationStyle = .fullScreen
             self.present(viewController, animated: true, completion: nil)
-        }
-        
-        if tableView.cellForRow(at: indexPath) is TrailerFooterCell {
+        case .trailerFooter:
             let title = item?.title.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
             guard let httpURL = URL(string: "https://www.youtube.com/results?search_query=\(title ?? "")"),
                 let youtubeURL = URL(string: "youtube://www.youtube.com/results?search_query=\(title ?? "")") else { return }
@@ -186,6 +259,7 @@ extension MovieDetailViewController: UITableViewDelegate {
             } else {
                 UIApplication.shared.open(httpURL, options: [:], completionHandler: nil)
             }
+        default: break
         }
     }
 }
