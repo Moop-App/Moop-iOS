@@ -28,7 +28,7 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wTB-Iy-X66" customClass="GADMediaView">
                                 <rect key="frame" x="10" y="8" width="154" height="115.5"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ad" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQh-BX-MG2">
                                 <rect key="frame" x="10" y="8" width="15" height="15"/>
@@ -126,7 +126,6 @@
                             <outlet property="bodyView" destination="mTZ-79-YAx" id="9n5-zr-Aw6"/>
                             <outlet property="callToActionView" destination="XPC-qe-jHi" id="LGi-Yc-heW"/>
                             <outlet property="headlineView" destination="bR0-6x-IUq" id="aII-uU-TEs"/>
-                            <outlet property="iconView" destination="Glx-zT-uZv" id="Gpg-Fn-feE"/>
                             <outlet property="mediaView" destination="wTB-Iy-X66" id="o9n-XW-EqC"/>
                             <outlet property="priceView" destination="aqq-2U-hej" id="81X-Tm-IQZ"/>
                             <outlet property="storeView" destination="Wlz-Kn-7to" id="XOe-x4-fCi"/>

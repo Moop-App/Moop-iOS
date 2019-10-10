@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyStoreKit
 
 class SettingItemCell: UITableViewCell, ReusableView, NibLoadableView {
 
@@ -15,5 +16,20 @@ class SettingItemCell: UITableViewCell, ReusableView, NibLoadableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
+    }
+    
+    func requestInAppInfo() {
+        SwiftyStoreKit.retrieveProductsInfo([AdConfig.adFreeKey]) { [weak self] result in
+            guard let self = self else { return }
+            if let product = result.retrievedProducts.first {
+                let priceString = product.localizedPrice!
+                self.descriptionLabel.text = "\("광고제거 구매하기".localized) \(priceString)"
+                print("Product: \(product.localizedDescription), price: \(priceString)")
+            } else if let invalidProductId = result.invalidProductIDs.first {
+                print("Invalid product identifier: \(invalidProductId)")
+            } else {
+                print("Error: \(result.error)")
+            }
+        }
     }
 }

@@ -66,7 +66,7 @@ class MovieDetailViewController: UIViewController {
         case ad
     }
     
-    func addBannerViewToView(_ bannerView: GADBannerView) {
+    private func addBannerViewToView(_ bannerView: GADBannerView) {
         bannerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bannerView)
         view.addConstraints(
@@ -104,6 +104,7 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func configureAd() {
+        if UserDefaults.standard.bool(forKey: .adFree) { return }
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         bannerView.adUnitID = AdConfig.bannderKey
         bannerView.rootViewController = self
@@ -136,7 +137,6 @@ class MovieDetailViewController: UIViewController {
             result.append(.plot)
         }
         result.append(.trailerHeader)
-        result.append(.ad)
         info.trailers?.forEach { result.append(.trailer($0)) }
         result.append(.trailerFooter)
         return result
@@ -312,14 +312,6 @@ extension MovieDetailViewController: UITableViewDelegate {
         default: break
         }
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let cell = tableView.cellForRow(at: indexPath) as? NativeAdCell else {
-            return UITableView.automaticDimension
-        }
-        
-        return cell.isVisible ? UITableView.automaticDimension : 0
-    }
 }
 
 extension MovieDetailViewController: GADBannerViewDelegate, GADUnifiedNativeAdLoaderDelegate {
@@ -333,18 +325,29 @@ extension MovieDetailViewController: GADBannerViewDelegate, GADUnifiedNativeAdLo
     }
     
     func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADUnifiedNativeAd) {
-        guard let index = totalCell.firstIndex(where: { cellType in
+        self.nativeAd = nativeAd
+        self.nativeAd?.rootViewController = self
+        
+        
+        if totalCell.contains(where: { cellType in
             switch cellType {
             case .ad: return true
             default: return false
             }
-        }) else { return }
+        }) {
+            return
+        }
         
-        guard let cell = tableView.cellForRow(at: IndexPath(item: index, section: 0)) as? NativeAdCell else { return }
-        self.nativeAd = nativeAd
-        self.nativeAd?.rootViewController = self
-        cell.set(nativeAd)
-        tableView.reloadRows(at: [IndexPath(item: index, section: 0)], with: .automatic)
+        guard let index = totalCell.firstIndex(where: { cellType in
+            switch cellType {
+            case .trailerHeader: return true
+            default: return false
+            }
+        }) else { return }
+        totalCell.insert(.ad, at: index+1)
+        tableView.beginUpdates()
+        tableView.insertRows(at: [IndexPath(item: index+1, section: 0)], with: .automatic)
+        tableView.endUpdates()
     }
     
     func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: GADRequestError) {

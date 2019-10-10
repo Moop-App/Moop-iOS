@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Networking
+import SwiftyStoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -46,5 +47,23 @@ extension AppDelegate {
         Fabric.with([Crashlytics.self])
         APISetupManager.setup()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
+        
+        // see notes below for the meaning of Atomic / Non-Atomic
+        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
+            for purchase in purchases {
+                switch purchase.transaction.transactionState {
+                case .purchased, .restored:
+                    if purchase.needsFinishTransaction {
+                        // Deliver content from server, then:
+                        SwiftyStoreKit.finishTransaction(purchase.transaction)
+                    }
+                    // Unlock content
+                case .failed, .purchasing, .deferred:
+                    break // do nothing
+                @unknown default:
+                    break
+                }
+            }
+        }
     }
 }
