@@ -9,6 +9,7 @@
 import UIKit
 import StoreKit
 import SafariServices
+import GoogleMobileAds
 
 protocol MovieDetailPickAndPopDelegate: class {
     func share(text: String)
@@ -41,9 +42,13 @@ class MovieDetailViewController: UIViewController {
             tableView.register(PosterWithInfoCell.self)
             tableView.register(BoxOfficeCell.self)
             tableView.register(ImdbCell.self)
+            tableView.register(NativeAdCell.self)
         }
     }
-
+    private var bannerView: GADBannerView!
+    private var adLoader: GADAdLoader!
+    private var nativeAd: GADUnifiedNativeAd?
+    
     private var item: MovieInfo?
     private var totalCell: [CellType] = []
     weak var delegate: MovieDetailPickAndPopDelegate?
@@ -58,12 +63,36 @@ class MovieDetailViewController: UIViewController {
         case trailer(TrailerInfo)
         case trailerHeader
         case trailerFooter
+        case ad
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: view.safeAreaLayoutGuide,
+                                attribute: .bottom,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+        ])
+        view.bringSubviewToFront(bannerView)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = item?.title
         totalCell = calculateCell(info: item)
+        configureAd()
         
         if isAllowedToOpenStoreReview() {
             SKStoreReviewController.requestReview()
@@ -72,6 +101,22 @@ class MovieDetailViewController: UIViewController {
         guard let ids = UserDefaults.standard.array(forKey: .favorites) as? [String] else { return }
         favoriteButton.tag = ids.contains(item?.id ?? "") ? 1 : 0
         favoriteButton.setImage(favoriteButton.tag == 1 ? UIImage(named: "heart_fill") : UIImage(named: "heart"), for: .normal)
+    }
+    
+    private func configureAd() {
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView.adUnitID = AdConfig.bannderKey
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+        
+        adLoader = GADAdLoader(adUnitID: AdConfig.nativeAdKey,
+                               rootViewController: self,
+                               adTypes: [.unifiedNative],
+                               options: nil)
+        adLoader.delegate = self
+        adLoader.load(GADRequest())
     }
     
     private func calculateCell(info: MovieInfo?) -> [CellType] {
@@ -91,6 +136,7 @@ class MovieDetailViewController: UIViewController {
             result.append(.plot)
         }
         result.append(.trailerHeader)
+        result.append(.ad)
         info.trailers?.forEach { result.append(.trailer($0)) }
         result.append(.trailerFooter)
         return result
@@ -166,11 +212,11 @@ extension MovieDetailViewController: DetailHeaderDelegate {
     func favorite(isAdd: Bool) {
         guard var array = UserDefaults.standard.array(forKey: .favorites) as? [String],
             let itemId = item?.id else {
-            if isAdd {
-                UserDefaults.standard.set([item?.id ?? ""], forKey: .favorites)
-                NotificationManager.shared.addNotification(item: item)
-            }
-            return
+                if isAdd {
+                    UserDefaults.standard.set([item?.id ?? ""], forKey: .favorites)
+                    NotificationManager.shared.addNotification(item: item)
+                }
+                return
         }
         if isAdd {
             array.append(itemId)
@@ -235,6 +281,10 @@ extension MovieDetailViewController: UITableViewDataSource {
         case .trailerFooter:
             let cell: TrailerFooterCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
+        case .ad:
+            let cell: NativeAdCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.set(nativeAd)
+            return cell
         }
     }
 }
@@ -261,5 +311,43 @@ extension MovieDetailViewController: UITableViewDelegate {
             }
         default: break
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let cell = tableView.cellForRow(at: indexPath) as? NativeAdCell else {
+            return UITableView.automaticDimension
+        }
+        
+        return cell.isVisible ? UITableView.automaticDimension : 0
+    }
+}
+
+extension MovieDetailViewController: GADBannerViewDelegate, GADUnifiedNativeAdLoaderDelegate {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        // Add banner to view and add constraints as above.
+        addBannerViewToView(bannerView)
+        bannerView.alpha = 0
+        UIView.animate(withDuration: 1, animations: {
+            bannerView.alpha = 1
+        })
+    }
+    
+    func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADUnifiedNativeAd) {
+        guard let index = totalCell.firstIndex(where: { cellType in
+            switch cellType {
+            case .ad: return true
+            default: return false
+            }
+        }) else { return }
+        
+        guard let cell = tableView.cellForRow(at: IndexPath(item: index, section: 0)) as? NativeAdCell else { return }
+        self.nativeAd = nativeAd
+        self.nativeAd?.rootViewController = self
+        cell.set(nativeAd)
+        tableView.reloadRows(at: [IndexPath(item: index, section: 0)], with: .automatic)
+    }
+    
+    func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: GADRequestError) {
+        
     }
 }

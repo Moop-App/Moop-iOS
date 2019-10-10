@@ -17,6 +17,7 @@ enum SettingSection: CaseIterable {
     case version
     case opensource
     case feedback
+    case inapp
     
     var title: String {
         switch self {
@@ -30,6 +31,8 @@ enum SettingSection: CaseIterable {
             return "오픈소스".localized
         case .feedback:
             return "피드백".localized
+        case .inapp:
+            return "인앱구매".localized
         }
     }
     
@@ -46,6 +49,8 @@ enum SettingSection: CaseIterable {
             return "자세히보기".localized
         case .feedback:
             return "개발자에게버그신고하기".localized
+        case .inapp:
+            return "광고제거 구매하기".localized
         }
     }
 }

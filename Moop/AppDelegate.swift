@@ -45,5 +45,6 @@ extension AppDelegate {
         FirebaseApp.configure()
         Fabric.with([Crashlytics.self])
         APISetupManager.setup()
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
     }
 }

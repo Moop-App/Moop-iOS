@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>GADApplicationIdentifier</key>
+	<string>$(GAD_APPLICATION_IDENTIFIER)</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>사용자의 현재위치가 지도상에 표시되며, 전국의 영화관 위치가 표시됩니다.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
