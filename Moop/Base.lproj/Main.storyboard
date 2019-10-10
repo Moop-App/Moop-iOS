@@ -227,13 +227,9 @@
                     <navigationItem key="navigationItem" id="AOQ-tR-yuz">
                         <rightBarButtonItems>
                             <barButtonItem image="share" style="plain" id="adb-R4-PY9">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Iop-Py-KfL">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Iop-Py-KfL">
                                     <rect key="frame" x="346" y="0.0" width="48" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="36" id="MeY-zf-gVe"/>
-                                        <constraint firstAttribute="width" constant="36" id="bZO-Af-roe"/>
-                                    </constraints>
                                     <state key="normal" image="share"/>
                                     <connections>
                                         <action selector="share:" destination="xIA-bh-Qh7" eventType="touchUpInside" id="3dz-EI-led"/>

@@ -10,6 +10,7 @@ import UIKit
 import AcknowList
 import MessageUI
 import CTFeedbackSwift
+import SwiftyStoreKit
 
 enum SettingSection: CaseIterable {
     case theme
@@ -17,6 +18,7 @@ enum SettingSection: CaseIterable {
     case version
     case opensource
     case feedback
+    case inapp
     
     var title: String {
         switch self {
@@ -30,6 +32,8 @@ enum SettingSection: CaseIterable {
             return "오픈소스".localized
         case .feedback:
             return "피드백".localized
+        case .inapp:
+            return "인앱구매".localized
         }
     }
     
@@ -46,6 +50,8 @@ enum SettingSection: CaseIterable {
             return "자세히보기".localized
         case .feedback:
             return "개발자에게버그신고하기".localized
+        case .inapp:
+            return "광고제거 구매하기".localized
         }
     }
 }
@@ -122,6 +128,9 @@ extension SettingViewController: ScrollToTopDelegate {
 
 extension SettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if UserDefaults.standard.bool(forKey: .adFree) {
+            return (datas.count - 1) * 3
+        }
         return datas.count * 3
     }
     
@@ -135,7 +144,12 @@ extension SettingViewController: UITableViewDataSource {
         case 1:
             let cell: SettingItemCell = tableView.dequeueReusableCell(for: indexPath)
             let item = datas[indexPath.item / 3]
-            cell.descriptionLabel.text = "\(item.description)" + (item == .version ? " / \("최신".localized) \(currentVersion)" : "")
+            if item == .inapp {
+                cell.descriptionLabel.text = item.description
+                cell.requestInAppInfo()
+            } else {
+                cell.descriptionLabel.text = "\(item.description)" + (item == .version ? " / \("최신".localized) \(currentVersion)" : "")
+            }
             return cell
         default:
             let cell: SettingDividerCell = tableView.dequeueReusableCell(for: indexPath)
@@ -180,6 +194,16 @@ extension SettingViewController: UITableViewDelegate {
                 let url = URL(string: "http://pf.kakao.com/_xaPxkxau")
                 if let url = url, UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url, options: [:])
+                }
+            }
+        case 16: // IN_APP
+            SwiftyStoreKit.purchaseProduct(AdConfig.adFreeKey, quantity: 1, atomically: true) { [weak self] result in
+                switch result {
+                case .success:
+                    UserDefaults.standard.set(true, forKey: .adFree)
+                    self?.tableView.reloadData()
+                case .error(let error):
+                    print((error as NSError).localizedDescription)
                 }
             }
         default:

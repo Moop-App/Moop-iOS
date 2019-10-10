@@ -13,6 +13,9 @@ target 'Moop' do
 
   pod 'SDWebImage'
   pod 'Firebase/Messaging'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/AdMob'
+  pod 'SwiftyStoreKit'
 
   pod 'SwiftLint'
   pod 'Wormholy', :configurations => ['Debug']

@@ -95,6 +95,10 @@
 		A0CAC9F8234D8AE70076E432 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CAC9F7234D8AE70076E432 /* PaddingLabel.swift */; };
 		A0CAC9FB234DB5AE0076E432 /* ImdbCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CAC9F9234DB5AE0076E432 /* ImdbCell.swift */; };
 		A0CAC9FC234DB5AE0076E432 /* ImdbCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0CAC9FA234DB5AE0076E432 /* ImdbCell.xib */; };
+		A0CAC9FE234F33260076E432 /* NativeAdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0CAC9FD234F33260076E432 /* NativeAdCell.xib */; };
+		A0CACA00234F3B7F0076E432 /* NativeAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CAC9FF234F3B7F0076E432 /* NativeAdCell.swift */; };
+		A0CACA02234F48890076E432 /* AdConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CACA01234F48890076E432 /* AdConfig.swift */; };
+		A0CACA05234F4BAA0076E432 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0CACA04234F4BAA0076E432 /* StoreKit.framework */; };
 		A0CAEBBF22FAEAD800C5C662 /* MapRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CAEBBE22FAEAD800C5C662 /* MapRouteView.swift */; };
 		A0D2461B22F3D99600F48CBA /* CGVInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2461A22F3D99600F48CBA /* CGVInfo.swift */; };
 		A0D2461D22F3D9A900F48CBA /* LotteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2461C22F3D9A900F48CBA /* LotteInfo.swift */; };
@@ -266,6 +270,11 @@
 		A0CAC9F7234D8AE70076E432 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		A0CAC9F9234DB5AE0076E432 /* ImdbCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImdbCell.swift; sourceTree = "<group>"; };
 		A0CAC9FA234DB5AE0076E432 /* ImdbCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImdbCell.xib; sourceTree = "<group>"; };
+		A0CAC9FD234F33260076E432 /* NativeAdCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NativeAdCell.xib; sourceTree = "<group>"; };
+		A0CAC9FF234F3B7F0076E432 /* NativeAdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAdCell.swift; sourceTree = "<group>"; };
+		A0CACA01234F48890076E432 /* AdConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdConfig.swift; sourceTree = "<group>"; };
+		A0CACA03234F499F0076E432 /* Ad.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Ad.xcconfig; sourceTree = "<group>"; };
+		A0CACA04234F4BAA0076E432 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A0CAEBBE22FAEAD800C5C662 /* MapRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouteView.swift; sourceTree = "<group>"; };
 		A0D2461A22F3D99600F48CBA /* CGVInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGVInfo.swift; sourceTree = "<group>"; };
 		A0D2461C22F3D9A900F48CBA /* LotteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotteInfo.swift; sourceTree = "<group>"; };
@@ -287,6 +296,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0CACA05234F4BAA0076E432 /* StoreKit.framework in Frameworks */,
 				A04A4EB42307E884008B0944 /* Networking.framework in Frameworks */,
 				0EDD23484A5A214B04612924 /* Pods_Moop.framework in Frameworks */,
 			);
@@ -358,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				3C6601F322956D38000BA333 /* AppDelegate.swift */,
+				A0CACA01234F48890076E432 /* AdConfig.swift */,
 				3CB6E84C22B9C518008F382C /* MainTabBarController.swift */,
 				3C6601F722956D38000BA333 /* Main.storyboard */,
 				3CF7219522BF57480022D03E /* Current */,
@@ -438,6 +449,7 @@
 				A08E90592349E447007BFA96 /* GoogleService-Info.plist */,
 				3C6601FF22956D39000BA333 /* Info.plist */,
 				3CF5B8D0229ACE5F00A4C2BB /* Pods-Moop-acknowledgements.plist */,
+				A0CACA03234F499F0076E432 /* Ad.xcconfig */,
 				A0657E1F22F8007600EA89FE /* Default.xcconfig */,
 				A0657E2122F802CF00EA89FE /* Debug.xcconfig */,
 				A0657E2222F802D900EA89FE /* Release.xcconfig */,
@@ -548,6 +560,8 @@
 				A0CAC9F0234D681C0076E432 /* BoxOfficeCell.xib */,
 				A0CAC9F9234DB5AE0076E432 /* ImdbCell.swift */,
 				A0CAC9FA234DB5AE0076E432 /* ImdbCell.xib */,
+				A0CAC9FF234F3B7F0076E432 /* NativeAdCell.swift */,
+				A0CAC9FD234F33260076E432 /* NativeAdCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -582,6 +596,7 @@
 		FC4485EF88D37C6645F15DFF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A0CACA04234F4BAA0076E432 /* StoreKit.framework */,
 				0FB0F0F28D907F86F889E893 /* Pods_Moop.framework */,
 				F6D7796071955DEAF3E6A7AF /* Pods_MoopTests.framework */,
 				B77CA98EA67509EB217ECF11 /* Pods_Networking.framework */,
@@ -763,6 +778,7 @@
 				3C66021B22959A18000BA333 /* MovieCell.xib in Resources */,
 				A0CAC9EC234D656E0076E432 /* PosterWithInfoCell.xib in Resources */,
 				3CF5B8D1229ACE5F00A4C2BB /* Pods-Moop-acknowledgements.plist in Resources */,
+				A0CAC9FE234F33260076E432 /* NativeAdCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -963,6 +979,7 @@
 				3CB52E6B22B4DF84009FD7D1 /* TrailerFooterCell.swift in Sources */,
 				A0D2461D22F3D9A900F48CBA /* LotteInfo.swift in Sources */,
 				A0CAC9FB234DB5AE0076E432 /* ImdbCell.swift in Sources */,
+				A0CACA02234F48890076E432 /* AdConfig.swift in Sources */,
 				3C66021A22959A18000BA333 /* MovieCell.swift in Sources */,
 				3C767527229918890052BEB6 /* UIView+Extension.swift in Sources */,
 				A0D2461F22F3D9C000F48CBA /* MegaBoxInfo.swift in Sources */,
@@ -972,6 +989,7 @@
 				A00671FB22FC1636002FE813 /* UIImage+Extension.swift in Sources */,
 				3C947A8C22D736170075E4DE /* FilterViewController.swift in Sources */,
 				A0D2462122F3D9D500F48CBA /* TrailerInfo.swift in Sources */,
+				A0CACA00234F3B7F0076E432 /* NativeAdCell.swift in Sources */,
 				3CDCD78D22BDD1BD00DDD14B /* YoutubeVideoPlayerController.swift in Sources */,
 				A01007EC232A6FDC00DC9B55 /* Log.swift in Sources */,
 				3CF7219422BF57430022D03E /* CurrentMovieView.swift in Sources */,
@@ -1251,8 +1269,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSETCATALOG_COMPILER_APPICON_NAME)";
 				CODE_SIGN_ENTITLEMENTS = Moop/Resource/Moop.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(BUNDLE_VERSION)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UQZ9Y78ACS;
@@ -1264,7 +1282,8 @@
 				MARKETING_VERSION = "$(BUNDLE_SHORT_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.kor45cw.Moop.dev";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
