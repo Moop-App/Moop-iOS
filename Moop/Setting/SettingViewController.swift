@@ -114,6 +114,15 @@ class SettingViewController: UIViewController {
         super.viewWillDisappear(animated)
         canScrollToTop = false
     }
+    
+    @IBAction private func restore(_ sender: UIBarButtonItem) {
+        SwiftyStoreKit.restorePurchases { [weak self] result in
+            if result.restoredPurchases.count == 1 {
+                UserDefaults.standard.set(true, forKey: .adFree)
+                self?.tableView.reloadData()
+            }
+        }
+    }
 }
 
 extension SettingViewController: ScrollToTopDelegate {

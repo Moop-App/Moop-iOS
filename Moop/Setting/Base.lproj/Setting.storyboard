@@ -32,7 +32,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nfN-OC-AkZ"/>
                     </view>
-                    <navigationItem key="navigationItem" title="설정" id="P8P-Sl-uul"/>
+                    <navigationItem key="navigationItem" title="설정" id="P8P-Sl-uul">
+                        <barButtonItem key="rightBarButtonItem" title="구매복원" id="GFP-Qi-bEs">
+                            <connections>
+                                <action selector="restore:" destination="Zfa-0d-XwU" id="x4L-1A-vlD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="2Tn-cM-FaD" id="ciJ-VE-VA8"/>
                         <segue destination="E56-jo-Uog" kind="show" identifier="toMaps" id="hDL-Go-4CP"/>
@@ -176,7 +182,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6sY-RN-SxI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Ppb-zp-IyM">
-                        <rect key="frame" x="0.0" y="44" width="414" height="104.5"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
