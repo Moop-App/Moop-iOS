@@ -62,7 +62,6 @@ class SettingViewController: UIViewController {
         return vc
     }
     
-    
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
@@ -84,6 +83,10 @@ class SettingViewController: UIViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadRows(at: [IndexPath(row: 7, section: 0)], with: .automatic)
             }
+        }
+        
+        if UserDefaults.standard.bool(forKey: .adFree) {
+            self.navigationItem.rightBarButtonItems = nil
         }
     }
     
