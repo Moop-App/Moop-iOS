@@ -11,8 +11,8 @@
 
 
 // VERSION
-CONFIG_BUNDLE_SHORT_VERSION                                     = 0.9.1
-CONFIG_BUILD_VERSION                                            = 2
+CONFIG_BUNDLE_SHORT_VERSION                                     = 0.9.2
+CONFIG_BUILD_VERSION                                            = 1
 CONFIG_BUNDLE_VERSION                                           = $(CONFIG_BUNDLE_SHORT_VERSION)
 
 // PRODUCT_NAME

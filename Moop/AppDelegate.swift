@@ -10,7 +10,9 @@ import UIKit
 import Firebase
 import Networking
 import SwiftyStoreKit
+#if DEBUG
 import FLEX
+#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
