@@ -25,10 +25,10 @@ class BoxOfficeCell: UITableViewCell, ReusableView, NibLoadableView {
 
     func set(_ info: MovieInfo?) {
         guard let info = info else { return }
-        rankLabel.text = "\(info.kobis?.boxOffice?.rank ?? 0)위"
-        rankReferenceDateLabel.text = "\(Date.yesterday.MM_dd) 기준"
-        audienceCountLabel.text = "\(info.kobis?.boxOffice?.audiAcc.withCommas() ?? "0")명"
-        audienceReferenceDateLabel.text = "개봉 \(-info.getDay)일차"
+        rankLabel.text = (info.kobis?.boxOffice?.rank ?? 0).ordinal
+        rankReferenceDateLabel.text = "기준".localizedFormat(Date.yesterday.MM_dd)
+        audienceCountLabel.text = "명".localizedFormat(info.kobis?.boxOffice?.audiAcc.withCommas() ?? "0")
+        audienceReferenceDateLabel.text = "개봉%d일차".localizedFormat(-info.getDay)
         naverStarLabel.text = info.naver?.userRating ?? "-"
     }
 }

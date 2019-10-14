@@ -1,20 +1,20 @@
 //
-//  CurrentMovieData.swift
+//  MovieData.swift
 //  Moop
 //
-//  Created by Chang Woo Son on 2019/06/23.
+//  Created by kor45cw on 2019/10/12.
 //  Copyright © 2019 kor45cw. All rights reserved.
 //
 
 import Foundation
 
-class CurrentMovieData {
+class MovieData {
     var items: [MovieInfo] = []
     var filteredMovies: [MovieInfo] = []
     var searchedMovies: [MovieInfo] = []
 }
 
-extension CurrentMovieData {
+extension MovieData {
     func update(items: [MovieInfo]) {
         self.items = items.sorted(by: { $0.rank < $1.rank })
     }
@@ -31,4 +31,3 @@ extension CurrentMovieData {
             .filter { $0.contain(ages: ages) }
     }
 }
-

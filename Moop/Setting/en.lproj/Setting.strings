@@ -8,6 +8,9 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "8UO-tK-lqt"; */
 "8UO-tK-lqt.text" = "Label";
 
+/* Class = "UIBarButtonItem"; title = "구매복원"; ObjectID = "GFP-Qi-bEs"; */
+"GFP-Qi-bEs.title" = "Restore";
+
 /* Class = "UINavigationItem"; title = "설정"; ObjectID = "P8P-Sl-uul"; */
 "P8P-Sl-uul.title" = "Settings";
 
