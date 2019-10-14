@@ -14,4 +14,10 @@ extension Int {
         numberFormatter.numberStyle = .decimal
         return numberFormatter.string(from: NSNumber(value:self)) ?? ""
     }
+    
+    var ordinal: String? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .ordinal
+        return formatter.string(from: NSNumber(value: self))
+    }
 }

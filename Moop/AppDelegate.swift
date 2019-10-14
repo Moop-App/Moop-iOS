@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import Networking
 import SwiftyStoreKit
+import FLEX
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         librarySetup()
+        debugSettings()
         ShortcutManager.shared.application(didFinishLaunchingWithOptions: launchOptions)
         NotificationManager.shared.register(application)
         MovieInfoManager.shared.requestFutureData()
@@ -42,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate {
-    func librarySetup() {
+    private func librarySetup() {
         FirebaseApp.configure()
         Fabric.with([Crashlytics.self])
         APISetupManager.setup()
@@ -65,5 +67,11 @@ extension AppDelegate {
                 }
             }
         }
+    }
+    
+    private func debugSettings() {
+        #if DEBUG
+        FLEXManager.shared().showExplorer()
+        #endif
     }
 }

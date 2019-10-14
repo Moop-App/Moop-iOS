@@ -19,27 +19,18 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         self.delegate = self
         
-        
-        self.viewControllers = [currentMovieViewController(), futureMovieViewController(),
-                                favoriteViewController(), settingViewController()]
+        self.viewControllers = [movieViewController(),
+                                favoriteViewController(),
+                                settingViewController()]
     }
     
-    private func currentMovieViewController() -> UINavigationController {
-        let currentNavigationController = UINavigationController(rootViewController: CurrentMovieView.instance())
+    private func movieViewController() -> UINavigationController {
+        let currentNavigationController = UINavigationController(rootViewController: MovieView.instance())
         currentNavigationController.navigationBar.prefersLargeTitles = true
-        let currentTabBarItem = UITabBarItem(title: "현재상영".localized, image: UIImage(named: "movie"), tag: 0)
+        let currentTabBarItem = UITabBarItem(title: "영화".localized, image: UIImage(named: "movie"), tag: 0)
         currentTabBarItem.selectedImage = UIImage(named: "movie_selected")
         currentNavigationController.tabBarItem = currentTabBarItem
         return currentNavigationController
-    }
-    
-    private func futureMovieViewController() -> UINavigationController {
-        let futureNavigationController = UINavigationController(rootViewController: FutureMovieView.instance())
-        futureNavigationController.navigationBar.prefersLargeTitles = true
-        let futureTabBarItem = UITabBarItem(title: "개봉예정".localized, image: UIImage(named: "plan"), tag: 1)
-        futureTabBarItem.selectedImage = UIImage(named: "plan_selected")
-        futureNavigationController.tabBarItem = futureTabBarItem
-        return futureNavigationController
     }
     
     private func favoriteViewController() -> UINavigationController {

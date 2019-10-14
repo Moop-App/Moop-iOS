@@ -10,8 +10,7 @@ import UIKit
 
 enum StoryboardName: String {
     case main = "Main"
-    case currentMovie = "CurrentMovie"
-    case futureMovie = "FutureMovie"
+    case movie = "Movie"
     case setting = "Setting"
     case favorite = "Favorite"
 }
