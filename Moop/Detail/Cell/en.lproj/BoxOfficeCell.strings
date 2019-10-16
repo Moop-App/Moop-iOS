@@ -1,0 +1,27 @@
+
+/* Class = "UILabel"; text = "1명"; ObjectID = "5bj-Vq-K14"; */
+"5bj-Vq-K14.text" = "1명";
+
+/* Class = "UILabel"; text = "10.08 기준"; ObjectID = "JGt-8w-eTD"; */
+"JGt-8w-eTD.text" = "10.08 기준";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "SJG-Xb-8qE"; */
+"SJG-Xb-8qE.text" = "Label";
+
+/* Class = "UILabel"; text = "평점"; ObjectID = "Txt-fW-3Tt"; */
+"Txt-fW-3Tt.text" = "grade";
+
+/* Class = "UILabel"; text = "1위"; ObjectID = "Vcd-Ts-MrV"; */
+"Vcd-Ts-MrV.text" = "1위";
+
+/* Class = "UILabel"; text = "누적 관객수"; ObjectID = "ipL-n7-rf1"; */
+"ipL-n7-rf1.text" = "Cumulative audience";
+
+/* Class = "UILabel"; text = "개봉 7일차"; ObjectID = "oCw-6J-1CW"; */
+"oCw-6J-1CW.text" = "개봉 7일차";
+
+/* Class = "UILabel"; text = "NAVER"; ObjectID = "suU-vs-nJe"; */
+"suU-vs-nJe.text" = "NAVER";
+
+/* Class = "UILabel"; text = "박스오피스"; ObjectID = "xTv-bX-vvl"; */
+"xTv-bX-vvl.text" = "Box office";

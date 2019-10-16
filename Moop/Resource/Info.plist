@@ -44,6 +44,7 @@
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>nmap</string>
 		<string>youtube</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>

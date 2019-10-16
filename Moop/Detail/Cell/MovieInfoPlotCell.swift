@@ -17,7 +17,7 @@ class MovieInfoPlotCell: UITableViewCell, ReusableView, NibLoadableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        titleLabel.text = "줄거리"
+        titleLabel.text = "줄거리".localized
         wrapperView.elevate(elevation: 2)
     }
     

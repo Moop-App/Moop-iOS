@@ -47,7 +47,7 @@ class MovieInfoManager {
             guard let self = self else { return }
             switch result {
             case .success(let result):
-                self.currentDatas = result.sorted(by: { $0.rank < $1.rank })
+                self.currentDatas = result
                 completionHandler?()
             case .failure(let error):
                 print(error.localizedDescription)
@@ -62,7 +62,7 @@ class MovieInfoManager {
             guard let self = self else { return }
             switch result {
             case .success(let result):
-                self.futureDatas = result.sorted(by: { $0.rank < $1.rank })
+                self.futureDatas = result
                 completionHandler?()
             case .failure(let error):
                 print(error.localizedDescription)

@@ -55,6 +55,7 @@ PODS:
     - GoogleUtilities/Reachability (~> 6.2)
     - GoogleUtilities/UserDefaults (~> 6.2)
     - Protobuf (>= 3.9.2, ~> 3.9)
+  - FLEX (3.0.0)
   - FTLinearActivityIndicator (1.3)
   - Google-Mobile-Ads-SDK (7.50.0):
     - GoogleAppMeasurement (~> 6.0)
@@ -111,6 +112,7 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Core
   - Firebase/Messaging
+  - FLEX
   - FTLinearActivityIndicator
   - Nimble
   - Quick
@@ -135,6 +137,7 @@ SPEC REPOS:
     - FirebaseCoreDiagnosticsInterop
     - FirebaseInstanceID
     - FirebaseMessaging
+    - FLEX
     - FTLinearActivityIndicator
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
@@ -165,6 +168,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
   FirebaseInstanceID: 550df9be1f99f751d8fcde3ac342a1e21a0e6c42
   FirebaseMessaging: 35edef69a6af9b34e9e44624089f054be3c09089
+  FLEX: d66c759bce0f6ebbbf472c742380874d846f2883
   FTLinearActivityIndicator: c89ccc2ef18279a155820c0e81f09ce2e90a2dc9
   Google-Mobile-Ads-SDK: d48dbaf5bae1ab7a94a9786f493c26c454bc6f16
   GoogleAppMeasurement: 434cc7be25e71dc04b8d0e3079125127b330e84a
@@ -180,6 +184,6 @@ SPEC CHECKSUMS:
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   Wormholy: db6ac46a6d20db2d11ddcf975a5a9bcc1abc889e
 
-PODFILE CHECKSUM: c0d4fff08b3ae9e39071dcc7fbf22e7e48e8d29c
+PODFILE CHECKSUM: a5d5805cdc7fad0241682a0f948703e35ed36421
 
 COCOAPODS: 1.8.3

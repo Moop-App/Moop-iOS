@@ -15,22 +15,22 @@ class MovieInfoLabelView: UIView {
     func configure(_ type: MovieInfoType, item: MovieInfo) {
         switch type {
         case .openDate:
-            titleLabel.text = "개봉"
+            titleLabel.text = "개봉".localized
             descriptionLabel.text = item.openDate
         case .rating:
-            titleLabel.text = "등급"
+            titleLabel.text = "등급".localized
             descriptionLabel.text = item.age
         case .genre:
-            titleLabel.text = "장르"
+            titleLabel.text = "장르".localized
             descriptionLabel.text = item.genreText
         case .nation:
-            titleLabel.text = "국가"
+            titleLabel.text = "국가".localized
             descriptionLabel.text = item.nation
         case .runningTime:
-            titleLabel.text = "러닝타임"
-            descriptionLabel.text = "\(item.showTime ?? 0)분"
+            titleLabel.text = "러닝타임".localized
+            descriptionLabel.text = "분".localizedFormat(item.showTime ?? 0)
         case .provider:
-            titleLabel.text = "배급"
+            titleLabel.text = "배급".localized
             descriptionLabel.text = item.provider
         }
     }

@@ -1,23 +1,23 @@
 //
-//  CurrentMovieView.swift
+//  MovieView.swift
 //  Moop
 //
-//  Created by Chang Woo Son on 2019/06/23.
+//  Created by kor45cw on 2019/10/12.
 //  Copyright © 2019 kor45cw. All rights reserved.
 //
 
 import UIKit
 import SafariServices
 
-class CurrentMovieView: UIViewController {
-    static func instance() -> CurrentMovieView {
-        let vc: CurrentMovieView = instance(storyboardName: .currentMovie)
-        vc.presenter = CurrentMoviePresenter(view: vc)
+class MovieView: UIViewController {
+    static func instance() -> MovieView {
+        let vc: MovieView = instance(storyboardName: .movie)
+        vc.presenter = MoviePresenter(view: vc)
         return vc
     }
     
-    var presenter: CurrentMoviePresenterDelegate!
-    
+    var presenter: MoviePresenterDelegate!
+
     private let searchController = UISearchController(searchResultsController: nil)
     private let refreshControl = UIRefreshControl()
     @IBOutlet private weak var collectionView: UICollectionView! {
@@ -27,22 +27,28 @@ class CurrentMovieView: UIViewController {
             refreshControl.addTarget(self, action: #selector(requestData), for: .valueChanged)
             collectionView.refreshControl = refreshControl
             collectionView.register(MovieCell.self)
+            collectionView.register(MovieViewSegmentedControl.self,
+                                    forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                    withReuseIdentifier: "MovieViewSegmentedControl")
+
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchController.searchResultsUpdater = presenter as? CurrentMoviePresenter
-        searchController.searchBar.delegate = presenter as? CurrentMoviePresenter
+        navigationItem.title = MoviePresenter.MovieType.current.title
+        searchController.searchResultsUpdater = presenter as? MoviePresenter
+        searchController.searchBar.delegate = presenter as? MoviePresenter
         searchController.obscuresBackgroundDuringPresentation = false
         definesPresentationContext = true
         navigationItem.searchController = searchController
         registerForPreviewing(with: self, sourceView: self.collectionView)
-        requestData()
+        presenter.fetchDatas(type: [.current, .future])
     }
     
+    
     @objc private func requestData() {
-        presenter.fetchDatas()
+        presenter.fetchDatas(type: [])
     }
     
     var canScrollToTop: Bool = false
@@ -59,24 +65,34 @@ class CurrentMovieView: UIViewController {
     
     @IBAction private func filter(_ sender: UIBarButtonItem) {
         let destination = FilterViewController.instance()
-        destination.delegate = presenter as? CurrentMoviePresenter
+        destination.delegate = presenter as? MoviePresenter
         self.present(UINavigationController(rootViewController: destination), animated: true)
     }
 }
 
-extension CurrentMovieView: CurrentMovieViewDelegate {
+extension MovieView: MovieViewDelegate {
     func loadFinished() {
-        self.collectionView.reloadData()
-        self.refreshControl.endRefreshing()
+        collectionView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     func loadFailed() {
-        self.refreshControl.endRefreshing()
+        refreshControl.endRefreshing()
         // TODO: Fail Toast
+    }
+    
+    func change(state: MoviePresenter.MovieType) {
+        navigationItem.title = state.title
     }
 }
 
-extension CurrentMovieView: ScrollToTopDelegate {
+extension MovieView: MovieViewSegmentedControlChangeDelegate {
+    func trackSelected(index: Int) {
+        presenter.updateState(index)
+    }
+}
+
+extension MovieView: ScrollToTopDelegate {
     func scrollToTop() {
         if collectionView != nil && !presenter.isEmpty {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
@@ -86,7 +102,7 @@ extension CurrentMovieView: ScrollToTopDelegate {
     }
 }
 
-extension CurrentMovieView: UICollectionViewDataSource {
+extension MovieView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter.numberOfItemsInSection
     }
@@ -101,9 +117,25 @@ extension CurrentMovieView: UICollectionViewDataSource {
         let destination = MovieDetailViewController.instance(item: presenter[indexPath])
         self.navigationController?.pushViewController(destination, animated: true)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        var header: UICollectionReusableView?
+
+        if kind == UICollectionView.elementKindSectionHeader,
+            let segmentedHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "MovieViewSegmentedControl", for: indexPath) as? MovieViewSegmentedControl {
+            segmentedHeader.delegate = self
+            header = segmentedHeader
+        }
+
+        return header!
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: self.view.frame.width, height: 38)
+    }
 }
 
-extension CurrentMovieView: UICollectionViewDelegateFlowLayout {
+extension MovieView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = (collectionView.bounds.width - 36) / 3
         return CGSize(width: cellWidth, height: cellWidth / 600.0 * 855)
@@ -149,7 +181,7 @@ extension CurrentMovieView: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension CurrentMovieView: UIViewControllerPreviewingDelegate {
+extension MovieView: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = collectionView.indexPathForItem(at: location),
             let cell = collectionView.cellForItem(at: indexPath) else { return nil }
@@ -165,7 +197,7 @@ extension CurrentMovieView: UIViewControllerPreviewingDelegate {
     }
 }
 
-extension CurrentMovieView: MovieDetailPickAndPopDelegate {
+extension MovieView: MovieDetailPickAndPopDelegate {
     func share(text: String) {
         let viewController = UIActivityViewController(activityItems: [text], applicationActivities: [])
         present(viewController, animated: true, completion: nil)

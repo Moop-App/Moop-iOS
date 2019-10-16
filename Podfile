@@ -19,7 +19,8 @@ target 'Moop' do
 
   pod 'SwiftLint'
   pod 'Wormholy', :configurations => ['Debug']
-
+  pod 'FLEX', :configurations => ['Debug']
+  
   pod 'CTFeedbackSwift'
   pod 'AcknowList'
 

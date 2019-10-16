@@ -10,24 +10,16 @@ import Alamofire
 
 public final class API {
     public static let shared: API = API()
-
-    private var request: DataRequest? {
-        didSet {
-            oldValue?.cancel()
-        }
-    }
     
     private var reachability: NetworkReachabilityManager!
     private var reachabilityStatus: NetworkReachabilityManager.NetworkReachabilityStatus = .unknown {
         didSet {
             guard oldValue != reachabilityStatus,
-                ![.notReachable, .unknown].contains(reachabilityStatus) else { return }
-            // TODO: RETRY
+                ![.notReachable, .unknown].contains(reachabilityStatus), oldValue != .unknown else { return }
             self.requestRepeated()
-            
         }
     }
-
+    
     public static let notificationName = Notification.Name("didReceiveData")
     private var requestURL: String = ""
     
@@ -44,61 +36,61 @@ public final class API {
     }
     
     private func requestRepeated() {
-        self.request = AF.request(requestURL)
-                        .validate(statusCode: [200])
-                        .response { [weak self] response in
-                            guard let self = self else { return }
-                            switch response.result {
-                            case .success(let data):
-                                let userInfo: [AnyHashable : Any] =  ["data": data ?? Data(),
-                                                                      "isCurrent": self.requestURL == APISetupManager.currentRequestURL]
-                                NotificationCenter.default.post(name: API.notificationName, object: nil, userInfo: userInfo)
-                            case .failure(let error):
-                                print("Error", error.localizedDescription)
-                            }
-                        }
+        AF.request(requestURL)
+            .validate(statusCode: [200])
+            .response { [weak self] response in
+                guard let self = self else { return }
+                switch response.result {
+                case .success(let data):
+                    let userInfo: [AnyHashable : Any] =  ["data": data ?? Data(),
+                                                          "isCurrent": self.requestURL == APISetupManager.currentRequestURL]
+                    NotificationCenter.default.post(name: API.notificationName, object: nil, userInfo: userInfo)
+                case .failure(let error):
+                    print("Error", error.localizedDescription)
+                }
+        }
     }
     
     public func requestCurrent<T: Decodable>(completionHandler: @escaping (Result<[T], Error>) -> Void) {
         self.requestURL = APISetupManager.currentRequestURL
-        self.request = AF.request(requestURL)
-                        .validate(statusCode: [200])
-                        .responseDecodable { (response: AFDataResponse<[T]>) in
-                            switch response.result {
-                            case .success(let items):
-                                completionHandler(.success(items))
-                            case .failure(let error):
-                                completionHandler(.failure(error))
-                            }
-                        }
+        AF.request(requestURL)
+            .validate(statusCode: [200])
+            .responseDecodable { (response: AFDataResponse<[T]>) in
+                switch response.result {
+                case .success(let items):
+                    completionHandler(.success(items))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                }
+        }
     }
     
     public func requestFuture<T: Decodable>(completionHandler: @escaping (Result<[T], Error>) -> Void) {
         self.requestURL = APISetupManager.futureRequestURL
-        self.request = AF.request(requestURL)
-                        .validate(statusCode: [200])
-                        .responseDecodable { (response: AFDataResponse<[T]>) in
-                            switch response.result {
-                            case .success(let items):
-                                completionHandler(.success(items))
-                            case .failure(let error):
-                                completionHandler(.failure(error))
-                            }
-                        }
-            
+        AF.request(requestURL)
+            .validate(statusCode: [200])
+            .responseDecodable { (response: AFDataResponse<[T]>) in
+                switch response.result {
+                case .success(let items):
+                    completionHandler(.success(items))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                }
+        }
+        
     }
     
     public func requestMapData<T: Decodable>(completionHandler: @escaping (Result<T, Error>) -> Void) {
         self.requestURL = APISetupManager.locationRequestURL
-        self.request = AF.request(requestURL)
+        AF.request(requestURL)
             .validate(statusCode: [200])
             .responseDecodable { (response: AFDataResponse<T>) in
-            switch response.result {
-            case .success(let item):
-                completionHandler(.success(item))
-            case .failure(let error):
-                completionHandler(.failure(error))
-            }
+                switch response.result {
+                case .success(let item):
+                    completionHandler(.success(item))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                }
         }
     }
 }
