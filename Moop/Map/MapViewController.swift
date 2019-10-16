@@ -48,19 +48,6 @@ class MapViewController: UIViewController {
     }
     
     private func request() {
-//        let requestURL = URL(string: "\(Config.baseURL)/code.json")!
-//        AF.request(requestURL)
-//            .validate(statusCode: [200])
-//            .responseDecodable { [weak self] (response: AFDataResponse<MapInfo>) in
-//                guard let self = self else { return }
-//                switch response.result {
-//                case .success(let result):
-//                    self.mapView.addAnnotations(result.items)
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                }
-//        }
-        
         API.shared.requestMapData { [weak self] (result: Result<MapInfo, Error>) in
             guard let self = self else { return }
             switch result {
@@ -165,7 +152,13 @@ extension MapViewController: RouteDelegate {
         guard let locValue = locationManager.location?.coordinate,
             let theater = routeView.annotation as? Theater,
             let url = URL(string: "nmap://route/public?slat=\(locValue.latitude)&slng=\(locValue.longitude)&sname=\(sname)&dlat=\(theater.lat)&dlng=\(theater.lng)&dname=\(theater.destinationName)&appname=com.kor45cw.Moop") else { return }
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            let appStoreURL = URL(string: "http://itunes.apple.com/app/id311867728?mt=8")!
+            UIApplication.shared.open(appStoreURL, options: [:], completionHandler: nil)
+        }
     }
     
     private func openGoogle() {
