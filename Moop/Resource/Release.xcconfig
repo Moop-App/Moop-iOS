@@ -13,6 +13,9 @@
 #include "Ad.xcconfig"
 
 GAD_APPLICATION_IDENTIFIER = $(GAD_APPLICATION_IDENTIFIER)
+FB_CFBundleURLSchemes = $(FB_CFBundleURLSchemes)
+FacebookAppID = $(FacebookAppID)
+FacebookDisplayName = $(FacebookDisplayName)
 
 // VERSION
 BUNDLE_SHORT_VERSION = $(CONFIG_BUNDLE_SHORT_VERSION_APPSTORE)
