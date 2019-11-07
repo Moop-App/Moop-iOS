@@ -28,7 +28,7 @@ class SettingItemCell: UITableViewCell, ReusableView, NibLoadableView {
             } else if let invalidProductId = result.invalidProductIDs.first {
                 print("Invalid product identifier: \(invalidProductId)")
             } else {
-                print("Error: \(result.error)")
+                print("Error: \(result.error?.localizedDescription ?? "")")
             }
         }
     }

@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import Networking
 import SwiftyStoreKit
+import FBSDKCoreKit
 #if DEBUG
 import FLEX
 #endif
@@ -36,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     /// - Tag: DidBecomeActive
     func applicationDidBecomeActive(_ application: UIApplication) {
+        AppEvents.activateApp()
         ShortcutManager.shared.applicationDidBecomeActive(rootViewController: window?.rootViewController)
     }
     

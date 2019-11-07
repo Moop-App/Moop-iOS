@@ -12,11 +12,21 @@ class MovieData {
     var items: [MovieInfo] = []
     var filteredMovies: [MovieInfo] = []
     var searchedMovies: [MovieInfo] = []
+    
+    enum SortType {
+        case rank
+        case day
+    }
 }
 
 extension MovieData {
-    func update(items: [MovieInfo]) {
-        self.items = items.sorted(by: { $0.rank < $1.rank })
+    func update(items: [MovieInfo], sortType: SortType) {
+        switch sortType {
+        case .rank:
+            self.items = items.sorted(by: { $0.rank < $1.rank })
+        case .day:
+            self.items = items.sorted(by: { $0.getDay < $1.getDay })
+        }
     }
     
     func search(query: String) {

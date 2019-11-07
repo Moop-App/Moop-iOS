@@ -1,36 +1,52 @@
 PODS:
   - AcknowList (1.9.2)
-  - Alamofire (5.0.0-rc.2)
+  - Alamofire (5.0.0-rc.3)
   - AlamofireNetworkActivityIndicator (3.0.0-beta.3):
     - Alamofire (~> 5.0.0-beta.6)
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
   - CTFeedbackSwift (0.1.7)
   - Fabric (1.10.2)
-  - Firebase/AdMob (6.10.0):
+  - FacebookSDK (5.10.0):
+    - FacebookSDK/CoreKit (= 5.10.0)
+    - FacebookSDK/MarketingKit (= 5.10.0)
+  - FacebookSDK/CoreKit (5.10.0):
+    - FBSDKCoreKit (~> 5.0)
+  - FacebookSDK/MarketingKit (5.10.0):
+    - FacebookSDK/CoreKit
+    - FBSDKMarketingKit (~> 5.0)
+  - FBSDKCoreKit (5.8.0):
+    - FBSDKCoreKit/Basics (= 5.8.0)
+    - FBSDKCoreKit/Core (= 5.8.0)
+  - FBSDKCoreKit/Basics (5.8.0)
+  - FBSDKCoreKit/Core (5.8.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKMarketingKit (5.9.0):
+    - FBSDKCoreKit (~> 5.5)
+  - Firebase/AdMob (6.12.0):
     - Firebase/CoreOnly
     - Google-Mobile-Ads-SDK (~> 7.50)
-  - Firebase/Analytics (6.10.0):
+  - Firebase/Analytics (6.12.0):
     - Firebase/Core
-  - Firebase/Core (6.10.0):
+  - Firebase/Core (6.12.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.1.3)
-  - Firebase/CoreOnly (6.10.0):
-    - FirebaseCore (= 6.3.1)
-  - Firebase/Messaging (6.10.0):
+    - FirebaseAnalytics (= 6.1.5)
+  - Firebase/CoreOnly (6.12.0):
+    - FirebaseCore (= 6.3.3)
+  - Firebase/Messaging (6.12.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (~> 4.1.6)
-  - FirebaseAnalytics (6.1.3):
+    - FirebaseMessaging (~> 4.1.8)
+  - FirebaseAnalytics (6.1.5):
     - FirebaseCore (~> 6.3)
     - FirebaseInstanceID (~> 4.2)
-    - GoogleAppMeasurement (= 6.1.3)
+    - GoogleAppMeasurement (= 6.1.5)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (~> 0.3.901)
+    - nanopb (= 0.3.9011)
   - FirebaseAnalyticsInterop (1.4.0)
-  - FirebaseCore (6.3.1):
+  - FirebaseCore (6.3.3):
     - FirebaseCoreDiagnostics (~> 1.0)
     - FirebaseCoreDiagnosticsInterop (~> 1.0)
     - GoogleUtilities/Environment (~> 6.2)
@@ -41,12 +57,12 @@ PODS:
     - GoogleUtilities/Environment (~> 6.2)
     - GoogleUtilities/Logger (~> 6.2)
     - nanopb (~> 0.3.901)
-  - FirebaseCoreDiagnosticsInterop (1.0.0)
-  - FirebaseInstanceID (4.2.5):
+  - FirebaseCoreDiagnosticsInterop (1.1.0)
+  - FirebaseInstanceID (4.2.7):
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
-  - FirebaseMessaging (4.1.6):
+  - FirebaseMessaging (4.1.8):
     - FirebaseAnalyticsInterop (~> 1.3)
     - FirebaseCore (~> 6.2)
     - FirebaseInstanceID (~> 4.1)
@@ -57,16 +73,16 @@ PODS:
     - Protobuf (>= 3.9.2, ~> 3.9)
   - FLEX (3.0.0)
   - FTLinearActivityIndicator (1.3)
-  - Google-Mobile-Ads-SDK (7.50.0):
+  - Google-Mobile-Ads-SDK (7.52.0):
     - GoogleAppMeasurement (~> 6.0)
-  - GoogleAppMeasurement (6.1.3):
+  - GoogleAppMeasurement (6.1.5):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (~> 0.3.901)
-  - GoogleDataTransport (3.0.0)
-  - GoogleDataTransportCCTSupport (1.2.0):
+    - nanopb (= 0.3.9011)
+  - GoogleDataTransport (3.0.1)
+  - GoogleDataTransportCCTSupport (1.2.1):
     - GoogleDataTransport (~> 3.0)
     - nanopb (~> 0.3.901)
   - GoogleUtilities/AppDelegateSwizzler (6.3.1):
@@ -87,18 +103,18 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.3.1):
     - GoogleUtilities/Logger
-  - nanopb (0.3.901):
-    - nanopb/decode (= 0.3.901)
-    - nanopb/encode (= 0.3.901)
-  - nanopb/decode (0.3.901)
-  - nanopb/encode (0.3.901)
+  - nanopb (0.3.9011):
+    - nanopb/decode (= 0.3.9011)
+    - nanopb/encode (= 0.3.9011)
+  - nanopb/decode (0.3.9011)
+  - nanopb/encode (0.3.9011)
   - Nimble (8.0.4)
   - Protobuf (3.10.0)
   - Quick (2.2.0)
-  - SDWebImage (5.2.3):
-    - SDWebImage/Core (= 5.2.3)
-  - SDWebImage/Core (5.2.3)
-  - SwiftLint (0.35.0)
+  - SDWebImage (5.3.0):
+    - SDWebImage/Core (= 5.3.0)
+  - SDWebImage/Core (5.3.0)
+  - SwiftLint (0.36.0)
   - SwiftyStoreKit (0.15.0)
   - Wormholy (1.5.0)
 
@@ -108,6 +124,7 @@ DEPENDENCIES:
   - Crashlytics
   - CTFeedbackSwift
   - Fabric
+  - FacebookSDK
   - Firebase/AdMob
   - Firebase/Analytics
   - Firebase/Core
@@ -129,6 +146,9 @@ SPEC REPOS:
     - Crashlytics
     - CTFeedbackSwift
     - Fabric
+    - FacebookSDK
+    - FBSDKCoreKit
+    - FBSDKMarketingKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -155,35 +175,38 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AcknowList: 164431f4c3da64b0c867f5fcda24558e6283cbcf
-  Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
+  Alamofire: ca8c0de6906873be89d6deec5c8de279e00bf872
   AlamofireNetworkActivityIndicator: 592c612ef9bb2e9f55f00ad99f72b2222f0bf33f
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   CTFeedbackSwift: 2a0d844ef8bade492f3cad59b21c8bd8300f5a91
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
-  Firebase: 5e6b7b12bf9adb90986688edc06b156c37e109cd
-  FirebaseAnalytics: 0e3ecff2c5d86070f7d4325e21f1edabfbd558dc
+  FacebookSDK: 9b43cd3ff2b19f72227c0b90c688adda1f74d43c
+  FBSDKCoreKit: e7dcac0aabcfb09d0166998edd95fe3b05a0ce5d
+  FBSDKMarketingKit: 9978074f24b325d3d4f479d90906daf23f80cf67
+  Firebase: da031bc7012374e3bed17a6731b89327b29863b9
+  FirebaseAnalytics: 4e53a7eb7b76bc703c4d9239bc964545e9b23361
   FirebaseAnalyticsInterop: d48b6ab67bcf016a05e55b71fc39c61c0cb6b7f3
-  FirebaseCore: 064c2dd92a8ca5974bbdcb080df9921e46bd34cd
+  FirebaseCore: bcd6c112429249d7921e907d661e8955a3549e26
   FirebaseCoreDiagnostics: af29e43048607588c050889d19204f4d7b758c9f
-  FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
-  FirebaseInstanceID: 550df9be1f99f751d8fcde3ac342a1e21a0e6c42
-  FirebaseMessaging: 35edef69a6af9b34e9e44624089f054be3c09089
+  FirebaseCoreDiagnosticsInterop: e9b1b023157e3a2fc6418b5cb601e79b9af7b3a0
+  FirebaseInstanceID: ebd2ea79ee38db0cb5f5167b17a0d387e1cc7b6e
+  FirebaseMessaging: de30f83a372a390be6f2ba44ec43a45b7ccdb43f
   FLEX: d66c759bce0f6ebbbf472c742380874d846f2883
   FTLinearActivityIndicator: c89ccc2ef18279a155820c0e81f09ce2e90a2dc9
-  Google-Mobile-Ads-SDK: d48dbaf5bae1ab7a94a9786f493c26c454bc6f16
-  GoogleAppMeasurement: 434cc7be25e71dc04b8d0e3079125127b330e84a
-  GoogleDataTransport: f6fe28f43e3a300736854260961ad485b473edc5
-  GoogleDataTransportCCTSupport: 862418a8cdda520c4dd4af83a756d04efe4a6990
+  Google-Mobile-Ads-SDK: 62f6244637306cb60a1b4adda067f53224c7a860
+  GoogleAppMeasurement: 037f46d1d8ae8b312720f1042585ab961a1289e3
+  GoogleDataTransport: 166f9b9f82cbf60a204e8fe2daa9db3e3ec1fb15
+  GoogleDataTransportCCTSupport: f6ab1962e9dc05ab1fb938b795e5b310209edeec
   GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
-  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Nimble: 18d5360282923225d62b09d781f63abc1a0111fc
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
-  SDWebImage: 46a7f73228f84ce80990c786e4372cf4db5875ce
-  SwiftLint: 5553187048b900c91aa03552807681bb6b027846
+  SDWebImage: f1afa74b86587c2c63f4e80dfd39b21e3c17b45b
+  SwiftLint: fc9859e4e1752340664851f667bb1898b9c90114
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   Wormholy: db6ac46a6d20db2d11ddcf975a5a9bcc1abc889e
 
-PODFILE CHECKSUM: a5d5805cdc7fad0241682a0f948703e35ed36421
+PODFILE CHECKSUM: 224dfba603315b10b977d9143bc83cd5d538d240
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4
