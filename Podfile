@@ -6,15 +6,14 @@ target 'Moop' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   platform :ios, '12.0'
 
-  # Analytics
   pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/AdMob'
   pod 'Fabric'
   pod 'Crashlytics'
 
   pod 'SDWebImage'
-  pod 'Firebase/Messaging'
-  pod 'Firebase/Analytics'
-  pod 'Firebase/AdMob'
   pod 'SwiftyStoreKit'
 
   pod 'SwiftLint'
@@ -23,6 +22,8 @@ target 'Moop' do
   
   pod 'CTFeedbackSwift'
   pod 'AcknowList'
+  
+  pod 'FacebookSDK'
 
   target 'Networking' do
     inherit! :search_paths

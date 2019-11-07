@@ -23,32 +23,49 @@ class FilterViewController: UITableViewController {
     
     var ageTypes: [AgeType] = [] {
         didSet {
-            doneButton.isEnabled = !self.theaters.isEmpty && !self.ageTypes.isEmpty
+            doneButton.isEnabled = !theaters.isEmpty && !ageTypes.isEmpty
+            if #available(iOS 13, *) {
+                let isEqualTheaters = originTheaters.sorted(by: { $0.rawValue > $1.rawValue }) == theaters.sorted(by: { $0.rawValue > $1.rawValue })
+                let isEqualAges = originAgeTypes.sorted(by: { $0.rawValue > $1.rawValue }) == ageTypes.sorted(by: { $0.rawValue > $1.rawValue })
+                isModalInPresentation = !(isEqualTheaters && isEqualAges)
+            }
         }
     }
     var theaters: [TheaterType] = [] {
         didSet {
-            doneButton.isEnabled = !self.theaters.isEmpty && !self.ageTypes.isEmpty
+            doneButton.isEnabled = !theaters.isEmpty && !ageTypes.isEmpty
+            if #available(iOS 13, *) {
+                print("THIS IS CALLED", originTheaters.sorted(by: { $0.rawValue > $1.rawValue }) == theaters.sorted(by: { $0.rawValue > $1.rawValue }))
+            }
+            if #available(iOS 13, *) {
+                let isEqualTheaters = originTheaters.sorted(by: { $0.rawValue > $1.rawValue }) == theaters.sorted(by: { $0.rawValue > $1.rawValue })
+                let isEqualAges = originAgeTypes.sorted(by: { $0.rawValue > $1.rawValue }) == ageTypes.sorted(by: { $0.rawValue > $1.rawValue })
+                isModalInPresentation = !(isEqualTheaters && isEqualAges)
+            }
         }
     }
+    
+    let originTheaters = UserDefaults.standard.object([TheaterType].self, forKey: .theater) ?? TheaterType.allCases
+    let originAgeTypes = UserDefaults.standard.object([AgeType].self, forKey: .age) ?? AgeType.allCases
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.theaters = UserDefaults.standard.object([TheaterType].self, forKey: .theater) ?? TheaterType.allCases
-        self.ageTypes = UserDefaults.standard.object([AgeType].self, forKey: .age) ?? AgeType.allCases
-        self.tableView.reloadData()
+        navigationController?.presentationController?.delegate = self
+        theaters = originTheaters
+        ageTypes = originAgeTypes
+        tableView.reloadData()
     }
     
     @IBAction private func cancel(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction private func done(_ sender: UIButton) {
         UserDefaults.standard.setObject(theaters, forKey: .theater)
         UserDefaults.standard.setObject(ageTypes, forKey: .age)
         delegate?.filterItemChanged()
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -107,5 +124,28 @@ extension FilterViewController {
                cell.accessoryType = .checkmark
            }
         }
+    }
+}
+
+@available(iOS 13.0, *)
+extension FilterViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        showDismissAlert()
+    }
+    
+    private func showDismissAlert() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "취소".localized, style: .cancel, handler: nil))
+        
+        if doneButton.isEnabled {
+            alert.addAction(UIAlertAction(title: "완료".localized, style: .default) { _ in
+                self.done(UIButton())
+            })
+        }
+        alert.addAction(UIAlertAction(title: "변경사항 취소하기".localized, style: .destructive) { _ in
+            self.dismiss(animated: true, completion: nil)
+        })
+
+        present(alert, animated: true, completion: nil)
     }
 }

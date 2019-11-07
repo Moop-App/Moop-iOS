@@ -122,7 +122,7 @@ extension MoviePresenter: MoviePresenterDelegate {
         group?.enter()
         MovieInfoManager.shared.requestCurrentData { [weak self] in
             guard let self = self else { return }
-            self.currentMovieData.update(items: MovieInfoManager.shared.currentDatas)
+            self.currentMovieData.update(items: MovieInfoManager.shared.currentDatas, sortType: .rank)
             group?.leave()
         }
     }
@@ -131,7 +131,7 @@ extension MoviePresenter: MoviePresenterDelegate {
         group?.enter()
         MovieInfoManager.shared.requestFutureData { [weak self] in
             guard let self = self else { return }
-            self.futureMovieData.update(items: MovieInfoManager.shared.futureDatas)
+            self.futureMovieData.update(items: MovieInfoManager.shared.futureDatas, sortType: .day)
             group?.leave()
         }
     }

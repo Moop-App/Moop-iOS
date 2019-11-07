@@ -265,6 +265,7 @@ extension MovieDetailViewController: UITableViewDataSource {
         case .naver:
             let cell: NaverInfoCell = tableView.dequeueReusableCell(for: indexPath)
             cell.set(item?.naver)
+            cell.delegate = self
             return cell
         case .plot:
             let cell: MovieInfoPlotCell = tableView.dequeueReusableCell(for: indexPath)
