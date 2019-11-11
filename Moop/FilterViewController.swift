@@ -23,13 +23,13 @@ class FilterViewController: UITableViewController {
     
     var ageTypes: [AgeType] = [] {
         didSet {
-            doneButton.isEnabled = !theaters.isEmpty && !ageTypes.isEmpty
+            doneButton.isEnabled = !theaters.isEmpty && !ageTypes.isEmpty && !nations.isEmpty
             checkModalINPresentation()
         }
     }
     var theaters: [TheaterType] = [] {
         didSet {
-            doneButton.isEnabled = !theaters.isEmpty && !ageTypes.isEmpty
+            doneButton.isEnabled = !theaters.isEmpty && !ageTypes.isEmpty && !nations.isEmpty
             checkModalINPresentation()
         }
     }
@@ -40,9 +40,17 @@ class FilterViewController: UITableViewController {
         }
     }
     
+    var nations: [NationInfo] = [] {
+        didSet {
+            doneButton.isEnabled = !theaters.isEmpty && !ageTypes.isEmpty && !nations.isEmpty
+            checkModalINPresentation()
+        }
+    }
+    
     let originTheaters = FilterData.theater
     let originAgeTypes = FilterData.age
     let originBoxOffice = FilterData.boxOffice
+    let originNations = FilterData.nation
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +58,7 @@ class FilterViewController: UITableViewController {
         theaters = originTheaters
         ageTypes = originAgeTypes
         boxOffice = originBoxOffice
+        nations = originNations
         tableView.reloadData()
     }
     
@@ -61,6 +70,7 @@ class FilterViewController: UITableViewController {
         FilterData.theater = theaters
         FilterData.age = ageTypes
         FilterData.boxOffice = boxOffice
+        FilterData.nation = nations
         delegate?.filterItemChanged()
         dismiss(animated: true, completion: nil)
     }
@@ -101,7 +111,7 @@ extension FilterViewController {
                 cell.accessoryType = ageTypes.contains(type) ? .checkmark : .none
                 return cell
             }
-        } else {
+        } else if indexPath.section == 2 {
             if let cell = tableView.cellForRow(at: indexPath) {
                 cell.textLabel?.text = "박스오피스 순으로 정렬하기".localized
                 cell.accessoryType = boxOffice ? .checkmark : .none
@@ -110,6 +120,18 @@ extension FilterViewController {
                 let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
                 cell.textLabel?.text = "박스오피스 순으로 정렬하기".localized
                 cell.accessoryType = boxOffice ? .checkmark : .none
+                return cell
+            }
+        } else {
+            let type = NationInfo(isKorean: indexPath.item == 0)
+            if let cell = tableView.cellForRow(at: indexPath) {
+                cell.textLabel?.text = type.rawValue.localized
+                cell.accessoryType = nations.contains(type) ? .checkmark : .none
+                return cell
+            } else {
+                let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+                cell.textLabel?.text = type.rawValue.localized
+                cell.accessoryType = nations.contains(type) ? .checkmark : .none
                 return cell
             }
         }
@@ -144,6 +166,16 @@ extension FilterViewController {
         if indexPath.section == 2 {
             boxOffice.toggle()
             cell.accessoryType = boxOffice ? .checkmark : .none
+        }
+        if indexPath.section == 3 {
+            let type = NationInfo(isKorean: indexPath.item == 0)
+            if let index = nations.firstIndex(of: type) {
+                            nations.remove(at: index)
+                            cell.accessoryType = .none
+            } else {
+                nations.append(type)
+                cell.accessoryType = .checkmark
+            }
         }
     }
 }

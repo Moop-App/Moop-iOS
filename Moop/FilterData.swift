@@ -17,4 +17,7 @@ struct FilterData {
     
     @UserDefault(.boxOffice, defaultValue: false)
     static var boxOffice: Bool
+    
+    @UserDefaultCodable(.nation, defaultValue: NationInfo.allCases)
+    static var nation: [NationInfo]
 }
