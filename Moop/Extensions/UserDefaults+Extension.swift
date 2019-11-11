@@ -15,6 +15,7 @@ enum UserDefaultsKey {
     case detailViewCount
     case firstReviewDate
     case adFree
+    case boxOffice
     
     var keyString: String {
         switch self {
@@ -30,6 +31,8 @@ enum UserDefaultsKey {
             return "First_Review_Date"
         case .adFree:
             return "Ad_Free"
+        case .boxOffice:
+            return "BoxOffice"
         }
     }
 }
