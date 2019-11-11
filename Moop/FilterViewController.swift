@@ -23,37 +23,42 @@ class FilterViewController: UITableViewController {
     
     var ageTypes: [AgeType] = [] {
         didSet {
-            doneButton.isEnabled = !theaters.isEmpty && !ageTypes.isEmpty
-            if #available(iOS 13, *) {
-                let isEqualTheaters = originTheaters.sorted(by: { $0.rawValue > $1.rawValue }) == theaters.sorted(by: { $0.rawValue > $1.rawValue })
-                let isEqualAges = originAgeTypes.sorted(by: { $0.rawValue > $1.rawValue }) == ageTypes.sorted(by: { $0.rawValue > $1.rawValue })
-                isModalInPresentation = !(isEqualTheaters && isEqualAges)
-            }
+            doneButton.isEnabled = !theaters.isEmpty && !ageTypes.isEmpty && !nations.isEmpty
+            checkModalINPresentation()
         }
     }
     var theaters: [TheaterType] = [] {
         didSet {
-            doneButton.isEnabled = !theaters.isEmpty && !ageTypes.isEmpty
-            if #available(iOS 13, *) {
-                print("THIS IS CALLED", originTheaters.sorted(by: { $0.rawValue > $1.rawValue }) == theaters.sorted(by: { $0.rawValue > $1.rawValue }))
-            }
-            if #available(iOS 13, *) {
-                let isEqualTheaters = originTheaters.sorted(by: { $0.rawValue > $1.rawValue }) == theaters.sorted(by: { $0.rawValue > $1.rawValue })
-                let isEqualAges = originAgeTypes.sorted(by: { $0.rawValue > $1.rawValue }) == ageTypes.sorted(by: { $0.rawValue > $1.rawValue })
-                isModalInPresentation = !(isEqualTheaters && isEqualAges)
-            }
+            doneButton.isEnabled = !theaters.isEmpty && !ageTypes.isEmpty && !nations.isEmpty
+            checkModalINPresentation()
         }
     }
     
-    let originTheaters = UserDefaults.standard.object([TheaterType].self, forKey: .theater) ?? TheaterType.allCases
-    let originAgeTypes = UserDefaults.standard.object([AgeType].self, forKey: .age) ?? AgeType.allCases
+    var boxOffice: Bool = false {
+        didSet {
+            checkModalINPresentation()
+        }
+    }
     
+    var nations: [NationInfo] = [] {
+        didSet {
+            doneButton.isEnabled = !theaters.isEmpty && !ageTypes.isEmpty && !nations.isEmpty
+            checkModalINPresentation()
+        }
+    }
+    
+    let originTheaters = FilterData.theater
+    let originAgeTypes = FilterData.age
+    let originBoxOffice = FilterData.boxOffice
+    let originNations = FilterData.nation
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.presentationController?.delegate = self
         theaters = originTheaters
         ageTypes = originAgeTypes
+        boxOffice = originBoxOffice
+        nations = originNations
         tableView.reloadData()
     }
     
@@ -62,10 +67,21 @@ class FilterViewController: UITableViewController {
     }
     
     @IBAction private func done(_ sender: UIButton) {
-        UserDefaults.standard.setObject(theaters, forKey: .theater)
-        UserDefaults.standard.setObject(ageTypes, forKey: .age)
+        FilterData.theater = theaters
+        FilterData.age = ageTypes
+        FilterData.boxOffice = boxOffice
+        FilterData.nation = nations
         delegate?.filterItemChanged()
         dismiss(animated: true, completion: nil)
+    }
+    
+    private func checkModalINPresentation() {
+        if #available(iOS 13, *) {
+            let isEqualTheaters = originTheaters.sorted(by: { $0.rawValue > $1.rawValue }) == theaters.sorted(by: { $0.rawValue > $1.rawValue })
+            let isEqualAges = originAgeTypes.sorted(by: { $0.rawValue > $1.rawValue }) == ageTypes.sorted(by: { $0.rawValue > $1.rawValue })
+            let isEqualBoxOfffice = originBoxOffice == boxOffice
+            isModalInPresentation = !(isEqualTheaters && isEqualAges && isEqualBoxOfffice)
+        }
     }
 }
 
@@ -83,7 +99,7 @@ extension FilterViewController {
                 cell.accessoryType = theaters.contains(type) ? .checkmark : .none
                 return cell
             }
-        } else {
+        } else if indexPath.section == 1 {
             guard let type = AgeType(rawValue: indexPath.item) else { return UITableViewCell() }
             if let cell = tableView.cellForRow(at: indexPath) {
                 cell.textLabel?.text = type.text
@@ -93,6 +109,29 @@ extension FilterViewController {
                 let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
                 cell.textLabel?.text = type.text
                 cell.accessoryType = ageTypes.contains(type) ? .checkmark : .none
+                return cell
+            }
+        } else if indexPath.section == 2 {
+            if let cell = tableView.cellForRow(at: indexPath) {
+                cell.textLabel?.text = "박스오피스 순으로 정렬하기".localized
+                cell.accessoryType = boxOffice ? .checkmark : .none
+                return cell
+            } else {
+                let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+                cell.textLabel?.text = "박스오피스 순으로 정렬하기".localized
+                cell.accessoryType = boxOffice ? .checkmark : .none
+                return cell
+            }
+        } else {
+            let type = NationInfo(isKorean: indexPath.item == 0)
+            if let cell = tableView.cellForRow(at: indexPath) {
+                cell.textLabel?.text = type.rawValue.localized
+                cell.accessoryType = nations.contains(type) ? .checkmark : .none
+                return cell
+            } else {
+                let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+                cell.textLabel?.text = type.rawValue.localized
+                cell.accessoryType = nations.contains(type) ? .checkmark : .none
                 return cell
             }
         }
@@ -123,6 +162,20 @@ extension FilterViewController {
                ageTypes.append(type)
                cell.accessoryType = .checkmark
            }
+        }
+        if indexPath.section == 2 {
+            boxOffice.toggle()
+            cell.accessoryType = boxOffice ? .checkmark : .none
+        }
+        if indexPath.section == 3 {
+            let type = NationInfo(isKorean: indexPath.item == 0)
+            if let index = nations.firstIndex(of: type) {
+                            nations.remove(at: index)
+                            cell.accessoryType = .none
+            } else {
+                nations.append(type)
+                cell.accessoryType = .checkmark
+            }
         }
     }
 }
