@@ -15,11 +15,11 @@ PODS:
   - FacebookSDK/MarketingKit (5.10.0):
     - FacebookSDK/CoreKit
     - FBSDKMarketingKit (~> 5.0)
-  - FBSDKCoreKit (5.8.0):
-    - FBSDKCoreKit/Basics (= 5.8.0)
-    - FBSDKCoreKit/Core (= 5.8.0)
-  - FBSDKCoreKit/Basics (5.8.0)
-  - FBSDKCoreKit/Core (5.8.0):
+  - FBSDKCoreKit (5.10.0):
+    - FBSDKCoreKit/Basics (= 5.10.0)
+    - FBSDKCoreKit/Core (= 5.10.0)
+  - FBSDKCoreKit/Basics (5.10.0)
+  - FBSDKCoreKit/Core (5.10.0):
     - FBSDKCoreKit/Basics
   - FBSDKMarketingKit (5.9.0):
     - FBSDKCoreKit (~> 5.5)
@@ -111,10 +111,10 @@ PODS:
   - Nimble (8.0.4)
   - Protobuf (3.10.0)
   - Quick (2.2.0)
-  - SDWebImage (5.3.0):
-    - SDWebImage/Core (= 5.3.0)
-  - SDWebImage/Core (5.3.0)
-  - SwiftLint (0.36.0)
+  - SDWebImage (5.3.1):
+    - SDWebImage/Core (= 5.3.1)
+  - SDWebImage/Core (5.3.1)
+  - SwiftLint (0.37.0)
   - SwiftyStoreKit (0.15.0)
   - Wormholy (1.5.0)
 
@@ -181,7 +181,7 @@ SPEC CHECKSUMS:
   CTFeedbackSwift: 2a0d844ef8bade492f3cad59b21c8bd8300f5a91
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FacebookSDK: 9b43cd3ff2b19f72227c0b90c688adda1f74d43c
-  FBSDKCoreKit: e7dcac0aabcfb09d0166998edd95fe3b05a0ce5d
+  FBSDKCoreKit: f9bae468a078f20c05c73450825ccd54cfafbbb7
   FBSDKMarketingKit: 9978074f24b325d3d4f479d90906daf23f80cf67
   Firebase: da031bc7012374e3bed17a6731b89327b29863b9
   FirebaseAnalytics: 4e53a7eb7b76bc703c4d9239bc964545e9b23361
@@ -202,8 +202,8 @@ SPEC CHECKSUMS:
   Nimble: 18d5360282923225d62b09d781f63abc1a0111fc
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
-  SDWebImage: f1afa74b86587c2c63f4e80dfd39b21e3c17b45b
-  SwiftLint: fc9859e4e1752340664851f667bb1898b9c90114
+  SDWebImage: 7137d57385fb632129838c1e6ab9528a22c666cc
+  SwiftLint: c078a14d7d7ade75e5507795d185e3da41d844d2
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   Wormholy: db6ac46a6d20db2d11ddcf975a5a9bcc1abc889e
 

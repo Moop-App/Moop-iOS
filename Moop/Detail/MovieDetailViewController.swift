@@ -298,9 +298,13 @@ extension MovieDetailViewController: UITableViewDelegate {
         case .boxOffice, .naver:
             wrapper(type: .naver)
         case .trailer(let trailerInfo):
-            let viewController = YoutubeVideoPlayerController(videoId: trailerInfo.youtubeId)
-            viewController.modalPresentationStyle = .fullScreen
-            self.present(viewController, animated: true, completion: nil)
+            guard let youtubeURL = URL(string:"youtube://\(trailerInfo.youtubeId)"),
+                let httpURL = URL(string:"https://www.youtube.com/watch?v=\(trailerInfo.youtubeId)") else { return }
+            if UIApplication.shared.canOpenURL(youtubeURL) {
+                UIApplication.shared.open(youtubeURL, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.open(httpURL, options: [:], completionHandler: nil)
+            }
         case .trailerFooter:
             let title = item?.title.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
             guard let httpURL = URL(string: "https://www.youtube.com/results?search_query=\(title ?? "")"),

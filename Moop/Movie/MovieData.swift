@@ -34,10 +34,20 @@ extension MovieData {
     }
     
     func filter() {
-        let theaters = UserDefaults.standard.object([TheaterType].self, forKey: .theater) ?? TheaterType.allCases
-        let ages = UserDefaults.standard.object([AgeType].self, forKey: .age) ?? AgeType.allCases
         self.filteredMovies = items
-            .filter { $0.contain(types: theaters) }
-            .filter { $0.contain(ages: ages) }
+            .filter { $0.contain(types: FilterData.theater) }
+            .filter { $0.contain(ages: FilterData.age) }
+        
+        if FilterData.boxOffice {
+            self.filteredMovies = filteredMovies.sorted(by: { $0.kobis?.boxOffice?.rank ?? 999 < $1.kobis?.boxOffice?.rank ?? 999 })
+        }
+        
+        guard FilterData.nation.count == 1, let nation = FilterData.nation.first else { return }
+        switch nation {
+        case .korean:
+            self.filteredMovies = self.filteredMovies.filter { $0.kobis?.nations?.first == "한국" }
+        case .etc:
+            self.filteredMovies = self.filteredMovies.filter { $0.kobis?.nations?.first != "한국" }
+        }
     }
 }
