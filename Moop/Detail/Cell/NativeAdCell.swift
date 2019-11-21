@@ -8,8 +8,9 @@
 
 import UIKit
 import GoogleMobileAds
+import kor45cw_Extension
 
-class NativeAdCell: UITableViewCell, ReusableView, NibLoadableView {
+class NativeAdCell: UITableViewCell, NibLoadableView {
     
     @IBOutlet private weak var nativeAdView: GADUnifiedNativeAdView!
     

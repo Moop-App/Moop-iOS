@@ -10,6 +10,7 @@ import UIKit
 import StoreKit
 import SafariServices
 import GoogleMobileAds
+import kor45cw_Extension
 
 protocol MovieDetailPickAndPopDelegate: class {
     func share(text: String)
@@ -23,7 +24,7 @@ protocol DetailHeaderDelegate: class {
 
 class MovieDetailViewController: UIViewController {
     static func instance(item: MovieInfo? = nil) -> MovieDetailViewController {
-        let vc: MovieDetailViewController = instance(storyboardName: .main)
+        let vc: MovieDetailViewController = instance(storyboardName: Storyboard.main)
         vc.item = item
         return vc
     }

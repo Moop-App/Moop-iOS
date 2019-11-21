@@ -8,8 +8,9 @@
 
 import UIKit
 import SDWebImage
+import kor45cw_Extension
 
-class MovieCell: UICollectionViewCell, ReusableView, NibLoadableView {
+class MovieCell: UICollectionViewCell, NibLoadableView {
     
     @IBOutlet private weak var thumbnailImageView: UIImageView!
     @IBOutlet private weak var ageBadge: UIView!

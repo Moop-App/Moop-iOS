@@ -58,7 +58,7 @@ enum SettingSection: CaseIterable {
 
 class SettingViewController: UIViewController {
     static func instance() -> SettingViewController {
-        let vc: SettingViewController = instance(storyboardName: .setting)
+        let vc: SettingViewController = instance(storyboardName: Storyboard.setting)
         return vc
     }
     

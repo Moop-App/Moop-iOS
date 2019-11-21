@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import kor45cw_Extension
 
-class SettingHeaderCell: UITableViewCell, ReusableView, NibLoadableView {
+class SettingHeaderCell: UITableViewCell, NibLoadableView {
 
     @IBOutlet weak var titleLabel: UILabel!
     

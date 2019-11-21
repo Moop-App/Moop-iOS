@@ -7,17 +7,18 @@
 //
 
 import Foundation
+import kor45cw_Extension
 
 struct FilterData {
-    @UserDefaultCodable(.theater, defaultValue: TheaterType.allCases)
+    @UserDefaultCodable("Theater", defaultValue: TheaterType.allCases)
     static var theater: [TheaterType]
     
-    @UserDefaultCodable(.age, defaultValue: AgeType.allCases)
+    @UserDefaultCodable("Age", defaultValue: AgeType.allCases)
     static var age: [AgeType]
     
-    @UserDefault(.boxOffice, defaultValue: false)
+    @UserDefault("BoxOffice", defaultValue: false)
     static var boxOffice: Bool
     
-    @UserDefaultCodable(.nation, defaultValue: NationInfo.allCases)
+    @UserDefaultCodable("Nation", defaultValue: NationInfo.allCases)
     static var nation: [NationInfo]
 }

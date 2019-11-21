@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import kor45cw_Extension
 
-class TrailerCell: UITableViewCell, ReusableView, NibLoadableView {
+class TrailerCell: UITableViewCell, NibLoadableView {
 
     @IBOutlet private weak var wrapperView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!

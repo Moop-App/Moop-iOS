@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import kor45cw_Extension
 
-class SettingDividerCell: UITableViewCell, ReusableView, NibLoadableView {
+class SettingDividerCell: UITableViewCell, NibLoadableView {
     @IBOutlet weak var dividerView: UIView!
     
     override func awakeFromNib() {

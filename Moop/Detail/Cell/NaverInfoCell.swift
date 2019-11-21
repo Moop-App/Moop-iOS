@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import kor45cw_Extension
 
-class NaverInfoCell: UITableViewCell, ReusableView, NibLoadableView {
+class NaverInfoCell: UITableViewCell, NibLoadableView {
 
     @IBOutlet private weak var wrapperView: UIView!
     @IBOutlet private weak var rankLabel: UILabel!

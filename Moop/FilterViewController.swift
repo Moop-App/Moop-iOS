@@ -14,7 +14,7 @@ protocol FilterChangeDelegate: class {
 
 class FilterViewController: UITableViewController {
     static func instance() -> FilterViewController {
-        let vc: FilterViewController = instance(storyboardName: .main)
+        let vc: FilterViewController = instance(storyboardName: Storyboard.main)
         return vc
     }
     

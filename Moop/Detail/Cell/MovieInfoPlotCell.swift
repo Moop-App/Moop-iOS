@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import kor45cw_Extension
 
-class MovieInfoPlotCell: UITableViewCell, ReusableView, NibLoadableView {
+class MovieInfoPlotCell: UITableViewCell, NibLoadableView {
     
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var plotLabel: UILabel!

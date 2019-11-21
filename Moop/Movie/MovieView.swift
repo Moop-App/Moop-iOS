@@ -11,7 +11,7 @@ import SafariServices
 
 class MovieView: UIViewController {
     static func instance() -> MovieView {
-        let vc: MovieView = instance(storyboardName: .movie)
+        let vc: MovieView = instance(storyboardName: Storyboard.movie)
         vc.presenter = MoviePresenter(view: vc)
         return vc
     }

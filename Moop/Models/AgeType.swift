@@ -32,7 +32,7 @@ extension AgeType {
         case .over19:
             return .red
         case .over15:
-            return UIColor(hexString: "FFC107")
+            return UIColor(hex: "FFC107")
         case .over12:
             return .blue
         default:
