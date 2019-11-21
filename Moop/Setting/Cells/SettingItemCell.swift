@@ -8,8 +8,9 @@
 
 import UIKit
 import SwiftyStoreKit
+import kor45cw_Extension
 
-class SettingItemCell: UITableViewCell, ReusableView, NibLoadableView {
+class SettingItemCell: UITableViewCell, NibLoadableView {
 
     @IBOutlet weak var descriptionLabel: UILabel!
     

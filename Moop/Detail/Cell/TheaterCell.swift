@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import kor45cw_Extension
 
-class TheaterCell: UITableViewCell, ReusableView, NibLoadableView {
+class TheaterCell: UITableViewCell, NibLoadableView {
     
     @IBOutlet private weak var cgvWraaper: TheaterRankView!
     @IBOutlet private weak var megaBoxWraaper: TheaterRankView!

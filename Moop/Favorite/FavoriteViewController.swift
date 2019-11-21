@@ -11,7 +11,7 @@ import SafariServices
 
 class FavoriteViewController: UIViewController {
     static func instance() -> FavoriteViewController {
-        let vc: FavoriteViewController = instance(storyboardName: .favorite)
+        let vc: FavoriteViewController = instance(storyboardName: Storyboard.favorite)
         return vc
     }
     

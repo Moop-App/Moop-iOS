@@ -24,6 +24,7 @@ target 'Moop' do
   pod 'AcknowList'
   
   pod 'FacebookSDK'
+  pod 'kor45cw_Extension'
 
   target 'Networking' do
     inherit! :search_paths
