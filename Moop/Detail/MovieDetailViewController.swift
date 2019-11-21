@@ -205,7 +205,7 @@ extension MovieDetailViewController: DetailHeaderDelegate {
         case .cgv:
             webURL = URL(string: "http://m.cgv.co.kr/WebApp/MovieV4/movieDetail.aspx?MovieIdx=\(item?.cgv?.id ?? "")")
         case .lotte:
-            webURL = URL(string: "http://www.lottecinema.co.kr/LCMW/Contents/Movie/Movie-Detail-View.aspx?movie=\(item?.lotte?.id ?? "")")
+            webURL = URL(string: "https://www.lottecinema.co.kr/NLCMW/movie/moviedetailview?movie=\(item?.lotte?.id ?? "")")
         case .megabox:
             webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(item?.megabox?.id ?? "")")
         case .naver:
