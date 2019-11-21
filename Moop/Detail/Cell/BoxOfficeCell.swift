@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import kor45cw_Extension
 
-class BoxOfficeCell: UITableViewCell, ReusableView, NibLoadableView {
+class BoxOfficeCell: UITableViewCell, NibLoadableView {
     
     @IBOutlet private weak var rankLabel: UILabel!
     @IBOutlet private weak var rankReferenceDateLabel: UILabel!

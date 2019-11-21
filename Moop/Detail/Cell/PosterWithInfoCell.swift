@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import kor45cw_Extension
 
-class PosterWithInfoCell: UITableViewCell, ReusableView, NibLoadableView {
+class PosterWithInfoCell: UITableViewCell, NibLoadableView {
     
     @IBOutlet private weak var posterImageView: UIImageView!
     

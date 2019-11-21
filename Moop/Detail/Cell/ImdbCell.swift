@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import kor45cw_Extension
 
-class ImdbCell: UITableViewCell, ReusableView, NibLoadableView {
+class ImdbCell: UITableViewCell, NibLoadableView {
     @IBOutlet private weak var wrapperView: UIView!
     @IBOutlet private weak var imdbLabel: UILabel!
     @IBOutlet private weak var rtLabel: UILabel!

@@ -9,33 +9,22 @@
 import UIKit
 
 enum UserDefaultsKey {
-    case theater
+    
     case favorites
-    case age
     case detailViewCount
     case firstReviewDate
     case adFree
-    case boxOffice
-    case nation
     
     var keyString: String {
         switch self {
-        case .theater:
-            return "Theater"
         case .favorites:
             return "Favorites"
-        case .age:
-            return "Age"
         case .detailViewCount:
             return "Detail_View_Count"
         case .firstReviewDate:
             return "First_Review_Date"
         case .adFree:
             return "Ad_Free"
-        case .boxOffice:
-            return "BoxOffice"
-        case .nation:
-            return "Nation"
         }
     }
 }
