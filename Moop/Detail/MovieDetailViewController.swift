@@ -47,6 +47,8 @@ class MovieDetailViewController: UIViewController {
         }
     }
     private var bannerView: GADBannerView!
+    @IBOutlet private weak var bannerWrpperView: UIView!
+    @IBOutlet private weak var bannerViewHeightConstraint: NSLayoutConstraint!
     private var adLoader: GADAdLoader!
     private var nativeAd: GADUnifiedNativeAd?
     
@@ -67,28 +69,6 @@ class MovieDetailViewController: UIViewController {
         case ad
     }
     
-    private func addBannerViewToView(_ bannerView: GADBannerView) {
-        bannerView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(bannerView)
-        view.addConstraints(
-            [NSLayoutConstraint(item: bannerView,
-                                attribute: .bottom,
-                                relatedBy: .equal,
-                                toItem: view.safeAreaLayoutGuide,
-                                attribute: .bottom,
-                                multiplier: 1,
-                                constant: 0),
-             NSLayoutConstraint(item: bannerView,
-                                attribute: .centerX,
-                                relatedBy: .equal,
-                                toItem: view,
-                                attribute: .centerX,
-                                multiplier: 1,
-                                constant: 0)
-        ])
-        view.bringSubviewToFront(bannerView)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = item?.title
@@ -105,13 +85,15 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func configureAd() {
-        if UserDefaults.standard.bool(forKey: .adFree) { return }
+        if UserDefaults.standard.bool(forKey: .adFree) {
+            bannerWrpperView.removeFromSuperview()
+            return
+        }
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         bannerView.adUnitID = AdConfig.bannderKey
         bannerView.rootViewController = self
-        bannerView.load(GADRequest())
         bannerView.delegate = self
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+        bannerWrpperView.addSubview(bannerView)
         
         adLoader = GADAdLoader(adUnitID: AdConfig.nativeAdKey,
                                rootViewController: self,
@@ -120,6 +102,36 @@ class MovieDetailViewController: UIViewController {
         adLoader.delegate = self
         adLoader.load(GADRequest())
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Note loadBannerAd is called in viewDidAppear as this is the first time that
+        // the safe area is known. If safe area is not a concern (e.g., your app is
+        // locked in portrait mode), the banner can be loaded in viewWillAppear.
+        loadBannerAd()
+    }
+    
+    override func viewWillTransition(to size: CGSize,
+                                     with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { _ in
+            self.loadBannerAd()
+        })
+    }
+    
+    func loadBannerAd() {
+        // Step 2 - Determine the view width to use for the ad width.
+        let viewWidth = view.frame.inset(by: view.safeAreaInsets).size.width
+        
+        // Step 3 - Get Adaptive GADAdSize and set the ad view.
+        // Here the current interface orientation is used. If the ad is being preloaded
+        // for a future orientation change or different orientation, the function for the
+        // relevant orientation should be used.
+        bannerView.adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)
+        bannerViewHeightConstraint.constant = bannerView.adSize.size.height
+        // Step 4 - Create an ad request and load the adaptive banner ad.
+        bannerView.load(GADRequest())
+    }
+
     
     private func calculateCell(info: MovieInfo?) -> [CellType] {
         guard let info = info else { return [] }
@@ -323,7 +335,6 @@ extension MovieDetailViewController: UITableViewDelegate {
 extension MovieDetailViewController: GADBannerViewDelegate, GADUnifiedNativeAdLoaderDelegate {
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         // Add banner to view and add constraints as above.
-        addBannerViewToView(bannerView)
         bannerView.alpha = 0
         UIView.animate(withDuration: 1, animations: {
             bannerView.alpha = 1

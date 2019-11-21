@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -270,14 +270,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vuu-d5-rlT">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="812"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0h-qh-CnH">
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4kz-Iq-zXU"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Vuu-d5-rlT" secondAttribute="bottom" id="09f-oI-7mN"/>
+                            <constraint firstAttribute="bottom" secondItem="Vuu-d5-rlT" secondAttribute="bottom" priority="750" id="09f-oI-7mN"/>
+                            <constraint firstItem="60z-eX-jS2" firstAttribute="trailing" secondItem="z0h-qh-CnH" secondAttribute="trailing" id="16b-B7-YTT"/>
+                            <constraint firstItem="60z-eX-jS2" firstAttribute="bottom" secondItem="z0h-qh-CnH" secondAttribute="bottom" id="6vv-Tt-bUY"/>
+                            <constraint firstItem="z0h-qh-CnH" firstAttribute="leading" secondItem="60z-eX-jS2" secondAttribute="leading" id="KiK-PQ-V61"/>
                             <constraint firstItem="60z-eX-jS2" firstAttribute="trailing" secondItem="Vuu-d5-rlT" secondAttribute="trailing" id="U8t-82-wAQ"/>
+                            <constraint firstItem="z0h-qh-CnH" firstAttribute="top" secondItem="Vuu-d5-rlT" secondAttribute="bottom" id="Ume-nA-LI6"/>
                             <constraint firstItem="Vuu-d5-rlT" firstAttribute="leading" secondItem="60z-eX-jS2" secondAttribute="leading" id="guy-bi-RUf"/>
                             <constraint firstItem="Vuu-d5-rlT" firstAttribute="top" secondItem="DyV-GV-k7a" secondAttribute="top" id="v0I-1v-zNy"/>
                         </constraints>
@@ -314,6 +325,8 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="bannerViewHeightConstraint" destination="4kz-Iq-zXU" id="dMr-uA-WTC"/>
+                        <outlet property="bannerWrpperView" destination="z0h-qh-CnH" id="wZo-b5-aRu"/>
                         <outlet property="favoriteButton" destination="5bi-xr-AJi" id="vo3-a4-tF2"/>
                         <outlet property="tableView" destination="Vuu-d5-rlT" id="KqF-JM-4UZ"/>
                     </connections>
