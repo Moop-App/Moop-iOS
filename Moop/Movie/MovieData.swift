@@ -30,7 +30,13 @@ extension MovieData {
     }
     
     func search(query: String) {
-        self.searchedMovies = filteredMovies.filter({ $0.title.contains(query) })
+        let jamoChoQuery = Jamo.getChos(query)
+        let jamoQuery = Jamo.getJamo(query)
+        if jamoChoQuery == jamoQuery {
+            self.searchedMovies = filteredMovies.filter({ Jamo.getChos($0.title).contains(jamoChoQuery) })
+        } else {
+            self.searchedMovies = filteredMovies.filter({ Jamo.getJamo($0.title).contains(jamoQuery) })
+        }
     }
     
     func filter() {
