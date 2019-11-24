@@ -119,6 +119,7 @@ class MovieDetailViewController: UIViewController {
     }
     
     func loadBannerAd() {
+        guard !UserDefaults.standard.bool(forKey: .adFree) else { return }
         // Step 2 - Determine the view width to use for the ad width.
         let viewWidth = view.frame.inset(by: view.safeAreaInsets).size.width
         
@@ -126,8 +127,10 @@ class MovieDetailViewController: UIViewController {
         // Here the current interface orientation is used. If the ad is being preloaded
         // for a future orientation change or different orientation, the function for the
         // relevant orientation should be used.
-        bannerView.adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)
-        bannerViewHeightConstraint.constant = bannerView.adSize.size.height
+        if bannerView != nil {
+            bannerView.adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)
+            bannerViewHeightConstraint.constant = bannerView.adSize.size.height
+        }
         // Step 4 - Create an ad request and load the adaptive banner ad.
         bannerView.load(GADRequest())
     }
