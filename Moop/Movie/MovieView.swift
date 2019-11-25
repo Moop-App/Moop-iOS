@@ -200,6 +200,12 @@ extension MovieView: UIViewControllerPreviewingDelegate {
 extension MovieView: MovieDetailPickAndPopDelegate {
     func share(text: String) {
         let viewController = UIActivityViewController(activityItems: [text], applicationActivities: [])
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            viewController.popoverPresentationController?.sourceView = self.view
+            viewController.popoverPresentationController?.sourceRect = CGRect(x: self.view.frame.size.width / 2,
+                                                                              y: self.view.frame.size.height / 2,
+                                                                              width: 0, height: 0)
+        }
         present(viewController, animated: true, completion: nil)
     }
     

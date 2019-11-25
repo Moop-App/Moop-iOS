@@ -171,7 +171,7 @@ class MovieDetailViewController: UIViewController {
     }
     
     @IBAction private func share(_ sender: UIBarButtonItem) {
-        share()
+        share(sender: sender)
     }
     
     @IBAction private func favorite(_ sender: UIButton) {
@@ -220,9 +220,20 @@ extension MovieDetailViewController: DetailHeaderDelegate {
         present(safariViewController, animated: true, completion: nil)
     }
     
-    func share() {
+    func share(sender: UIBarButtonItem? = nil) {
         let viewController = UIActivityViewController(activityItems: [item?.shareText ?? ""], applicationActivities: [])
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if sender != nil {
+                viewController.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+            } else {
+                viewController.popoverPresentationController?.sourceView = self.view
+                viewController.popoverPresentationController?.sourceRect = CGRect(x: 0, y: 0,
+                                                                                  width: self.view.frame.size.width / 2,
+                                                                                  height: self.view.frame.size.height / 4)
+            }
+        }
         present(viewController, animated: true, completion: nil)
+        
     }
     
     func favorite(isAdd: Bool) {
