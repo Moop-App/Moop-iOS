@@ -53,7 +53,7 @@ class NativeAdCell: UITableViewCell, NibLoadableView {
         nativeAdView.advertiserView?.isHidden = nativeAd.advertiser == nil
 
         // In order for the SDK to process touch events properly, user interaction should be disabled.
-        (nativeAdView.callToActionView as! UIButton).isUserInteractionEnabled = false
+        (nativeAdView.callToActionView as? UIButton)?.isUserInteractionEnabled = false
 
         self.isVisible = true
     }

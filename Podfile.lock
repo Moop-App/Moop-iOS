@@ -112,9 +112,9 @@ PODS:
   - Nimble (8.0.4)
   - Protobuf (3.10.0)
   - Quick (2.2.0)
-  - SDWebImage (5.3.1):
-    - SDWebImage/Core (= 5.3.1)
-  - SDWebImage/Core (5.3.1)
+  - SDWebImage (5.3.2):
+    - SDWebImage/Core (= 5.3.2)
+  - SDWebImage/Core (5.3.2)
   - SwiftLint (0.37.0)
   - SwiftyStoreKit (0.15.0)
   - Wormholy (1.5.1)
@@ -206,7 +206,7 @@ SPEC CHECKSUMS:
   Nimble: 18d5360282923225d62b09d781f63abc1a0111fc
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
-  SDWebImage: 7137d57385fb632129838c1e6ab9528a22c666cc
+  SDWebImage: 6ac2eb96571bff96ecde31a987172c5934a0eb7d
   SwiftLint: c078a14d7d7ade75e5507795d185e3da41d844d2
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   Wormholy: f01b096b449a9fcab864a10f7e5b5693b1225c88
