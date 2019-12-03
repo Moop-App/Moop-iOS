@@ -110,7 +110,7 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - Nimble (8.0.4)
-  - Protobuf (3.10.0)
+  - Protobuf (3.11.1)
   - Quick (2.2.0)
   - SDWebImage (5.3.2):
     - SDWebImage/Core (= 5.3.2)
@@ -204,7 +204,7 @@ SPEC CHECKSUMS:
   kor45cw_Extension: 06505abed9efd7c58c5f9706176f1aeb4abb5ec6
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Nimble: 18d5360282923225d62b09d781f63abc1a0111fc
-  Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
+  Protobuf: 20d79da7f20b5928b80043b05080b816e802659e
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   SDWebImage: 6ac2eb96571bff96ecde31a987172c5934a0eb7d
   SwiftLint: c078a14d7d7ade75e5507795d185e3da41d844d2
