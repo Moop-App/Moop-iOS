@@ -17,6 +17,10 @@ class MovieCell: UICollectionViewCell, NibLoadableView {
     @IBOutlet private weak var bestView: UIView!
     @IBOutlet private weak var bestLabel: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
     func set(_ item: MovieInfo?, isFavorite: Bool = false) {
         guard let item = item else { return }
         if isFavorite {
