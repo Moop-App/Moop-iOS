@@ -367,8 +367,6 @@
 				3C34938C22E75DA700A77343 /* MovieInfoManager.swift */,
 				3CB6E84A22B8EFF2008F382C /* ShortcutManager.swift */,
 				3CDCD79022BDD7C400DDD14B /* NotificationManager.swift */,
-				3C66021822959A18000BA333 /* MovieCell.swift */,
-				3C66021922959A18000BA333 /* MovieCell.xib */,
 				A0D2462422F3D9F800F48CBA /* Models */,
 				3C767528229918970052BEB6 /* Extensions */,
 				3C61A8A222DF283300F4A7E5 /* Utils */,
@@ -560,6 +558,8 @@
 				A0EBD3B92351E86F007A23EB /* MovieProtocols.swift */,
 				A0EBD3B52351E636007A23EB /* MovieData.swift */,
 				A0EBD3BD235480E8007A23EB /* Movie.storyboard */,
+				3C66021822959A18000BA333 /* MovieCell.swift */,
+				3C66021922959A18000BA333 /* MovieCell.xib */,
 			);
 			path = Movie;
 			sourceTree = "<group>";
