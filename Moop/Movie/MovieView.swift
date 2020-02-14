@@ -46,6 +46,10 @@ class MovieView: UIViewController {
         presenter.fetchDatas(type: [.current, .future])
     }
     
+    @objc private func changeDataType() {
+        presenter.changeType()
+    }
+    
     
     @objc private func requestData() {
         presenter.fetchDatas(type: [])
@@ -78,7 +82,6 @@ extension MovieView: MovieViewDelegate {
     
     func loadFailed() {
         refreshControl.endRefreshing()
-        // TODO: Fail Toast
     }
     
     func change(state: MoviePresenter.MovieType) {
@@ -114,8 +117,8 @@ extension MovieView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let destination = MovieDetailViewController.instance(item: presenter[indexPath])
-        self.navigationController?.pushViewController(destination, animated: true)
+//        let destination = MovieDetailViewController.instance(item: presenter[indexPath])
+//        self.navigationController?.pushViewController(destination, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -151,33 +154,34 @@ extension MovieView: UICollectionViewDelegateFlowLayout {
     
     @available(iOS 13.0, *)
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
-            let share = UIAction(title: "Share", image: UIImage(named: "share"), identifier: nil) { [weak self] _ in
-                guard let self = self else { return }
-                self.share(text: self.presenter[indexPath]?.shareText ?? "")
-            }
-            let cgv = UIAction(title: "CGV", image: nil, identifier: nil) { [weak self] _ in
-                guard let self = self else { return }
-                self.rating(type: .cgv, id: self.presenter[indexPath]?.cgv?.id ?? "")
-            }
-
-            let lotte = UIAction(title: "LOTTE", image: nil, identifier: nil) { [weak self] _ in
-                guard let self = self else { return }
-                self.rating(type: .lotte, id: self.presenter[indexPath]?.lotte?.id ?? "")
-            }
-
-            let megabox = UIAction(title: "MEGABOX", image: nil, identifier: nil) { [weak self] _ in
-                guard let self = self else { return }
-                self.rating(type: .megabox, id: self.presenter[indexPath]?.megabox?.id ?? "")
-            }
-
-            let naver = UIAction(title: "NAVER", image: nil, identifier: nil) { [weak self] _ in
-                guard let self = self else { return }
-                self.rating(type: .naver, id: self.presenter[indexPath]?.naver?.link ?? "")
-            }
-            
-            return UIMenu(title: "", image: nil, identifier: nil, children: [share, cgv, lotte, megabox, naver])
-        }
+//        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+//            let share = UIAction(title: "Share", image: UIImage(named: "share"), identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                self.share(text: self.presenter[indexPath]?.shareText ?? "")
+//            }
+//            let cgv = UIAction(title: "CGV", image: nil, identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                self.rating(type: .cgv, id: self.presenter[indexPath]?.cgv?.id ?? "")
+//            }
+//
+//            let lotte = UIAction(title: "LOTTE", image: nil, identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                self.rating(type: .lotte, id: self.presenter[indexPath]?.lotte?.id ?? "")
+//            }
+//
+//            let megabox = UIAction(title: "MEGABOX", image: nil, identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                self.rating(type: .megabox, id: self.presenter[indexPath]?.megabox?.id ?? "")
+//            }
+//
+//            let naver = UIAction(title: "NAVER", image: nil, identifier: nil) { [weak self] _ in
+//                guard let self = self else { return }
+//                self.rating(type: .naver, id: self.presenter[indexPath]?.naver?.link ?? "")
+//            }
+//
+//            return UIMenu(title: "", image: nil, identifier: nil, children: [share, cgv, lotte, megabox, naver])
+//        }
+        return nil
     }
 }
 
@@ -187,9 +191,9 @@ extension MovieView: UIViewControllerPreviewingDelegate {
             let cell = collectionView.cellForItem(at: indexPath) else { return nil }
         
         previewingContext.sourceRect = cell.frame
-        let destination = MovieDetailViewController.instance(item: presenter[indexPath])
-        destination.delegate = self
-        return destination
+//        let destination = MovieDetailViewController.instance(item: presenter[indexPath])
+//        destination.delegate = self
+        return nil
     }
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {

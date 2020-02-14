@@ -23,9 +23,9 @@ protocol DetailHeaderDelegate: class {
 }
 
 class MovieDetailViewController: UIViewController {
-    static func instance(item: MovieInfo? = nil) -> MovieDetailViewController {
+    static func instance(item: Movie? = nil) -> MovieDetailViewController {
         let vc: MovieDetailViewController = instance(storyboardName: Storyboard.main)
-        vc.item = item
+//        vc.item = item
         return vc
     }
     
@@ -52,7 +52,7 @@ class MovieDetailViewController: UIViewController {
     private var adLoader: GADAdLoader!
     private var nativeAd: GADUnifiedNativeAd?
     
-    private var item: MovieInfo?
+    private var item: Movie?
     private var totalCell: [CellType] = []
     weak var delegate: MovieDetailPickAndPopDelegate?
     
@@ -72,7 +72,7 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = item?.title
-        totalCell = calculateCell(info: item)
+//        totalCell = calculateCell(info: item)
         configureAd()
         
         if isAllowedToOpenStoreReview() {
@@ -136,25 +136,25 @@ class MovieDetailViewController: UIViewController {
     }
 
     
-    private func calculateCell(info: MovieInfo?) -> [CellType] {
+    private func calculateCell(info: MovieResponse?) -> [CellType] {
         guard let info = info else { return [] }
         var result = [CellType.header]
-        if info.kobis?.boxOffice != nil {
-            result.append(.boxOffice)
-        }
-        if info.imdb != nil {
-            result.append(.imdb)
-        }
-        result.append(.cgv)
-        if info.kobis?.boxOffice == nil && info.naver != nil {
-            result.append(.naver)
-        }
-        if info.plot != nil {
-            result.append(.plot)
-        }
-        result.append(.trailerHeader)
-        info.trailers?.forEach { result.append(.trailer($0)) }
-        result.append(.trailerFooter)
+//        if info.kobis?.boxOffice != nil {
+//            result.append(.boxOffice)
+//        }
+//        if info.imdb != nil {
+//            result.append(.imdb)
+//        }
+//        result.append(.cgv)
+//        if info.kobis?.boxOffice == nil && info.naver != nil {
+//            result.append(.naver)
+//        }
+//        if info.plot != nil {
+//            result.append(.plot)
+//        }
+//        result.append(.trailerHeader)
+//        info.trailers?.forEach { result.append(.trailer($0)) }
+//        result.append(.trailerFooter)
         return result
     }
     
@@ -180,44 +180,44 @@ class MovieDetailViewController: UIViewController {
         favorite(isAdd: sender.tag == 1)
     }
     
-    override var previewActionItems: [UIPreviewActionItem] {
-        let shareAction = UIPreviewAction(title: "Share", style: .default) { [weak self] (_, viewController) in
-            self?.delegate?.share(text: self?.item?.shareText ?? "")
-        }
-        let cgvAction = UIPreviewAction(title: "CGV", style: .default) { [weak self] (_, viewController) in
-            self?.delegate?.rating(type: .cgv, id: self?.item?.cgv?.id ?? "")
-        }
-        let lotteAction = UIPreviewAction(title: "LOTTE", style: .default) { [weak self] (_, _) in
-            self?.delegate?.rating(type: .lotte, id: self?.item?.lotte?.id ?? "")
-        }
-        let megaboxAction = UIPreviewAction(title: "MEGABOX", style: .default) { [weak self] (_, _) in
-            self?.delegate?.rating(type: .megabox, id: self?.item?.megabox?.id ?? "")
-        }
-        let naverAction = UIPreviewAction(title: "NAVER", style: .default) { [weak self] (_, _) in
-            self?.delegate?.rating(type: .naver, id: self?.item?.naver?.link ?? "")
-        }
-        
-        return [shareAction, cgvAction, lotteAction, megaboxAction, naverAction]
-    }
+//    override var previewActionItems: [UIPreviewActionItem] {
+//        let shareAction = UIPreviewAction(title: "Share", style: .default) { [weak self] (_, viewController) in
+//            self?.delegate?.share(text: self?.item?.shareText ?? "")
+//        }
+//        let cgvAction = UIPreviewAction(title: "CGV", style: .default) { [weak self] (_, viewController) in
+//            self?.delegate?.rating(type: .cgv, id: self?.item?.cgv?.id ?? "")
+//        }
+//        let lotteAction = UIPreviewAction(title: "LOTTE", style: .default) { [weak self] (_, _) in
+//            self?.delegate?.rating(type: .lotte, id: self?.item?.lotte?.id ?? "")
+//        }
+//        let megaboxAction = UIPreviewAction(title: "MEGABOX", style: .default) { [weak self] (_, _) in
+//            self?.delegate?.rating(type: .megabox, id: self?.item?.megabox?.id ?? "")
+//        }
+//        let naverAction = UIPreviewAction(title: "NAVER", style: .default) { [weak self] (_, _) in
+//            self?.delegate?.rating(type: .naver, id: self?.item?.naver?.link ?? "")
+//        }
+//
+//        return [shareAction, cgvAction, lotteAction, megaboxAction, naverAction]
+//    }
 }
 
 extension MovieDetailViewController: DetailHeaderDelegate {
     func wrapper(type: TheaterType) {
-        let webURL: URL?
-        switch type {
-        case .cgv:
-            webURL = URL(string: "http://m.cgv.co.kr/WebApp/MovieV4/movieDetail.aspx?MovieIdx=\(item?.cgv?.id ?? "")")
-        case .lotte:
-            webURL = URL(string: "https://www.lottecinema.co.kr/NLCMW/movie/moviedetailview?movie=\(item?.lotte?.id ?? "")")
-        case .megabox:
-            webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(item?.megabox?.id ?? "")")
-        case .naver:
-            webURL = URL(string: item?.naver?.link ?? "")
-        }
+//        let webURL: URL?
+//        switch type {
+//        case .cgv:
+//            webURL = URL(string: "http://m.cgv.co.kr/WebApp/MovieV4/movieDetail.aspx?MovieIdx=\(item?.cgv?.id ?? "")")
+//        case .lotte:
+//            webURL = URL(string: "https://www.lottecinema.co.kr/NLCMW/movie/moviedetailview?movie=\(item?.lotte?.id ?? "")")
+//        case .megabox:
+//            webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(item?.megabox?.id ?? "")")
+//        case .naver:
+//            webURL = URL(string: item?.naver?.link ?? "")
+//        }
         
-        guard let url = webURL else { return }
-        let safariViewController = SFSafariViewController(url: url)
-        present(safariViewController, animated: true, completion: nil)
+//        guard let url = webURL else { return }
+//        let safariViewController = SFSafariViewController(url: url)
+//        present(safariViewController, animated: true, completion: nil)
     }
     
     func share(sender: UIBarButtonItem? = nil) {
@@ -250,7 +250,7 @@ extension MovieDetailViewController: DetailHeaderDelegate {
             NotificationManager.shared.addNotification(item: item)
         } else if let index = array.firstIndex(of: itemId) {
             array.remove(at: index)
-            NotificationManager.shared.removeNotification(item: item)
+//            NotificationManager.shared.removeNotification(item: item)
         }
         UserDefaults.standard.set(array, forKey: .favorites)
     }
@@ -273,30 +273,30 @@ extension MovieDetailViewController: UITableViewDataSource {
         switch cellType {
         case .header:
             let cell: PosterWithInfoCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.set(item)
+//            cell.set(item)
             cell.delegate = self
             return cell
         case .boxOffice:
             let cell: BoxOfficeCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.set(item)
+//            cell.set(item)
             return cell
         case .imdb:
             let cell: ImdbCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.set(item?.imdb)
+//            cell.set(item?.imdb)
             return cell
         case .cgv:
             let cell: TheaterCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.set(item)
+//            cell.set(item)
             cell.delegate = self
             return cell
         case .naver:
             let cell: NaverInfoCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.set(item?.naver)
+//            cell.set(item?.naver)
             cell.delegate = self
             return cell
         case .plot:
             let cell: MovieInfoPlotCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.configure(item?.plot)
+//            cell.configure(item?.plot)
             return cell
         case .trailerHeader:
             let cell: TrailerHeaderCell = tableView.dequeueReusableCell(for: indexPath)

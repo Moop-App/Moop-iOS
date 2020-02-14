@@ -51,6 +51,15 @@ public final class API {
         }
     }
     
+    
+    public func requestCurrentUpdateTime(completionHandler: @escaping (Result<String, Error>) -> Void) {
+        AF.request(APISetupManager.currentLastUpdatedTimeRequestURL)
+            .validate()
+            .responseString { response in
+                
+        }
+    }
+    
     public func requestCurrent<T: Decodable>(completionHandler: @escaping (Result<[T], Error>) -> Void) {
         self.requestURL = APISetupManager.currentRequestURL
         AF.request(requestURL)

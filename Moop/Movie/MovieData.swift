@@ -9,9 +9,9 @@
 import Foundation
 
 class MovieData {
-    var items: [MovieInfo] = []
-    var filteredMovies: [MovieInfo] = []
-    var searchedMovies: [MovieInfo] = []
+    var items: [Movie] = []
+    var filteredMovies: [Movie] = []
+    var searchedMovies: [Movie] = []
     
     enum SortType {
         case rank
@@ -20,10 +20,10 @@ class MovieData {
 }
 
 extension MovieData {
-    func update(items: [MovieInfo], sortType: SortType) {
+    func update(items: [Movie], sortType: SortType) {
         switch sortType {
         case .rank:
-            self.items = items.sorted(by: { $0.rank < $1.rank })
+            self.items = items.sorted(by: { $0.score < $1.score })
         case .day:
             self.items = items.sorted(by: { $0.getDay < $1.getDay })
         }
@@ -44,16 +44,16 @@ extension MovieData {
             .filter { $0.contain(types: FilterData.theater) }
             .filter { $0.contain(ages: FilterData.age) }
         
-        if FilterData.boxOffice {
-            self.filteredMovies = filteredMovies.sorted(by: { $0.kobis?.boxOffice?.rank ?? 999 < $1.kobis?.boxOffice?.rank ?? 999 })
-        }
+//        if FilterData.boxOffice {
+//            self.filteredMovies = filteredMovies.sorted(by: { $0.kobis?.boxOffice?.rank ?? 999 < $1.kobis?.boxOffice?.rank ?? 999 })
+//        }
         
         guard FilterData.nation.count == 1, let nation = FilterData.nation.first else { return }
-        switch nation {
-        case .korean:
-            self.filteredMovies = self.filteredMovies.filter { $0.kobis?.nations?.first == "한국" }
-        case .etc:
-            self.filteredMovies = self.filteredMovies.filter { $0.kobis?.nations?.first != "한국" }
-        }
+//        switch nation {
+//        case .korean:
+//            self.filteredMovies = self.filteredMovies.filter { $0.kobis?.nations?.first == "한국" }
+//        case .etc:
+//            self.filteredMovies = self.filteredMovies.filter { $0.kobis?.nations?.first != "한국" }
+//        }
     }
 }

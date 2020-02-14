@@ -46,6 +46,7 @@
 		A01007EC232A6FDC00DC9B55 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01007EB232A6FDC00DC9B55 /* Log.swift */; };
 		A017CDE522FD36B5002D4B11 /* PosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A017CDE422FD36B5002D4B11 /* PosterViewController.swift */; };
 		A02133EF22F1934000AD6D0E /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02133EE22F1934000AD6D0E /* Storyboard.swift */; };
+		A022A81C23F57DDB00D13FF7 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A022A81B23F57DDB00D13FF7 /* Movie.swift */; };
 		A0434E3A22F089CB004C086B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0434E3922F089CB004C086B /* MapViewController.swift */; };
 		A0434E3C22F129AC004C086B /* MapInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0434E3B22F129AC004C086B /* MapInfo.swift */; };
 		A04A4EA82307E884008B0944 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A04A4E9F2307E884008B0944 /* Networking.framework */; };
@@ -55,6 +56,7 @@
 		A04A4EB52307E884008B0944 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A04A4E9F2307E884008B0944 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A04A4EBE2307E8F4008B0944 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04A4EBD2307E8F4008B0944 /* API.swift */; };
 		A04A4EC12307EF5D008B0944 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04A4EC02307EF5D008B0944 /* APIError.swift */; };
+		A054A99223F6855B00E8ADFE /* MovieTimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A054A99123F6855B00E8ADFE /* MovieTimeData.swift */; };
 		A0573A61238A4F7600DA00CE /* Jamo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0573A60238A4F7600DA00CE /* Jamo.swift */; };
 		A06A98A92379709600A6B87D /* FilterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06A98A82379709600A6B87D /* FilterData.swift */; };
 		A06A98AD23797F8A00A6B87D /* NationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06A98AC23797F8A00A6B87D /* NationInfo.swift */; };
@@ -201,6 +203,7 @@
 		A01007EB232A6FDC00DC9B55 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		A017CDE422FD36B5002D4B11 /* PosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterViewController.swift; sourceTree = "<group>"; };
 		A02133EE22F1934000AD6D0E /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
+		A022A81B23F57DDB00D13FF7 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		A0434E3922F089CB004C086B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A0434E3B22F129AC004C086B /* MapInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfo.swift; sourceTree = "<group>"; };
 		A04A4E9F2307E884008B0944 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +214,7 @@
 		A04A4EB02307E884008B0944 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A04A4EBD2307E8F4008B0944 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		A04A4EC02307EF5D008B0944 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		A054A99123F6855B00E8ADFE /* MovieTimeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTimeData.swift; sourceTree = "<group>"; };
 		A0573A60238A4F7600DA00CE /* Jamo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jamo.swift; sourceTree = "<group>"; };
 		A0657E1F22F8007600EA89FE /* Default.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Default.xcconfig; sourceTree = "<group>"; };
 		A0657E2122F802CF00EA89FE /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
@@ -355,6 +359,7 @@
 				3C6601F322956D38000BA333 /* AppDelegate.swift */,
 				A0CACA01234F48890076E432 /* AdConfig.swift */,
 				3CB6E84C22B9C518008F382C /* MainTabBarController.swift */,
+				A022A81B23F57DDB00D13FF7 /* Movie.swift */,
 				3C6601F722956D38000BA333 /* Main.storyboard */,
 				A0EBD3AE2351E235007A23EB /* Movie */,
 				A00671EE22FC07C4002FE813 /* Favorite */,
@@ -363,6 +368,7 @@
 				A0CAEBC022FAEC3800C5C662 /* Map */,
 				3C947A8B22D736170075E4DE /* FilterViewController.swift */,
 				A06A98A82379709600A6B87D /* FilterData.swift */,
+				A054A99123F6855B00E8ADFE /* MovieTimeData.swift */,
 				A017CDE422FD36B5002D4B11 /* PosterViewController.swift */,
 				3C34938C22E75DA700A77343 /* MovieInfoManager.swift */,
 				3CB6E84A22B8EFF2008F382C /* ShortcutManager.swift */,
@@ -934,6 +940,7 @@
 				A0573A61238A4F7600DA00CE /* Jamo.swift in Sources */,
 				A0CAC9E7234D63830076E432 /* TheaterCell.swift in Sources */,
 				A017CDE522FD36B5002D4B11 /* PosterViewController.swift in Sources */,
+				A054A99223F6855B00E8ADFE /* MovieTimeData.swift in Sources */,
 				A0D2462322F3D9E400F48CBA /* NaverInfo.swift in Sources */,
 				A0CAC9F4234D6A520076E432 /* Date+Extension.swift in Sources */,
 				A06A98A92379709600A6B87D /* FilterData.swift in Sources */,
@@ -957,6 +964,7 @@
 				A0D2462122F3D9D500F48CBA /* TrailerInfo.swift in Sources */,
 				A0CACA00234F3B7F0076E432 /* NativeAdCell.swift in Sources */,
 				A01007EC232A6FDC00DC9B55 /* Log.swift in Sources */,
+				A022A81C23F57DDB00D13FF7 /* Movie.swift in Sources */,
 				A0EBD3BA2351E86F007A23EB /* MovieProtocols.swift in Sources */,
 				3CBD5EB422960DF7005A24E4 /* MovieDetailViewController.swift in Sources */,
 				A06A98AD23797F8A00A6B87D /* NationInfo.swift in Sources */,

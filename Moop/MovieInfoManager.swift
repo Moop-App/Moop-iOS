@@ -22,18 +22,18 @@ class MovieInfoManager {
         NotificationCenter.default.removeObserver(self)
     }
     
-    var currentDatas: [MovieInfo] = []
-    var futureDatas: [MovieInfo] = []
+    var currentDatas: [MovieResponse] = []
+    var futureDatas: [MovieResponse] = []
     
     @objc private func reconnected(_ notification: Notification) {
         guard let data = notification.userInfo?["data"] as? Data,
             let isCurrent = notification.userInfo?["isCurrent"] as? Bool else { return }
         do {
-            let decodeDatas = try JSONDecoder().decode([MovieInfo].self, from: data)
+            let decodeDatas = try JSONDecoder().decode([MovieResponse].self, from: data)
             if isCurrent {
-                self.currentDatas = decodeDatas.sorted(by: { $0.rank < $1.rank })
+                self.currentDatas = decodeDatas.sorted(by: { $0.score < $1.score })
             } else {
-                self.futureDatas = decodeDatas.sorted(by: { $0.rank < $1.rank })
+                self.futureDatas = decodeDatas.sorted(by: { $0.score < $1.score })
             }
             completionHandler?()
         } catch {
@@ -43,7 +43,7 @@ class MovieInfoManager {
     
     func requestCurrentData(completionHandler: (() -> Void)? = nil) {
         self.completionHandler = completionHandler
-        API.shared.requestCurrent { [weak self] (result: Result<[MovieInfo], Error>) in
+        API.shared.requestCurrent { [weak self] (result: Result<[MovieResponse], Error>) in
             guard let self = self else { return }
             switch result {
             case .success(let result):
@@ -58,7 +58,7 @@ class MovieInfoManager {
     
     func requestFutureData(completionHandler: (() -> Void)? = nil) {
         self.completionHandler = completionHandler
-        API.shared.requestFuture { [weak self] (result: Result<[MovieInfo], Error>) in
+        API.shared.requestFuture { [weak self] (result: Result<[MovieResponse], Error>) in
             guard let self = self else { return }
             switch result {
             case .success(let result):
@@ -71,9 +71,9 @@ class MovieInfoManager {
         }
     }
     
-    func favorites() -> [MovieInfo] {
+    func favorites() -> [MovieResponse] {
         guard let ids = UserDefaults.standard.array(forKey: .favorites) as? [String] else { return [] }
-        var infos: [MovieInfo] = []
+        var infos: [MovieResponse] = []
         
         infos.append(contentsOf: currentDatas.filter({ ids.contains($0.id) }))
         infos.append(contentsOf: futureDatas.filter({ ids.contains($0.id) }))

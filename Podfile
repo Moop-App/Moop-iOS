@@ -24,7 +24,10 @@ target 'Moop' do
   pod 'AcknowList'
   
   pod 'FacebookSDK'
+  pod 'FBAudienceNetwork'
   pod 'kor45cw_Extension'
+  
+  pod 'RealmSwift'
 
   target 'Networking' do
     inherit! :search_paths
