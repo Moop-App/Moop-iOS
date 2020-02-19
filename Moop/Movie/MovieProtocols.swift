@@ -19,8 +19,8 @@ protocol MoviePresenterDelegate: class {
     var numberOfItemsInSection: Int { get }
     var isEmpty: Bool { get }
     subscript(indexPath: IndexPath) -> Movie? { get }
-    func fetchDatas(type: [MoviePresenter.MovieType])
-    func updateState(_ index: Int)
     
-    func changeType()
+    func viewDidLoad()
+    func updateState(_ index: Int)
+    func fetchDatas()
 }

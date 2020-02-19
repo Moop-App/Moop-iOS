@@ -25,7 +25,7 @@ public final class API {
     
     
     private init() {
-        monitorReachability()
+//        monitorReachability()
     }
     
     private func monitorReachability() {
@@ -52,18 +52,23 @@ public final class API {
     }
     
     
-    public func requestCurrentUpdateTime(completionHandler: @escaping (Result<String, Error>) -> Void) {
-        AF.request(APISetupManager.currentLastUpdatedTimeRequestURL)
-            .validate()
+    public func requestCurrentUpdateTime(completionHandler: @escaping (Result<String, AFError>) -> Void) {
+        AF.request(APISetupManager.currentLastUpdatedTimeRequestURL).validate()
             .responseString { response in
-                
+                completionHandler(response.result)
+        }
+    }
+    
+    public func requestFutureUpdateTime(completionHandler: @escaping (Result<String, AFError>) -> Void) {
+        AF.request(APISetupManager.futureLastUpdatedTimeRequestURL).validate()
+            .responseString { response in
+                completionHandler(response.result)
         }
     }
     
     public func requestCurrent<T: Decodable>(completionHandler: @escaping (Result<[T], Error>) -> Void) {
         self.requestURL = APISetupManager.currentRequestURL
-        AF.request(requestURL)
-            .validate(statusCode: [200])
+        AF.request(requestURL).validate()
             .responseDecodable { (response: AFDataResponse<[T]>) in
                 switch response.result {
                 case .success(let items):
@@ -76,8 +81,7 @@ public final class API {
     
     public func requestFuture<T: Decodable>(completionHandler: @escaping (Result<[T], Error>) -> Void) {
         self.requestURL = APISetupManager.futureRequestURL
-        AF.request(requestURL)
-            .validate(statusCode: [200])
+        AF.request(requestURL).validate()
             .responseDecodable { (response: AFDataResponse<[T]>) in
                 switch response.result {
                 case .success(let items):
@@ -86,7 +90,6 @@ public final class API {
                     completionHandler(.failure(error))
                 }
         }
-        
     }
     
     public func requestMapData<T: Decodable>(completionHandler: @escaping (Result<T, Error>) -> Void) {

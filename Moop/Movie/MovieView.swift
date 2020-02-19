@@ -43,16 +43,11 @@ class MovieView: UIViewController {
         definesPresentationContext = true
         navigationItem.searchController = searchController
         registerForPreviewing(with: self, sourceView: self.collectionView)
-        presenter.fetchDatas(type: [.current, .future])
+        presenter.viewDidLoad()
     }
-    
-    @objc private func changeDataType() {
-        presenter.changeType()
-    }
-    
     
     @objc private func requestData() {
-        presenter.fetchDatas(type: [])
+        presenter.fetchDatas()
     }
     
     var canScrollToTop: Bool = false

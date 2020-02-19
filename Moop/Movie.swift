@@ -22,6 +22,7 @@ class Movie: Object {
     @objc dynamic var cgv: String?
     @objc dynamic var lotte: String?
     @objc dynamic var megabox: String?
+    @objc dynamic var getDay = 0
 
     override static func primaryKey() -> String? {
         return "id"
@@ -47,6 +48,7 @@ class Movie: Object {
         cgv = response.theater["C"]
         lotte = response.theater["L"]
         megabox = response.theater["M"]
+        getDay = response.getDay
     }
 }
 
@@ -55,16 +57,6 @@ extension Movie {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy.MM.dd"
         return formatter.date(from: openDate) ?? Date()
-    }
-    
-    var getDay: Int {
-        let calendar = Calendar.current
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy.MM.dd"
-        guard let date = formatter.date(from: openDate) else { return 999 }
-        let today = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) ?? Date()
-        let components = calendar.dateComponents([.day], from: today, to: date)
-        return components.day ?? 999
     }
     
     var isBest: Bool {

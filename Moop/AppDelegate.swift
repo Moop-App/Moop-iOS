@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         debugSettings()
         ShortcutManager.shared.application(didFinishLaunchingWithOptions: launchOptions)
         NotificationManager.shared.register(application)
-        MovieInfoManager.shared.requestFutureData()
         return true
     }
     
