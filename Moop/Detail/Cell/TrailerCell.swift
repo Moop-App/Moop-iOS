@@ -22,10 +22,9 @@ class TrailerCell: UITableViewCell, NibLoadableView {
         self.wrapperView.elevate(elevation: 2)
     }
     
-    func set(_ item: TrailerInfo?) {
-        guard let item = item else { return }
+    func set(_ item: Trailer) {
         titleLabel.text = item.title
         authorLabel.text = item.author
-        thumbnailImageView.sd_setImage(with: URL(string: item.thumbnailUrl))
+        thumbnailImageView.sd_setImage(with: URL(string: item.thumbnailURL))
     }
 }

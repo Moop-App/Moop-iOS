@@ -25,7 +25,7 @@ public final class API {
     
     
     private init() {
-//        monitorReachability()
+        monitorReachability()
     }
     
     private func monitorReachability() {
@@ -96,6 +96,20 @@ public final class API {
         self.requestURL = APISetupManager.locationRequestURL
         AF.request(requestURL)
             .validate(statusCode: [200])
+            .responseDecodable { (response: AFDataResponse<T>) in
+                switch response.result {
+                case .success(let item):
+                    completionHandler(.success(item))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                }
+        }
+    }
+    
+    public func requestDetail<T: Decodable>(id: String, completionHandler: @escaping (Result<T, Error>) -> Void) {
+        self.requestURL = APISetupManager.movieDetailRequestURL
+        AF.request("\(requestURL)/\(id).json")
+            .validate()
             .responseDecodable { (response: AFDataResponse<T>) in
                 switch response.result {
                 case .success(let item):

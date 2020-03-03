@@ -19,16 +19,16 @@ class MovieInfoLabelView: UIView {
             descriptionLabel.text = item.openDate
         case .rating:
             titleLabel.text = "등급".localized
-//            descriptionLabel.text = item.age
+            descriptionLabel.text = "\(item.age)"
         case .genre:
             titleLabel.text = "장르".localized
             descriptionLabel.text = item.genreText
         case .nation:
             titleLabel.text = "국가".localized
-//            descriptionLabel.text = item.nation
+            descriptionLabel.text = item.nationText
         case .runningTime:
             titleLabel.text = "러닝타임".localized
-//            descriptionLabel.text = "분".localizedFormat(item.showTime ?? 0)
+            descriptionLabel.text = "분".localizedFormat(item.showTm.value ?? 0)
         case .provider:
             titleLabel.text = "배급".localized
 //            descriptionLabel.text = item.provider

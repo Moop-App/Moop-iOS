@@ -20,4 +20,5 @@ public struct APISetupManager {
     internal static let locationRequestURL = "\(Config.baseURL)/\(Config.Version.v1.rawValue)/code.json"
     internal static let currentLastUpdatedTimeRequestURL = "\(Config.baseURL)/\(Config.Version.v2.rawValue)/now/lastUpdateTime.json"
     internal static let futureLastUpdatedTimeRequestURL = "\(Config.baseURL)/\(Config.Version.v2.rawValue)/plan/lastUpdateTime.json"
+    internal static let movieDetailRequestURL = "\(Config.baseURL)/\(Config.Version.v2.rawValue)/detail"
 }

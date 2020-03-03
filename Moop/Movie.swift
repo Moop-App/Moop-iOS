@@ -18,12 +18,32 @@ class Movie: Object {
     @objc dynamic var age = 0
     let nationFilter = List<String>()
     let genres = List<String>()
-    let boxOffice = RealmOptional<Int>()
+    let boxOfficeScore = RealmOptional<Int>()
     @objc dynamic var cgv: String?
     @objc dynamic var lotte: String?
     @objc dynamic var megabox: String?
     @objc dynamic var getDay = 0
 
+    @objc dynamic var boxOffice: BoxOffice?
+    let showTm = RealmOptional<Int>()
+    let nations = List<String>()
+    let directors = List<String>()
+    let actors = List<String>()
+    let companies = List<String>()
+    
+    @objc dynamic var cgvInfo: Theater?
+    @objc dynamic var lotteInfo: Theater?
+    @objc dynamic var megaboxInfo: Theater?
+    @objc dynamic var naverInfo: Theater?
+    @objc dynamic var imdb: Theater?
+    @objc dynamic var rt: Theater?
+    @objc dynamic var mc: Theater?
+    @objc dynamic var plot: String?
+    
+    let trailers = List<Trailer>()
+    
+    @objc dynamic var isUpdatedDetailInfo: Bool = false
+    
     override static func primaryKey() -> String? {
         return "id"
     }
@@ -44,11 +64,66 @@ class Movie: Object {
         age = response.age
         nationFilter.append(objectsIn: response.nationFilter ?? [])
         genres.append(objectsIn: response.genres ?? [])
-        boxOffice.value = response.boxOffice
+        boxOfficeScore.value = response.boxOffice
         cgv = response.theater["C"]
         lotte = response.theater["L"]
         megabox = response.theater["M"]
         getDay = response.getDay
+    }
+    
+    convenience init(response: MovieDetailResponse) {
+        self.init()
+        id = response.id
+        score = response.score
+        title = response.title
+        posterURL = response.posterUrl
+        openDate = response.openDate
+        now = response.now
+        age = response.age
+        nationFilter.append(objectsIn: response.nationFilter ?? [])
+        genres.append(objectsIn: response.genres ?? [])
+        
+        boxOffice = response.boxOffice.map(BoxOffice.init)
+        showTm.value = response.showTm
+        nations.append(objectsIn: response.nations?.compactMap { $0 } ?? [])
+        directors.append(objectsIn: response.directors?.compactMap { $0 } ?? [])
+        actors.append(objectsIn: response.actors?.compactMap { $0 } ?? [])
+        companies.append(objectsIn: response.companies?.compactMap { $0 } ?? [])
+        
+        cgvInfo = response.cgv.map(Theater.init)
+        lotteInfo = response.lotte.map(Theater.init)
+        megaboxInfo = response.megabox.map(Theater.init)
+        naverInfo = response.naver.map(Theater.init)
+        imdb = response.imdb.map(Theater.init)
+        rt = response.rt.map(Theater.init)
+        mc = response.mc.map(Theater.init)
+        
+        plot = response.plot
+
+        trailers.append(objectsIn: response.trailers.map(Trailer.init))
+        isUpdatedDetailInfo = true
+    }
+    
+    func set(detailResponse: MovieDetailResponse) {
+        boxOffice = detailResponse.boxOffice.map(BoxOffice.init)
+        showTm.value = detailResponse.showTm
+        nations.append(objectsIn: detailResponse.nations?.compactMap { $0 } ?? [])
+        directors.append(objectsIn: detailResponse.directors?.compactMap { $0 } ?? [])
+        actors.append(objectsIn: detailResponse.actors?.compactMap { $0 } ?? [])
+        companies.append(objectsIn: detailResponse.companies?.compactMap { $0 } ?? [])
+        
+        cgvInfo = detailResponse.cgv.map(Theater.init)
+        lotteInfo = detailResponse.lotte.map(Theater.init)
+        megaboxInfo = detailResponse.megabox.map(Theater.init)
+        naverInfo = detailResponse.naver.map(Theater.init)
+        imdb = detailResponse.imdb.map(Theater.init)
+        rt = detailResponse.rt.map(Theater.init)
+        mc = detailResponse.mc.map(Theater.init)
+        
+        plot = detailResponse.plot
+
+        trailers.append(objectsIn: detailResponse.trailers.map(Trailer.init))
+        isUpdatedDetailInfo = true
     }
 }
 
@@ -102,8 +177,12 @@ extension Movie {
         "제목: \(title)\n개봉일: \(openDate)\n\(ageBadgeText)"
     }
     
-    var genreText: String? {
+    var genreText: String {
         genres.joined(separator: ", ")
+    }
+    
+    var nationText: String {
+        nations.joined(separator: ", ")
     }
     
     func contain(types: [TheaterType]) -> Bool {
@@ -147,5 +226,47 @@ extension Movie {
     
     func contain(ages: [AgeType]) -> Bool {
         return ages.contains(self.ageType)
+    }
+}
+
+
+class BoxOffice: Object {
+    @objc dynamic var rank: Int = 0
+    @objc dynamic var audiCnt: Int = 0
+    @objc dynamic var audiAcc: Int = 0
+    
+    convenience init(response: BoxOfficeResponse) {
+        self.init()
+        rank = response.rank
+        audiCnt = response.audiCnt
+        audiAcc = response.audiAcc
+    }
+}
+
+class Theater: Object {
+    @objc dynamic var id: String?
+    @objc dynamic var star: String = ""
+    @objc dynamic var url: String?
+    
+    convenience init(response: TheaterResponse) {
+        self.init()
+        id = response.id
+        star = response.star
+        url = response.url
+    }
+}
+
+class Trailer: Object {
+    @objc dynamic var author = ""
+    @objc dynamic var thumbnailURL = ""
+    @objc dynamic var title = ""
+    @objc dynamic var youtubeId = ""
+    
+    convenience init(response: TrailerResponse) {
+        self.init()
+        author = response.author
+        thumbnailURL = response.thumbnailUrl
+        title = response.title
+        youtubeId = response.youtubeId
     }
 }

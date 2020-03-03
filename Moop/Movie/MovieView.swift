@@ -30,7 +30,6 @@ class MovieView: UIViewController {
             collectionView.register(MovieViewSegmentedControl.self,
                                     forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                     withReuseIdentifier: "MovieViewSegmentedControl")
-
         }
     }
     
@@ -71,8 +70,8 @@ class MovieView: UIViewController {
 
 extension MovieView: MovieViewDelegate {
     func loadFinished() {
-        collectionView.reloadData()
         refreshControl.endRefreshing()
+        collectionView.reloadData()
     }
     
     func loadFailed() {
@@ -102,7 +101,7 @@ extension MovieView: ScrollToTopDelegate {
 
 extension MovieView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.numberOfItemsInSection
+        presenter.numberOfItemsInSection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -112,8 +111,9 @@ extension MovieView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let destination = MovieDetailViewController.instance(item: presenter[indexPath])
-//        self.navigationController?.pushViewController(destination, animated: true)
+        guard let id = presenter[indexPath]?.id else { return }
+        let destination = MovieDetailView.instance(id: id)
+        self.navigationController?.pushViewController(destination, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -147,8 +147,9 @@ extension MovieView: UICollectionViewDelegateFlowLayout {
         return 0
     }
     
-    @available(iOS 13.0, *)
-    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+    // Todo: API 구조 변경으로 추후 대응 예정
+//    @available(iOS 13.0, *)
+//    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
 //        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
 //            let share = UIAction(title: "Share", image: UIImage(named: "share"), identifier: nil) { [weak self] _ in
 //                guard let self = self else { return }
@@ -176,19 +177,20 @@ extension MovieView: UICollectionViewDelegateFlowLayout {
 //
 //            return UIMenu(title: "", image: nil, identifier: nil, children: [share, cgv, lotte, megabox, naver])
 //        }
-        return nil
-    }
+//        return nil
+//    }
 }
 
 extension MovieView: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = collectionView.indexPathForItem(at: location),
-            let cell = collectionView.cellForItem(at: indexPath) else { return nil }
+            let cell = collectionView.cellForItem(at: indexPath),
+            let id = presenter[indexPath]?.id else { return nil }
         
         previewingContext.sourceRect = cell.frame
-//        let destination = MovieDetailViewController.instance(item: presenter[indexPath])
+        let destination = MovieDetailView.instance(id: id)
 //        destination.delegate = self
-        return nil
+        return destination
     }
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
@@ -196,34 +198,34 @@ extension MovieView: UIViewControllerPreviewingDelegate {
     }
 }
 
-extension MovieView: MovieDetailPickAndPopDelegate {
-    func share(text: String) {
-        let viewController = UIActivityViewController(activityItems: [text], applicationActivities: [])
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            viewController.popoverPresentationController?.sourceView = self.view
-            viewController.popoverPresentationController?.sourceRect = CGRect(x: self.view.frame.size.width / 2,
-                                                                              y: self.view.frame.size.height / 2,
-                                                                              width: 0, height: 0)
-        }
-        present(viewController, animated: true, completion: nil)
-    }
-    
-    func rating(type: TheaterType, id: String) {
-        let webURL: URL?
-        switch type {
-        case .cgv:
-            webURL = URL(string: "http://m.cgv.co.kr/WebApp/MovieV4/movieDetail.aspx?MovieIdx=\(id)")
-        case .lotte:
-            webURL = URL(string: "http://www.lottecinema.co.kr/LCMW/Contents/Movie/Movie-Detail-View.aspx?movie=\(id)")
-        case .megabox:
-            webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(id)")
-        case .naver:
-            webURL = URL(string: id)
-        }
-        
-        guard let url = webURL else { return }
-        let safariViewController = SFSafariViewController(url: url)
-        present(safariViewController, animated: true, completion: nil)
-    }
-}
-
+//extension MovieView: MovieDetailPickAndPopDelegate {
+//    func share(text: String) {
+//        let viewController = UIActivityViewController(activityItems: [text], applicationActivities: [])
+//        if UIDevice.current.userInterfaceIdiom == .pad {
+//            viewController.popoverPresentationController?.sourceView = self.view
+//            viewController.popoverPresentationController?.sourceRect = CGRect(x: self.view.frame.size.width / 2,
+//                                                                              y: self.view.frame.size.height / 2,
+//                                                                              width: 0, height: 0)
+//        }
+//        present(viewController, animated: true, completion: nil)
+//    }
+//
+//    func rating(type: TheaterType, id: String) {
+//        let webURL: URL?
+//        switch type {
+//        case .cgv:
+//            webURL = URL(string: "http://m.cgv.co.kr/WebApp/MovieV4/movieDetail.aspx?MovieIdx=\(id)")
+//        case .lotte:
+//            webURL = URL(string: "http://www.lottecinema.co.kr/LCMW/Contents/Movie/Movie-Detail-View.aspx?movie=\(id)")
+//        case .megabox:
+//            webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(id)")
+//        case .naver:
+//            webURL = URL(string: id)
+//        }
+//
+//        guard let url = webURL else { return }
+//        let safariViewController = SFSafariViewController(url: url)
+//        present(safariViewController, animated: true, completion: nil)
+//    }
+//}
+//

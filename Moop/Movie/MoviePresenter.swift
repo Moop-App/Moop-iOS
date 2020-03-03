@@ -16,9 +16,10 @@ class MoviePresenter: NSObject {
     private let realm = try? Realm()
     private var notificationToken: NotificationToken?
     
-    private var currentMovieData: [Movie] = []
-    private var futureMovieData: [Movie] = []
-
+    private var currentMovieData = MovieData()
+    private var futureMovieData = MovieData()
+    private var isSearched = false
+    
     private var state: MovieType = .current {
         didSet {
             guard oldValue != state else { return }
@@ -40,7 +41,7 @@ class MoviePresenter: NSObject {
             }
         }
     }
-        
+    
     init(view: MovieViewDelegate) {
         self.view = view
         super.init()
@@ -52,17 +53,18 @@ class MoviePresenter: NSObject {
     }
     
     private func setupNotification() {
-        notificationToken = realm?.objects(Movie.self).observe { [weak self, weak view] changes in
+        notificationToken = realm?.objects(Movie.self).observe { [weak self] changes in
             guard let self = self else { return }
             switch changes {
             case let .initial(results):
-                self.currentMovieData = results.filter("now == true").sorted(byKeyPath: "score", ascending: true).compactMap { $0 }
-                self.futureMovieData = results.filter("now == false").sorted(byKeyPath: "getDay").compactMap { $0 }
-                view?.loadFinished()
+                self.currentMovieData.items = results
+                    .filter("now == true").sorted(byKeyPath: "score", ascending: true).compactMap { $0 }
+                self.futureMovieData.items = results.filter("now == false").sorted(byKeyPath: "getDay").compactMap { $0 }
+                self.filterItemChanged()
             case let .update(results, _, _, _):
-                self.currentMovieData = results.filter("now == true").sorted(byKeyPath: "score", ascending: true).compactMap { $0 }
-                self.futureMovieData = results.filter("now == false").sorted(byKeyPath: "getDay").compactMap { $0 }
-                view?.loadFinished()
+                self.currentMovieData.items = results.filter("now == true").sorted(byKeyPath: "score", ascending: true).compactMap { $0 }
+                self.futureMovieData.items = results.filter("now == false").sorted(byKeyPath: "getDay").compactMap { $0 }
+                self.filterItemChanged()
             case let .error(error):
                 print("An error occurred: \(error)")
             }
@@ -73,39 +75,39 @@ class MoviePresenter: NSObject {
     var numberOfItemsInSection: Int {
         switch state {
         case .current:
-            return currentMovieData.count
+            return isSearched ? currentMovieData.searchedMovies.count : currentMovieData.filteredMovies.count
         case .future:
-            return futureMovieData.count
+            return isSearched ? futureMovieData.searchedMovies.count : futureMovieData.filteredMovies.count
         }
     }
     
     var isEmpty: Bool {
         switch state {
         case .current:
-            return currentMovieData.isEmpty
+            return currentMovieData.items.isEmpty
         case .future:
-            return futureMovieData.isEmpty
+            return futureMovieData.items.isEmpty
         }
     }
     
     subscript(indexPath: IndexPath) -> Movie? {
         switch state {
         case .current:
-            return currentMovieData[safe: indexPath.item]
+            return isSearched ? currentMovieData.searchedMovies[safe: indexPath.item] : currentMovieData.filteredMovies[safe: indexPath.item]
         case .future:
-            return futureMovieData[safe: indexPath.item]
+            return isSearched ? futureMovieData.searchedMovies[safe: indexPath.item] : futureMovieData.filteredMovies[safe: indexPath.item]
         }
     }
 }
 
 extension MoviePresenter: FilterChangeDelegate {
     func filterItemChanged() {
-//        switch state {
-//        case .current:
-//            currentMovieData.filter()
-//        case .future:
-//            futureMovieData.filter()
-//        }
+        switch state {
+        case .current:
+            currentMovieData.filtered()
+        case .future:
+            futureMovieData.filtered()
+        }
         view.loadFinished()
     }
 }
@@ -113,13 +115,13 @@ extension MoviePresenter: FilterChangeDelegate {
 extension MoviePresenter: UISearchResultsUpdating, UISearchBarDelegate {
     // MARK: - UISearchResultsUpdating Delegate
     func updateSearchResults(for searchController: UISearchController) {
-//        self.isSearched = searchController.isActive
-//        switch state {
-//        case .current:
-//            currentMovieData.search(query: searchController.searchBar.text ?? "")
-//        case .future:
-//            futureMovieData.search(query: searchController.searchBar.text ?? "")
-//        }
+        self.isSearched = searchController.isActive
+        switch state {
+        case .current:
+            currentMovieData.search(query: searchController.searchBar.text ?? "")
+        case .future:
+            futureMovieData.search(query: searchController.searchBar.text ?? "")
+        }
         self.view.loadFinished()
     }
 }
@@ -132,16 +134,16 @@ extension MoviePresenter: MoviePresenterDelegate {
     private func changedType() {
         switch state {
         case .current:
-            if currentMovieData.isEmpty {
+            if currentMovieData.items.isEmpty {
                 checkCurrentUpdateTime()
             } else {
-                view.loadFinished()
+                filterItemChanged()
             }
         case .future:
-            if futureMovieData.isEmpty {
+            if futureMovieData.items.isEmpty {
                 checkFutureUpdateTime()
             } else {
-                view.loadFinished()
+                filterItemChanged()
             }
         }
     }
@@ -157,11 +159,11 @@ extension MoviePresenter: MoviePresenterDelegate {
     }
     
     private func checkCurrentUpdateTime() {
-        requestCurrentUpdateTime { [weak self, weak view] isUpdatedRequire in
+        requestCurrentUpdateTime { [weak self] isUpdatedRequire in
             if isUpdatedRequire {
                 self?.fetchCurrentDatas()
             } else {
-                view?.loadFinished()
+                self?.filterItemChanged()
             }
         }
     }
@@ -170,7 +172,8 @@ extension MoviePresenter: MoviePresenterDelegate {
         API.shared.requestCurrentUpdateTime { result in
             switch result {
             case .success(let updatedTime):
-                completionHandler(MovieTimeData.currentUpdatedTime != updatedTime)
+                let result = MovieTimeData.currentUpdatedTime.isEmpty || (MovieTimeData.currentUpdatedTime != updatedTime)
+                completionHandler(result)
                 MovieTimeData.currentUpdatedTime = updatedTime
             case .failure(let error):
                 print("Error requestCurrentUpdateTime", error.localizedDescription)
@@ -179,34 +182,42 @@ extension MoviePresenter: MoviePresenterDelegate {
     }
     
     private func fetchCurrentDatas() {
-        MovieInfoManager.shared.requestCurrentData { [weak self] in
+        API.shared.requestCurrent { [weak self] (result: Result<[MovieResponse], Error>) in
             guard let self = self else { return }
-            let movies = MovieInfoManager.shared.currentDatas.map { Movie(response: $0) }
-            if !movies.isEmpty {
-                try? self.realm?.write {
-                    self.realm?.delete(self.currentMovieData)
-                    self.realm?.add(movies, update: .modified)
+            switch result {
+            case .success(let result):
+                let movies = result.map { Movie(response: $0) }
+                if !movies.isEmpty {
+                    try? self.realm?.write {
+                        //                    self.realm?.delete(self.currentMovieData)
+                        self.realm?.add(movies, update: .modified)
+                    }
+                } else {
+                    self.filterItemChanged()
                 }
+            case .failure(let error):
+                print("Error fetchCurrentDatas", error.localizedDescription)
             }
-            self.view.loadFinished()
         }
     }
     
     private func checkFutureUpdateTime() {
-           requestFutureUpdateTime { [weak self, weak view] isUpdatedRequire in
-               if isUpdatedRequire {
-                   self?.fetchFutureDatas()
-               } else {
-                   view?.loadFinished()
-               }
-           }
-       }
+        requestFutureUpdateTime { [weak self] isUpdatedRequire in
+            if isUpdatedRequire {
+                self?.fetchFutureDatas()
+            } else {
+                self?.filterItemChanged()
+            }
+        }
+    }
     
     private func requestFutureUpdateTime(completionHandler: @escaping (Bool) -> Void) {
         API.shared.requestFutureUpdateTime { result in
             switch result {
             case .success(let updatedTime):
-                completionHandler(MovieTimeData.futureUpdatedTime != updatedTime)
+                print("Future UpdateTime", MovieTimeData.futureUpdatedTime, updatedTime)
+                let result = MovieTimeData.futureUpdatedTime.isEmpty || (MovieTimeData.futureUpdatedTime != updatedTime)
+                completionHandler(result)
                 MovieTimeData.futureUpdatedTime = updatedTime
             case .failure(let error):
                 print("Error requestCurrentUpdateTime", error.localizedDescription)
@@ -215,16 +226,22 @@ extension MoviePresenter: MoviePresenterDelegate {
     }
     
     private func fetchFutureDatas() {
-        MovieInfoManager.shared.requestFutureData { [weak self] in
+        API.shared.requestFuture { [weak self] (result: Result<[MovieResponse], Error>) in
             guard let self = self else { return }
-            let movies = MovieInfoManager.shared.futureDatas.map { Movie(response: $0) }
-            if !movies.isEmpty {
-                try? self.realm?.write {
-                    self.realm?.delete(self.futureMovieData)
-                    self.realm?.add(movies, update: .modified)
+            switch result {
+            case .success(let result):
+                let movies = result.map { Movie(response: $0) }
+                if !movies.isEmpty {
+                    try? self.realm?.write {
+                        //                    self.realm?.delete(self.currentMovieData)
+                        self.realm?.add(movies, update: .modified)
+                    }
+                } else {
+                    self.filterItemChanged()
                 }
+            case .failure(let error):
+                print("Error fetchCurrentDatas", error.localizedDescription)
             }
-            self.view.loadFinished()
         }
     }
     

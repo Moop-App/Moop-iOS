@@ -22,12 +22,12 @@ class TheaterCell: UITableViewCell, NibLoadableView {
         selectionStyle = .none
     }
     
-//    func set(_ item: MovieInfo?) {
-//        guard let item = item else { return }
-//        cgvWraaper.set(item.cgv)
-//        megaBoxWraaper.set(item.megabox)
-//        lotteWraaper.set(item.lotte)
-//    }
+    func set(_ item: Movie?) {
+        guard let item = item else { return }
+        cgvWraaper.set(item.cgvInfo, type: .cgv)
+        megaBoxWraaper.set(item.megaboxInfo, type: .megabox)
+        lotteWraaper.set(item.lotteInfo, type: .lotte)
+    }
     
     @IBAction private func cgvClick(_ sender: UIButton) {
         self.delegate?.wrapper(type: .cgv)

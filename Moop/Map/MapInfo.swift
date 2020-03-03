@@ -14,7 +14,7 @@ struct MapInfo: Decodable {
     let lotte: CodeGroup
     let megabox: CodeGroup
     
-    var items: [Theater] {
+    var items: [TheaterMapInfo] {
         let cgvList = cgv.list.flatMap({ $0.theaterList })
         let lotteList = lotte.list.flatMap({ $0.theaterList })
         let megaboxList = megabox.list.flatMap({ $0.theaterList })
@@ -28,7 +28,7 @@ struct CodeGroup: Decodable {
 
 struct AreaGroup: Decodable {
     let area: Area
-    let theaterList: [Theater]
+    let theaterList: [TheaterMapInfo]
 }
 
 struct Area: Decodable {
@@ -36,7 +36,7 @@ struct Area: Decodable {
     let name: String
 }
 
-class Theater: NSObject, Decodable, MKAnnotation {
+class TheaterMapInfo: NSObject, Decodable, MKAnnotation {
     let type: String
     let code: String
     let name: String

@@ -24,12 +24,12 @@ class BoxOfficeCell: UITableViewCell, NibLoadableView {
         wrapperView.elevate(elevation: 2.0)
     }
 
-//    func set(_ info: MovieInfo?) {
-//        guard let info = info else { return }
-//        rankLabel.text = (info.kobis?.boxOffice?.rank ?? 0).ordinal
-//        rankReferenceDateLabel.text = "기준".localizedFormat(Date.yesterday.MM_dd)
-//        audienceCountLabel.text = "명".localizedFormat(info.kobis?.boxOffice?.audiAcc.withCommas() ?? "0")
-//        audienceReferenceDateLabel.text = "개봉%d일차".localizedFormat(-info.getDay)
-//        naverStarLabel.text = info.naver?.userRating ?? "-"
-//    }
+    func set(_ info: Movie?) {
+        guard let info = info else { return }
+        rankLabel.text = (info.boxOffice?.rank ?? 0).ordinal
+        rankReferenceDateLabel.text = "기준".localizedFormat(Date.yesterday.MM_dd)
+        audienceCountLabel.text = "명".localizedFormat(info.boxOffice?.audiAcc.withCommas() ?? "0")
+        audienceReferenceDateLabel.text = "개봉%d일차".localizedFormat(-info.getDay)
+        naverStarLabel.text = info.naverInfo?.star ?? "-"
+    }
 }

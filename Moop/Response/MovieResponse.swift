@@ -1,5 +1,5 @@
 //
-//  MovieInfo.swift
+//  MovieResponse.swift
 //  Moop
 //
 //  Created by Chang Woo Son on 23/05/2019.

@@ -12,23 +12,9 @@ class MovieData {
     var items: [Movie] = []
     var filteredMovies: [Movie] = []
     var searchedMovies: [Movie] = []
-    
-    enum SortType {
-        case rank
-        case day
-    }
 }
 
 extension MovieData {
-    func update(items: [Movie], sortType: SortType) {
-        switch sortType {
-        case .rank:
-            self.items = items.sorted(by: { $0.score < $1.score })
-        case .day:
-            self.items = items.sorted(by: { $0.getDay < $1.getDay })
-        }
-    }
-    
     func search(query: String) {
         let jamoChoQuery = Jamo.getChos(query)
         let jamoQuery = Jamo.getJamo(query)
@@ -39,21 +25,21 @@ extension MovieData {
         }
     }
     
-    func filter() {
-        self.filteredMovies = items
+    func filtered() {
+        filteredMovies = items
             .filter { $0.contain(types: FilterData.theater) }
             .filter { $0.contain(ages: FilterData.age) }
         
-//        if FilterData.boxOffice {
-//            self.filteredMovies = filteredMovies.sorted(by: { $0.kobis?.boxOffice?.rank ?? 999 < $1.kobis?.boxOffice?.rank ?? 999 })
-//        }
+        if FilterData.boxOffice {
+            filteredMovies.sort(by: { $0.boxOfficeScore.value ?? 999 < $1.boxOfficeScore.value ?? 999 })
+        }
         
         guard FilterData.nation.count == 1, let nation = FilterData.nation.first else { return }
-//        switch nation {
-//        case .korean:
-//            self.filteredMovies = self.filteredMovies.filter { $0.kobis?.nations?.first == "한국" }
-//        case .etc:
-//            self.filteredMovies = self.filteredMovies.filter { $0.kobis?.nations?.first != "한국" }
-//        }
+        switch nation {
+        case .korean:
+            filteredMovies = filteredMovies.filter { $0.nationFilter.contains("K") }
+        case .etc:
+            filteredMovies = filteredMovies.filter { $0.nationFilter.contains("F") }
+        }
     }
 }

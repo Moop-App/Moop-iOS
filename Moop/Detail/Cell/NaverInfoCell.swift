@@ -22,9 +22,9 @@ class NaverInfoCell: UITableViewCell, NibLoadableView {
         self.wrapperView.elevate(elevation: 2)
     }
     
-    func set(_ item: NaverInfo?) {
+    func set(_ item: Theater?) {
         guard let item = item else { return }
-        self.rankLabel.text = item.userRating
+        self.rankLabel.text = item.star
     }
     
     @IBAction private func more(_ sender: UIButton) {
