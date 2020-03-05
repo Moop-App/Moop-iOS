@@ -31,7 +31,7 @@ class MovieDetailView: UIViewController {
     
     var presenter: MovieDetailPresenterDelegate!
     
-    @IBOutlet private weak var favoriteButton: UIButton!
+//    @IBOutlet private weak var favoriteButton: UIButton!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.register(MovieInfoPlotCell.self)
@@ -124,11 +124,11 @@ class MovieDetailView: UIViewController {
         share(sender: sender)
     }
     
-    @IBAction private func favorite(_ sender: UIButton) {
-        sender.tag = sender.tag == 0 ? 1 : 0
-        sender.setImage(sender.tag == 1 ? UIImage(named: "heart_fill") : UIImage(named: "heart"), for: .normal)
-        favorite(isAdd: sender.tag == 1)
-    }
+//    @IBAction private func favorite(_ sender: UIButton) {
+//        sender.tag = sender.tag == 0 ? 1 : 0
+//        sender.setImage(sender.tag == 1 ? UIImage(named: "heart_fill") : UIImage(named: "heart"), for: .normal)
+//        favorite(isAdd: sender.tag == 1)
+//    }
     
     override var previewActionItems: [UIPreviewActionItem] {
         let shareAction = UIPreviewAction(title: "Share", style: .default) { [weak self] (_, viewController) in
@@ -160,7 +160,7 @@ extension MovieDetailView: DetailHeaderDelegate {
         case .lotte:
             webURL = URL(string: "https://www.lottecinema.co.kr/NLCMW/movie/moviedetailview?movie=\(presenter.movieInfo?.lotteInfo?.id ?? "")")
         case .megabox:
-            webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(presenter.movieInfo?.megaboxInfo?.id ?? "")")
+            webURL = URL(string: "http://m.megabox.co.kr/movie-detail?rpstMovieNo=\(presenter.movieInfo?.megaboxInfo?.id ?? "")")
         case .naver:
             webURL = URL(string: presenter.movieInfo?.naverInfo?.url ?? "")
         }
@@ -185,7 +185,7 @@ extension MovieDetailView: DetailHeaderDelegate {
         present(viewController, animated: true, completion: nil)
     }
     
-    func favorite(isAdd: Bool) {
+//    func favorite(isAdd: Bool) {
 //        guard var array = UserDefaults.standard.array(forKey: .favorites) as? [String],
 //            let itemId = item?.id else {
 //                if isAdd {
@@ -202,7 +202,7 @@ extension MovieDetailView: DetailHeaderDelegate {
 //            NotificationManager.shared.removeNotification(item: item)
 //        }
 //        UserDefaults.standard.set(array, forKey: .favorites)
-    }
+//    }
     
     func poster(_ image: UIImage) {
         let posterViewController = PosterViewController.instance(image: image)

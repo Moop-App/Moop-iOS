@@ -105,7 +105,7 @@ extension FavoriteViewController: MovieDetailPickAndPopDelegate {
         case .lotte:
             webURL = URL(string: "http://www.lottecinema.co.kr/LCMW/Contents/Movie/Movie-Detail-View.aspx?movie=\(id)")
         case .megabox:
-            webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(id)")
+            webURL = URL(string: "http://m.megabox.co.kr/movie-detail?rpstMovieNo=\(id)")
         case .naver:
             webURL = URL(string: id)
         }

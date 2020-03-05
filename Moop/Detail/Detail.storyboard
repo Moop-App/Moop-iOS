@@ -46,39 +46,20 @@
                         <viewLayoutGuide key="safeArea" id="Gkk-dn-iW6"/>
                     </view>
                     <navigationItem key="navigationItem" id="Rlm-ig-vio">
-                        <rightBarButtonItems>
-                            <barButtonItem image="share" style="plain" id="QB0-Yb-ihr">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6G8-mk-OSR">
-                                    <rect key="frame" x="346" y="0.0" width="48" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" image="share"/>
-                                    <connections>
-                                        <action selector="share:" destination="SUI-xH-IQ0" eventType="touchUpInside" id="n5k-Dp-O4l"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                            <barButtonItem image="heart" style="plain" id="4Eo-9Z-G1K">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Hfg-dN-bDa">
-                                    <rect key="frame" x="290" y="0.0" width="48" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="36" id="GbE-Wo-mqV"/>
-                                        <constraint firstAttribute="width" constant="36" id="P5u-fk-Qfr"/>
-                                    </constraints>
-                                    <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
-                                    <state key="normal" image="heart"/>
-                                    <state key="selected" image="heart_fill"/>
-                                    <connections>
-                                        <action selector="favorite:" destination="SUI-xH-IQ0" eventType="touchUpInside" id="ALL-hq-1AP"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" image="share" style="plain" id="QB0-Yb-ihr">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6G8-mk-OSR">
+                                <rect key="frame" x="346" y="0.0" width="48" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="share"/>
+                                <connections>
+                                    <action selector="share:" destination="SUI-xH-IQ0" eventType="touchUpInside" id="n5k-Dp-O4l"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bannerViewHeightConstraint" destination="w67-fo-Bt0" id="QjR-wx-cfM"/>
                         <outlet property="bannerWrpperView" destination="zvD-Tp-9ab" id="lgn-J2-jer"/>
-                        <outlet property="favoriteButton" destination="Hfg-dN-bDa" id="fxx-Zh-Fnq"/>
                         <outlet property="tableView" destination="kiH-Ej-Zcd" id="32k-i9-cOr"/>
                     </connections>
                 </viewController>
@@ -106,8 +87,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="heart" width="24" height="24"/>
-        <image name="heart_fill" width="24" height="24"/>
         <image name="share" width="24" height="24"/>
     </resources>
 </document>
