@@ -10,20 +10,16 @@ import Foundation
 import MapKit
 
 struct MapInfo: Decodable {
-    let cgv: CodeGroup
-    let lotte: CodeGroup
-    let megabox: CodeGroup
+    let cgv: [AreaGroup]
+    let lotte: [AreaGroup]
+    let megabox: [AreaGroup]
     
     var items: [TheaterMapInfo] {
-        let cgvList = cgv.list.flatMap({ $0.theaterList })
-        let lotteList = lotte.list.flatMap({ $0.theaterList })
-        let megaboxList = megabox.list.flatMap({ $0.theaterList })
+        let cgvList = cgv.flatMap({ $0.theaterList })
+        let lotteList = lotte.flatMap({ $0.theaterList })
+        let megaboxList = megabox.flatMap({ $0.theaterList })
         return cgvList + lotteList + megaboxList
     }
-}
-
-struct CodeGroup: Decodable {
-    let list: [AreaGroup]
 }
 
 struct AreaGroup: Decodable {
