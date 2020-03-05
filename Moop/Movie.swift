@@ -88,8 +88,8 @@ class Movie: Object {
         showTm.value = response.showTm
         nations.append(objectsIn: response.nations?.compactMap { $0 } ?? [])
         directors.append(objectsIn: response.directors?.compactMap { $0 } ?? [])
-        actors.append(objectsIn: response.actors?.compactMap { $0 } ?? [])
-        companies.append(objectsIn: response.companies?.compactMap { $0 } ?? [])
+        actors.append(objectsIn: response.actors?.map { $0.peopleNm }.compactMap { $0 } ?? [])
+        companies.append(objectsIn: response.companies?.map { $0.companyNm }.compactMap { $0 } ?? [])
         
         cgvInfo = response.cgv.map(Theater.init)
         lotteInfo = response.lotte.map(Theater.init)
@@ -110,8 +110,8 @@ class Movie: Object {
         showTm.value = detailResponse.showTm
         nations.append(objectsIn: detailResponse.nations?.compactMap { $0 } ?? [])
         directors.append(objectsIn: detailResponse.directors?.compactMap { $0 } ?? [])
-        actors.append(objectsIn: detailResponse.actors?.compactMap { $0 } ?? [])
-        companies.append(objectsIn: detailResponse.companies?.compactMap { $0 } ?? [])
+        actors.append(objectsIn: detailResponse.actors?.map { $0.peopleNm }.compactMap { $0 } ?? [])
+        companies.append(objectsIn: detailResponse.companies?.map { $0.companyNm }.compactMap { $0 } ?? [])
         
         cgvInfo = detailResponse.cgv.map(Theater.init)
         lotteInfo = detailResponse.lotte.map(Theater.init)

@@ -62,6 +62,8 @@
 		A04A4EC12307EF5D008B0944 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04A4EC02307EF5D008B0944 /* APIError.swift */; };
 		A054A99223F6855B00E8ADFE /* MovieTimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A054A99123F6855B00E8ADFE /* MovieTimeData.swift */; };
 		A0573A61238A4F7600DA00CE /* Jamo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0573A60238A4F7600DA00CE /* Jamo.swift */; };
+		A063DD272410B20200DE144D /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A063DD262410B20200DE144D /* Detail.storyboard */; };
+		A063DD292410B87300DE144D /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A063DD282410B87300DE144D /* RealmManager.swift */; };
 		A06A98A92379709600A6B87D /* FilterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06A98A82379709600A6B87D /* FilterData.swift */; };
 		A08E90552349E349007BFA96 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E90542349E349007BFA96 /* Config.swift */; };
 		A08E905A2349E447007BFA96 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A08E90592349E447007BFA96 /* GoogleService-Info.plist */; };
@@ -215,6 +217,8 @@
 		A04A4EC02307EF5D008B0944 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		A054A99123F6855B00E8ADFE /* MovieTimeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTimeData.swift; sourceTree = "<group>"; };
 		A0573A60238A4F7600DA00CE /* Jamo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jamo.swift; sourceTree = "<group>"; };
+		A063DD262410B20200DE144D /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
+		A063DD282410B87300DE144D /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		A0657E1F22F8007600EA89FE /* Default.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Default.xcconfig; sourceTree = "<group>"; };
 		A0657E2122F802CF00EA89FE /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		A0657E2222F802D900EA89FE /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
@@ -349,6 +353,7 @@
 				3C6601F322956D38000BA333 /* AppDelegate.swift */,
 				A0CACA01234F48890076E432 /* AdConfig.swift */,
 				3CB6E84C22B9C518008F382C /* MainTabBarController.swift */,
+				A063DD282410B87300DE144D /* RealmManager.swift */,
 				A022A81B23F57DDB00D13FF7 /* Movie.swift */,
 				3C6601F722956D38000BA333 /* Main.storyboard */,
 				A0EBD3AE2351E235007A23EB /* Movie */,
@@ -443,6 +448,7 @@
 				A00DBC60240BAC21007AFAFF /* MovieDetailPresenter.swift */,
 				A00DBC62240BAC2D007AFAFF /* MovieDetailProtocols.swift */,
 				A0CAC9ED234D67380076E432 /* TheaterType.swift */,
+				A063DD262410B20200DE144D /* Detail.storyboard */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -750,6 +756,7 @@
 				A00671F122FC095E002FE813 /* Favorite.storyboard in Resources */,
 				A00671E522FC018A002FE813 /* Setting.storyboard in Resources */,
 				3C6601F922956D38000BA333 /* Main.storyboard in Resources */,
+				A063DD272410B20200DE144D /* Detail.storyboard in Resources */,
 				A0EBD3CA23548367007A23EB /* BoxOfficeCell.xib in Resources */,
 				3C66021B22959A18000BA333 /* MovieCell.xib in Resources */,
 				A0CAC9EC234D656E0076E432 /* PosterWithInfoCell.xib in Resources */,
@@ -967,6 +974,7 @@
 				3CBD5EB422960DF7005A24E4 /* MovieDetailView.swift in Sources */,
 				3C66021F22959F04000BA333 /* MovieResponse.swift in Sources */,
 				3C34938B22E7584A00A77343 /* FavoriteViewController.swift in Sources */,
+				A063DD292410B87300DE144D /* RealmManager.swift in Sources */,
 				3C1B6E692297A80E009CB740 /* TheaterRankView.swift in Sources */,
 				3C767533229954A80052BEB6 /* SettingDividerCell.swift in Sources */,
 				A0CAC9F6234D8A490076E432 /* Int+Extension.swift in Sources */,

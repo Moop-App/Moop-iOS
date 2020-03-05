@@ -25,20 +25,18 @@ enum MovieDetailCellType {
 
 class MovieDetailPresenter {
     internal weak var view: MovieDetailViewDelegate!
-    private let realm = try? Realm()
 
     private let moopId: String
     private(set) var movieInfo: Movie?
     private var totalCell: [MovieDetailCellType] = []
     
-    init(view: MovieDetailViewDelegate,
-         moopId: String) {
+    init(view: MovieDetailViewDelegate, moopId: String) {
         self.view = view
         self.moopId = moopId
-        self.movieInfo = realm?.objects(Movie.self).filter("id == \(moopId)").first
+        movieInfo = RealmManager.shared.fetchData(predicate: NSPredicate(format: "id = %@", moopId))
     }
     
-    private func calculateCell(info: MovieResponse?) -> [MovieDetailCellType] {
+    private func calculateCell() -> [MovieDetailCellType] {
         guard let info = movieInfo else { return [] }
         
         var result = [MovieDetailCellType.header]
@@ -72,6 +70,24 @@ class MovieDetailPresenter {
     subscript(indexPath: IndexPath) -> MovieDetailCellType? {
         totalCell[safe: indexPath.item]
     }
+    
+    var adIndex: Array<Int>.Index? {
+        if totalCell.contains(where: { cellType in
+            switch cellType {
+            case .ad: return true
+            default: return false
+            }
+        }) { return nil }
+        
+        guard let index = totalCell.firstIndex(where: { cellType in
+            switch cellType {
+            case .trailerHeader: return true
+            default: return false
+            }
+        }) else { return nil }
+        totalCell.insert(.ad, at: index + 1)
+        return index + 1
+    }
 }
 
 extension MovieDetailPresenter: MovieDetailPresenterDelegate {
@@ -79,6 +95,7 @@ extension MovieDetailPresenter: MovieDetailPresenterDelegate {
         if movieInfo == nil || !(movieInfo?.isUpdatedDetailInfo ?? false) {
             fetchData()
         } else {
+            totalCell = calculateCell()
             view.loadFinished()
         }
     }
@@ -97,15 +114,18 @@ extension MovieDetailPresenter: MovieDetailPresenterDelegate {
     }
     
     private func saveDetailInfo(with response: MovieDetailResponse) {
-        try? realm?.write {
-            if let movieInfo = movieInfo {
-                movieInfo.set(detailResponse: response)
-            } else {
-                let movieDetail = Movie(response: response)
-                realm?.add(movieDetail)
-                movieInfo = movieDetail
-            }
+        
+        if let movieInfo = movieInfo {
+            RealmManager.shared.beginWrite()
+            movieInfo.set(detailResponse: response)
+            RealmManager.shared.commitWrite()
+        } else {
+            let movieDetail = Movie(response: response)
+            RealmManager.shared.saveData(item: movieDetail)
+            movieInfo = movieDetail
         }
+        
+        totalCell = calculateCell()
         view.loadFinished()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  MovieDetailViewController.swift
+//  MovieDetailView.swift
 //  Moop
 //
 //  Created by Chang Woo Son on 23/05/2019.
@@ -24,7 +24,7 @@ protocol DetailHeaderDelegate: class {
 
 class MovieDetailView: UIViewController {
     static func instance(id: String) -> MovieDetailView {
-        let vc: MovieDetailView = instance(storyboardName: Storyboard.main)
+        let vc: MovieDetailView = instance(storyboardName: Storyboard.detail)
         vc.presenter = MovieDetailPresenter(view: vc, moopId: id)
         return vc
     }
@@ -34,8 +34,6 @@ class MovieDetailView: UIViewController {
     @IBOutlet private weak var favoriteButton: UIButton!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
-            tableView.delegate = self
-            tableView.dataSource = self
             tableView.register(MovieInfoPlotCell.self)
             tableView.register(TrailerHeaderCell.self)
             tableView.register(TrailerCell.self)
@@ -49,9 +47,9 @@ class MovieDetailView: UIViewController {
         }
     }
     
-    private var bannerView: GADBannerView!
     @IBOutlet private weak var bannerWrpperView: UIView!
     @IBOutlet private weak var bannerViewHeightConstraint: NSLayoutConstraint!
+    private var bannerView: GADBannerView!
     private var adLoader: GADAdLoader!
     private var nativeAd: GADUnifiedNativeAd?
     
@@ -59,8 +57,7 @@ class MovieDetailView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        configureAd()
-        
+        configureAd()
         presenter.viewDidLoad()
         
 //        guard let ids = UserDefaults.standard.array(forKey: .favorites) as? [String] else { return }
@@ -133,44 +130,44 @@ class MovieDetailView: UIViewController {
         favorite(isAdd: sender.tag == 1)
     }
     
-//    override var previewActionItems: [UIPreviewActionItem] {
-//        let shareAction = UIPreviewAction(title: "Share", style: .default) { [weak self] (_, viewController) in
-//            self?.delegate?.share(text: self?.item?.shareText ?? "")
-//        }
-//        let cgvAction = UIPreviewAction(title: "CGV", style: .default) { [weak self] (_, viewController) in
-//            self?.delegate?.rating(type: .cgv, id: self?.item?.cgv?.id ?? "")
-//        }
-//        let lotteAction = UIPreviewAction(title: "LOTTE", style: .default) { [weak self] (_, _) in
-//            self?.delegate?.rating(type: .lotte, id: self?.item?.lotte?.id ?? "")
-//        }
-//        let megaboxAction = UIPreviewAction(title: "MEGABOX", style: .default) { [weak self] (_, _) in
-//            self?.delegate?.rating(type: .megabox, id: self?.item?.megabox?.id ?? "")
-//        }
-//        let naverAction = UIPreviewAction(title: "NAVER", style: .default) { [weak self] (_, _) in
-//            self?.delegate?.rating(type: .naver, id: self?.item?.naver?.link ?? "")
-//        }
-//
-//        return [shareAction, cgvAction, lotteAction, megaboxAction, naverAction]
-//    }
+    override var previewActionItems: [UIPreviewActionItem] {
+        let shareAction = UIPreviewAction(title: "Share", style: .default) { [weak self] (_, viewController) in
+            self?.delegate?.share(text: self?.presenter.movieInfo?.shareText ?? "")
+        }
+        let cgvAction = UIPreviewAction(title: "CGV", style: .default) { [weak self] (_, viewController) in
+            self?.delegate?.rating(type: .cgv, id: self?.presenter.movieInfo?.cgvInfo?.id ?? "")
+        }
+        let lotteAction = UIPreviewAction(title: "LOTTE", style: .default) { [weak self] (_, _) in
+            self?.delegate?.rating(type: .lotte, id: self?.presenter.movieInfo?.lotteInfo?.id ?? "")
+        }
+        let megaboxAction = UIPreviewAction(title: "MEGABOX", style: .default) { [weak self] (_, _) in
+            self?.delegate?.rating(type: .megabox, id: self?.presenter.movieInfo?.megaboxInfo?.id ?? "")
+        }
+        let naverAction = UIPreviewAction(title: "NAVER", style: .default) { [weak self] (_, _) in
+            self?.delegate?.rating(type: .naver, id: self?.presenter.movieInfo?.naverInfo?.url ?? "")
+        }
+
+        return [shareAction, cgvAction, lotteAction, megaboxAction, naverAction]
+    }
 }
 
 extension MovieDetailView: DetailHeaderDelegate {
     func wrapper(type: TheaterType) {
-//        let webURL: URL?
-//        switch type {
-//        case .cgv:
-//            webURL = URL(string: "http://m.cgv.co.kr/WebApp/MovieV4/movieDetail.aspx?MovieIdx=\(item?.cgv?.id ?? "")")
-//        case .lotte:
-//            webURL = URL(string: "https://www.lottecinema.co.kr/NLCMW/movie/moviedetailview?movie=\(item?.lotte?.id ?? "")")
-//        case .megabox:
-//            webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(item?.megabox?.id ?? "")")
-//        case .naver:
-//            webURL = URL(string: item?.naver?.link ?? "")
-//        }
+        let webURL: URL?
+        switch type {
+        case .cgv:
+            webURL = URL(string: "http://m.cgv.co.kr/WebApp/MovieV4/movieDetail.aspx?MovieIdx=\(presenter.movieInfo?.cgvInfo?.id ?? "")")
+        case .lotte:
+            webURL = URL(string: "https://www.lottecinema.co.kr/NLCMW/movie/moviedetailview?movie=\(presenter.movieInfo?.lotteInfo?.id ?? "")")
+        case .megabox:
+            webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(presenter.movieInfo?.megaboxInfo?.id ?? "")")
+        case .naver:
+            webURL = URL(string: presenter.movieInfo?.naverInfo?.url ?? "")
+        }
         
-//        guard let url = webURL else { return }
-//        let safariViewController = SFSafariViewController(url: url)
-//        present(safariViewController, animated: true, completion: nil)
+        guard let url = webURL else { return }
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true, completion: nil)
     }
     
     func share(sender: UIBarButtonItem? = nil) {
@@ -220,9 +217,7 @@ extension MovieDetailView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cellType = presenter[indexPath] else {
-            return UITableViewCell()
-        }
+        guard let cellType = presenter[indexPath] else { return UITableViewCell() }
         
         switch cellType {
         case .header:
@@ -277,6 +272,7 @@ extension MovieDetailView: MovieDetailViewDelegate {
         if isAllowedToOpenStoreReview() {
             SKStoreReviewController.requestReview()
         }
+        tableView.reloadData()
     }
     
     func loadFailed() {
@@ -326,26 +322,10 @@ extension MovieDetailView: GADBannerViewDelegate, GADUnifiedNativeAdLoaderDelega
         self.nativeAd = nativeAd
         self.nativeAd?.rootViewController = self
         
-        
-//        if totalCell.contains(where: { cellType in
-//            switch cellType {
-//            case .ad: return true
-//            default: return false
-//            }
-//        }) {
-//            return
-//        }
-//
-//        guard let index = totalCell.firstIndex(where: { cellType in
-//            switch cellType {
-//            case .trailerHeader: return true
-//            default: return false
-//            }
-//        }) else { return }
-//        totalCell.insert(.ad, at: index+1)
-//        tableView.beginUpdates()
-//        tableView.insertRows(at: [IndexPath(item: index+1, section: 0)], with: .automatic)
-//        tableView.endUpdates()
+        guard let index = presenter.adIndex else { return }
+        tableView.beginUpdates()
+        tableView.insertRows(at: [IndexPath(item: index, section: 0)], with: .automatic)
+        tableView.endUpdates()
     }
     
     func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: GADRequestError) {

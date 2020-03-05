@@ -22,8 +22,8 @@ struct MovieDetailResponse: Decodable {
     let showTm: Int?
     let nations: [String]?
     let directors: [String]?
-    let actors: [String]?
-    let companies: [String]?
+    let actors: [ActorResponse]?
+    let companies: [CompanyResponse]?
     let cgv: TheaterResponse?
     let lotte: TheaterResponse?
     let megabox: TheaterResponse?
@@ -33,6 +33,16 @@ struct MovieDetailResponse: Decodable {
     let mc: TheaterResponse?
     let plot: String?
     let trailers: [TrailerResponse]
+}
+
+struct CompanyResponse: Decodable {
+    let companyNm: String
+    let companyPartNm: String
+}
+
+struct ActorResponse: Decodable {
+    let cast: String
+    let peopleNm: String
 }
 
 struct BoxOfficeResponse: Decodable {

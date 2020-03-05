@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8dK-cE-crg">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Movie Detail View-->
+        <scene sceneID="s7o-97-t56">
+            <objects>
+                <viewController storyboardIdentifier="MovieDetailView" hidesBottomBarWhenPushed="YES" id="SUI-xH-IQ0" customClass="MovieDetailView" customModule="DEV_Moop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sPy-RN-GqA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kiH-Ej-Zcd">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="812"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="SUI-xH-IQ0" id="tY3-zt-Pag"/>
+                                    <outlet property="delegate" destination="SUI-xH-IQ0" id="gTU-lb-BCv"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvD-Tp-9ab">
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="w67-fo-Bt0"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="zvD-Tp-9ab" firstAttribute="leading" secondItem="Gkk-dn-iW6" secondAttribute="leading" id="1M5-fz-W2F"/>
+                            <constraint firstItem="Gkk-dn-iW6" firstAttribute="trailing" secondItem="kiH-Ej-Zcd" secondAttribute="trailing" id="JJ5-cP-58s"/>
+                            <constraint firstItem="kiH-Ej-Zcd" firstAttribute="top" secondItem="sPy-RN-GqA" secondAttribute="top" id="JRl-tb-pTd"/>
+                            <constraint firstItem="zvD-Tp-9ab" firstAttribute="top" secondItem="kiH-Ej-Zcd" secondAttribute="bottom" id="VRC-i1-abF"/>
+                            <constraint firstItem="Gkk-dn-iW6" firstAttribute="trailing" secondItem="zvD-Tp-9ab" secondAttribute="trailing" id="WYu-3n-J0Y"/>
+                            <constraint firstAttribute="bottom" secondItem="kiH-Ej-Zcd" secondAttribute="bottom" priority="750" id="fxx-qp-Cne"/>
+                            <constraint firstItem="kiH-Ej-Zcd" firstAttribute="leading" secondItem="Gkk-dn-iW6" secondAttribute="leading" id="jZ0-Ye-orQ"/>
+                            <constraint firstItem="Gkk-dn-iW6" firstAttribute="bottom" secondItem="zvD-Tp-9ab" secondAttribute="bottom" id="ol8-Op-b0o"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Gkk-dn-iW6"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Rlm-ig-vio">
+                        <rightBarButtonItems>
+                            <barButtonItem image="share" style="plain" id="QB0-Yb-ihr">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6G8-mk-OSR">
+                                    <rect key="frame" x="346" y="0.0" width="48" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="share"/>
+                                    <connections>
+                                        <action selector="share:" destination="SUI-xH-IQ0" eventType="touchUpInside" id="n5k-Dp-O4l"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem image="heart" style="plain" id="4Eo-9Z-G1K">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Hfg-dN-bDa">
+                                    <rect key="frame" x="290" y="0.0" width="48" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="36" id="GbE-Wo-mqV"/>
+                                        <constraint firstAttribute="width" constant="36" id="P5u-fk-Qfr"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
+                                    <state key="normal" image="heart"/>
+                                    <state key="selected" image="heart_fill"/>
+                                    <connections>
+                                        <action selector="favorite:" destination="SUI-xH-IQ0" eventType="touchUpInside" id="ALL-hq-1AP"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bannerViewHeightConstraint" destination="w67-fo-Bt0" id="QjR-wx-cfM"/>
+                        <outlet property="bannerWrpperView" destination="zvD-Tp-9ab" id="lgn-J2-jer"/>
+                        <outlet property="favoriteButton" destination="Hfg-dN-bDa" id="fxx-Zh-Fnq"/>
+                        <outlet property="tableView" destination="kiH-Ej-Zcd" id="32k-i9-cOr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IzE-IN-6Da" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1855.072463768116" y="127.90178571428571"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="B80-mN-JtF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8dK-cE-crg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dnf-0m-fHH">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SUI-xH-IQ0" kind="relationship" relationship="rootViewController" id="zTt-OJ-F6y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YRI-tm-eb7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="980" y="128"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="heart" width="24" height="24"/>
+        <image name="heart_fill" width="24" height="24"/>
+        <image name="share" width="24" height="24"/>
+    </resources>
+</document>

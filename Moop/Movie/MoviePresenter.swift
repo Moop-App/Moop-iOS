@@ -18,7 +18,6 @@ enum MovieContextMenuType {
 class MoviePresenter: NSObject {
     internal weak var view: MovieViewDelegate!
     
-    private let realm = try? Realm()
     private var notificationToken: NotificationToken?
     
     private var currentMovieData = MovieData()
@@ -58,7 +57,7 @@ class MoviePresenter: NSObject {
     }
     
     private func setupNotification() {
-        notificationToken = realm?.objects(Movie.self).observe { [weak self] changes in
+        notificationToken = RealmManager.shared.fetchNotification { [weak self] changes in
             guard let self = self else { return }
             switch changes {
             case let .initial(results):
@@ -281,10 +280,7 @@ extension MoviePresenter: MoviePresenterDelegate {
         case .future:
             willDeleteItem = futureMovieData.items.filter { !items.map { $0.id }.contains($0.id) }
         }
-        
-        try? realm?.write {
-            realm?.delete(willDeleteItem)
-            realm?.add(items, update: .modified)
-        }
+        RealmManager.shared.deleteData(items: willDeleteItem)
+        RealmManager.shared.saveData(items: items)
     }
 }

@@ -20,6 +20,7 @@ protocol MovieDetailPresenterDelegate: class {
     var title: String { get }
     var movieInfo: Movie? { get }
     subscript(indexPath: IndexPath) -> MovieDetailCellType? { get }
+    var adIndex: Array<Int>.Index? { get }
 
     func viewDidLoad()
 }
