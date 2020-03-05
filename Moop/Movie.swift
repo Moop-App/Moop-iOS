@@ -43,6 +43,7 @@ class Movie: Object {
     let trailers = List<Trailer>()
     
     @objc dynamic var isUpdatedDetailInfo: Bool = false
+    @objc dynamic var isAlarm: Bool = false
     
     override static func primaryKey() -> String? {
         return "id"

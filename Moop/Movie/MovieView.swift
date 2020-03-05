@@ -22,8 +22,6 @@ class MovieView: UIViewController {
     private let refreshControl = UIRefreshControl()
     @IBOutlet private weak var collectionView: UICollectionView! {
         didSet {
-            collectionView.delegate = self
-            collectionView.dataSource = self
             refreshControl.addTarget(self, action: #selector(requestData), for: .valueChanged)
             collectionView.refreshControl = refreshControl
             collectionView.register(MovieCell.self)
@@ -33,8 +31,17 @@ class MovieView: UIViewController {
         }
     }
     
+    @objc private func requestData() {
+        presenter.fetchDatas()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUp()
+        presenter.viewDidLoad()
+    }
+    
+    private func setUp() {
         navigationItem.title = MoviePresenter.MovieType.current.title
         searchController.searchResultsUpdater = presenter as? MoviePresenter
         searchController.searchBar.delegate = presenter as? MoviePresenter
@@ -42,11 +49,6 @@ class MovieView: UIViewController {
         definesPresentationContext = true
         navigationItem.searchController = searchController
         registerForPreviewing(with: self, sourceView: self.collectionView)
-        presenter.viewDidLoad()
-    }
-    
-    @objc private func requestData() {
-        presenter.fetchDatas()
     }
     
     var canScrollToTop: Bool = false
@@ -147,38 +149,33 @@ extension MovieView: UICollectionViewDelegateFlowLayout {
         return 0
     }
     
-    // Todo: API 구조 변경으로 추후 대응 예정
-//    @available(iOS 13.0, *)
-//    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-//        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
-//            let share = UIAction(title: "Share", image: UIImage(named: "share"), identifier: nil) { [weak self] _ in
-//                guard let self = self else { return }
-//                self.share(text: self.presenter[indexPath]?.shareText ?? "")
-//            }
-//            let cgv = UIAction(title: "CGV", image: nil, identifier: nil) { [weak self] _ in
-//                guard let self = self else { return }
-//                self.rating(type: .cgv, id: self.presenter[indexPath]?.cgv?.id ?? "")
-//            }
-//
-//            let lotte = UIAction(title: "LOTTE", image: nil, identifier: nil) { [weak self] _ in
-//                guard let self = self else { return }
-//                self.rating(type: .lotte, id: self.presenter[indexPath]?.lotte?.id ?? "")
-//            }
-//
-//            let megabox = UIAction(title: "MEGABOX", image: nil, identifier: nil) { [weak self] _ in
-//                guard let self = self else { return }
-//                self.rating(type: .megabox, id: self.presenter[indexPath]?.megabox?.id ?? "")
-//            }
-//
-//            let naver = UIAction(title: "NAVER", image: nil, identifier: nil) { [weak self] _ in
-//                guard let self = self else { return }
-//                self.rating(type: .naver, id: self.presenter[indexPath]?.naver?.link ?? "")
-//            }
-//
-//            return UIMenu(title: "", image: nil, identifier: nil, children: [share, cgv, lotte, megabox, naver])
-//        }
-//        return nil
-//    }
+    @available(iOS 13.0, *)
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let contextMenus = presenter.fetchContextMenus(indexPath: indexPath)
+        guard !contextMenus.isEmpty else { return nil }
+        
+        var menus: [UIAction] = []
+        
+        contextMenus.forEach {
+            switch $0 {
+            case let .text(shareText):
+                menus.append(UIAction(title: "Share", image: UIImage(named: "share"), identifier: nil) { [weak self] _ in
+                    guard let self = self else { return }
+                    self.share(text: shareText)
+                })
+            case let .theater(type, id):
+                menus.append(UIAction(title: type.title, image: nil, identifier: nil) { [weak self] _ in
+                    guard let self = self else { return }
+                    self.rating(type: type, id: id)
+                })
+            }
+        }
+        
+        
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            UIMenu(title: "", image: nil, identifier: nil, children: menus)
+        }
+    }
 }
 
 extension MovieView: UIViewControllerPreviewingDelegate {
@@ -189,7 +186,7 @@ extension MovieView: UIViewControllerPreviewingDelegate {
         
         previewingContext.sourceRect = cell.frame
         let destination = MovieDetailView.instance(id: id)
-//        destination.delegate = self
+        destination.delegate = self
         return destination
     }
     
@@ -198,34 +195,34 @@ extension MovieView: UIViewControllerPreviewingDelegate {
     }
 }
 
-//extension MovieView: MovieDetailPickAndPopDelegate {
-//    func share(text: String) {
-//        let viewController = UIActivityViewController(activityItems: [text], applicationActivities: [])
-//        if UIDevice.current.userInterfaceIdiom == .pad {
-//            viewController.popoverPresentationController?.sourceView = self.view
-//            viewController.popoverPresentationController?.sourceRect = CGRect(x: self.view.frame.size.width / 2,
-//                                                                              y: self.view.frame.size.height / 2,
-//                                                                              width: 0, height: 0)
-//        }
-//        present(viewController, animated: true, completion: nil)
-//    }
-//
-//    func rating(type: TheaterType, id: String) {
-//        let webURL: URL?
-//        switch type {
-//        case .cgv:
-//            webURL = URL(string: "http://m.cgv.co.kr/WebApp/MovieV4/movieDetail.aspx?MovieIdx=\(id)")
-//        case .lotte:
-//            webURL = URL(string: "http://www.lottecinema.co.kr/LCMW/Contents/Movie/Movie-Detail-View.aspx?movie=\(id)")
-//        case .megabox:
-//            webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(id)")
-//        case .naver:
-//            webURL = URL(string: id)
-//        }
-//
-//        guard let url = webURL else { return }
-//        let safariViewController = SFSafariViewController(url: url)
-//        present(safariViewController, animated: true, completion: nil)
-//    }
-//}
-//
+extension MovieView: MovieDetailPickAndPopDelegate {
+    func share(text: String) {
+        let viewController = UIActivityViewController(activityItems: [text], applicationActivities: [])
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            viewController.popoverPresentationController?.sourceView = self.view
+            viewController.popoverPresentationController?.sourceRect = CGRect(x: self.view.frame.size.width / 2,
+                                                                              y: self.view.frame.size.height / 2,
+                                                                              width: 0, height: 0)
+        }
+        present(viewController, animated: true, completion: nil)
+    }
+
+    func rating(type: TheaterType, id: String) {
+        let webURL: URL?
+        switch type {
+        case .cgv:
+            webURL = URL(string: "http://m.cgv.co.kr/WebApp/MovieV4/movieDetail.aspx?MovieIdx=\(id)")
+        case .lotte:
+            webURL = URL(string: "http://www.lottecinema.co.kr/LCMW/Contents/Movie/Movie-Detail-View.aspx?movie=\(id)")
+        case .megabox:
+            webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(id)")
+        case .naver:
+            webURL = URL(string: id)
+        }
+
+        guard let url = webURL else { return }
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true, completion: nil)
+    }
+}
+

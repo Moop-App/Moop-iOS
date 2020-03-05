@@ -23,4 +23,5 @@ protocol MoviePresenterDelegate: class {
     func viewDidLoad()
     func updateState(_ index: Int)
     func fetchDatas()
+    func fetchContextMenus(indexPath: IndexPath) -> [MovieContextMenuType]
 }

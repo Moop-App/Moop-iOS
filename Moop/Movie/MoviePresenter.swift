@@ -10,6 +10,11 @@ import UIKit
 import RealmSwift
 import Networking
 
+enum MovieContextMenuType {
+    case text(String)
+    case theater(TheaterType, String)
+}
+
 class MoviePresenter: NSObject {
     internal weak var view: MovieViewDelegate!
     
@@ -91,6 +96,10 @@ class MoviePresenter: NSObject {
     }
     
     subscript(indexPath: IndexPath) -> Movie? {
+        getItems(indexPath: indexPath)
+    }
+    
+    private func getItems(indexPath: IndexPath) -> Movie? {
         switch state {
         case .current:
             return isSearched ? currentMovieData.searchedMovies[safe: indexPath.item] : currentMovieData.filteredMovies[safe: indexPath.item]
@@ -129,6 +138,28 @@ extension MoviePresenter: UISearchResultsUpdating, UISearchBarDelegate {
 extension MoviePresenter: MoviePresenterDelegate {
     func viewDidLoad() {
         checkCurrentUpdateTime()
+    }
+    
+    func fetchContextMenus(indexPath: IndexPath) -> [MovieContextMenuType] {
+        guard let item = getItems(indexPath: indexPath) else { return [] }
+        
+        var result: [MovieContextMenuType] = []
+        if !item.shareText.isEmpty {
+            result.append(.text(item.shareText))
+        }
+        if let cgvId = item.cgvInfo?.id {
+            result.append(.theater(.cgv, cgvId))
+        }
+        if let lotteId = item.lotteInfo?.id {
+            result.append(.theater(.lotte, lotteId))
+        }
+        if let megaboxId = item.megaboxInfo?.id {
+            result.append(.theater(.megabox, megaboxId))
+        }
+        if let naverId = item.naverInfo?.url {
+            result.append(.theater(.naver, naverId))
+        }
+        return result
     }
     
     private func changedType() {
@@ -188,10 +219,7 @@ extension MoviePresenter: MoviePresenterDelegate {
             case .success(let result):
                 let movies = result.map { Movie(response: $0) }
                 if !movies.isEmpty {
-                    try? self.realm?.write {
-                        //                    self.realm?.delete(self.currentMovieData)
-                        self.realm?.add(movies, update: .modified)
-                    }
+                    self.saveData(items: movies, type: .current)
                 } else {
                     self.filterItemChanged()
                 }
@@ -215,7 +243,6 @@ extension MoviePresenter: MoviePresenterDelegate {
         API.shared.requestFutureUpdateTime { result in
             switch result {
             case .success(let updatedTime):
-                print("Future UpdateTime", MovieTimeData.futureUpdatedTime, updatedTime)
                 let result = MovieTimeData.futureUpdatedTime.isEmpty || (MovieTimeData.futureUpdatedTime != updatedTime)
                 completionHandler(result)
                 MovieTimeData.futureUpdatedTime = updatedTime
@@ -232,10 +259,7 @@ extension MoviePresenter: MoviePresenterDelegate {
             case .success(let result):
                 let movies = result.map { Movie(response: $0) }
                 if !movies.isEmpty {
-                    try? self.realm?.write {
-                        //                    self.realm?.delete(self.currentMovieData)
-                        self.realm?.add(movies, update: .modified)
-                    }
+                    self.saveData(items: movies, type: .future)
                 } else {
                     self.filterItemChanged()
                 }
@@ -247,5 +271,20 @@ extension MoviePresenter: MoviePresenterDelegate {
     
     func updateState(_ index: Int) {
         state = MovieType(rawValue: index) ?? .current
+    }
+    
+    private func saveData(items: [Movie], type: MovieType) {
+        var willDeleteItem: [Movie] = []
+        switch type {
+        case .current:
+            willDeleteItem = currentMovieData.items.filter { !items.map { $0.id }.contains($0.id) }
+        case .future:
+            willDeleteItem = futureMovieData.items.filter { !items.map { $0.id }.contains($0.id) }
+        }
+        
+        try? realm?.write {
+            realm?.delete(willDeleteItem)
+            realm?.add(items, update: .modified)
+        }
     }
 }

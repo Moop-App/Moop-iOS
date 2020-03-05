@@ -26,8 +26,7 @@ class MovieCell: UICollectionViewCell, NibLoadableView {
         if isFavorite {
             let url = URL(string: item.posterURL)
             SDWebImageManager.shared.loadImage(with: url, options: .continueInBackground, progress: nil) { (image, _, error, _, _, _) in
-                if error == nil,
-                    let image = image {
+                if error == nil, let image = image {
                     self.thumbnailImageView.image = item.getDay > 0 ? image.gray : image
                 }
             }
