@@ -1,5 +1,5 @@
 //
-//  MovieDetailViewController.swift
+//  MovieDetailView.swift
 //  Moop
 //
 //  Created by Chang Woo Son on 23/05/2019.
@@ -22,18 +22,18 @@ protocol DetailHeaderDelegate: class {
     func poster(_ image: UIImage)
 }
 
-class MovieDetailViewController: UIViewController {
-    static func instance(item: MovieInfo? = nil) -> MovieDetailViewController {
-        let vc: MovieDetailViewController = instance(storyboardName: Storyboard.main)
-        vc.item = item
+class MovieDetailView: UIViewController {
+    static func instance(id: String) -> MovieDetailView {
+        let vc: MovieDetailView = instance(storyboardName: Storyboard.detail)
+        vc.presenter = MovieDetailPresenter(view: vc, moopId: id)
         return vc
     }
     
-    @IBOutlet private weak var favoriteButton: UIButton!
+    var presenter: MovieDetailPresenterDelegate!
+    
+//    @IBOutlet private weak var favoriteButton: UIButton!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
-            tableView.delegate = self
-            tableView.dataSource = self
             tableView.register(MovieInfoPlotCell.self)
             tableView.register(TrailerHeaderCell.self)
             tableView.register(TrailerCell.self)
@@ -46,42 +46,23 @@ class MovieDetailViewController: UIViewController {
             tableView.register(NativeAdCell.self)
         }
     }
-    private var bannerView: GADBannerView!
+    
     @IBOutlet private weak var bannerWrpperView: UIView!
     @IBOutlet private weak var bannerViewHeightConstraint: NSLayoutConstraint!
+    private var bannerView: GADBannerView!
     private var adLoader: GADAdLoader!
     private var nativeAd: GADUnifiedNativeAd?
     
-    private var item: MovieInfo?
-    private var totalCell: [CellType] = []
     weak var delegate: MovieDetailPickAndPopDelegate?
-    
-    enum CellType {
-        case header
-        case boxOffice
-        case imdb
-        case cgv
-        case plot
-        case naver
-        case trailer(TrailerInfo)
-        case trailerHeader
-        case trailerFooter
-        case ad
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = item?.title
-        totalCell = calculateCell(info: item)
         configureAd()
+        presenter.viewDidLoad()
         
-        if isAllowedToOpenStoreReview() {
-            SKStoreReviewController.requestReview()
-        }
-        
-        guard let ids = UserDefaults.standard.array(forKey: .favorites) as? [String] else { return }
-        favoriteButton.tag = ids.contains(item?.id ?? "") ? 1 : 0
-        favoriteButton.setImage(favoriteButton.tag == 1 ? UIImage(named: "heart_fill") : UIImage(named: "heart"), for: .normal)
+//        guard let ids = UserDefaults.standard.array(forKey: .favorites) as? [String] else { return }
+//        favoriteButton.tag = ids.contains(item?.id ?? "") ? 1 : 0
+//        favoriteButton.setImage(favoriteButton.tag == 1 ? UIImage(named: "heart_fill") : UIImage(named: "heart"), for: .normal)
     }
     
     private func configureAd() {
@@ -105,9 +86,6 @@ class MovieDetailViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // Note loadBannerAd is called in viewDidAppear as this is the first time that
-        // the safe area is known. If safe area is not a concern (e.g., your app is
-        // locked in portrait mode), the banner can be loaded in viewWillAppear.
         loadBannerAd()
     }
     
@@ -120,43 +98,15 @@ class MovieDetailViewController: UIViewController {
     
     func loadBannerAd() {
         guard !UserDefaults.standard.bool(forKey: .adFree) else { return }
-        // Step 2 - Determine the view width to use for the ad width.
         let viewWidth = view.frame.inset(by: view.safeAreaInsets).size.width
         
-        // Step 3 - Get Adaptive GADAdSize and set the ad view.
-        // Here the current interface orientation is used. If the ad is being preloaded
-        // for a future orientation change or different orientation, the function for the
-        // relevant orientation should be used.
         if bannerView != nil {
             bannerView.adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)
             bannerViewHeightConstraint.constant = bannerView.adSize.size.height
         }
-        // Step 4 - Create an ad request and load the adaptive banner ad.
         bannerView.load(GADRequest())
     }
 
-    
-    private func calculateCell(info: MovieInfo?) -> [CellType] {
-        guard let info = info else { return [] }
-        var result = [CellType.header]
-        if info.kobis?.boxOffice != nil {
-            result.append(.boxOffice)
-        }
-        if info.imdb != nil {
-            result.append(.imdb)
-        }
-        result.append(.cgv)
-        if info.kobis?.boxOffice == nil && info.naver != nil {
-            result.append(.naver)
-        }
-        if info.plot != nil {
-            result.append(.plot)
-        }
-        result.append(.trailerHeader)
-        info.trailers?.forEach { result.append(.trailer($0)) }
-        result.append(.trailerFooter)
-        return result
-    }
     
     func isAllowedToOpenStoreReview() -> Bool {
         // 365일 내에 최대 3회까지 사용자에게만 표시된다는 사실을 알고있어야 합니다.
@@ -174,45 +124,45 @@ class MovieDetailViewController: UIViewController {
         share(sender: sender)
     }
     
-    @IBAction private func favorite(_ sender: UIButton) {
-        sender.tag = sender.tag == 0 ? 1 : 0
-        sender.setImage(sender.tag == 1 ? UIImage(named: "heart_fill") : UIImage(named: "heart"), for: .normal)
-        favorite(isAdd: sender.tag == 1)
-    }
+//    @IBAction private func favorite(_ sender: UIButton) {
+//        sender.tag = sender.tag == 0 ? 1 : 0
+//        sender.setImage(sender.tag == 1 ? UIImage(named: "heart_fill") : UIImage(named: "heart"), for: .normal)
+//        favorite(isAdd: sender.tag == 1)
+//    }
     
     override var previewActionItems: [UIPreviewActionItem] {
         let shareAction = UIPreviewAction(title: "Share", style: .default) { [weak self] (_, viewController) in
-            self?.delegate?.share(text: self?.item?.shareText ?? "")
+            self?.delegate?.share(text: self?.presenter.movieInfo?.shareText ?? "")
         }
         let cgvAction = UIPreviewAction(title: "CGV", style: .default) { [weak self] (_, viewController) in
-            self?.delegate?.rating(type: .cgv, id: self?.item?.cgv?.id ?? "")
+            self?.delegate?.rating(type: .cgv, id: self?.presenter.movieInfo?.cgvInfo?.id ?? "")
         }
         let lotteAction = UIPreviewAction(title: "LOTTE", style: .default) { [weak self] (_, _) in
-            self?.delegate?.rating(type: .lotte, id: self?.item?.lotte?.id ?? "")
+            self?.delegate?.rating(type: .lotte, id: self?.presenter.movieInfo?.lotteInfo?.id ?? "")
         }
         let megaboxAction = UIPreviewAction(title: "MEGABOX", style: .default) { [weak self] (_, _) in
-            self?.delegate?.rating(type: .megabox, id: self?.item?.megabox?.id ?? "")
+            self?.delegate?.rating(type: .megabox, id: self?.presenter.movieInfo?.megaboxInfo?.id ?? "")
         }
         let naverAction = UIPreviewAction(title: "NAVER", style: .default) { [weak self] (_, _) in
-            self?.delegate?.rating(type: .naver, id: self?.item?.naver?.link ?? "")
+            self?.delegate?.rating(type: .naver, id: self?.presenter.movieInfo?.naverInfo?.url ?? "")
         }
-        
+
         return [shareAction, cgvAction, lotteAction, megaboxAction, naverAction]
     }
 }
 
-extension MovieDetailViewController: DetailHeaderDelegate {
+extension MovieDetailView: DetailHeaderDelegate {
     func wrapper(type: TheaterType) {
         let webURL: URL?
         switch type {
         case .cgv:
-            webURL = URL(string: "http://m.cgv.co.kr/WebApp/MovieV4/movieDetail.aspx?MovieIdx=\(item?.cgv?.id ?? "")")
+            webURL = URL(string: "http://m.cgv.co.kr/WebApp/MovieV4/movieDetail.aspx?MovieIdx=\(presenter.movieInfo?.cgvInfo?.id ?? "")")
         case .lotte:
-            webURL = URL(string: "https://www.lottecinema.co.kr/NLCMW/movie/moviedetailview?movie=\(item?.lotte?.id ?? "")")
+            webURL = URL(string: "https://www.lottecinema.co.kr/NLCMW/movie/moviedetailview?movie=\(presenter.movieInfo?.lotteInfo?.id ?? "")")
         case .megabox:
-            webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(item?.megabox?.id ?? "")")
+            webURL = URL(string: "http://m.megabox.co.kr/movie-detail?rpstMovieNo=\(presenter.movieInfo?.megaboxInfo?.id ?? "")")
         case .naver:
-            webURL = URL(string: item?.naver?.link ?? "")
+            webURL = URL(string: presenter.movieInfo?.naverInfo?.url ?? "")
         }
         
         guard let url = webURL else { return }
@@ -221,7 +171,7 @@ extension MovieDetailViewController: DetailHeaderDelegate {
     }
     
     func share(sender: UIBarButtonItem? = nil) {
-        let viewController = UIActivityViewController(activityItems: [item?.shareText ?? ""], applicationActivities: [])
+        let viewController = UIActivityViewController(activityItems: [presenter.movieInfo?.shareText ?? ""], applicationActivities: [])
         if UIDevice.current.userInterfaceIdiom == .pad {
             if sender != nil {
                 viewController.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
@@ -233,27 +183,26 @@ extension MovieDetailViewController: DetailHeaderDelegate {
             }
         }
         present(viewController, animated: true, completion: nil)
-        
     }
     
-    func favorite(isAdd: Bool) {
-        guard var array = UserDefaults.standard.array(forKey: .favorites) as? [String],
-            let itemId = item?.id else {
-                if isAdd {
-                    UserDefaults.standard.set([item?.id ?? ""], forKey: .favorites)
-                    NotificationManager.shared.addNotification(item: item)
-                }
-                return
-        }
-        if isAdd {
-            array.append(itemId)
-            NotificationManager.shared.addNotification(item: item)
-        } else if let index = array.firstIndex(of: itemId) {
-            array.remove(at: index)
-            NotificationManager.shared.removeNotification(item: item)
-        }
-        UserDefaults.standard.set(array, forKey: .favorites)
-    }
+//    func favorite(isAdd: Bool) {
+//        guard var array = UserDefaults.standard.array(forKey: .favorites) as? [String],
+//            let itemId = item?.id else {
+//                if isAdd {
+//                    UserDefaults.standard.set([item?.id ?? ""], forKey: .favorites)
+//                    NotificationManager.shared.addNotification(item: item)
+//                }
+//                return
+//        }
+//        if isAdd {
+//            array.append(itemId)
+//            NotificationManager.shared.addNotification(item: item)
+//        } else if let index = array.firstIndex(of: itemId) {
+//            array.remove(at: index)
+//            NotificationManager.shared.removeNotification(item: item)
+//        }
+//        UserDefaults.standard.set(array, forKey: .favorites)
+//    }
     
     func poster(_ image: UIImage) {
         let posterViewController = PosterViewController.instance(image: image)
@@ -262,45 +211,45 @@ extension MovieDetailViewController: DetailHeaderDelegate {
     }
 }
 
-extension MovieDetailViewController: UITableViewDataSource {
+extension MovieDetailView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return totalCell.count
+        return presenter.numberOfItemsInSection
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellType = totalCell[indexPath.item]
+        guard let cellType = presenter[indexPath] else { return UITableViewCell() }
         
         switch cellType {
         case .header:
             let cell: PosterWithInfoCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.set(item)
+            cell.set(presenter.movieInfo)
             cell.delegate = self
             return cell
         case .boxOffice:
             let cell: BoxOfficeCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.set(item)
+            cell.set(presenter.movieInfo)
             return cell
         case .imdb:
             let cell: ImdbCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.set(item?.imdb)
+            cell.set(presenter.movieInfo)
             return cell
         case .cgv:
             let cell: TheaterCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.set(item)
+            cell.set(presenter.movieInfo)
             cell.delegate = self
             return cell
         case .naver:
             let cell: NaverInfoCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.set(item?.naver)
+            cell.set(presenter.movieInfo?.naverInfo)
             cell.delegate = self
             return cell
         case .plot:
             let cell: MovieInfoPlotCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.configure(item?.plot)
+            cell.configure(presenter.movieInfo?.plot)
             return cell
         case .trailerHeader:
             let cell: TrailerHeaderCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.set(item?.title ?? "")
+            cell.set(presenter.title)
             return cell
         case .trailer(let trailerInfo):
             let cell: TrailerCell = tableView.dequeueReusableCell(for: indexPath)
@@ -317,9 +266,23 @@ extension MovieDetailViewController: UITableViewDataSource {
     }
 }
 
-extension MovieDetailViewController: UITableViewDelegate {
+extension MovieDetailView: MovieDetailViewDelegate {
+    func loadFinished() {
+        self.title = presenter.title
+        if isAllowedToOpenStoreReview() {
+            SKStoreReviewController.requestReview()
+        }
+        tableView.reloadData()
+    }
+    
+    func loadFailed() {
+        
+    }
+}
+
+extension MovieDetailView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cellType = totalCell[indexPath.item]
+        guard let cellType = presenter[indexPath] else { return }
         
         switch cellType {
         case .boxOffice, .naver:
@@ -333,7 +296,7 @@ extension MovieDetailViewController: UITableViewDelegate {
                 UIApplication.shared.open(httpURL, options: [:], completionHandler: nil)
             }
         case .trailerFooter:
-            let title = item?.title.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+            let title = presenter.title.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
             guard let httpURL = URL(string: "https://www.youtube.com/results?search_query=\(title ?? "")"),
                 let youtubeURL = URL(string: "youtube://www.youtube.com/results?search_query=\(title ?? "")") else { return }
             if UIApplication.shared.canOpenURL(youtubeURL) {
@@ -346,7 +309,7 @@ extension MovieDetailViewController: UITableViewDelegate {
     }
 }
 
-extension MovieDetailViewController: GADBannerViewDelegate, GADUnifiedNativeAdLoaderDelegate {
+extension MovieDetailView: GADBannerViewDelegate, GADUnifiedNativeAdLoaderDelegate {
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         // Add banner to view and add constraints as above.
         bannerView.alpha = 0
@@ -359,25 +322,9 @@ extension MovieDetailViewController: GADBannerViewDelegate, GADUnifiedNativeAdLo
         self.nativeAd = nativeAd
         self.nativeAd?.rootViewController = self
         
-        
-        if totalCell.contains(where: { cellType in
-            switch cellType {
-            case .ad: return true
-            default: return false
-            }
-        }) {
-            return
-        }
-        
-        guard let index = totalCell.firstIndex(where: { cellType in
-            switch cellType {
-            case .trailerHeader: return true
-            default: return false
-            }
-        }) else { return }
-        totalCell.insert(.ad, at: index+1)
+        guard let index = presenter.adIndex else { return }
         tableView.beginUpdates()
-        tableView.insertRows(at: [IndexPath(item: index+1, section: 0)], with: .automatic)
+        tableView.insertRows(at: [IndexPath(item: index, section: 0)], with: .automatic)
         tableView.endUpdates()
     }
     

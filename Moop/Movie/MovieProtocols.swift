@@ -18,7 +18,10 @@ protocol MoviePresenterDelegate: class {
     var view: MovieViewDelegate! { get set }
     var numberOfItemsInSection: Int { get }
     var isEmpty: Bool { get }
-    subscript(indexPath: IndexPath) -> MovieInfo? { get }
-    func fetchDatas(type: [MoviePresenter.MovieType])
+    subscript(indexPath: IndexPath) -> Movie? { get }
+    
+    func viewDidLoad()
     func updateState(_ index: Int)
+    func fetchDatas()
+    func fetchContextMenus(indexPath: IndexPath) -> [MovieContextMenuType]
 }

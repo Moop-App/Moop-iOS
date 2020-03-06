@@ -12,27 +12,21 @@ class TheaterRankView: UIView {
     @IBOutlet private weak var rankLabel: UILabel!
     @IBOutlet private weak var theaterNameLabel: UILabel!
     
+    enum ViewType: String {
+        case cgv = "CGV"
+        case lotte = "롯데시네마"
+        case megabox = "메가박스"
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         rankLabel.text = "-"
         self.elevate(elevation: 2)
     }
     
-    func set(_ info: CGVInfo?) {
+    func set(_ info: Theater?, type: ViewType) {
         guard let info = info else { return }
-        theaterNameLabel.text = "CGV"
-        rankLabel.text = info.egg
-    }
-    
-    func set(_ info: LotteInfo?) {
-        guard let info = info else { return }
-        theaterNameLabel.text = "롯데시네마"
-        rankLabel.text = info.star
-    }
-    
-    func set(_ info: MegaBoxInfo?) {
-        guard let info = info else { return }
-        theaterNameLabel.text = "메가박스"
+        theaterNameLabel.text = type.rawValue
         rankLabel.text = info.star
     }
 }

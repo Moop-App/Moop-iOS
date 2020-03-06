@@ -22,20 +22,26 @@ class MovieView: UIViewController {
     private let refreshControl = UIRefreshControl()
     @IBOutlet private weak var collectionView: UICollectionView! {
         didSet {
-            collectionView.delegate = self
-            collectionView.dataSource = self
             refreshControl.addTarget(self, action: #selector(requestData), for: .valueChanged)
             collectionView.refreshControl = refreshControl
             collectionView.register(MovieCell.self)
             collectionView.register(MovieViewSegmentedControl.self,
                                     forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                     withReuseIdentifier: "MovieViewSegmentedControl")
-
         }
+    }
+    
+    @objc private func requestData() {
+        presenter.fetchDatas()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUp()
+        presenter.viewDidLoad()
+    }
+    
+    private func setUp() {
         navigationItem.title = MoviePresenter.MovieType.current.title
         searchController.searchResultsUpdater = presenter as? MoviePresenter
         searchController.searchBar.delegate = presenter as? MoviePresenter
@@ -43,12 +49,6 @@ class MovieView: UIViewController {
         definesPresentationContext = true
         navigationItem.searchController = searchController
         registerForPreviewing(with: self, sourceView: self.collectionView)
-        presenter.fetchDatas(type: [.current, .future])
-    }
-    
-    
-    @objc private func requestData() {
-        presenter.fetchDatas(type: [])
     }
     
     var canScrollToTop: Bool = false
@@ -72,13 +72,12 @@ class MovieView: UIViewController {
 
 extension MovieView: MovieViewDelegate {
     func loadFinished() {
-        collectionView.reloadData()
         refreshControl.endRefreshing()
+        collectionView.reloadData()
     }
     
     func loadFailed() {
         refreshControl.endRefreshing()
-        // TODO: Fail Toast
     }
     
     func change(state: MoviePresenter.MovieType) {
@@ -104,7 +103,7 @@ extension MovieView: ScrollToTopDelegate {
 
 extension MovieView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.numberOfItemsInSection
+        presenter.numberOfItemsInSection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -114,7 +113,8 @@ extension MovieView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let destination = MovieDetailViewController.instance(item: presenter[indexPath])
+        guard let id = presenter[indexPath]?.id else { return }
+        let destination = MovieDetailView.instance(id: id)
         self.navigationController?.pushViewController(destination, animated: true)
     }
     
@@ -151,32 +151,29 @@ extension MovieView: UICollectionViewDelegateFlowLayout {
     
     @available(iOS 13.0, *)
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
-            let share = UIAction(title: "Share", image: UIImage(named: "share"), identifier: nil) { [weak self] _ in
-                guard let self = self else { return }
-                self.share(text: self.presenter[indexPath]?.shareText ?? "")
+        let contextMenus = presenter.fetchContextMenus(indexPath: indexPath)
+        guard !contextMenus.isEmpty else { return nil }
+        
+        var menus: [UIAction] = []
+        
+        contextMenus.forEach {
+            switch $0 {
+            case let .text(shareText):
+                menus.append(UIAction(title: "Share", image: UIImage(named: "share"), identifier: nil) { [weak self] _ in
+                    guard let self = self else { return }
+                    self.share(text: shareText)
+                })
+            case let .theater(type, id):
+                menus.append(UIAction(title: type.title, image: nil, identifier: nil) { [weak self] _ in
+                    guard let self = self else { return }
+                    self.rating(type: type, id: id)
+                })
             }
-            let cgv = UIAction(title: "CGV", image: nil, identifier: nil) { [weak self] _ in
-                guard let self = self else { return }
-                self.rating(type: .cgv, id: self.presenter[indexPath]?.cgv?.id ?? "")
-            }
-
-            let lotte = UIAction(title: "LOTTE", image: nil, identifier: nil) { [weak self] _ in
-                guard let self = self else { return }
-                self.rating(type: .lotte, id: self.presenter[indexPath]?.lotte?.id ?? "")
-            }
-
-            let megabox = UIAction(title: "MEGABOX", image: nil, identifier: nil) { [weak self] _ in
-                guard let self = self else { return }
-                self.rating(type: .megabox, id: self.presenter[indexPath]?.megabox?.id ?? "")
-            }
-
-            let naver = UIAction(title: "NAVER", image: nil, identifier: nil) { [weak self] _ in
-                guard let self = self else { return }
-                self.rating(type: .naver, id: self.presenter[indexPath]?.naver?.link ?? "")
-            }
-            
-            return UIMenu(title: "", image: nil, identifier: nil, children: [share, cgv, lotte, megabox, naver])
+        }
+        
+        
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            UIMenu(title: "", image: nil, identifier: nil, children: menus)
         }
     }
 }
@@ -184,10 +181,11 @@ extension MovieView: UICollectionViewDelegateFlowLayout {
 extension MovieView: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = collectionView.indexPathForItem(at: location),
-            let cell = collectionView.cellForItem(at: indexPath) else { return nil }
+            let cell = collectionView.cellForItem(at: indexPath),
+            let id = presenter[indexPath]?.id else { return nil }
         
         previewingContext.sourceRect = cell.frame
-        let destination = MovieDetailViewController.instance(item: presenter[indexPath])
+        let destination = MovieDetailView.instance(id: id)
         destination.delegate = self
         return destination
     }
@@ -208,7 +206,7 @@ extension MovieView: MovieDetailPickAndPopDelegate {
         }
         present(viewController, animated: true, completion: nil)
     }
-    
+
     func rating(type: TheaterType, id: String) {
         let webURL: URL?
         switch type {
@@ -217,11 +215,11 @@ extension MovieView: MovieDetailPickAndPopDelegate {
         case .lotte:
             webURL = URL(string: "http://www.lottecinema.co.kr/LCMW/Contents/Movie/Movie-Detail-View.aspx?movie=\(id)")
         case .megabox:
-            webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(id)")
+            webURL = URL(string: "http://m.megabox.co.kr/movie-detail?rpstMovieNo=\(id)")
         case .naver:
             webURL = URL(string: id)
         }
-        
+
         guard let url = webURL else { return }
         let safariViewController = SFSafariViewController(url: url)
         present(safariViewController, animated: true, completion: nil)

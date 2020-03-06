@@ -51,10 +51,24 @@ public final class API {
         }
     }
     
+    
+    public func requestCurrentUpdateTime(completionHandler: @escaping (Result<String, AFError>) -> Void) {
+        AF.request(APISetupManager.currentLastUpdatedTimeRequestURL).validate()
+            .responseString { response in
+                completionHandler(response.result)
+        }
+    }
+    
+    public func requestFutureUpdateTime(completionHandler: @escaping (Result<String, AFError>) -> Void) {
+        AF.request(APISetupManager.futureLastUpdatedTimeRequestURL).validate()
+            .responseString { response in
+                completionHandler(response.result)
+        }
+    }
+    
     public func requestCurrent<T: Decodable>(completionHandler: @escaping (Result<[T], Error>) -> Void) {
         self.requestURL = APISetupManager.currentRequestURL
-        AF.request(requestURL)
-            .validate(statusCode: [200])
+        AF.request(requestURL).validate()
             .responseDecodable { (response: AFDataResponse<[T]>) in
                 switch response.result {
                 case .success(let items):
@@ -67,8 +81,7 @@ public final class API {
     
     public func requestFuture<T: Decodable>(completionHandler: @escaping (Result<[T], Error>) -> Void) {
         self.requestURL = APISetupManager.futureRequestURL
-        AF.request(requestURL)
-            .validate(statusCode: [200])
+        AF.request(requestURL).validate()
             .responseDecodable { (response: AFDataResponse<[T]>) in
                 switch response.result {
                 case .success(let items):
@@ -77,13 +90,26 @@ public final class API {
                     completionHandler(.failure(error))
                 }
         }
-        
     }
     
     public func requestMapData<T: Decodable>(completionHandler: @escaping (Result<T, Error>) -> Void) {
         self.requestURL = APISetupManager.locationRequestURL
         AF.request(requestURL)
             .validate(statusCode: [200])
+            .responseDecodable { (response: AFDataResponse<T>) in
+                switch response.result {
+                case .success(let item):
+                    completionHandler(.success(item))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                }
+        }
+    }
+    
+    public func requestDetail<T: Decodable>(id: String, completionHandler: @escaping (Result<T, Error>) -> Void) {
+        self.requestURL = APISetupManager.movieDetailRequestURL
+        AF.request("\(requestURL)/\(id).json")
+            .validate()
             .responseDecodable { (response: AFDataResponse<T>) in
                 switch response.result {
                 case .success(let item):

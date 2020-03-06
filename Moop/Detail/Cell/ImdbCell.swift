@@ -21,10 +21,10 @@ class ImdbCell: UITableViewCell, NibLoadableView {
         wrapperView.elevate(elevation: 2.0)
     }
     
-    func set(_ imdb: Imdb?) {
-        guard let imdb = imdb else { return }
-        imdbLabel.text = imdb.imdb
-        rtLabel.text = imdb.rt ?? "-"
-        mcLabel.text = imdb.mc ?? "-"
+    func set(_ movie: Movie?) {
+        guard let movie = movie else { return }
+        imdbLabel.text = movie.imdb?.star
+        rtLabel.text = movie.rt?.star ?? "-"
+        mcLabel.text = movie.mc?.star ?? "-"
     }
 }

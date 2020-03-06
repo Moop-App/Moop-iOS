@@ -9,7 +9,6 @@
 import UIKit
 
 enum UserDefaultsKey {
-    
     case favorites
     case detailViewCount
     case firstReviewDate

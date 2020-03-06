@@ -25,7 +25,7 @@ class FavoriteViewController: UIViewController {
         }
     }
     
-    private var datas: [MovieInfo] = [] {
+    private var datas: [MovieResponse] = [] {
         didSet {
             collectionView.isHidden = datas.isEmpty
             emptyLabel.isHidden = !datas.isEmpty
@@ -50,13 +50,13 @@ extension FavoriteViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: MovieCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.set(datas[indexPath.item], isFavorite: true)
+//        cell.set(datas[indexPath.item], isFavorite: true)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let destination = MovieDetailViewController.instance(item: datas[indexPath.item])
-        self.navigationController?.pushViewController(destination, animated: true)
+//        let destination = MovieDetailViewController.instance(item: datas[indexPath.item])
+//        self.navigationController?.pushViewController(destination, animated: true)
     }
 }
 
@@ -81,9 +81,9 @@ extension FavoriteViewController: UIViewControllerPreviewingDelegate {
             let cell = collectionView.cellForItem(at: indexPath) else { return nil }
         
         previewingContext.sourceRect = cell.frame
-        let destination = MovieDetailViewController.instance(item: datas[indexPath.item])
-        destination.delegate = self
-        return destination
+//        let destination = MovieDetailViewController.instance(item: datas[indexPath.item])
+//        destination.delegate = self
+        return nil
     }
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
@@ -105,7 +105,7 @@ extension FavoriteViewController: MovieDetailPickAndPopDelegate {
         case .lotte:
             webURL = URL(string: "http://www.lottecinema.co.kr/LCMW/Contents/Movie/Movie-Detail-View.aspx?movie=\(id)")
         case .megabox:
-            webURL = URL(string: "http://m.megabox.co.kr/?menuId=movie-detail&movieCode=\(id)")
+            webURL = URL(string: "http://m.megabox.co.kr/movie-detail?rpstMovieNo=\(id)")
         case .naver:
             webURL = URL(string: id)
         }

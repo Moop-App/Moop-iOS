@@ -7,17 +7,28 @@
 //
 
 import UIKit
+import RealmSwift
+import Networking
+
+enum MovieContextMenuType {
+    case text(String)
+    case theater(TheaterType, String)
+}
 
 class MoviePresenter: NSObject {
-    private let currentMovieData: MovieData
-    private let futureMovieData: MovieData
-    weak var view: MovieViewDelegate!
-    private var isSearched: Bool = false
+    internal weak var view: MovieViewDelegate!
+    
+    private var notificationToken: NotificationToken?
+    
+    private var currentMovieData = MovieData()
+    private var futureMovieData = MovieData()
+    private var isSearched = false
+    
     private var state: MovieType = .current {
         didSet {
             guard oldValue != state else { return }
             view.change(state: state)
-            filterItemChanged()
+            changedType()
         }
     }
     
@@ -37,8 +48,31 @@ class MoviePresenter: NSObject {
     
     init(view: MovieViewDelegate) {
         self.view = view
-        currentMovieData = MovieData()
-        futureMovieData = MovieData()
+        super.init()
+        setupNotification()
+    }
+    
+    deinit {
+        notificationToken?.invalidate()
+    }
+    
+    private func setupNotification() {
+        notificationToken = RealmManager.shared.fetchNotification { [weak self] changes in
+            guard let self = self else { return }
+            switch changes {
+            case let .initial(results):
+                self.currentMovieData.items = results
+                    .filter("now == true").sorted(byKeyPath: "score", ascending: true).compactMap { $0 }
+                self.futureMovieData.items = results.filter("now == false").sorted(byKeyPath: "getDay").compactMap { $0 }
+                self.filterItemChanged()
+            case let .update(results, _, _, _):
+                self.currentMovieData.items = results.filter("now == true").sorted(byKeyPath: "score", ascending: true).compactMap { $0 }
+                self.futureMovieData.items = results.filter("now == false").sorted(byKeyPath: "getDay").compactMap { $0 }
+                self.filterItemChanged()
+            case let .error(error):
+                print("An error occurred: \(error)")
+            }
+        }
     }
     
     
@@ -54,13 +88,17 @@ class MoviePresenter: NSObject {
     var isEmpty: Bool {
         switch state {
         case .current:
-            return isSearched ? currentMovieData.searchedMovies.isEmpty : currentMovieData.filteredMovies.isEmpty
+            return currentMovieData.items.isEmpty
         case .future:
-            return isSearched ? futureMovieData.searchedMovies.isEmpty : futureMovieData.filteredMovies.isEmpty
+            return futureMovieData.items.isEmpty
         }
     }
     
-    subscript(indexPath: IndexPath) -> MovieInfo? {
+    subscript(indexPath: IndexPath) -> Movie? {
+        getItems(indexPath: indexPath)
+    }
+    
+    private func getItems(indexPath: IndexPath) -> Movie? {
         switch state {
         case .current:
             return isSearched ? currentMovieData.searchedMovies[safe: indexPath.item] : currentMovieData.filteredMovies[safe: indexPath.item]
@@ -74,9 +112,9 @@ extension MoviePresenter: FilterChangeDelegate {
     func filterItemChanged() {
         switch state {
         case .current:
-            currentMovieData.filter()
+            currentMovieData.filtered()
         case .future:
-            futureMovieData.filter()
+            futureMovieData.filtered()
         }
         view.loadFinished()
     }
@@ -96,47 +134,153 @@ extension MoviePresenter: UISearchResultsUpdating, UISearchBarDelegate {
     }
 }
 
-
 extension MoviePresenter: MoviePresenterDelegate {
-    func fetchDatas(type: [MoviePresenter.MovieType]) {
-        var targetType = type
-        if type.isEmpty {
-            targetType = [state]
-        }
-        let group = DispatchGroup()
+    func viewDidLoad() {
+        checkCurrentUpdateTime()
+    }
+    
+    func fetchContextMenus(indexPath: IndexPath) -> [MovieContextMenuType] {
+        guard let item = getItems(indexPath: indexPath) else { return [] }
         
-        if targetType.contains(.current) {
-            fetchCurrentDatas(group)
+        var result: [MovieContextMenuType] = []
+        if !item.shareText.isEmpty {
+            result.append(.text(item.shareText))
         }
-        if targetType.contains(.future) {
-            fetchFutureDatas(group)
+        if let cgvId = item.cgvInfo?.id {
+            result.append(.theater(.cgv, cgvId))
         }
-        
-        
-        group.notify(queue: .main) {
-            self.filterItemChanged()
+        if let lotteId = item.lotteInfo?.id {
+            result.append(.theater(.lotte, lotteId))
+        }
+        if let megaboxId = item.megaboxInfo?.id {
+            result.append(.theater(.megabox, megaboxId))
+        }
+        if let naverId = item.naverInfo?.url {
+            result.append(.theater(.naver, naverId))
+        }
+        return result
+    }
+    
+    private func changedType() {
+        switch state {
+        case .current:
+            if currentMovieData.items.isEmpty {
+                checkCurrentUpdateTime()
+            } else {
+                filterItemChanged()
+            }
+        case .future:
+            if futureMovieData.items.isEmpty {
+                checkFutureUpdateTime()
+            } else {
+                filterItemChanged()
+            }
         }
     }
     
-    private func fetchCurrentDatas(_ group: DispatchGroup? = nil) {
-        group?.enter()
-        MovieInfoManager.shared.requestCurrentData { [weak self] in
-            guard let self = self else { return }
-            self.currentMovieData.update(items: MovieInfoManager.shared.currentDatas, sortType: .rank)
-            group?.leave()
+    func fetchDatas() {
+        switch state {
+        case .current:
+            checkCurrentUpdateTime()
+            
+        case .future:
+            checkFutureUpdateTime()
         }
     }
     
-    private func fetchFutureDatas(_ group: DispatchGroup? = nil) {
-        group?.enter()
-        MovieInfoManager.shared.requestFutureData { [weak self] in
+    private func checkCurrentUpdateTime() {
+        requestCurrentUpdateTime { [weak self] isUpdatedRequire in
+            if isUpdatedRequire {
+                self?.fetchCurrentDatas()
+            } else {
+                self?.filterItemChanged()
+            }
+        }
+    }
+    
+    private func requestCurrentUpdateTime(completionHandler: @escaping (Bool) -> Void) {
+        API.shared.requestCurrentUpdateTime { result in
+            switch result {
+            case .success(let updatedTime):
+                let result = MovieTimeData.currentUpdatedTime.isEmpty || (MovieTimeData.currentUpdatedTime != updatedTime)
+                completionHandler(result)
+                MovieTimeData.currentUpdatedTime = updatedTime
+            case .failure(let error):
+                print("Error requestCurrentUpdateTime", error.localizedDescription)
+            }
+        }
+    }
+    
+    private func fetchCurrentDatas() {
+        API.shared.requestCurrent { [weak self] (result: Result<[MovieResponse], Error>) in
             guard let self = self else { return }
-            self.futureMovieData.update(items: MovieInfoManager.shared.futureDatas, sortType: .day)
-            group?.leave()
+            switch result {
+            case .success(let result):
+                let movies = result.map { Movie(response: $0) }
+                if !movies.isEmpty {
+                    self.saveData(items: movies, type: .current)
+                } else {
+                    self.filterItemChanged()
+                }
+            case .failure(let error):
+                print("Error fetchCurrentDatas", error.localizedDescription)
+            }
+        }
+    }
+    
+    private func checkFutureUpdateTime() {
+        requestFutureUpdateTime { [weak self] isUpdatedRequire in
+            if isUpdatedRequire {
+                self?.fetchFutureDatas()
+            } else {
+                self?.filterItemChanged()
+            }
+        }
+    }
+    
+    private func requestFutureUpdateTime(completionHandler: @escaping (Bool) -> Void) {
+        API.shared.requestFutureUpdateTime { result in
+            switch result {
+            case .success(let updatedTime):
+                let result = MovieTimeData.futureUpdatedTime.isEmpty || (MovieTimeData.futureUpdatedTime != updatedTime)
+                completionHandler(result)
+                MovieTimeData.futureUpdatedTime = updatedTime
+            case .failure(let error):
+                print("Error requestCurrentUpdateTime", error.localizedDescription)
+            }
+        }
+    }
+    
+    private func fetchFutureDatas() {
+        API.shared.requestFuture { [weak self] (result: Result<[MovieResponse], Error>) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let result):
+                let movies = result.map { Movie(response: $0) }
+                if !movies.isEmpty {
+                    self.saveData(items: movies, type: .future)
+                } else {
+                    self.filterItemChanged()
+                }
+            case .failure(let error):
+                print("Error fetchCurrentDatas", error.localizedDescription)
+            }
         }
     }
     
     func updateState(_ index: Int) {
         state = MovieType(rawValue: index) ?? .current
+    }
+    
+    private func saveData(items: [Movie], type: MovieType) {
+        var willDeleteItem: [Movie] = []
+        switch type {
+        case .current:
+            willDeleteItem = currentMovieData.items.filter { !items.map { $0.id }.contains($0.id) }
+        case .future:
+            willDeleteItem = futureMovieData.items.filter { !items.map { $0.id }.contains($0.id) }
+        }
+        RealmManager.shared.deleteData(items: willDeleteItem)
+        RealmManager.shared.saveData(items: items)
     }
 }
