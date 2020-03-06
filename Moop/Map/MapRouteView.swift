@@ -26,7 +26,7 @@ class MapRouteView: UIView {
     weak var delegate: RouteDelegate?
     var annotation: MKAnnotation? {
         didSet {
-            guard let annotation = annotation as? Theater else {
+            guard let annotation = annotation as? TheaterMapInfo else {
                 clear()
                 return
             }
@@ -38,7 +38,7 @@ class MapRouteView: UIView {
         self.titleLabel.text = nil
     }
     
-    private func configure(_ annotation: Theater) {
+    private func configure(_ annotation: TheaterMapInfo) {
         self.titleLabel.text = annotation.title
     }
     

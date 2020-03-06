@@ -11,6 +11,7 @@ import kor45cw_Extension
 enum Storyboard: StoryboardName {
     case main
     case movie
+    case detail
     case setting
     case favorite
     
@@ -18,6 +19,7 @@ enum Storyboard: StoryboardName {
         switch self {
         case .main: return "Main"
         case .movie: return "Movie"
+        case .detail: return "Detail"
         case .setting: return "Setting"
         case .favorite: return "Favorite"
         }

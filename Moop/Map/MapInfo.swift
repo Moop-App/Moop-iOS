@@ -10,25 +10,21 @@ import Foundation
 import MapKit
 
 struct MapInfo: Decodable {
-    let cgv: CodeGroup
-    let lotte: CodeGroup
-    let megabox: CodeGroup
+    let cgv: [AreaGroup]
+    let lotte: [AreaGroup]
+    let megabox: [AreaGroup]
     
-    var items: [Theater] {
-        let cgvList = cgv.list.flatMap({ $0.theaterList })
-        let lotteList = lotte.list.flatMap({ $0.theaterList })
-        let megaboxList = megabox.list.flatMap({ $0.theaterList })
+    var items: [TheaterMapInfo] {
+        let cgvList = cgv.flatMap({ $0.theaterList })
+        let lotteList = lotte.flatMap({ $0.theaterList })
+        let megaboxList = megabox.flatMap({ $0.theaterList })
         return cgvList + lotteList + megaboxList
     }
 }
 
-struct CodeGroup: Decodable {
-    let list: [AreaGroup]
-}
-
 struct AreaGroup: Decodable {
     let area: Area
-    let theaterList: [Theater]
+    let theaterList: [TheaterMapInfo]
 }
 
 struct Area: Decodable {
@@ -36,7 +32,7 @@ struct Area: Decodable {
     let name: String
 }
 
-class Theater: NSObject, Decodable, MKAnnotation {
+class TheaterMapInfo: NSObject, Decodable, MKAnnotation {
     let type: String
     let code: String
     let name: String

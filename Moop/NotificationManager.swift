@@ -27,7 +27,7 @@ class NotificationManager: NSObject {
         application.registerForRemoteNotifications()
     }
     
-    public func addNotification(item: MovieInfo?) {
+    public func addNotification(item: Movie?) {
         guard let item = item else { return }
         let content = UNMutableNotificationContent()
         content.title = "오늘개봉작".localized
@@ -45,7 +45,7 @@ class NotificationManager: NSObject {
         }
     }
     
-    public func removeNotification(item: MovieInfo?) {
+    public func removeNotification(item: MovieResponse?) {
         guard let item = item else { return }
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [item.id])
     }

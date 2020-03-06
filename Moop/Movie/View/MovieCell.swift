@@ -21,18 +21,17 @@ class MovieCell: UICollectionViewCell, NibLoadableView {
         super.awakeFromNib()
     }
     
-    func set(_ item: MovieInfo?, isFavorite: Bool = false) {
+    func set(_ item: Movie?, isFavorite: Bool = false) {
         guard let item = item else { return }
         if isFavorite {
-            let url = URL(string: item.posterUrl)
+            let url = URL(string: item.posterURL)
             SDWebImageManager.shared.loadImage(with: url, options: .continueInBackground, progress: nil) { (image, _, error, _, _, _) in
-                if error == nil,
-                    let image = image {
+                if error == nil, let image = image {
                     self.thumbnailImageView.image = item.getDay > 0 ? image.gray : image
                 }
             }
         } else {
-            thumbnailImageView.sd_setImage(with: URL(string: item.posterUrl))
+            thumbnailImageView.sd_setImage(with: URL(string: item.posterURL))
         }
         ageBadge.backgroundColor = item.ageColor
         bestView.isHidden = !item.isNew && !item.isBest && !item.isDDay

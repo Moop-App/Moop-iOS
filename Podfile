@@ -24,12 +24,15 @@ target 'Moop' do
   pod 'AcknowList'
   
   pod 'FacebookSDK'
+  pod 'FBAudienceNetwork'
   pod 'kor45cw_Extension'
+  
+  pod 'RealmSwift'
 
   target 'Networking' do
     inherit! :search_paths
     pod 'FTLinearActivityIndicator'
-    pod 'AlamofireNetworkActivityIndicator', '~> 3.0.0-beta.3'
+    pod 'AlamofireNetworkActivityIndicator'
   end
 
   target 'MoopTests' do

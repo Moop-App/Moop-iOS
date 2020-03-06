@@ -100,7 +100,7 @@ extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     }
     
     private func makeInAppDirection() {
-        guard let theater = routeView.annotation as? Theater,
+        guard let theater = routeView.annotation as? TheaterMapInfo,
             let locValue = locationManager.location?.coordinate else { return }
         
         let directionRequest = MKDirections.Request()
@@ -142,7 +142,7 @@ extension MapViewController: RouteDelegate {
     
     private func openKakao() {
         guard let locValue = locationManager.location?.coordinate,
-            let theater = routeView.annotation as? Theater,
+            let theater = routeView.annotation as? TheaterMapInfo,
             let url = URL(string: "kakaomap://route?sp=\(locValue.latitude),\(locValue.longitude)&ep=\(theater.lat),\(theater.lng)&by=PUBLICTRANSIT") else { return }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
@@ -150,7 +150,7 @@ extension MapViewController: RouteDelegate {
     private func openNaver() {
         let sname = "현위치".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         guard let locValue = locationManager.location?.coordinate,
-            let theater = routeView.annotation as? Theater,
+            let theater = routeView.annotation as? TheaterMapInfo,
             let url = URL(string: "nmap://route/public?slat=\(locValue.latitude)&slng=\(locValue.longitude)&sname=\(sname)&dlat=\(theater.lat)&dlng=\(theater.lng)&dname=\(theater.destinationName)&appname=com.kor45cw.Moop") else { return }
         
         if UIApplication.shared.canOpenURL(url) {
@@ -163,7 +163,7 @@ extension MapViewController: RouteDelegate {
     
     private func openGoogle() {
         guard let locValue = locationManager.location?.coordinate,
-            let theater = routeView.annotation as? Theater,
+            let theater = routeView.annotation as? TheaterMapInfo,
             let url = URL(string: "comgooglemaps://?saddr=\(locValue.latitude),\(locValue.longitude)&daddr=\(theater.lat),\(theater.lng)&directionsmode=transit") else { return }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }

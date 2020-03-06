@@ -37,24 +37,23 @@ class PosterWithInfoCell: UITableViewCell, NibLoadableView {
         dDayBadge.backgroundColor = .gray
     }
     
-    func set(_ item: MovieInfo?) {
+    func set(_ item: Movie?) {
         guard let item = item else { return }
-        posterImageView.sd_setImage(with: URL(string: item.posterUrl))
+        posterImageView.sd_setImage(with: URL(string: item.posterURL))
         
         ageBadge.backgroundColor = item.ageColor
         newBadge.isHidden = !item.isNew
         bestBadge.isHidden = !item.isBest
         dDayBadge.isHidden = !item.isDDay
-        
+
         ageLabel.text = item.ageBadgeText
         dDayLabel.text = item.dDayText
         
         openDateView.isHidden = item.openDate.isEmpty
-        ratingView.isHidden = item.age.isEmpty
-        genreView.isHidden = item.genreText == nil
-        nationView.isHidden = item.nation == nil
-        runningTimeView.isHidden = item.showTime == nil
-        providerView.isHidden = item.provider == nil
+        genreView.isHidden = item.genreText.isEmpty
+        nationView.isHidden = item.nations.isEmpty
+        runningTimeView.isHidden = item.showTm.value == nil
+//        providerView.isHidden = item.provider == nil
         
         openDateView.configure(.openDate, item: item)
         ratingView.configure(.rating, item: item)
