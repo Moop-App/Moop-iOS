@@ -14,7 +14,7 @@ import kor45cw_Extension
 
 protocol MovieDetailPickAndPopDelegate: class {
     func share(text: String)
-    func rating(type: TheaterType, id: String)
+    func rating(type: TheaterType, url: URL?)
 }
 
 protocol DetailHeaderDelegate: class {
@@ -131,23 +131,25 @@ class MovieDetailView: UIViewController {
 //    }
     
     override var previewActionItems: [UIPreviewActionItem] {
-        let shareAction = UIPreviewAction(title: "Share", style: .default) { [weak self] (_, viewController) in
-            self?.delegate?.share(text: self?.presenter.movieInfo?.shareText ?? "")
+        guard let menus = presenter.movieInfo?.contextMenus else { return [] }
+        var items: [UIPreviewAction] = []
+        
+        menus.forEach {
+            switch $0 {
+            case let .text(shareText):
+                items.append(UIPreviewAction(title: "Share", style: .default) { [weak self] _,_  in
+                    guard let self = self else { return }
+                    self.delegate?.share(text: shareText)
+                })
+            case let .theater(type, url):
+                items.append(UIPreviewAction(title: type.title, style: .default) { [weak self] _,_ in
+                    guard let self = self else { return }
+                    self.delegate?.rating(type: type, url: url)
+                })
+            }
         }
-        let cgvAction = UIPreviewAction(title: "CGV", style: .default) { [weak self] (_, viewController) in
-            self?.delegate?.rating(type: .cgv, id: self?.presenter.movieInfo?.cgvInfo?.id ?? "")
-        }
-        let lotteAction = UIPreviewAction(title: "LOTTE", style: .default) { [weak self] (_, _) in
-            self?.delegate?.rating(type: .lotte, id: self?.presenter.movieInfo?.lotteInfo?.id ?? "")
-        }
-        let megaboxAction = UIPreviewAction(title: "MEGABOX", style: .default) { [weak self] (_, _) in
-            self?.delegate?.rating(type: .megabox, id: self?.presenter.movieInfo?.megaboxInfo?.id ?? "")
-        }
-        let naverAction = UIPreviewAction(title: "NAVER", style: .default) { [weak self] (_, _) in
-            self?.delegate?.rating(type: .naver, id: self?.presenter.movieInfo?.naverInfo?.url ?? "")
-        }
-
-        return [shareAction, cgvAction, lotteAction, megaboxAction, naverAction]
+        
+        return items
     }
 }
 

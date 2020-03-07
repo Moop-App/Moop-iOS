@@ -228,6 +228,29 @@ extension Movie {
     func contain(ages: [AgeType]) -> Bool {
         return ages.contains(self.ageType)
     }
+    
+    var contextMenus: [MovieContextMenuType] {
+        var result: [MovieContextMenuType] = []
+        if !shareText.isEmpty {
+            result.append(.text(shareText))
+        }
+        if let cgvId = cgvInfo?.id {
+            let url = URL(string: "http://m.cgv.co.kr/WebApp/MovieV4/movieDetail.aspx?MovieIdx=\(cgvId)")
+            result.append(.theater(.cgv, url))
+        }
+        if let lotteId = lotteInfo?.id {
+            let url = URL(string: "http://www.lottecinema.co.kr/LCMW/Contents/Movie/Movie-Detail-View.aspx?movie=\(lotteId)")
+            result.append(.theater(.lotte, url))
+        }
+        if let megaboxId = megaboxInfo?.id {
+            let url = URL(string: "http://m.megabox.co.kr/movie-detail?rpstMovieNo=\(megaboxId)")
+            result.append(.theater(.megabox, url))
+        }
+        if let naverId = naverInfo?.url {
+            result.append(.theater(.naver, URL(string: naverId)))
+        }
+        return result
+    }
 }
 
 
