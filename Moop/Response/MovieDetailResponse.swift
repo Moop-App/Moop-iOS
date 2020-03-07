@@ -32,7 +32,7 @@ struct MovieDetailResponse: Decodable {
     let rt: TheaterResponse?
     let mc: TheaterResponse?
     let plot: String?
-    let trailers: [TrailerResponse]
+    let trailers: [TrailerResponse]?
 }
 
 struct CompanyResponse: Decodable {
