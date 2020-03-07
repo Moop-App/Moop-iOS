@@ -53,7 +53,7 @@ class PosterWithInfoCell: UITableViewCell, NibLoadableView {
         genreView.isHidden = item.genreText.isEmpty
         nationView.isHidden = item.nations.isEmpty
         runningTimeView.isHidden = item.showTm.value == nil
-//        providerView.isHidden = item.provider == nil
+        providerView.isHidden = item.companies.isEmpty
         
         openDateView.configure(.openDate, item: item)
         ratingView.configure(.rating, item: item)

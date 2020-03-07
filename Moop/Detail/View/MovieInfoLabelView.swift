@@ -31,7 +31,7 @@ class MovieInfoLabelView: UIView {
             descriptionLabel.text = "분".localizedFormat(item.showTm.value ?? 0)
         case .provider:
             titleLabel.text = "배급".localized
-//            descriptionLabel.text = item.provider
+            descriptionLabel.text = item.companies.first
         }
     }
 }
