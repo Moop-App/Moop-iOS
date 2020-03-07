@@ -1,5 +1,5 @@
 //
-//  MovieData.swift
+//  MovieModel.swift
 //  Moop
 //
 //  Created by kor45cw on 2019/10/12.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-class MovieData {
+class MovieModel {
     var items: [Movie] = []
     var filteredMovies: [Movie] = []
     var searchedMovies: [Movie] = []
 }
 
-extension MovieData {
+extension MovieModel {
     func search(query: String) {
         let jamoChoQuery = Jamo.getChos(query)
         let jamoQuery = Jamo.getJamo(query)

@@ -20,8 +20,8 @@ class MoviePresenter: NSObject {
     
     private var notificationToken: NotificationToken?
     
-    private var currentMovieData = MovieData()
-    private var futureMovieData = MovieData()
+    private var currentMovieData = MovieModel()
+    private var futureMovieData = MovieModel()
     private var isSearched = false
     
     private var state: MovieType = .current {
