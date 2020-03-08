@@ -251,6 +251,22 @@ extension Movie {
         }
         return result
     }
+    
+    var cgvURL: URL? {
+        URL(string: "http://m.cgv.co.kr/WebApp/MovieV4/movieDetail.aspx?MovieIdx=\(cgvInfo?.id ?? "")")
+    }
+    
+    var megaboxURL: URL? {
+        URL(string: "http://m.megabox.co.kr/movie-detail?rpstMovieNo=\(megaboxInfo?.id ?? "")")
+    }
+    
+    var lotteURL: URL? {
+        URL(string: "https://www.lottecinema.co.kr/NLCMW/movie/moviedetailview?movie=\(lotteInfo?.id ?? "")")
+    }
+    
+    var naverURL: URL? {
+        URL(string: naverInfo?.url ?? "")
+    }
 }
 
 

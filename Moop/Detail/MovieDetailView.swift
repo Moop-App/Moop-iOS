@@ -9,7 +9,6 @@
 import UIKit
 import StoreKit
 import SafariServices
-import GoogleMobileAds
 import kor45cw_Extension
 
 protocol MovieDetailPickAndPopDelegate: class {
@@ -49,9 +48,7 @@ class MovieDetailView: UIViewController {
     
     @IBOutlet private weak var bannerWrpperView: UIView!
     @IBOutlet private weak var bannerViewHeightConstraint: NSLayoutConstraint!
-    private var bannerView: GADBannerView!
-    private var adLoader: GADAdLoader!
-    private var nativeAd: GADUnifiedNativeAd?
+    private var 광고모듈: AdManager?
     
     weak var delegate: MovieDetailPickAndPopDelegate?
     
@@ -66,22 +63,12 @@ class MovieDetailView: UIViewController {
     }
     
     private func configureAd() {
-        if UserDefaults.standard.bool(forKey: .adFree) {
+        guard !UserDefaults.standard.bool(forKey: .adFree) else {
             bannerWrpperView.removeFromSuperview()
             return
         }
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        bannerView.adUnitID = AdConfig.bannderKey
-        bannerView.rootViewController = self
-        bannerView.delegate = self
-        bannerWrpperView.addSubview(bannerView)
-        
-        adLoader = GADAdLoader(adUnitID: AdConfig.nativeAdKey,
-                               rootViewController: self,
-                               adTypes: [.unifiedNative],
-                               options: nil)
-        adLoader.delegate = self
-        adLoader.load(GADRequest())
+        광고모듈 = AdManager(배너광고타입: .상세화면, 네이티브광고타입: .상세화면, viewController: self, wrapperView: bannerWrpperView)
+        광고모듈?.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -99,12 +86,7 @@ class MovieDetailView: UIViewController {
     func loadBannerAd() {
         guard !UserDefaults.standard.bool(forKey: .adFree) else { return }
         let viewWidth = view.frame.inset(by: view.safeAreaInsets).size.width
-        
-        if bannerView != nil {
-            bannerView.adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)
-            bannerViewHeightConstraint.constant = bannerView.adSize.size.height
-        }
-        bannerView.load(GADRequest())
+        bannerViewHeightConstraint.constant = 광고모듈?.resize_구글광고(width: viewWidth) ?? 50.0
     }
 
     
@@ -131,43 +113,13 @@ class MovieDetailView: UIViewController {
 //    }
     
     override var previewActionItems: [UIPreviewActionItem] {
-        guard let menus = presenter.movieInfo?.contextMenus else { return [] }
-        var items: [UIPreviewAction] = []
-        
-        menus.forEach {
-            switch $0 {
-            case let .text(shareText):
-                items.append(UIPreviewAction(title: "Share", style: .default) { [weak self] _,_  in
-                    guard let self = self else { return }
-                    self.delegate?.share(text: shareText)
-                })
-            case let .theater(type, url):
-                items.append(UIPreviewAction(title: type.title, style: .default) { [weak self] _,_ in
-                    guard let self = self else { return }
-                    self.delegate?.rating(type: type, url: url)
-                })
-            }
-        }
-        
-        return items
+        presenter.previewActionItems
     }
 }
 
 extension MovieDetailView: DetailHeaderDelegate {
     func wrapper(type: TheaterType) {
-        let webURL: URL?
-        switch type {
-        case .cgv:
-            webURL = URL(string: "http://m.cgv.co.kr/WebApp/MovieV4/movieDetail.aspx?MovieIdx=\(presenter.movieInfo?.cgvInfo?.id ?? "")")
-        case .lotte:
-            webURL = URL(string: "https://www.lottecinema.co.kr/NLCMW/movie/moviedetailview?movie=\(presenter.movieInfo?.lotteInfo?.id ?? "")")
-        case .megabox:
-            webURL = URL(string: "http://m.megabox.co.kr/movie-detail?rpstMovieNo=\(presenter.movieInfo?.megaboxInfo?.id ?? "")")
-        case .naver:
-            webURL = URL(string: presenter.movieInfo?.naverInfo?.url ?? "")
-        }
-        
-        guard let url = webURL else { return }
+        guard let url = presenter.webURL(with: type) else { return }
         let safariViewController = SFSafariViewController(url: url)
         present(safariViewController, animated: true, completion: nil)
     }
@@ -210,6 +162,28 @@ extension MovieDetailView: DetailHeaderDelegate {
         let posterViewController = PosterViewController.instance(image: image)
         posterViewController.modalPresentationStyle = .fullScreen
         self.present(posterViewController, animated: true)
+    }
+}
+
+extension MovieDetailView: MovieDetailViewDelegate {
+    func loadFinished() {
+        self.title = presenter.title
+        if isAllowedToOpenStoreReview() {
+            SKStoreReviewController.requestReview()
+        }
+        tableView.reloadData()
+    }
+    
+    func loadFailed() {
+        
+    }
+    
+    func share(text: String) {
+        delegate?.share(text: text)
+    }
+    
+    func rating(type: TheaterType, url: URL?) {
+        delegate?.rating(type: type, url: url)
     }
 }
 
@@ -262,23 +236,10 @@ extension MovieDetailView: UITableViewDataSource {
             return cell
         case .ad:
             let cell: NativeAdCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.set(nativeAd)
+            cell.set(광고모듈?.구글네이티브광고)
+            cell.set(광고모듈?.페이스북네이티브광고, viewController: self)
             return cell
         }
-    }
-}
-
-extension MovieDetailView: MovieDetailViewDelegate {
-    func loadFinished() {
-        self.title = presenter.title
-        if isAllowedToOpenStoreReview() {
-            SKStoreReviewController.requestReview()
-        }
-        tableView.reloadData()
-    }
-    
-    func loadFailed() {
-        
     }
 }
 
@@ -309,28 +270,26 @@ extension MovieDetailView: UITableViewDelegate {
         default: break
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let cellType = presenter[indexPath] else { return tableView.estimatedRowHeight }
+        
+        switch cellType {
+        case .ad where (광고모듈?.페이스북네이티브광고?.isAdValid ?? false):
+            let viewWidth = view.frame.inset(by: view.safeAreaInsets).size.width - 16
+            return (viewWidth / 316) * 295
+        default:
+            return tableView.estimatedRowHeight
+        }
+        
+    }
 }
 
-extension MovieDetailView: GADBannerViewDelegate, GADUnifiedNativeAdLoaderDelegate {
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        // Add banner to view and add constraints as above.
-        bannerView.alpha = 0
-        UIView.animate(withDuration: 1, animations: {
-            bannerView.alpha = 1
-        })
-    }
-    
-    func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADUnifiedNativeAd) {
-        self.nativeAd = nativeAd
-        self.nativeAd?.rootViewController = self
-        
+extension MovieDetailView: AdManagerDelegate {
+    func 네이티브광고Loaded() {
         guard let index = presenter.adIndex else { return }
         tableView.beginUpdates()
         tableView.insertRows(at: [IndexPath(item: index, section: 0)], with: .automatic)
         tableView.endUpdates()
-    }
-    
-    func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: GADRequestError) {
-        
     }
 }
