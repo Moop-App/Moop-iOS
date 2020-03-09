@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 protocol SettingViewDelegate: class {
     var presenter: SettingPresenterDelegate! { get set }
     
