@@ -63,7 +63,7 @@ class MovieDetailView: UIViewController {
     }
     
     private func configureAd() {
-        guard !UserDefaults.standard.bool(forKey: .adFree) else {
+        guard !UserData.isAdFree else {
             bannerWrpperView.removeFromSuperview()
             return
         }
@@ -84,7 +84,7 @@ class MovieDetailView: UIViewController {
     }
     
     func loadBannerAd() {
-        guard !UserDefaults.standard.bool(forKey: .adFree) else { return }
+        guard !UserData.isAdFree else { return }
         let viewWidth = view.frame.inset(by: view.safeAreaInsets).size.width
         bannerViewHeightConstraint.constant = 광고모듈?.resize_구글광고(width: viewWidth) ?? 50.0
     }
@@ -93,12 +93,12 @@ class MovieDetailView: UIViewController {
     func isAllowedToOpenStoreReview() -> Bool {
         // 365일 내에 최대 3회까지 사용자에게만 표시된다는 사실을 알고있어야 합니다.
         // TODO: 1년 지난 후에는 체크 하는 로직 만들어야
-        let launchCount = UserDefaults.standard.integer(forKey: .detailViewCount)
+        let launchCount = UserData.detailViewCount
         let isOpen = launchCount == 3 || launchCount == 10 || launchCount == 20
         if launchCount == 3 {
-            UserDefaults.standard.set(Date(), forKey: .firstReviewDate)
+            UserData.firstReviewDate = Date()
         }
-        UserDefaults.standard.set((launchCount + 1), forKey: .detailViewCount)
+        UserData.detailViewCount = launchCount + 1
         return isOpen
     }
     

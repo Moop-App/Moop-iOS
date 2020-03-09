@@ -106,7 +106,7 @@ class AdManager: NSObject {
     }
     
     private func 구글광고_추가() {
-        guard !UserDefaults.standard.bool(forKey: .adFree) else { return }
+        guard !UserData.isAdFree else { return }
         페이스북광고뷰.removeFromSuperview()
         광고뷰.translatesAutoresizingMaskIntoConstraints = false
         광고포장뷰.addSubview(광고뷰)

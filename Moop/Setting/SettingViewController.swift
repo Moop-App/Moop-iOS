@@ -85,7 +85,7 @@ class SettingViewController: UIViewController {
             }
         }
         
-        if UserDefaults.standard.bool(forKey: .adFree) {
+        if UserData.isAdFree {
             self.navigationItem.rightBarButtonItems = nil
         }
     }
@@ -121,7 +121,7 @@ class SettingViewController: UIViewController {
     @IBAction private func restore(_ sender: UIBarButtonItem) {
         SwiftyStoreKit.restorePurchases { [weak self] result in
             if result.restoredPurchases.count == 1 {
-                UserDefaults.standard.set(true, forKey: .adFree)
+                UserData.isAdFree = true
                 self?.tableView.reloadData()
             }
         }
@@ -140,7 +140,7 @@ extension SettingViewController: ScrollToTopDelegate {
 
 extension SettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if UserDefaults.standard.bool(forKey: .adFree) {
+        if UserData.isAdFree {
             return (datas.count - 1) * 3
         }
         return datas.count * 3
@@ -212,7 +212,7 @@ extension SettingViewController: UITableViewDelegate {
             SwiftyStoreKit.purchaseProduct(AdConfig.adFreeKey, quantity: 1, atomically: true) { [weak self] result in
                 switch result {
                 case .success:
-                    UserDefaults.standard.set(true, forKey: .adFree)
+                    UserData.isAdFree = true
                     self?.tableView.reloadData()
                 case .error(let error):
                     print((error as NSError).localizedDescription)

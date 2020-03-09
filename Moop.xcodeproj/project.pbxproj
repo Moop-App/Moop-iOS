@@ -29,7 +29,6 @@
 		3C767533229954A80052BEB6 /* SettingDividerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C767531229954A80052BEB6 /* SettingDividerCell.swift */; };
 		3C767534229954A80052BEB6 /* SettingDividerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C767532229954A80052BEB6 /* SettingDividerCell.xib */; };
 		3C947A8C22D736170075E4DE /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C947A8B22D736170075E4DE /* FilterViewController.swift */; };
-		3C947A8E22D73C120075E4DE /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C947A8D22D73C120075E4DE /* UserDefaults+Extension.swift */; };
 		3CB52E6922B4DC7D009FD7D1 /* TrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB52E6822B4DC7D009FD7D1 /* TrailerCell.swift */; };
 		3CB52E6B22B4DF84009FD7D1 /* TrailerFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB52E6A22B4DF84009FD7D1 /* TrailerFooterCell.swift */; };
 		3CB52E6D22B4F0B5009FD7D1 /* TrailerHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB52E6C22B4F0B5009FD7D1 /* TrailerHeaderCell.swift */; };
@@ -93,6 +92,7 @@
 		A0CACA05234F4BAA0076E432 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0CACA04234F4BAA0076E432 /* StoreKit.framework */; };
 		A0CAEBBF22FAEAD800C5C662 /* MapRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CAEBBE22FAEAD800C5C662 /* MapRouteView.swift */; };
 		A0D2462822F3DCF100F48CBA /* AgeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2462722F3DCF100F48CBA /* AgeType.swift */; };
+		A0DBE63D241612ED008077F0 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DBE63C241612ED008077F0 /* UserData.swift */; };
 		A0EBD3AD2351DB03007A23EB /* MovieViewSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EBD3AC2351DB03007A23EB /* MovieViewSegmentedControl.swift */; };
 		A0EBD3B02351E243007A23EB /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EBD3AF2351E243007A23EB /* MovieView.swift */; };
 		A0EBD3B42351E4A8007A23EB /* MoviePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EBD3B32351E4A8007A23EB /* MoviePresenter.swift */; };
@@ -176,7 +176,6 @@
 		3C767531229954A80052BEB6 /* SettingDividerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDividerCell.swift; sourceTree = "<group>"; };
 		3C767532229954A80052BEB6 /* SettingDividerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingDividerCell.xib; sourceTree = "<group>"; };
 		3C947A8B22D736170075E4DE /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
-		3C947A8D22D73C120075E4DE /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		3CB52E6822B4DC7D009FD7D1 /* TrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerCell.swift; sourceTree = "<group>"; };
 		3CB52E6A22B4DF84009FD7D1 /* TrailerFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerFooterCell.swift; sourceTree = "<group>"; };
 		3CB52E6C22B4F0B5009FD7D1 /* TrailerHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerHeaderCell.swift; sourceTree = "<group>"; };
@@ -253,6 +252,7 @@
 		A0CACA04234F4BAA0076E432 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A0CAEBBE22FAEAD800C5C662 /* MapRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouteView.swift; sourceTree = "<group>"; };
 		A0D2462722F3DCF100F48CBA /* AgeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeType.swift; sourceTree = "<group>"; };
+		A0DBE63C241612ED008077F0 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		A0EBD3AC2351DB03007A23EB /* MovieViewSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewSegmentedControl.swift; sourceTree = "<group>"; };
 		A0EBD3AF2351E243007A23EB /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
 		A0EBD3B32351E4A8007A23EB /* MoviePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePresenter.swift; sourceTree = "<group>"; };
@@ -354,6 +354,7 @@
 			children = (
 				3C6601F322956D38000BA333 /* AppDelegate.swift */,
 				A0CACA01234F48890076E432 /* AdConfig.swift */,
+				A0DBE63C241612ED008077F0 /* UserData.swift */,
 				3CB6E84C22B9C518008F382C /* MainTabBarController.swift */,
 				A063DD282410B87300DE144D /* RealmManager.swift */,
 				A042BFBD2414EAA000384F01 /* AdManager.swift */,
@@ -392,7 +393,6 @@
 			isa = PBXGroup;
 			children = (
 				3C7675242299172C0052BEB6 /* UIColor+Extension.swift */,
-				3C947A8D22D73C120075E4DE /* UserDefaults+Extension.swift */,
 				A02133EE22F1934000AD6D0E /* Storyboard.swift */,
 				A0CAC9F3234D6A520076E432 /* Date+Extension.swift */,
 				A0CAC9F5234D8A490076E432 /* Int+Extension.swift */,
@@ -938,6 +938,7 @@
 			files = (
 				A02133EF22F1934000AD6D0E /* Storyboard.swift in Sources */,
 				3CDCD79122BDD7C400DDD14B /* NotificationManager.swift in Sources */,
+				A0DBE63D241612ED008077F0 /* UserData.swift in Sources */,
 				A0CAEBBF22FAEAD800C5C662 /* MapRouteView.swift in Sources */,
 				A0EBD3B02351E243007A23EB /* MovieView.swift in Sources */,
 				3C6601F622956D38000BA333 /* SettingViewController.swift in Sources */,
@@ -987,7 +988,6 @@
 				A0434E3C22F129AC004C086B /* MapInfo.swift in Sources */,
 				3CB52E6D22B4F0B5009FD7D1 /* TrailerHeaderCell.swift in Sources */,
 				3CB52E6922B4DC7D009FD7D1 /* TrailerCell.swift in Sources */,
-				3C947A8E22D73C120075E4DE /* UserDefaults+Extension.swift in Sources */,
 				3CB6E84B22B8EFF2008F382C /* ShortcutManager.swift in Sources */,
 				A00DBC65240BB061007AFAFF /* MovieDetailResponse.swift in Sources */,
 				A0434E3A22F089CB004C086B /* MapViewController.swift in Sources */,
