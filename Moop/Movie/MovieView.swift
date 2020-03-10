@@ -64,7 +64,7 @@ class MovieView: UIViewController {
     }
     
     @IBAction private func filter(_ sender: UIBarButtonItem) {
-        let destination = FilterViewController.instance()
+        let destination = FilterView.instance()
         destination.delegate = presenter as? MoviePresenter
         self.present(UINavigationController(rootViewController: destination), animated: true)
     }

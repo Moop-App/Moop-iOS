@@ -43,7 +43,7 @@ class MainTabBarController: UITabBarController {
 //    }
     
     private func settingViewController() -> UINavigationController {
-        let settingNavigationController = UINavigationController(rootViewController: SettingViewController.instance())
+        let settingNavigationController = UINavigationController(rootViewController: SettingView.instance())
         settingNavigationController.navigationBar.prefersLargeTitles = true
         let settingTabBarItem = UITabBarItem(title: "설정".localized, image: UIImage(named: "setting"), tag: 3)
         settingTabBarItem.selectedImage = UIImage(named: "setting_selected")

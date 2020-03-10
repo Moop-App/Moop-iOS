@@ -12,98 +12,31 @@ import MessageUI
 import CTFeedbackSwift
 import SwiftyStoreKit
 
-enum SettingSection: CaseIterable {
-    case theme
-    case map
-    case version
-    case opensource
-    case feedback
-    case inapp
-    
-    var title: String {
-        switch self {
-        case .theme:
-            return "테마".localized
-        case .map:
-            return "지도".localized
-        case .version:
-            return "버전".localized
-        case .opensource:
-            return "오픈소스".localized
-        case .feedback:
-            return "피드백".localized
-        case .inapp:
-            return "인앱구매".localized
-        }
-    }
-    
-    var description: String {
-        switch self {
-        case .theme:
-            return "준비중입니다".localized
-        case .map:
-            return "지도확인하기".localized
-        case .version:
-            guard let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return "" }
-            return "\("현재".localized) \(appVersion)"
-        case .opensource:
-            return "자세히보기".localized
-        case .feedback:
-            return "개발자에게버그신고하기".localized
-        case .inapp:
-            return "광고제거 구매하기".localized
-        }
-    }
-}
-
-class SettingViewController: UIViewController {
-    static func instance() -> SettingViewController {
-        let vc: SettingViewController = instance(storyboardName: Storyboard.setting)
+class SettingView: UIViewController {
+    static func instance() -> SettingView {
+        let vc: SettingView = instance(storyboardName: Storyboard.setting)
+        vc.presenter = SettingPresenter(view: vc)
         return vc
     }
     
+    var presenter: SettingPresenterDelegate!
+    
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
-            tableView.dataSource = self
-            tableView.delegate = self
             tableView.register(SettingHeaderCell.self)
             tableView.register(SettingItemCell.self)
             tableView.register(SettingDividerCell.self)
         }
     }
 
-    let datas = SettingSection.allCases
     var currentVersion: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            self.currentVersion = self.currentAppstoreVersion() ?? ""
-            DispatchQueue.main.async {
-                self.tableView.reloadRows(at: [IndexPath(row: 7, section: 0)], with: .automatic)
-            }
-        }
-        
-        if UserDefaults.standard.bool(forKey: .adFree) {
+        if UserData.isAdFree {
             self.navigationItem.rightBarButtonItems = nil
         }
-    }
-    
-    func currentAppstoreVersion() -> String? {
-        guard let info = Bundle.main.infoDictionary,
-            let identifier = info["CFBundleIdentifier"] as? String,
-            let url = URL(string: "https://itunes.apple.com/lookup?bundleId=\(identifier)") else {
-                return nil
-        }
-        do {
-            let data = try Data(contentsOf: url)
-            guard let json = try JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] else { return nil }
-            guard let result = (json["results"] as? [Any])?.first as? [String: Any], let version = result["version"] as? String else { return nil }
-            return version
-        } catch {
-            return nil
-        }
+        presenter.viewDidLoad()
     }
     
     var canScrollToTop: Bool = false
@@ -119,18 +52,24 @@ class SettingViewController: UIViewController {
     }
     
     @IBAction private func restore(_ sender: UIBarButtonItem) {
-        SwiftyStoreKit.restorePurchases { [weak self] result in
-            if result.restoredPurchases.count == 1 {
-                UserDefaults.standard.set(true, forKey: .adFree)
+        presenter.restoreIAP { [weak self] isRestored in
+            if isRestored {
+                UserData.isAdFree = true
                 self?.tableView.reloadData()
             }
         }
     }
 }
 
-extension SettingViewController: ScrollToTopDelegate {
+extension SettingView: SettingViewDelegate {
+    func updatedCurrentVersion() {
+        tableView.reloadRows(at: [IndexPath(row: 7, section: 0)], with: .automatic)
+    }
+}
+
+extension SettingView: ScrollToTopDelegate {
     func scrollToTop() {
-        if tableView != nil && !datas.isEmpty {
+        if tableView != nil && !presenter.isEmpty {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
                 self.tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .none, animated: true)
             }
@@ -138,34 +77,30 @@ extension SettingViewController: ScrollToTopDelegate {
     }
 }
 
-extension SettingViewController: UITableViewDataSource {
+extension SettingView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if UserDefaults.standard.bool(forKey: .adFree) {
-            return (datas.count - 1) * 3
-        }
-        return datas.count * 3
+        presenter.numberOfItemsInSection
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let rowItem = indexPath.item % 3
+        guard let (title, description, isInApp) = presenter[indexPath.item / 3] else { return UITableViewCell() }
+        
         switch rowItem {
         case 0:
             let cell: SettingHeaderCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.titleLabel.text = datas[indexPath.item / 3].title
+            cell.titleLabel.text = title
             return cell
         case 1:
             let cell: SettingItemCell = tableView.dequeueReusableCell(for: indexPath)
-            let item = datas[indexPath.item / 3]
-            if item == .inapp {
-                cell.descriptionLabel.text = item.description
+            cell.descriptionLabel.text = description
+            if isInApp {
                 cell.requestInAppInfo()
-            } else {
-                cell.descriptionLabel.text = "\(item.description)" + (item == .version ? " / \("최신".localized) \(currentVersion)" : "")
             }
             return cell
         default:
             let cell: SettingDividerCell = tableView.dequeueReusableCell(for: indexPath)
-            if indexPath.item + 1 == datas.count * 3 {
+            if indexPath.item + 1 == presenter.itemCount * 3 {
                 cell.dividerView.backgroundColor = .clear
             }
             return cell
@@ -174,10 +109,9 @@ extension SettingViewController: UITableViewDataSource {
     
 }
 
-extension SettingViewController: UITableViewDelegate {
+extension SettingView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let rowItem = indexPath.item % 3
-        return rowItem == 2 ? 11 : 60
+        presenter.rowHeight(indexPath)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -212,7 +146,7 @@ extension SettingViewController: UITableViewDelegate {
             SwiftyStoreKit.purchaseProduct(AdConfig.adFreeKey, quantity: 1, atomically: true) { [weak self] result in
                 switch result {
                 case .success:
-                    UserDefaults.standard.set(true, forKey: .adFree)
+                    UserData.isAdFree = true
                     self?.tableView.reloadData()
                 case .error(let error):
                     print((error as NSError).localizedDescription)
