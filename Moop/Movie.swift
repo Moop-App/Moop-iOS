@@ -101,7 +101,7 @@ class Movie: Object {
         
         plot = response.plot
 
-        trailers.append(objectsIn: response.trailers.map(Trailer.init))
+        trailers.append(objectsIn: response.trailers?.map(Trailer.init) ?? [])
         isUpdatedDetailInfo = true
     }
     
@@ -123,7 +123,7 @@ class Movie: Object {
         
         plot = detailResponse.plot
 
-        trailers.append(objectsIn: detailResponse.trailers.map(Trailer.init))
+        trailers.append(objectsIn: detailResponse.trailers?.map(Trailer.init) ?? [])
         isUpdatedDetailInfo = true
     }
 }
