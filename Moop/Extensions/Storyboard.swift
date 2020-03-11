@@ -14,6 +14,7 @@ enum Storyboard: StoryboardName {
     case detail
     case setting
     case favorite
+    case filter
     
     var name: String {
         switch self {
@@ -22,6 +23,7 @@ enum Storyboard: StoryboardName {
         case .detail: return "Detail"
         case .setting: return "Setting"
         case .favorite: return "Favorite"
+        case .filter: return "Filter"
         }
     }
 }

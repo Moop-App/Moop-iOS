@@ -64,7 +64,7 @@ class MovieView: UIViewController {
     }
     
     @IBAction private func filter(_ sender: UIBarButtonItem) {
-        let destination = FilterViewController.instance()
+        let destination = FilterView.instance()
         destination.delegate = presenter as? MoviePresenter
         self.present(UINavigationController(rootViewController: destination), animated: true)
     }
@@ -137,6 +137,7 @@ extension MovieView: UICollectionViewDataSource {
 
 extension MovieView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // TODO: 아이패드에서는 한줄에 더 많은 셀이 나와야 한다. 5개 정도
         let cellWidth = (collectionView.bounds.width - 36) / 3
         return CGSize(width: cellWidth, height: cellWidth / 600.0 * 855)
     }
@@ -154,26 +155,8 @@ extension MovieView: UICollectionViewDelegateFlowLayout {
         let contextMenus = presenter.fetchContextMenus(indexPath: indexPath)
         guard !contextMenus.isEmpty else { return nil }
         
-        var menus: [UIAction] = []
-        
-        contextMenus.forEach {
-            switch $0 {
-            case let .text(shareText):
-                menus.append(UIAction(title: "Share", image: UIImage(named: "share"), identifier: nil) { [weak self] _ in
-                    guard let self = self else { return }
-                    self.share(text: shareText)
-                })
-            case let .theater(type, id):
-                menus.append(UIAction(title: type.title, image: nil, identifier: nil) { [weak self] _ in
-                    guard let self = self else { return }
-                    self.rating(type: type, id: id)
-                })
-            }
-        }
-        
-        
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
-            UIMenu(title: "", image: nil, identifier: nil, children: menus)
+            UIMenu(title: "", image: nil, identifier: nil, children: contextMenus)
         }
     }
 }
@@ -207,20 +190,8 @@ extension MovieView: MovieDetailPickAndPopDelegate {
         present(viewController, animated: true, completion: nil)
     }
 
-    func rating(type: TheaterType, id: String) {
-        let webURL: URL?
-        switch type {
-        case .cgv:
-            webURL = URL(string: "http://m.cgv.co.kr/WebApp/MovieV4/movieDetail.aspx?MovieIdx=\(id)")
-        case .lotte:
-            webURL = URL(string: "http://www.lottecinema.co.kr/LCMW/Contents/Movie/Movie-Detail-View.aspx?movie=\(id)")
-        case .megabox:
-            webURL = URL(string: "http://m.megabox.co.kr/movie-detail?rpstMovieNo=\(id)")
-        case .naver:
-            webURL = URL(string: id)
-        }
-
-        guard let url = webURL else { return }
+    func rating(type: TheaterType, url: URL?) {
+        guard let url = url else { return }
         let safariViewController = SFSafariViewController(url: url)
         present(safariViewController, animated: true, completion: nil)
     }

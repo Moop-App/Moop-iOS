@@ -97,20 +97,8 @@ extension FavoriteViewController: MovieDetailPickAndPopDelegate {
         present(viewController, animated: true, completion: nil)
     }
     
-    func rating(type: TheaterType, id: String) {
-        let webURL: URL?
-        switch type {
-        case .cgv:
-            webURL = URL(string: "http://m.cgv.co.kr/WebApp/MovieV4/movieDetail.aspx?MovieIdx=\(id)")
-        case .lotte:
-            webURL = URL(string: "http://www.lottecinema.co.kr/LCMW/Contents/Movie/Movie-Detail-View.aspx?movie=\(id)")
-        case .megabox:
-            webURL = URL(string: "http://m.megabox.co.kr/movie-detail?rpstMovieNo=\(id)")
-        case .naver:
-            webURL = URL(string: id)
-        }
-        
-        guard let url = webURL else { return }
+    func rating(type: TheaterType, url: URL?) {
+        guard let url = url else { return }
         let safariViewController = SFSafariViewController(url: url)
         present(safariViewController, animated: true, completion: nil)
     }

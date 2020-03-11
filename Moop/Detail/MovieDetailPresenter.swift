@@ -88,6 +88,26 @@ class MovieDetailPresenter {
         totalCell.insert(.ad, at: index + 1)
         return index + 1
     }
+    
+    var previewActionItems: [UIPreviewAction] {
+        guard let menus = movieInfo?.contextMenus else { return [] }
+        var items: [UIPreviewAction] = []
+        
+        menus.forEach {
+            switch $0 {
+            case let .text(shareText):
+                items.append(UIPreviewAction(title: "Share", style: .default) { [weak view] _,_  in
+                    view?.share(text: shareText)
+                })
+            case let .theater(type, url):
+                items.append(UIPreviewAction(title: type.title, style: .default) { [weak view] _,_ in
+                    view?.rating(type: type, url: url)
+                })
+            }
+        }
+        return items
+    }
+    
 }
 
 extension MovieDetailPresenter: MovieDetailPresenterDelegate {
@@ -114,7 +134,6 @@ extension MovieDetailPresenter: MovieDetailPresenterDelegate {
     }
     
     private func saveDetailInfo(with response: MovieDetailResponse) {
-        
         if let movieInfo = movieInfo {
             RealmManager.shared.beginWrite()
             movieInfo.set(detailResponse: response)
@@ -127,5 +146,18 @@ extension MovieDetailPresenter: MovieDetailPresenterDelegate {
         
         totalCell = calculateCell()
         view.loadFinished()
+    }
+    
+    func webURL(with type: TheaterType) -> URL? {
+        switch type {
+        case .cgv:
+            return movieInfo?.cgvURL
+        case .lotte:
+            return movieInfo?.lotteURL
+        case .megabox:
+            return movieInfo?.megaboxURL
+        case .naver:
+            return movieInfo?.naverURL
+        }
     }
 }

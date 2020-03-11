@@ -12,7 +12,7 @@ import Networking
 
 enum MovieContextMenuType {
     case text(String)
-    case theater(TheaterType, String)
+    case theater(TheaterType, URL?)
 }
 
 class MoviePresenter: NSObject {
@@ -20,8 +20,8 @@ class MoviePresenter: NSObject {
     
     private var notificationToken: NotificationToken?
     
-    private var currentMovieData = MovieData()
-    private var futureMovieData = MovieData()
+    private var currentMovieData = MovieModel()
+    private var futureMovieData = MovieModel()
     private var isSearched = false
     
     private var state: MovieType = .current {
@@ -139,26 +139,24 @@ extension MoviePresenter: MoviePresenterDelegate {
         checkCurrentUpdateTime()
     }
     
-    func fetchContextMenus(indexPath: IndexPath) -> [MovieContextMenuType] {
+    @available(iOS 13.0, *)
+    func fetchContextMenus(indexPath: IndexPath) -> [UIAction] {
         guard let item = getItems(indexPath: indexPath) else { return [] }
+        var menus: [UIAction] = []
         
-        var result: [MovieContextMenuType] = []
-        if !item.shareText.isEmpty {
-            result.append(.text(item.shareText))
+        item.contextMenus.forEach {
+            switch $0 {
+            case let .text(shareText):
+                menus.append(UIAction(title: "Share", image: UIImage(named: "share"), identifier: nil) { [weak view] _ in
+                    view?.share(text: shareText)
+                })
+            case let .theater(type, url):
+                menus.append(UIAction(title: type.title, image: nil, identifier: nil) { [weak view] _ in
+                    view?.rating(type: type, url: url)
+                })
+            }
         }
-        if let cgvId = item.cgvInfo?.id {
-            result.append(.theater(.cgv, cgvId))
-        }
-        if let lotteId = item.lotteInfo?.id {
-            result.append(.theater(.lotte, lotteId))
-        }
-        if let megaboxId = item.megaboxInfo?.id {
-            result.append(.theater(.megabox, megaboxId))
-        }
-        if let naverId = item.naverInfo?.url {
-            result.append(.theater(.naver, naverId))
-        }
-        return result
+        return menus
     }
     
     private func changedType() {
