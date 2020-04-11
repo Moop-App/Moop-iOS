@@ -42,13 +42,13 @@ class MovieDetailView: UIViewController {
             tableView.register(PosterWithInfoCell.self)
             tableView.register(BoxOfficeCell.self)
             tableView.register(ImdbCell.self)
-            tableView.register(NativeAdCell.self)
+            tableView.register(NativeAdMasterCell.self)
         }
     }
     
     @IBOutlet private weak var bannerWrpperView: UIView!
     @IBOutlet private weak var bannerViewHeightConstraint: NSLayoutConstraint!
-    private var 광고모듈: AdManager?
+    private lazy var 광고모듈: AdManager = AdManager(배너광고타입: .상세, viewController: self, wrapperView: bannerWrpperView, 네이티브광고타입: .상세)
     
     weak var delegate: MovieDetailPickAndPopDelegate?
     
@@ -67,8 +67,9 @@ class MovieDetailView: UIViewController {
             bannerWrpperView.removeFromSuperview()
             return
         }
-        광고모듈 = AdManager(배너광고타입: .상세화면, 네이티브광고타입: .상세화면, viewController: self, wrapperView: bannerWrpperView)
-        광고모듈?.delegate = self
+        광고모듈.delegate = self
+        광고모듈.배너보여줘()
+        광고모듈.네이티브광고보여줘()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -86,9 +87,8 @@ class MovieDetailView: UIViewController {
     func loadBannerAd() {
         guard !UserData.isAdFree else { return }
         let viewWidth = view.frame.inset(by: view.safeAreaInsets).size.width
-        bannerViewHeightConstraint.constant = 광고모듈?.resize_구글광고(width: viewWidth) ?? 50.0
+        bannerViewHeightConstraint.constant = 광고모듈.resize배너(width: viewWidth)
     }
-
     
     func isAllowedToOpenStoreReview() -> Bool {
         // 365일 내에 최대 3회까지 사용자에게만 표시된다는 사실을 알고있어야 합니다.
@@ -235,9 +235,8 @@ extension MovieDetailView: UITableViewDataSource {
             let cell: TrailerFooterCell = tableView.dequeueReusableCell(for: indexPath)
             return cell
         case .ad:
-            let cell: NativeAdCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.set(광고모듈?.구글네이티브광고)
-            cell.set(광고모듈?.페이스북네이티브광고, viewController: self)
+            let cell: NativeAdMasterCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.configure(광고모듈.네이티브광고, viewController: self)
             return cell
         }
     }
@@ -271,21 +270,25 @@ extension MovieDetailView: UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let cellType = presenter[indexPath] else { return tableView.estimatedRowHeight }
-        
-        switch cellType {
-        case .ad where (광고모듈?.페이스북네이티브광고?.isAdValid ?? false):
-            let viewWidth = view.frame.inset(by: view.safeAreaInsets).size.width - 16
-            return (viewWidth / 316) * 295
-        default:
-            return tableView.estimatedRowHeight
-        }
-        
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        guard let cellType = presenter[indexPath] else { return tableView.estimatedRowHeight }
+//
+//        switch cellType {
+//        case .ad where (광고모듈?.페이스북네이티브광고?.isAdValid ?? false):
+//            let viewWidth = view.frame.inset(by: view.safeAreaInsets).size.width - 16
+//            return (viewWidth / 316) * 295
+//        default:
+//            return tableView.estimatedRowHeight
+//        }
+//
+//    }
 }
 
 extension MovieDetailView: AdManagerDelegate {
+    func 배너광고Loaded() {
+        loadBannerAd()
+    }
+    
     func 네이티브광고Loaded() {
         guard let index = presenter.adIndex else { return }
         tableView.beginUpdates()

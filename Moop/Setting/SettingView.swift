@@ -21,22 +21,22 @@ class SettingView: UIViewController {
     
     var presenter: SettingPresenterDelegate!
     
-    @IBOutlet private weak var tableView: UITableView! {
-        didSet {
-            tableView.register(SettingHeaderCell.self)
-            tableView.register(SettingItemCell.self)
-            tableView.register(SettingDividerCell.self)
-        }
-    }
-
-    var currentVersion: String = ""
+    @IBOutlet private weak var 광고포장뷰: UIView!
+    @IBOutlet private weak var bannerViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var tableView: UITableView!
+    
+    lazy var 광고모듈: AdManager = AdManager(배너광고타입: .설정, viewController: self, wrapperView: 광고포장뷰,
+                                                 전면광고타입: .설정, 네이티브광고타입: .상세)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UserData.isAdFree {
-            self.navigationItem.rightBarButtonItems = nil
+        
+        guard !UserData.isAdFree else {
+            광고포장뷰.removeFromSuperview()
+            return
         }
-        presenter.viewDidLoad()
+        광고모듈.delegate = self
+        광고모듈.배너보여줘()
     }
     
     var canScrollToTop: Bool = false
@@ -44,6 +44,7 @@ class SettingView: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         canScrollToTop = true
+        loadBannerAd()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -51,25 +52,28 @@ class SettingView: UIViewController {
         canScrollToTop = false
     }
     
-    @IBAction private func restore(_ sender: UIBarButtonItem) {
-        presenter.restoreIAP { [weak self] isRestored in
-            if isRestored {
-                UserData.isAdFree = true
-                self?.tableView.reloadData()
-            }
-        }
+    override func viewWillTransition(to size: CGSize,
+                                     with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        coordinator.animate(alongsideTransition: { _ in
+            self.loadBannerAd()
+        })
+    }
+    
+    func loadBannerAd() {
+        guard !UserData.isAdFree else { return }
+        let viewWidth = view.frame.inset(by: view.safeAreaInsets).size.width
+        bannerViewHeightConstraint.constant = 광고모듈.resize배너(width: viewWidth)
     }
 }
 
 extension SettingView: SettingViewDelegate {
-    func updatedCurrentVersion() {
-        tableView.reloadRows(at: [IndexPath(row: 7, section: 0)], with: .automatic)
-    }
+    
 }
 
 extension SettingView: ScrollToTopDelegate {
     func scrollToTop() {
-        if tableView != nil && !presenter.isEmpty {
+        if tableView != nil {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
                 self.tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .none, animated: true)
             }
@@ -78,31 +82,33 @@ extension SettingView: ScrollToTopDelegate {
 }
 
 extension SettingView: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        presenter.numberOfSections
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        presenter.numberOfItemsInSection
+        presenter.numberOfItemsInSection(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let rowItem = indexPath.item % 3
-        guard let (title, description, isInApp) = presenter[indexPath.item / 3] else { return UITableViewCell() }
+        guard let (section, item) = presenter[indexPath] else { return UITableViewCell() }
         
-        switch rowItem {
-        case 0:
+        switch (section, item) {
+        case (_, .header):
             let cell: SettingHeaderCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.titleLabel.text = title
+            cell.set(section.title)
             return cell
-        case 1:
-            let cell: SettingItemCell = tableView.dequeueReusableCell(for: indexPath)
-            cell.descriptionLabel.text = description
-            if isInApp {
-                cell.requestInAppInfo()
-            }
+        case (_, .footer):
+            let cell: SettingFooterCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.set(section.footer)
             return cell
-        default:
-            let cell: SettingDividerCell = tableView.dequeueReusableCell(for: indexPath)
-            if indexPath.item + 1 == presenter.itemCount * 3 {
-                cell.dividerView.backgroundColor = .clear
-            }
+        case (.inApp, _):
+            let cell: SettingCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.setAd(item)
+            return cell
+        case (.etc, _):
+            let cell: SettingCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.setETC(item)
             return cell
         }
     }
@@ -110,28 +116,23 @@ extension SettingView: UITableViewDataSource {
 }
 
 extension SettingView: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        presenter.rowHeight(indexPath)
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.item {
-        case 1: // Theme
-            break
-        case 4: // MAP
+        guard let (section, item) = presenter[indexPath] else { return }
+        
+        switch (section, item) {
+        case (.inApp, .showAd):
+            광고모듈.전면광고보여줘(isRandom: false)
+        case (.inApp, .inApp):
+            purchase(item)
+        case (.inApp, .restore):
+            restore()
+        case (.etc, .showMap):
             self.performSegue(withIdentifier: "toMaps", sender: self)
-        case 7: // Version
-            guard let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
-                let url = URL(string: "itms-apps://itunes.apple.com/app/id1464896856") else { return }
-            if appVersion == currentVersion { return }
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:])
-            }
-        case 10: // Open Source
+        case (.etc, .openSource):
             let path = Bundle.main.path(forResource: "Pods-Moop-acknowledgements", ofType: "plist")
             let viewController = AcknowListViewController(acknowledgementsPlistPath: path)
             navigationController?.pushViewController(viewController, animated: true)
-        case 13: // Feedback
+        case (.etc, .bugReport):
             if MFMailComposeViewController.canSendMail() {
                 let configuration = FeedbackConfiguration(toRecipients: ["kor45cw@gmail.com"], hidesUserEmailCell: false, usesHTML: false)
                 let controller    = FeedbackViewController(configuration: configuration)
@@ -142,19 +143,39 @@ extension SettingView: UITableViewDelegate {
                     UIApplication.shared.open(url, options: [:])
                 }
             }
-        case 16: // IN_APP
-            SwiftyStoreKit.purchaseProduct(AdConfig.adFreeKey, quantity: 1, atomically: true) { [weak self] result in
-                switch result {
-                case .success:
-                    UserData.isAdFree = true
-                    self?.tableView.reloadData()
-                case .error(let error):
-                    print((error as NSError).localizedDescription)
-                }
+        case (.etc, .version):
+            guard let cell = tableView.cellForRow(at: indexPath) as? SettingCell,
+                let url = URL(string: "itms-apps://itunes.apple.com/app/id1464896856") else { return }
+            if cell.isUpdatable,  UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:])
             }
-        default:
-            break
+        default: return
+        }
+    }
+    
+    private func restore() {
+        SwiftyStoreKit.restorePurchases { [weak self] result in
+            guard !result.restoredPurchases.isEmpty else { return }
+            UserData.isAdFree = true
+            self?.tableView.reloadData()
+        }
+    }
+    
+    private func purchase(_ product: Section.Item) {
+        SwiftyStoreKit.purchaseProduct(product.productId, quantity: 1, atomically: true) { [weak self] result in
+            switch result {
+            case .success:
+                UserData.isAdFree = true
+                self?.tableView.reloadData()
+            case .error(let error):
+                print((error as NSError).localizedDescription)
+            }
         }
     }
 }
 
+extension SettingView: AdManagerDelegate {
+    func 배너광고Loaded() {
+        loadBannerAd()
+    }
+}

@@ -10,19 +10,12 @@ import UIKit
 
 protocol SettingViewDelegate: class {
     var presenter: SettingPresenterDelegate! { get set }
-    
-    func updatedCurrentVersion()
 }
 
 protocol SettingPresenterDelegate: class {
     var view: SettingViewDelegate! { get set }
-    var isEmpty: Bool { get }
-    var itemCount: Int { get }
-    var numberOfItemsInSection: Int { get }
-    subscript(_ index: Int) -> (title: String, description: String, isInApp: Bool)? { get }
+    var numberOfSections: Int { get }
+    subscript(indexPath: IndexPath) -> (section: Section, item: Section.Item)? { get }
 
-
-    func viewDidLoad()
-    func rowHeight(_ indexPath: IndexPath) -> CGFloat
-    func restoreIAP(completionHandler: @escaping (Bool) -> Void)
+    func numberOfItemsInSection(_ section: Int) -> Int
 }
