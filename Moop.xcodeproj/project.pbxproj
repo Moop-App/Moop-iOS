@@ -22,12 +22,6 @@
 		3C66021B22959A18000BA333 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C66021922959A18000BA333 /* MovieCell.xib */; };
 		3C66021F22959F04000BA333 /* MovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C66021E22959F04000BA333 /* MovieResponse.swift */; };
 		3C7675252299172C0052BEB6 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7675242299172C0052BEB6 /* UIColor+Extension.swift */; };
-		3C76752B2299529C0052BEB6 /* SettingHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7675292299529C0052BEB6 /* SettingHeaderCell.swift */; };
-		3C76752C2299529C0052BEB6 /* SettingHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C76752A2299529C0052BEB6 /* SettingHeaderCell.xib */; };
-		3C76752F229953590052BEB6 /* SettingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76752D229953590052BEB6 /* SettingItemCell.swift */; };
-		3C767530229953590052BEB6 /* SettingItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C76752E229953590052BEB6 /* SettingItemCell.xib */; };
-		3C767533229954A80052BEB6 /* SettingDividerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C767531229954A80052BEB6 /* SettingDividerCell.swift */; };
-		3C767534229954A80052BEB6 /* SettingDividerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C767532229954A80052BEB6 /* SettingDividerCell.xib */; };
 		3C947A8C22D736170075E4DE /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C947A8B22D736170075E4DE /* FilterView.swift */; };
 		3CB52E6922B4DC7D009FD7D1 /* TrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB52E6822B4DC7D009FD7D1 /* TrailerCell.swift */; };
 		3CB52E6B22B4DF84009FD7D1 /* TrailerFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB52E6A22B4DF84009FD7D1 /* TrailerFooterCell.swift */; };
@@ -95,6 +89,9 @@
 		A08F85FC24417FEC0086F676 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08F85FB24417FEC0086F676 /* QuartzCore.framework */; };
 		A08F85FE24417FF20086F676 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08F85FD24417FF20086F676 /* SystemConfiguration.framework */; };
 		A08F860024417FF90086F676 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08F85FF24417FF90086F676 /* UIKit.framework */; };
+		A08F8602244188D60086F676 /* SettingHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08F8601244188D60086F676 /* SettingHeaderCell.swift */; };
+		A08F8604244188EE0086F676 /* SettingFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08F8603244188EE0086F676 /* SettingFooterCell.swift */; };
+		A08F8606244189080086F676 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08F8605244189080086F676 /* SettingCell.swift */; };
 		A0B22468234B6D1A0010F65D /* MovieInfoLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B22467234B6D1A0010F65D /* MovieInfoLabelView.swift */; };
 		A0B6F7BF2307EA2F008A3949 /* APISetupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B6F7BE2307EA2F008A3949 /* APISetupManager.swift */; };
 		A0CAC9D9234CC63A0076E432 /* MovieInfoPlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CAC9D8234CC63A0076E432 /* MovieInfoPlotCell.swift */; };
@@ -201,12 +198,6 @@
 		3C66021922959A18000BA333 /* MovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
 		3C66021E22959F04000BA333 /* MovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResponse.swift; sourceTree = "<group>"; };
 		3C7675242299172C0052BEB6 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		3C7675292299529C0052BEB6 /* SettingHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeaderCell.swift; sourceTree = "<group>"; };
-		3C76752A2299529C0052BEB6 /* SettingHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingHeaderCell.xib; sourceTree = "<group>"; };
-		3C76752D229953590052BEB6 /* SettingItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemCell.swift; sourceTree = "<group>"; };
-		3C76752E229953590052BEB6 /* SettingItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingItemCell.xib; sourceTree = "<group>"; };
-		3C767531229954A80052BEB6 /* SettingDividerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDividerCell.swift; sourceTree = "<group>"; };
-		3C767532229954A80052BEB6 /* SettingDividerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingDividerCell.xib; sourceTree = "<group>"; };
 		3C947A8B22D736170075E4DE /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		3CB52E6822B4DC7D009FD7D1 /* TrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerCell.swift; sourceTree = "<group>"; };
 		3CB52E6A22B4DF84009FD7D1 /* TrailerFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerFooterCell.swift; sourceTree = "<group>"; };
@@ -293,6 +284,9 @@
 		A08F85FB24417FEC0086F676 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A08F85FD24417FF20086F676 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A08F85FF24417FF90086F676 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A08F8601244188D60086F676 /* SettingHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeaderCell.swift; sourceTree = "<group>"; };
+		A08F8603244188EE0086F676 /* SettingFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFooterCell.swift; sourceTree = "<group>"; };
+		A08F8605244189080086F676 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		A0B22467234B6D1A0010F65D /* MovieInfoLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoLabelView.swift; sourceTree = "<group>"; };
 		A0B6F7BE2307EA2F008A3949 /* APISetupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISetupManager.swift; sourceTree = "<group>"; };
 		A0CAC9D8234CC63A0076E432 /* MovieInfoPlotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoPlotCell.swift; sourceTree = "<group>"; };
@@ -500,12 +494,9 @@
 		3C767536229954BA0052BEB6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				3C767531229954A80052BEB6 /* SettingDividerCell.swift */,
-				3C767532229954A80052BEB6 /* SettingDividerCell.xib */,
-				3C76752D229953590052BEB6 /* SettingItemCell.swift */,
-				3C76752E229953590052BEB6 /* SettingItemCell.xib */,
-				3C7675292299529C0052BEB6 /* SettingHeaderCell.swift */,
-				3C76752A2299529C0052BEB6 /* SettingHeaderCell.xib */,
+				A08F8601244188D60086F676 /* SettingHeaderCell.swift */,
+				A08F8603244188EE0086F676 /* SettingFooterCell.swift */,
+				A08F8605244189080086F676 /* SettingCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -913,7 +904,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0DBE64A241622D4008077F0 /* Filter.storyboard in Resources */,
-				3C767530229953590052BEB6 /* SettingItemCell.xib in Resources */,
 				A0CAC9FC234DB5AE0076E432 /* ImdbCell.xib in Resources */,
 				A0CAC9DB234D5C6A0076E432 /* MovieInfoPlotCell.xib in Resources */,
 				A0CAC9E4234D60380076E432 /* NaverInfoCell.xib in Resources */,
@@ -926,8 +916,6 @@
 				A08F85DA24417EEB0086F676 /* NativeAdView.xib in Resources */,
 				A0CAC9DE234D5EDF0076E432 /* TrailerCell.xib in Resources */,
 				A0CAC9E2234D5F760076E432 /* TrailerHeaderCell.xib in Resources */,
-				3C767534229954A80052BEB6 /* SettingDividerCell.xib in Resources */,
-				3C76752C2299529C0052BEB6 /* SettingHeaderCell.xib in Resources */,
 				A00671F122FC095E002FE813 /* Favorite.storyboard in Resources */,
 				A00671E522FC018A002FE813 /* Setting.storyboard in Resources */,
 				3C6601F922956D38000BA333 /* Main.storyboard in Resources */,
@@ -1115,15 +1103,14 @@
 				A02133EF22F1934000AD6D0E /* Storyboard.swift in Sources */,
 				A08F85DD24417EEB0086F676 /* AdInterstitialType.swift in Sources */,
 				3CDCD79122BDD7C400DDD14B /* NotificationManager.swift in Sources */,
+				A08F8604244188EE0086F676 /* SettingFooterCell.swift in Sources */,
 				A0DBE63D241612ED008077F0 /* UserData.swift in Sources */,
 				A0CAEBBF22FAEAD800C5C662 /* MapRouteView.swift in Sources */,
 				A0EBD3B02351E243007A23EB /* MovieView.swift in Sources */,
 				3C6601F622956D38000BA333 /* SettingView.swift in Sources */,
-				3C76752B2299529C0052BEB6 /* SettingHeaderCell.swift in Sources */,
 				A0DBE64824162049008077F0 /* FilterProtocols.swift in Sources */,
 				A0DBE63F241615AD008077F0 /* SettingPresenter.swift in Sources */,
 				3C34938D22E75DA700A77343 /* MovieInfoManager.swift in Sources */,
-				3C76752F229953590052BEB6 /* SettingItemCell.swift in Sources */,
 				A0CAC9EE234D67380076E432 /* TheaterType.swift in Sources */,
 				A08F85DB24417EEB0086F676 /* NativeAdFacebookView.swift in Sources */,
 				A00DBC61240BAC21007AFAFF /* MovieDetailPresenter.swift in Sources */,
@@ -1131,6 +1118,7 @@
 				A08F85D624417EEB0086F676 /* NativeAdGoogleView.swift in Sources */,
 				A08F85DE24417EEB0086F676 /* AdRewardType.swift in Sources */,
 				A08F85D524417EEB0086F676 /* NativeAdView.swift in Sources */,
+				A08F8602244188D60086F676 /* SettingHeaderCell.swift in Sources */,
 				A0CAC9F8234D8AE70076E432 /* PaddingLabel.swift in Sources */,
 				A0EBD3B42351E4A8007A23EB /* MoviePresenter.swift in Sources */,
 				A08F85DF24417EEB0086F676 /* AdNativeType.swift in Sources */,
@@ -1138,6 +1126,7 @@
 				A0573A61238A4F7600DA00CE /* Jamo.swift in Sources */,
 				A08F85D124417EEB0086F676 /* AdManager.swift in Sources */,
 				A0CAC9E7234D63830076E432 /* TheaterCell.swift in Sources */,
+				A08F8606244189080086F676 /* SettingCell.swift in Sources */,
 				A08F85CF24417EEB0086F676 /* AdFitAdManager.swift in Sources */,
 				A08F85DC24417EEB0086F676 /* AdBannerType.swift in Sources */,
 				A017CDE522FD36B5002D4B11 /* PosterViewController.swift in Sources */,
@@ -1174,7 +1163,6 @@
 				3C34938B22E7584A00A77343 /* FavoriteViewController.swift in Sources */,
 				A063DD292410B87300DE144D /* RealmManager.swift in Sources */,
 				3C1B6E692297A80E009CB740 /* TheaterRankView.swift in Sources */,
-				3C767533229954A80052BEB6 /* SettingDividerCell.swift in Sources */,
 				A0CAC9F6234D8A490076E432 /* Int+Extension.swift in Sources */,
 				3C6601F422956D38000BA333 /* AppDelegate.swift in Sources */,
 				3CB6E84D22B9C518008F382C /* MainTabBarController.swift in Sources */,

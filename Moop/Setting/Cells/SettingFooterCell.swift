@@ -1,5 +1,5 @@
 //
-//  SettingHeaderCell.swift
+//  SettingFooterCell.swift
 //  Moop
 //
 //  Created by kor45cw on 2020/04/11.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingHeaderCell: UITableViewCell {
+class SettingFooterCell: UITableViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
     
     override func awakeFromNib() {
@@ -20,3 +20,4 @@ class SettingHeaderCell: UITableViewCell {
         titleLabel.text = title
     }
 }
+

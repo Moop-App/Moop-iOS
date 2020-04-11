@@ -11,7 +11,6 @@ import Firebase
 import Networking
 import SwiftyStoreKit
 import FBSDKCoreKit
-import TenpingSDKFramework
 #if DEBUG
 import FLEX
 #endif
@@ -38,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// - Tag: DidBecomeActive
     func applicationDidBecomeActive(_ application: UIApplication) {
         AppEvents.activateApp()
-        TenpingSDK.shareInstance()?.becomeActive()
         ShortcutManager.shared.applicationDidBecomeActive(rootViewController: window?.rootViewController)
     }
     

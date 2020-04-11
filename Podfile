@@ -30,7 +30,6 @@ target 'Moop' do
   pod 'Firebase/AdMob'
   pod 'FBAudienceNetwork'
   pod 'mopub-ios-sdk'
-  pod 'Tenping'
   pod 'AdFitSDK'
 
   target 'Networking' do
