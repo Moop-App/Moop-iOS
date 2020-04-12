@@ -49,7 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     private func librarySetup() {
         FirebaseApp.configure()
-        Fabric.with([Crashlytics.self])
         AdManager.librarySetup()
         APISetupManager.setup()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
@@ -64,6 +63,7 @@ extension AppDelegate {
                         SwiftyStoreKit.finishTransaction(purchase.transaction)
                     }
                     // Unlock content
+                    UserData.isAdFree = true
                 case .failed, .purchasing, .deferred:
                     break // do nothing
                 @unknown default:
@@ -75,7 +75,7 @@ extension AppDelegate {
     
     private func debugSettings() {
         #if DEBUG
-        FLEXManager.shared().showExplorer()
+        FLEXManager.shared.showExplorer()
         #endif
     }
 }

@@ -9,9 +9,8 @@ target 'Moop' do
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'Firebase/Analytics'
-  pod 'Firebase/AdMob'
-  pod 'Fabric'
-  pod 'Crashlytics'
+  pod 'Firebase/Crashlytics'
+  pod 'FacebookSDK'
 
   pod 'SDWebImage'
   pod 'SwiftyStoreKit'
@@ -23,11 +22,15 @@ target 'Moop' do
   pod 'CTFeedbackSwift'
   pod 'AcknowList'
   
-  pod 'FacebookSDK'
-  pod 'FBAudienceNetwork'
   pod 'kor45cw_Extension'
   
   pod 'RealmSwift'
+  
+  # 광고관련 Pod
+  pod 'Firebase/AdMob'
+  pod 'FBAudienceNetwork'
+  pod 'mopub-ios-sdk'
+  pod 'AdFitSDK'
 
   target 'Networking' do
     inherit! :search_paths

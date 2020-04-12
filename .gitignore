@@ -72,3 +72,4 @@ Networking/Config.swift
 .DS_Store
 Moop/Resource/Ad.xcconfig
 Moop/AdConfig.swift
+Moop/Ad/*
