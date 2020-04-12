@@ -148,9 +148,9 @@ PODS:
   - Realm/Headers (4.4.0)
   - RealmSwift (4.4.0):
     - Realm (= 4.4.0)
-  - SDWebImage (5.7.1):
-    - SDWebImage/Core (= 5.7.1)
-  - SDWebImage/Core (5.7.1)
+  - SDWebImage (5.7.2):
+    - SDWebImage/Core (= 5.7.2)
+  - SDWebImage/Core (5.7.2)
   - SwiftLint (0.39.2)
   - SwiftyStoreKit (0.15.0)
   - Wormholy (1.5.2)
@@ -257,7 +257,7 @@ SPEC CHECKSUMS:
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   Realm: e125f464884cda953ebefe70c671b75b03b81b9b
   RealmSwift: 33656a42bd300959a081fc13347376bc478071af
-  SDWebImage: 5d4cf6afccd9ac1d2ee701ed0c4917cbb1b80536
+  SDWebImage: d9ea4959d99c52276dfada481987018fcaea3d58
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   Wormholy: 3344d3591d78488d957402d51dccfbfafd6f9641
