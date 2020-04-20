@@ -1,5 +1,5 @@
 PODS:
-  - AcknowList (1.9.3)
+  - AcknowList (1.9.4)
   - AdFitSDK (3.0.10)
   - Alamofire (5.1.0)
   - AlamofireNetworkActivityIndicator (3.1.0):
@@ -89,7 +89,7 @@ PODS:
     - Protobuf (>= 3.9.2, ~> 3.9)
   - FLEX (4.1.1)
   - FTLinearActivityIndicator (1.3)
-  - Google-Mobile-Ads-SDK (7.57.0):
+  - Google-Mobile-Ads-SDK (7.58.0):
     - GoogleAppMeasurement (~> 6.0)
   - GoogleAppMeasurement (6.4.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
@@ -98,7 +98,7 @@ PODS:
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (= 0.3.9011)
   - GoogleDataTransport (5.1.1)
-  - GoogleDataTransportCCTSupport (2.0.2):
+  - GoogleDataTransportCCTSupport (2.0.3):
     - GoogleDataTransport (~> 5.1)
     - nanopb (~> 0.3.901)
   - GoogleUtilities/AppDelegateSwizzler (6.5.2):
@@ -120,19 +120,19 @@ PODS:
   - GoogleUtilities/UserDefaults (6.5.2):
     - GoogleUtilities/Logger
   - kor45cw_Extension (0.0.4)
-  - mopub-ios-sdk (5.12.0):
-    - mopub-ios-sdk/MoPubSDK (= 5.12.0)
-  - mopub-ios-sdk/Avid (5.12.0):
+  - mopub-ios-sdk (5.12.1):
+    - mopub-ios-sdk/MoPubSDK (= 5.12.1)
+  - mopub-ios-sdk/Avid (5.12.1):
     - mopub-ios-sdk/Core
-  - mopub-ios-sdk/Core (5.12.0)
-  - mopub-ios-sdk/Moat (5.12.0):
+  - mopub-ios-sdk/Core (5.12.1)
+  - mopub-ios-sdk/Moat (5.12.1):
     - mopub-ios-sdk/Core
-  - mopub-ios-sdk/MoPubSDK (5.12.0):
+  - mopub-ios-sdk/MoPubSDK (5.12.1):
     - mopub-ios-sdk/Avid
     - mopub-ios-sdk/Core
     - mopub-ios-sdk/Moat
     - mopub-ios-sdk/NativeAds
-  - mopub-ios-sdk/NativeAds (5.12.0):
+  - mopub-ios-sdk/NativeAds (5.12.1):
     - mopub-ios-sdk/Core
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
@@ -222,7 +222,7 @@ SPEC REPOS:
     - Wormholy
 
 SPEC CHECKSUMS:
-  AcknowList: a3ee7cfba2c45cf9d07d1b18fe729a5bcc518366
+  AcknowList: a236060b8c33141d7756814fd21d5dab477fc193
   AdFitSDK: 7e303bd8d742c7e878602ff4e3f4c374c15f4c3e
   Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
   AlamofireNetworkActivityIndicator: 6564782bd7b9e6c430ae67d9277af01907b01ca4
@@ -243,13 +243,13 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 4ec33842d36b3319e062e51fb8b35a74f726950d
   FLEX: 81096107977a09836eb440173010ceeef01105d6
   FTLinearActivityIndicator: c89ccc2ef18279a155820c0e81f09ce2e90a2dc9
-  Google-Mobile-Ads-SDK: ec897018b9ab9b447e7aa4876e7f75aba13ba2de
+  Google-Mobile-Ads-SDK: 7052557293c75c676db55feb707ace9b790f32c1
   GoogleAppMeasurement: e49be3954045b17d046f271b9cc1ec052bad9702
   GoogleDataTransport: 6ffa4dd0b6d547f8d27b91bd92fa9e197a3f5f1f
-  GoogleDataTransportCCTSupport: 12f02e5c8f09c055615de90bcd5ba2c375546051
+  GoogleDataTransportCCTSupport: 2d7e609f8c5af1a33d7d59053e6f8cba59365df5
   GoogleUtilities: ad0f3b691c67909d03a3327cc205222ab8f42e0e
   kor45cw_Extension: 06505abed9efd7c58c5f9706176f1aeb4abb5ec6
-  mopub-ios-sdk: bb61d5741ba16c6a78e5a54e37bc60ef8c9a80a8
+  mopub-ios-sdk: d1640225b34ad74700e2acddb116cac634fc45d8
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Nimble: a73af6ecd4c9106f434f3d55fc54570be3739e0b
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
