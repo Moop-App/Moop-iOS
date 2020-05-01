@@ -5,80 +5,81 @@ PODS:
   - AlamofireNetworkActivityIndicator (3.1.0):
     - Alamofire (~> 5.1)
   - CTFeedbackSwift (0.1.7)
-  - FacebookSDK (6.3.0):
-    - FacebookSDK/CoreKit (= 6.3.0)
-    - FacebookSDK/MarketingKit (= 6.3.0)
-  - FacebookSDK/CoreKit (6.3.0):
-    - FBSDKCoreKit (~> 6.3.0)
-  - FacebookSDK/MarketingKit (6.3.0):
+  - FacebookSDK (6.5.1):
+    - FacebookSDK/CoreKit (= 6.5.1)
+    - FacebookSDK/MarketingKit (= 6.5.1)
+  - FacebookSDK/CoreKit (6.5.1):
+    - FBSDKCoreKit (~> 6.5.1)
+  - FacebookSDK/MarketingKit (6.5.1):
     - FacebookSDK/CoreKit
-    - FBSDKMarketingKit (~> 6.3.0)
+    - FBSDKMarketingKit (~> 6.5.1)
   - FBAudienceNetwork (5.8.0):
     - FBSDKCoreKit/Basics (>= 5.6.0)
-  - FBSDKCoreKit (6.3.0):
-    - FBSDKCoreKit/Basics (= 6.3.0)
-    - FBSDKCoreKit/Core (= 6.3.0)
-  - FBSDKCoreKit/Basics (6.3.0)
-  - FBSDKCoreKit/Core (6.3.0):
+  - FBSDKCoreKit (6.5.2):
+    - FBSDKCoreKit/Basics (= 6.5.2)
+    - FBSDKCoreKit/Core (= 6.5.2)
+  - FBSDKCoreKit/Basics (6.5.2)
+  - FBSDKCoreKit/Core (6.5.2):
     - FBSDKCoreKit/Basics
-  - FBSDKMarketingKit (6.3.0):
-    - FBSDKCoreKit (~> 6.3.0)
-  - Firebase/AdMob (6.22.0):
+  - FBSDKMarketingKit (6.5.2):
+    - FBSDKCoreKit (~> 6.5.2)
+  - Firebase/AdMob (6.23.0):
     - Firebase/CoreOnly
     - Google-Mobile-Ads-SDK (~> 7.50)
-  - Firebase/Analytics (6.22.0):
+  - Firebase/Analytics (6.23.0):
     - Firebase/Core
-  - Firebase/Core (6.22.0):
+  - Firebase/Core (6.23.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.4.1)
-  - Firebase/CoreOnly (6.22.0):
-    - FirebaseCore (= 6.6.6)
-  - Firebase/Crashlytics (6.22.0):
+    - FirebaseAnalytics (= 6.4.2)
+  - Firebase/CoreOnly (6.23.0):
+    - FirebaseCore (= 6.6.7)
+  - Firebase/Crashlytics (6.23.0):
     - Firebase/CoreOnly
-    - FirebaseCrashlytics (~> 4.0.0-beta.7)
-  - Firebase/Messaging (6.22.0):
+    - FirebaseCrashlytics (~> 4.0.0)
+  - Firebase/Messaging (6.23.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (~> 4.3.0)
-  - FirebaseAnalytics (6.4.1):
+    - FirebaseMessaging (~> 4.3.1)
+  - FirebaseAnalytics (6.4.2):
     - FirebaseCore (~> 6.6)
-    - FirebaseInstallations (~> 1.1)
-    - GoogleAppMeasurement (= 6.4.1)
+    - FirebaseInstallations (~> 1.2)
+    - GoogleAppMeasurement (= 6.4.2)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (= 0.3.9011)
   - FirebaseAnalyticsInterop (1.5.0)
-  - FirebaseCore (6.6.6):
+  - FirebaseCore (6.6.7):
     - FirebaseCoreDiagnostics (~> 1.2)
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/Logger (~> 6.5)
-  - FirebaseCoreDiagnostics (1.2.3):
+  - FirebaseCoreDiagnostics (1.2.4):
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
-    - GoogleDataTransportCCTSupport (~> 2.0)
+    - GoogleDataTransportCCTSupport (~> 3.0)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/Logger (~> 6.5)
     - nanopb (~> 0.3.901)
   - FirebaseCoreDiagnosticsInterop (1.2.0)
-  - FirebaseCrashlytics (4.0.0-beta.7):
+  - FirebaseCrashlytics (4.0.0):
     - FirebaseAnalyticsInterop (~> 1.2)
     - FirebaseCore (~> 6.6)
     - FirebaseInstallations (~> 1.1)
-    - GoogleDataTransport (>= 5.1.1, ~> 5.1)
-    - GoogleDataTransportCCTSupport (>= 2.0.2, ~> 2.0)
+    - GoogleDataTransport (~> 6.0)
+    - GoogleDataTransportCCTSupport (~> 3.0)
     - nanopb (~> 0.3.901)
     - PromisesObjC (~> 1.2)
-  - FirebaseInstallations (1.1.1):
+  - FirebaseInstallations (1.2.0):
     - FirebaseCore (~> 6.6)
-    - GoogleUtilities/UserDefaults (~> 6.5)
+    - GoogleUtilities/Environment (~> 6.6)
+    - GoogleUtilities/UserDefaults (~> 6.6)
     - PromisesObjC (~> 1.2)
-  - FirebaseInstanceID (4.3.3):
+  - FirebaseInstanceID (4.3.4):
     - FirebaseCore (~> 6.6)
     - FirebaseInstallations (~> 1.0)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/UserDefaults (~> 6.5)
-  - FirebaseMessaging (4.3.0):
+  - FirebaseMessaging (4.3.1):
     - FirebaseAnalyticsInterop (~> 1.5)
     - FirebaseCore (~> 6.6)
     - FirebaseInstanceID (~> 4.3)
@@ -91,33 +92,34 @@ PODS:
   - FTLinearActivityIndicator (1.3)
   - Google-Mobile-Ads-SDK (7.58.0):
     - GoogleAppMeasurement (~> 6.0)
-  - GoogleAppMeasurement (6.4.1):
+  - GoogleAppMeasurement (6.4.2):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (= 0.3.9011)
-  - GoogleDataTransport (5.1.1)
-  - GoogleDataTransportCCTSupport (2.0.3):
-    - GoogleDataTransport (~> 5.1)
+  - GoogleDataTransport (6.0.0)
+  - GoogleDataTransportCCTSupport (3.0.0):
+    - GoogleDataTransport (~> 6.0)
     - nanopb (~> 0.3.901)
-  - GoogleUtilities/AppDelegateSwizzler (6.5.2):
+  - GoogleUtilities/AppDelegateSwizzler (6.6.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.5.2)
-  - GoogleUtilities/Logger (6.5.2):
+  - GoogleUtilities/Environment (6.6.0):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (6.6.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.5.2):
+  - GoogleUtilities/MethodSwizzler (6.6.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.5.2):
+  - GoogleUtilities/Network (6.6.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.5.2)"
-  - GoogleUtilities/Reachability (6.5.2):
+  - "GoogleUtilities/NSData+zlib (6.6.0)"
+  - GoogleUtilities/Reachability (6.6.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.5.2):
+  - GoogleUtilities/UserDefaults (6.6.0):
     - GoogleUtilities/Logger
   - kor45cw_Extension (0.0.4)
   - mopub-ios-sdk (5.12.1):
@@ -143,17 +145,17 @@ PODS:
   - PromisesObjC (1.2.8)
   - Protobuf (3.11.4)
   - Quick (2.2.0)
-  - Realm (4.4.0):
-    - Realm/Headers (= 4.4.0)
-  - Realm/Headers (4.4.0)
-  - RealmSwift (4.4.0):
-    - Realm (= 4.4.0)
-  - SDWebImage (5.7.2):
-    - SDWebImage/Core (= 5.7.2)
-  - SDWebImage/Core (5.7.2)
+  - Realm (4.4.1):
+    - Realm/Headers (= 4.4.1)
+  - Realm/Headers (4.4.1)
+  - RealmSwift (4.4.1):
+    - Realm (= 4.4.1)
+  - SDWebImage (5.7.3):
+    - SDWebImage/Core (= 5.7.3)
+  - SDWebImage/Core (5.7.3)
   - SwiftLint (0.39.2)
   - SwiftyStoreKit (0.15.0)
-  - Wormholy (1.5.2)
+  - Wormholy (1.6.1)
 
 DEPENDENCIES:
   - AcknowList
@@ -180,7 +182,7 @@ DEPENDENCIES:
   - Wormholy
 
 SPEC REPOS:
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - AcknowList
     - AdFitSDK
     - Alamofire
@@ -227,27 +229,27 @@ SPEC CHECKSUMS:
   Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
   AlamofireNetworkActivityIndicator: 6564782bd7b9e6c430ae67d9277af01907b01ca4
   CTFeedbackSwift: 2a0d844ef8bade492f3cad59b21c8bd8300f5a91
-  FacebookSDK: 80a39152434ce9e58a6769a5704fbdfe78c49d02
+  FacebookSDK: cb4b62619b27a9712170d82a95f7ebd48a4720da
   FBAudienceNetwork: 98c125767300048ad46c756680644f4ecb7c4040
-  FBSDKCoreKit: 5d55c8f3007c9c49b793617b9102e46355fc7e17
-  FBSDKMarketingKit: 314395af261fb66828215f771c8447b00f01727b
-  Firebase: 32f9520684e87c7af3f0704f7f88042626d6b536
-  FirebaseAnalytics: 83f822fd0d33a46f49f89b8c3ab16ab4d89df08a
+  FBSDKCoreKit: ada5c8a05188daefc9addb985c52b8a1b26da519
+  FBSDKMarketingKit: 2c6f0e0e2c16179d8bdf9a4921e68500a4cce4d8
+  Firebase: 585ae467b3edda6a5444e788fda6888f024d8d6f
+  FirebaseAnalytics: 558f7a03d19de451093032c806f39d5f9dff096e
   FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
-  FirebaseCore: 9aca0f1fffb405176ba15311a5621fcde4106fcf
-  FirebaseCoreDiagnostics: 13a6564cd6d5375066bbc8940cc1753af24497f3
+  FirebaseCore: a2788a0d5f6c1dff17b8f79b4a73654a8d4bfdbd
+  FirebaseCoreDiagnostics: b59c024493a409f8aecba02c99928d0d8431d159
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
-  FirebaseCrashlytics: ad2e8527a7efd9a7e708d5abe57318ced2e1dbd1
-  FirebaseInstallations: acb3216eb9784d3b1d2d2d635ff74fa892cc0c44
-  FirebaseInstanceID: 4b87a9a75ef628a53bb5de46e4d4cecfcce88c02
-  FirebaseMessaging: 4ec33842d36b3319e062e51fb8b35a74f726950d
+  FirebaseCrashlytics: 941608d2a3475b48fb7010b998703d07696b8db1
+  FirebaseInstallations: 2119fb3e46b0a88bfdbf12562f855ee3252462fa
+  FirebaseInstanceID: cef67c4967c7cecb56ea65d8acbb4834825c587b
+  FirebaseMessaging: 828e66eb357a893e3cebd9ee0f6bc1941447cc94
   FLEX: 81096107977a09836eb440173010ceeef01105d6
   FTLinearActivityIndicator: c89ccc2ef18279a155820c0e81f09ce2e90a2dc9
   Google-Mobile-Ads-SDK: 7052557293c75c676db55feb707ace9b790f32c1
-  GoogleAppMeasurement: e49be3954045b17d046f271b9cc1ec052bad9702
-  GoogleDataTransport: 6ffa4dd0b6d547f8d27b91bd92fa9e197a3f5f1f
-  GoogleDataTransportCCTSupport: 2d7e609f8c5af1a33d7d59053e6f8cba59365df5
-  GoogleUtilities: ad0f3b691c67909d03a3327cc205222ab8f42e0e
+  GoogleAppMeasurement: 2253e99c1f22638cf234c059144660c338ad76c3
+  GoogleDataTransport: 061fe7d9b476710e3cd8ea51e8e07d8b67c2b420
+  GoogleDataTransportCCTSupport: 0f39025e8cf51f168711bd3fb773938d7e62ddb5
+  GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   kor45cw_Extension: 06505abed9efd7c58c5f9706176f1aeb4abb5ec6
   mopub-ios-sdk: d1640225b34ad74700e2acddb116cac634fc45d8
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
@@ -255,13 +257,13 @@ SPEC CHECKSUMS:
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
-  Realm: e125f464884cda953ebefe70c671b75b03b81b9b
-  RealmSwift: 33656a42bd300959a081fc13347376bc478071af
-  SDWebImage: d9ea4959d99c52276dfada481987018fcaea3d58
+  Realm: 4eb04d7487bd43c0581256f40b424eafb711deff
+  RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
+  SDWebImage: 97351f6582ceca541ea294ba66a1fcb342a331c2
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
-  Wormholy: 3344d3591d78488d957402d51dccfbfafd6f9641
+  Wormholy: 0fd599c7efb09bb96af8cdfbe81a716932caf67e
 
-PODFILE CHECKSUM: 427d381d6ccbf05329c955da84fecb947d6faa7c
+PODFILE CHECKSUM: 92a524a171be733f3617c513d38fc46411d002dc
 
 COCOAPODS: 1.9.1

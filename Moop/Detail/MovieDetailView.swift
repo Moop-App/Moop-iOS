@@ -11,11 +11,6 @@ import StoreKit
 import SafariServices
 import kor45cw_Extension
 
-protocol MovieDetailPickAndPopDelegate: class {
-    func share(text: String)
-    func rating(type: TheaterType, url: URL?)
-}
-
 protocol DetailHeaderDelegate: class {
     func wrapper(type: TheaterType)
     func poster(_ image: UIImage)
@@ -49,8 +44,6 @@ class MovieDetailView: UIViewController {
     @IBOutlet private weak var bannerWrpperView: UIView!
     @IBOutlet private weak var bannerViewHeightConstraint: NSLayoutConstraint!
     private lazy var 광고모듈: AdManager = AdManager(배너광고타입: .상세, viewController: self, wrapperView: bannerWrpperView, 네이티브광고타입: .상세)
-    
-    weak var delegate: MovieDetailPickAndPopDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,10 +104,6 @@ class MovieDetailView: UIViewController {
 //        sender.setImage(sender.tag == 1 ? UIImage(named: "heart_fill") : UIImage(named: "heart"), for: .normal)
 //        favorite(isAdd: sender.tag == 1)
 //    }
-    
-    override var previewActionItems: [UIPreviewActionItem] {
-        presenter.previewActionItems
-    }
 }
 
 extension MovieDetailView: DetailHeaderDelegate {
@@ -176,14 +165,6 @@ extension MovieDetailView: MovieDetailViewDelegate {
     
     func loadFailed() {
         
-    }
-    
-    func share(text: String) {
-        delegate?.share(text: text)
-    }
-    
-    func rating(type: TheaterType, url: URL?) {
-        delegate?.rating(type: type, url: url)
     }
 }
 
@@ -269,19 +250,6 @@ extension MovieDetailView: UITableViewDelegate {
         default: break
         }
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        guard let cellType = presenter[indexPath] else { return tableView.estimatedRowHeight }
-//
-//        switch cellType {
-//        case .ad where (광고모듈?.페이스북네이티브광고?.isAdValid ?? false):
-//            let viewWidth = view.frame.inset(by: view.safeAreaInsets).size.width - 16
-//            return (viewWidth / 316) * 295
-//        default:
-//            return tableView.estimatedRowHeight
-//        }
-//
-//    }
 }
 
 extension MovieDetailView: AdManagerDelegate {

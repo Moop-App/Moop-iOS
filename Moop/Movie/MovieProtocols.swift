@@ -34,7 +34,6 @@ protocol MoviePresenterDelegate: class {
     func updateState(_ index: Int)
     func fetchDatas()
     
-    @available(iOS 13.0, *)
     func fetchContextMenus(indexPath: IndexPath) -> [UIAction]
 }
 

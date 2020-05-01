@@ -18,9 +18,12 @@ protocol FilterPresenterDelegate: class {
     var view: FilterViewDelegate! { get set }
     var isModalInPresentation: Bool { get }
     var isDoneButtonEnable: Bool { get }
-    subscript(_ indexPath: IndexPath) -> (title: String, isSelected: Bool)? { get }
+    subscript(_ indexPath: IndexPath) -> (section: FilterSection, item: FilterSection.Item, isSelected: Bool)? { get }
 
     func viewDidLoad()
     func done()
     func didSelect(with indexPath: IndexPath) -> Bool?
+    
+    var numberOfSections: Int { get }
+    func numberOfItemsInSection(_ section: Int) -> Int
 }

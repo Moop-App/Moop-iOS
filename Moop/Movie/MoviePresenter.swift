@@ -139,7 +139,6 @@ extension MoviePresenter: MoviePresenterDelegate {
         checkCurrentUpdateTime()
     }
     
-    @available(iOS 13.0, *)
     func fetchContextMenus(indexPath: IndexPath) -> [UIAction] {
         guard let item = getItems(indexPath: indexPath) else { return [] }
         var menus: [UIAction] = []

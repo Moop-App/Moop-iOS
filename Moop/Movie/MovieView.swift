@@ -48,7 +48,6 @@ class MovieView: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         definesPresentationContext = true
         navigationItem.searchController = searchController
-        registerForPreviewing(with: self, sourceView: self.collectionView)
     }
     
     var canScrollToTop: Bool = false
@@ -82,6 +81,23 @@ extension MovieView: MovieViewDelegate {
     
     func change(state: MoviePresenter.MovieType) {
         navigationItem.title = state.title
+    }
+    
+    func share(text: String) {
+        let viewController = UIActivityViewController(activityItems: [text], applicationActivities: [])
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            viewController.popoverPresentationController?.sourceView = self.view
+            viewController.popoverPresentationController?.sourceRect = CGRect(x: self.view.frame.size.width / 2,
+                                                                              y: self.view.frame.size.height / 2,
+                                                                              width: 0, height: 0)
+        }
+        present(viewController, animated: true, completion: nil)
+    }
+
+    func rating(type: TheaterType, url: URL?) {
+        guard let url = url else { return }
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true, completion: nil)
     }
 }
 
@@ -150,7 +166,6 @@ extension MovieView: UICollectionViewDelegateFlowLayout {
         return 0
     }
     
-    @available(iOS 13.0, *)
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let contextMenus = presenter.fetchContextMenus(indexPath: indexPath)
         guard !contextMenus.isEmpty else { return nil }
@@ -158,42 +173,6 @@ extension MovieView: UICollectionViewDelegateFlowLayout {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
             UIMenu(title: "", image: nil, identifier: nil, children: contextMenus)
         }
-    }
-}
-
-extension MovieView: UIViewControllerPreviewingDelegate {
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        guard let indexPath = collectionView.indexPathForItem(at: location),
-            let cell = collectionView.cellForItem(at: indexPath),
-            let id = presenter[indexPath]?.id else { return nil }
-        
-        previewingContext.sourceRect = cell.frame
-        let destination = MovieDetailView.instance(id: id)
-        destination.delegate = self
-        return destination
-    }
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        show(viewControllerToCommit, sender: self)
-    }
-}
-
-extension MovieView: MovieDetailPickAndPopDelegate {
-    func share(text: String) {
-        let viewController = UIActivityViewController(activityItems: [text], applicationActivities: [])
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            viewController.popoverPresentationController?.sourceView = self.view
-            viewController.popoverPresentationController?.sourceRect = CGRect(x: self.view.frame.size.width / 2,
-                                                                              y: self.view.frame.size.height / 2,
-                                                                              width: 0, height: 0)
-        }
-        present(viewController, animated: true, completion: nil)
-    }
-
-    func rating(type: TheaterType, url: URL?) {
-        guard let url = url else { return }
-        let safariViewController = SFSafariViewController(url: url)
-        present(safariViewController, animated: true, completion: nil)
     }
 }
 
