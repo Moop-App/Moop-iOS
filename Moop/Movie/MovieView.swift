@@ -10,6 +10,11 @@ import UIKit
 import SafariServices
 
 class MovieView: UIViewController {
+    
+    enum Section: CaseIterable {
+        case main
+    }
+    
     static func instance() -> MovieView {
         let vc: MovieView = instance(storyboardName: Storyboard.movie)
         vc.presenter = MoviePresenter(view: vc)
@@ -17,7 +22,8 @@ class MovieView: UIViewController {
     }
     
     var presenter: MoviePresenterDelegate!
-
+    var dataSource: UICollectionViewDiffableDataSource<Section, Movie>!
+    
     private let searchController = UISearchController(searchResultsController: nil)
     private let refreshControl = UIRefreshControl()
     @IBOutlet private weak var collectionView: UICollectionView! {
@@ -39,6 +45,55 @@ class MovieView: UIViewController {
         super.viewDidLoad()
         setUp()
         presenter.viewDidLoad()
+        configureDataSource()
+        collectionView.collectionViewLayout = createdLayout()
+    }
+    
+    private func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, Movie>(collectionView: collectionView) { (collectionView, indexPath, movie) -> UICollectionViewCell? in
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as? MovieCell else { return UICollectionViewCell() }
+            cell.set(movie)
+            return cell
+        }
+        
+        dataSource.supplementaryViewProvider = { [weak self] (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "MovieViewSegmentedControl", for: indexPath) as? MovieViewSegmentedControl else { return nil }
+            
+            header.delegate = self
+            return header
+        }
+    }
+    
+    private func createdLayout() -> UICollectionViewLayout {
+        return UICollectionViewCompositionalLayout { (_, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            let isWideView = layoutEnvironment.container.effectiveContentSize.width > 414
+            
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                  heightDimension: .fractionalHeight(1.0))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            
+            let count = isWideView ? 5 : 3
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .fractionalWidth(1 / (6 * CGFloat(count)) * 8.1))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: count)
+            group.interItemSpacing = .fixed(8)
+            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
+            
+            let section = NSCollectionLayoutSection(group: group)
+            section.interGroupSpacing = 8
+            section.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 0, bottom: 0, trailing: 0)
+            
+            
+            let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                          heightDimension: .estimated(42))
+            
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: headerFooterSize,
+                elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+            section.boundarySupplementaryItems = [sectionHeader]
+            
+            return section
+        }
     }
     
     private func setUp() {
@@ -70,9 +125,13 @@ class MovieView: UIViewController {
 }
 
 extension MovieView: MovieViewDelegate {
-    func loadFinished() {
+    func loadFinished(_ movies: [Movie]) {
         refreshControl.endRefreshing()
-        collectionView.reloadData()
+        
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Movie>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(movies)
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
     
     func loadFailed() {
@@ -93,7 +152,7 @@ extension MovieView: MovieViewDelegate {
         }
         present(viewController, animated: true, completion: nil)
     }
-
+    
     func rating(type: TheaterType, url: URL?) {
         guard let url = url else { return }
         let safariViewController = SFSafariViewController(url: url)
@@ -117,57 +176,16 @@ extension MovieView: ScrollToTopDelegate {
     }
 }
 
-extension MovieView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter.numberOfItemsInSection
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as? MovieCell else { return UICollectionViewCell() }
-        cell.set(presenter[indexPath])
-        return cell
-    }
-    
+extension MovieView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let id = presenter[indexPath]?.id else { return }
+        guard let id = dataSource.itemIdentifier(for: indexPath)?.id else { return }
         let destination = MovieDetailView.instance(id: id)
         self.navigationController?.pushViewController(destination, animated: true)
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        var header: UICollectionReusableView?
-
-        if kind == UICollectionView.elementKindSectionHeader,
-            let segmentedHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "MovieViewSegmentedControl", for: indexPath) as? MovieViewSegmentedControl {
-            segmentedHeader.delegate = self
-            header = segmentedHeader
-        }
-
-        return header!
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: self.view.frame.width, height: 38)
-    }
-}
-
-extension MovieView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // TODO: 아이패드에서는 한줄에 더 많은 셀이 나와야 한다. 5개 정도
-        let cellWidth = (collectionView.bounds.width - 36) / 3
-        return CGSize(width: cellWidth, height: cellWidth / 600.0 * 855)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let contextMenus = presenter.fetchContextMenus(indexPath: indexPath)
+        let movie = dataSource.itemIdentifier(for: indexPath)
+        let contextMenus = presenter.fetchContextMenus(item: movie)
         guard !contextMenus.isEmpty else { return nil }
         
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
