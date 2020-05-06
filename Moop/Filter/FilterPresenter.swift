@@ -16,6 +16,8 @@ class FilterPresenter {
     let originBoxOffice = FilterData.boxOffice
     let originNations = FilterData.nation
     
+    private let datas = FilterSection.allCases
+    
     var ageTypes: [AgeType] = [] {
         didSet {
             view.updateDataInfo()
@@ -43,6 +45,32 @@ class FilterPresenter {
         self.view = view
     }
     
+    var numberOfSections: Int {
+        datas.count
+    }
+    
+    subscript(indexPath: IndexPath) -> (section: FilterSection, item: FilterSection.Item, isSelected: Bool)? {
+        guard let section = datas[safe: indexPath.section],
+            let item = section.contents[safe: indexPath.item] else { return nil }
+        
+        if item == .header {
+            return (section, item, false)
+        }
+        switch section {
+        case .theater:
+            guard let type = TheaterType(rawValue: indexPath.item - 1) else { return nil }
+            return (section, item, theaters.contains(type))
+        case .age:
+            guard let type = AgeType(rawValue: indexPath.item - 1) else { return nil }
+            return (section, item, ageTypes.contains(type))
+        case .boxOffice:
+            return (section, item, boxOffice)
+        case .nations:
+            let type = NationInfo(isKorean: indexPath.item == 1)
+            return (section, item, nations.contains(type))
+        }
+    }
+    
     var isModalInPresentation: Bool {
         let isEqualTheaters = originTheaters.sorted(by: { $0.rawValue > $1.rawValue }) == theaters.sorted(by: { $0.rawValue > $1.rawValue })
         let isEqualAges = originAgeTypes.sorted(by: { $0.rawValue > $1.rawValue }) == ageTypes.sorted(by: { $0.rawValue > $1.rawValue })
@@ -52,23 +80,6 @@ class FilterPresenter {
     
     var isDoneButtonEnable: Bool {
         !theaters.isEmpty && !ageTypes.isEmpty && !nations.isEmpty
-    }
-    
-    subscript(indexPath: IndexPath) -> (title: String, isSelected: Bool)? {
-        switch indexPath.section {
-        case 0:
-            guard let type = TheaterType(rawValue: indexPath.item) else { return nil }
-            return (type.title, theaters.contains(type))
-        case 1:
-            guard let type = AgeType(rawValue: indexPath.item) else { return nil }
-            return (type.text, ageTypes.contains(type))
-        case 2:
-            let title = "박스오피스 순으로 정렬하기".localized
-            return (title, boxOffice)
-        default:
-            let type = NationInfo(isKorean: indexPath.item == 0)
-            return (type.rawValue.localized, nations.contains(type))
-        }
     }
 }
 
@@ -87,10 +98,17 @@ extension FilterPresenter: FilterPresenterDelegate {
         FilterData.nation = nations
     }
     
+    func numberOfItemsInSection(_ section: Int) -> Int {
+        datas[safe: section]?.contents.count ?? 0
+    }
+    
     func didSelect(with indexPath: IndexPath) -> Bool? {
-        switch indexPath.section {
-        case 0:
-            guard let type = TheaterType(rawValue: indexPath.item) else { return nil }
+        guard let section = datas[safe: indexPath.section],
+            indexPath.item != 0 else { return nil }
+        
+        switch section {
+        case .theater:
+            guard let type = TheaterType(rawValue: indexPath.item - 1) else { return nil }
             if let index = theaters.firstIndex(of: type) {
                 theaters.remove(at: index)
                 return false
@@ -98,8 +116,8 @@ extension FilterPresenter: FilterPresenterDelegate {
                 theaters.append(type)
                 return true
             }
-        case 1:
-            guard let type = AgeType(rawValue: indexPath.item) else { return nil }
+        case .age:
+            guard let type = AgeType(rawValue: indexPath.item - 1) else { return nil }
             if let index = ageTypes.firstIndex(of: type) {
                 ageTypes.remove(at: index)
                 return false
@@ -107,11 +125,11 @@ extension FilterPresenter: FilterPresenterDelegate {
                 ageTypes.append(type)
                 return true
             }
-        case 2:
+        case .boxOffice:
             boxOffice.toggle()
             return boxOffice
-        default:
-            let type = NationInfo(isKorean: indexPath.item == 0)
+        case .nations:
+            let type = NationInfo(isKorean: indexPath.item == 1)
             if let index = nations.firstIndex(of: type) {
                 nations.remove(at: index)
                 return false

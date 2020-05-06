@@ -49,11 +49,6 @@ class Movie: Object {
         return "id"
     }
     
-    // 쿼리의 성능을 최적화 할때 활용 / 검색이나 필터링에 쓰는 종류들만 추가할 것
-//    override static func indexedProperties() -> [String] {
-//        return ["title"]
-//    }
-    
     convenience init(response: MovieResponse) {
         self.init()
         id = response.id

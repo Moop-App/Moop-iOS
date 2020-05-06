@@ -13,7 +13,7 @@ import UIKit
 // 2. Presenter에게 전달받은 결과를 통해서 View를 업데이트
 protocol MovieViewDelegate: class {
     var presenter: MoviePresenterDelegate! { get set }
-    func loadFinished()
+    func loadFinished(_ movies: [Movie])
     func loadFailed()
     func change(state: MoviePresenter.MovieType)
     func rating(type: TheaterType, url: URL?)
@@ -26,16 +26,13 @@ protocol MovieViewDelegate: class {
 // 데이터를 가공하는 역할은 여기서
 protocol MoviePresenterDelegate: class {
     var view: MovieViewDelegate! { get set }
-    var numberOfItemsInSection: Int { get }
     var isEmpty: Bool { get }
-    subscript(indexPath: IndexPath) -> Movie? { get }
     
     func viewDidLoad()
     func updateState(_ index: Int)
     func fetchDatas()
     
-    @available(iOS 13.0, *)
-    func fetchContextMenus(indexPath: IndexPath) -> [UIAction]
+    func fetchContextMenus(item: Movie?) -> [UIAction]
 }
 
 // Model

@@ -44,6 +44,6 @@ class MovieViewSegmentedControl: UICollectionReusableView {
         segmentedControl.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
         segmentedControl.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = true
         segmentedControl.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
-        segmentedControl.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
+        segmentedControl.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4).isActive = true
     }
 }

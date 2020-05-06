@@ -74,32 +74,3 @@ extension FavoriteViewController: UICollectionViewDelegateFlowLayout {
         return 0
     }
 }
-
-extension FavoriteViewController: UIViewControllerPreviewingDelegate {
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        guard let indexPath = collectionView.indexPathForItem(at: location),
-            let cell = collectionView.cellForItem(at: indexPath) else { return nil }
-        
-        previewingContext.sourceRect = cell.frame
-//        let destination = MovieDetailViewController.instance(item: datas[indexPath.item])
-//        destination.delegate = self
-        return nil
-    }
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        self.navigationController?.pushViewController(viewControllerToCommit, animated: true)
-    }
-}
-
-extension FavoriteViewController: MovieDetailPickAndPopDelegate {
-    func share(text: String) {
-        let viewController = UIActivityViewController(activityItems: [text], applicationActivities: [])
-        present(viewController, animated: true, completion: nil)
-    }
-    
-    func rating(type: TheaterType, url: URL?) {
-        guard let url = url else { return }
-        let safariViewController = SFSafariViewController(url: url)
-        present(safariViewController, animated: true, completion: nil)
-    }
-}

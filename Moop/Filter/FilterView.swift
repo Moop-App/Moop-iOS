@@ -12,21 +12,54 @@ protocol FilterChangeDelegate: class {
     func filterItemChanged()
 }
 
-class FilterView: UITableViewController {
+class FilterView: UIViewController {
     static func instance() -> FilterView {
         let vc: FilterView = instance(storyboardName: Storyboard.filter)
         vc.presenter = FilterPresenter(view: vc)
         return vc
     }
     
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var 광고포장뷰: UIView!
+    @IBOutlet private weak var bannerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var doneButton: UIBarButtonItem!
     var presenter: FilterPresenterDelegate!
     weak var delegate: FilterChangeDelegate?
+    
+    private lazy var 광고모듈: AdManager = AdManager(배너광고타입: .필터, viewController: self, wrapperView: 광고포장뷰, 네이티브광고타입: .상세)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
         navigationController?.presentationController?.delegate = self
+        configureAd()
+    }
+    
+    private func configureAd() {
+        guard !UserData.isAdFree else {
+            광고포장뷰.removeFromSuperview()
+            return
+        }
+        광고모듈.delegate = self
+        광고모듈.배너보여줘()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadBannerAd()
+    }
+    
+    override func viewWillTransition(to size: CGSize,
+                                     with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { _ in
+            self.loadBannerAd()
+        })
+    }
+    
+    func loadBannerAd() {
+        guard !UserData.isAdFree else { return }
+        let viewWidth = view.frame.inset(by: view.safeAreaInsets).size.width
+        bannerViewHeightConstraint.constant = 광고모듈.resize배너(width: viewWidth)
     }
     
     @IBAction private func cancel(_ sender: UIButton) {
@@ -47,39 +80,45 @@ extension FilterView: FilterViewDelegate {
     
     func updateDataInfo() {
         doneButton.isEnabled = presenter.isDoneButtonEnable
-        if #available(iOS 13.0, *) {
-            self.isModalInPresentation = presenter.isModalInPresentation
+        isModalInPresentation = presenter.isModalInPresentation
+    }
+}
+
+extension FilterView: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        presenter.numberOfSections
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        presenter.numberOfItemsInSection(section)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let (section, item, isSelected) = presenter[indexPath] else { return UITableViewCell() }
+        
+        switch (section, item) {
+        case (_, .header):
+            let cell: SettingHeaderCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.set(section.title)
+            return cell
+        default:
+            let cell: FilterCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.configure(item, isSelected: isSelected)
+            return cell
         }
     }
 }
 
-extension FilterView {
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let (title, isSelected) = presenter[indexPath] else { return UITableViewCell() }
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.textLabel?.text = title
-            cell.accessoryType = isSelected ? .checkmark : .none
-            return cell
-        } else {
-            let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-            cell.textLabel?.text = title
-            cell.accessoryType = isSelected ? .checkmark : .none
-            return cell
-        }
-    }
-}
-
-extension FilterView {
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+extension FilterView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let cell = tableView.cellForRow(at: indexPath),
+        guard let cell = tableView.cellForRow(at: indexPath) as? FilterCell,
             let isSelected = presenter.didSelect(with: indexPath) else { return }
         
-        cell.accessoryType = isSelected ? .checkmark : .none
+        cell.checkButton.isHidden = !isSelected
     }
 }
 
-@available(iOS 13.0, *)
 extension FilterView: UIAdaptivePresentationControllerDelegate {
     func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
         showDismissAlert()
@@ -97,7 +136,13 @@ extension FilterView: UIAdaptivePresentationControllerDelegate {
         alert.addAction(UIAlertAction(title: "변경사항 취소하기".localized, style: .destructive) { _ in
             self.dismiss(animated: true, completion: nil)
         })
-
+        
         present(alert, animated: true, completion: nil)
+    }
+}
+
+extension FilterView: AdManagerDelegate {
+    func 배너광고Loaded() {
+        loadBannerAd()
     }
 }

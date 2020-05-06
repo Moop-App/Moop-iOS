@@ -12,8 +12,6 @@ protocol MovieDetailViewDelegate: class {
     var presenter: MovieDetailPresenterDelegate! { get set }
     func loadFinished()
     func loadFailed()
-    func rating(type: TheaterType, url: URL?)
-    func share(text: String)
 }
 
 protocol MovieDetailPresenterDelegate: class {
@@ -23,7 +21,6 @@ protocol MovieDetailPresenterDelegate: class {
     var movieInfo: Movie? { get }
     subscript(indexPath: IndexPath) -> MovieDetailCellType? { get }
     var adIndex: Array<Int>.Index? { get }
-    var previewActionItems: [UIPreviewAction] { get }
 
     func viewDidLoad()
     func webURL(with type: TheaterType) -> URL?

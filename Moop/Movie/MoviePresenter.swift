@@ -22,7 +22,6 @@ class MoviePresenter: NSObject {
     
     private var currentMovieData = MovieModel()
     private var futureMovieData = MovieModel()
-    private var isSearched = false
     
     private var state: MovieType = .current {
         didSet {
@@ -75,35 +74,12 @@ class MoviePresenter: NSObject {
         }
     }
     
-    
-    var numberOfItemsInSection: Int {
-        switch state {
-        case .current:
-            return isSearched ? currentMovieData.searchedMovies.count : currentMovieData.filteredMovies.count
-        case .future:
-            return isSearched ? futureMovieData.searchedMovies.count : futureMovieData.filteredMovies.count
-        }
-    }
-    
     var isEmpty: Bool {
         switch state {
         case .current:
             return currentMovieData.items.isEmpty
         case .future:
             return futureMovieData.items.isEmpty
-        }
-    }
-    
-    subscript(indexPath: IndexPath) -> Movie? {
-        getItems(indexPath: indexPath)
-    }
-    
-    private func getItems(indexPath: IndexPath) -> Movie? {
-        switch state {
-        case .current:
-            return isSearched ? currentMovieData.searchedMovies[safe: indexPath.item] : currentMovieData.filteredMovies[safe: indexPath.item]
-        case .future:
-            return isSearched ? futureMovieData.searchedMovies[safe: indexPath.item] : futureMovieData.filteredMovies[safe: indexPath.item]
         }
     }
 }
@@ -113,24 +89,26 @@ extension MoviePresenter: FilterChangeDelegate {
         switch state {
         case .current:
             currentMovieData.filtered()
+            view.loadFinished(currentMovieData.filteredMovies)
+            
         case .future:
             futureMovieData.filtered()
+            view.loadFinished(futureMovieData.filteredMovies)
         }
-        view.loadFinished()
     }
 }
 
 extension MoviePresenter: UISearchResultsUpdating, UISearchBarDelegate {
     // MARK: - UISearchResultsUpdating Delegate
     func updateSearchResults(for searchController: UISearchController) {
-        self.isSearched = searchController.isActive
         switch state {
         case .current:
             currentMovieData.search(query: searchController.searchBar.text ?? "")
+            view.loadFinished(searchController.isActive ? currentMovieData.searchedMovies : currentMovieData.filteredMovies)
         case .future:
             futureMovieData.search(query: searchController.searchBar.text ?? "")
+            view.loadFinished(searchController.isActive ? futureMovieData.searchedMovies : futureMovieData.filteredMovies)
         }
-        self.view.loadFinished()
     }
 }
 
@@ -139,9 +117,8 @@ extension MoviePresenter: MoviePresenterDelegate {
         checkCurrentUpdateTime()
     }
     
-    @available(iOS 13.0, *)
-    func fetchContextMenus(indexPath: IndexPath) -> [UIAction] {
-        guard let item = getItems(indexPath: indexPath) else { return [] }
+    func fetchContextMenus(item: Movie?) -> [UIAction] {
+        guard let item = item else { return [] }
         var menus: [UIAction] = []
         
         item.contextMenus.forEach {
@@ -275,8 +252,12 @@ extension MoviePresenter: MoviePresenterDelegate {
         switch type {
         case .current:
             willDeleteItem = currentMovieData.items.filter { !items.map { $0.id }.contains($0.id) }
+            let targetItem = currentMovieData.items.filter { items.map { $0.id }.contains($0.id) }
+            view.loadFinished(targetItem)
         case .future:
             willDeleteItem = futureMovieData.items.filter { !items.map { $0.id }.contains($0.id) }
+            let targetItem = futureMovieData.items.filter { items.map { $0.id }.contains($0.id) }
+            view.loadFinished(targetItem)
         }
         RealmManager.shared.deleteData(items: willDeleteItem)
         RealmManager.shared.saveData(items: items)
