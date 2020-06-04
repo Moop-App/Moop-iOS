@@ -43,6 +43,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(_ application: UIApplication) {
         ShortcutManager.shared.applicationWillResignActive(application)
     }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        SpotlightManager.shared.application(continue: userActivity,
+                                            rootViewController: window?.rootViewController)
+        return true
+    }
 }
 
 extension AppDelegate {

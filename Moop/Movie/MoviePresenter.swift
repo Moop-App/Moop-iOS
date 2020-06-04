@@ -64,6 +64,7 @@ class MoviePresenter: NSObject {
                     .filter("now == true").sorted(byKeyPath: "score", ascending: true).compactMap { $0 }
                 self.futureMovieData.items = results.filter("now == false").sorted(byKeyPath: "getDay").compactMap { $0 }
                 self.filterItemChanged()
+                SpotlightManager.shared.addIndexes(items: Array(results))
             case let .update(results, _, _, _):
                 self.currentMovieData.items = results.filter("now == true").sorted(byKeyPath: "score", ascending: true).compactMap { $0 }
                 self.futureMovieData.items = results.filter("now == false").sorted(byKeyPath: "getDay").compactMap { $0 }
@@ -261,5 +262,7 @@ extension MoviePresenter: MoviePresenterDelegate {
         }
         RealmManager.shared.deleteData(items: willDeleteItem)
         RealmManager.shared.saveData(items: items)
+        SpotlightManager.shared.addIndexes(items: items)
+        SpotlightManager.shared.removeIndexes(with: willDeleteItem.map { $0.id })
     }
 }

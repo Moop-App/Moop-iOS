@@ -103,6 +103,7 @@
 		A0BA7CC32488E79800CB2D45 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = A0BA7CC22488E79800CB2D45 /* FacebookCore */; };
 		A0BA7CCC2488E9FB00CB2D45 /* libCauly-universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0BA7CCB2488E9FB00CB2D45 /* libCauly-universal.a */; };
 		A0BA7CCE2488EA3300CB2D45 /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BA7CCD2488EA3300CB2D45 /* StoreKitManager.swift */; };
+		A0BA7CD024891CCC00CB2D45 /* SpotlightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BA7CCF24891CCC00CB2D45 /* SpotlightManager.swift */; };
 		A0CAC9D9234CC63A0076E432 /* MovieInfoPlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CAC9D8234CC63A0076E432 /* MovieInfoPlotCell.swift */; };
 		A0CAC9DB234D5C6A0076E432 /* MovieInfoPlotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0CAC9DA234D5C6A0076E432 /* MovieInfoPlotCell.xib */; };
 		A0CAC9DE234D5EDF0076E432 /* TrailerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0CAC9DD234D5EDF0076E432 /* TrailerCell.xib */; };
@@ -300,6 +301,7 @@
 		A0BA7CCA2488E9FA00CB2D45 /* CaulyAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaulyAdView.h; sourceTree = "<group>"; };
 		A0BA7CCB2488E9FB00CB2D45 /* libCauly-universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCauly-universal.a"; sourceTree = "<group>"; };
 		A0BA7CCD2488EA3300CB2D45 /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
+		A0BA7CCF24891CCC00CB2D45 /* SpotlightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightManager.swift; sourceTree = "<group>"; };
 		A0CAC9D8234CC63A0076E432 /* MovieInfoPlotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoPlotCell.swift; sourceTree = "<group>"; };
 		A0CAC9DA234D5C6A0076E432 /* MovieInfoPlotCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieInfoPlotCell.xib; sourceTree = "<group>"; };
 		A0CAC9DD234D5EDF0076E432 /* TrailerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrailerCell.xib; sourceTree = "<group>"; };
@@ -454,6 +456,7 @@
 				A06A98A82379709600A6B87D /* FilterData.swift */,
 				3CB6E84C22B9C518008F382C /* MainTabBarController.swift */,
 				A0BA7CCD2488EA3300CB2D45 /* StoreKitManager.swift */,
+				A0BA7CCF24891CCC00CB2D45 /* SpotlightManager.swift */,
 				A063DD282410B87300DE144D /* RealmManager.swift */,
 				A022A81B23F57DDB00D13FF7 /* Movie.swift */,
 				A08F85B924417EEB0086F676 /* Ad */,
@@ -1146,6 +1149,7 @@
 				A08F85D624417EEB0086F676 /* NativeAdGoogleView.swift in Sources */,
 				A08F85DE24417EEB0086F676 /* AdRewardType.swift in Sources */,
 				A08F85D524417EEB0086F676 /* NativeAdView.swift in Sources */,
+				A0BA7CD024891CCC00CB2D45 /* SpotlightManager.swift in Sources */,
 				A08F8602244188D60086F676 /* SettingHeaderCell.swift in Sources */,
 				A0CAC9F8234D8AE70076E432 /* PaddingLabel.swift in Sources */,
 				A0EBD3B42351E4A8007A23EB /* MoviePresenter.swift in Sources */,

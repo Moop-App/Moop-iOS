@@ -118,12 +118,13 @@ extension MovieDetailPresenter: MovieDetailPresenterDelegate {
             RealmManager.shared.beginWrite()
             movieInfo.set(detailResponse: response)
             RealmManager.shared.commitWrite()
+            SpotlightManager.shared.addIndexes(items: [movieInfo])
         } else {
             let movieDetail = Movie(response: response)
             RealmManager.shared.saveData(item: movieDetail)
             movieInfo = movieDetail
+            SpotlightManager.shared.addIndexes(items: [movieDetail])
         }
-        
         totalCell = calculateCell()
         view.loadFinished()
     }
