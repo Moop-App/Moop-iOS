@@ -8,6 +8,7 @@
 
 import FTLinearActivityIndicator
 import AlamofireNetworkActivityIndicator
+import UIKit
 
 public struct APISetupManager {
     public static func setup() {

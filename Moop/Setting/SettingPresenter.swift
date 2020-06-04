@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyStoreKit
 
 class SettingPresenter {
     internal weak var view: SettingViewDelegate!
@@ -38,9 +37,15 @@ extension SettingPresenter: SettingPresenterDelegate {
         indexPath.item % 3 == 2 ? 11 : 60
     }
     
-    func restoreIAP(completionHandler: @escaping (Bool) -> Void) {
-        SwiftyStoreKit.restorePurchases { result in
-            completionHandler(result.restoredPurchases.count == 1)
+    func purchase(with productId: String) {
+        StoreKitManager.shared.purchase(with: productId) { [weak view] in
+            view?.reload()
+        }
+    }
+    
+    func restore() {
+        StoreKitManager.shared.restorePurchases { [weak view] in
+            view?.reload()
         }
     }
 }

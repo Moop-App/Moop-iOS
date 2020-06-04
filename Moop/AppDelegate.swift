@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import Networking
-import SwiftyStoreKit
 import FBSDKCoreKit
 #if DEBUG
 import FLEX
@@ -51,26 +50,7 @@ extension AppDelegate {
         FirebaseApp.configure()
         AdManager.librarySetup()
         APISetupManager.setup()
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
-        
-        // see notes below for the meaning of Atomic / Non-Atomic
-        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
-            for purchase in purchases {
-                switch purchase.transaction.transactionState {
-                case .purchased, .restored:
-                    if purchase.needsFinishTransaction {
-                        // Deliver content from server, then:
-                        SwiftyStoreKit.finishTransaction(purchase.transaction)
-                    }
-                    // Unlock content
-                    UserData.isAdFree = true
-                case .failed, .purchasing, .deferred:
-                    break // do nothing
-                @unknown default:
-                    break
-                }
-            }
-        }
+        StoreKitManager.shared.setup()
     }
     
     private func debugSettings() {
