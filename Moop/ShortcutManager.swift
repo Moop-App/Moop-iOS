@@ -11,14 +11,14 @@ import UIKit
 private enum MoopShortcutItem: CaseIterable {
     case current
     case future
-    case favorite
+//    case favorite
     case setting
     
     init(item: UIApplicationShortcutItem) {
         switch item.type {
         case "CurrentAction": self = .current
         case "FutureAction": self = .future
-        case "FavoriteAction": self = .favorite
+//        case "FavoriteAction": self = .favorite
         case "SettingAction": self = .setting
         default: self = .current
         }
@@ -28,7 +28,7 @@ private enum MoopShortcutItem: CaseIterable {
         switch self {
         case .current: return "CurrentAction"
         case .future: return "FutureAction"
-        case .favorite: return "FavoriteAction"
+//        case .favorite: return "FavoriteAction"
         case .setting: return "SettingAction"
         }
     }
@@ -37,7 +37,7 @@ private enum MoopShortcutItem: CaseIterable {
         switch self {
         case .current: return "현재상영".localized
         case .future: return "개봉예정".localized
-        case .favorite: return "즐겨찾기".localized
+//        case .favorite: return "즐겨찾기".localized
         case .setting: return "설정".localized
         }
     }
@@ -46,7 +46,7 @@ private enum MoopShortcutItem: CaseIterable {
         switch self {
         case .current: return UIApplicationShortcutIcon(templateImageName: "movie")
         case .future: return UIApplicationShortcutIcon(templateImageName: "plan")
-        case .favorite: return UIApplicationShortcutIcon(templateImageName: "heart")
+//        case .favorite: return UIApplicationShortcutIcon(templateImageName: "heart")
         case .setting: return UIApplicationShortcutIcon(templateImageName: "setting")
         }
     }
@@ -85,17 +85,27 @@ class ShortcutManager {
         case .current:
             rootViewController.selectedIndex = 0
         case .future:
-            rootViewController.selectedIndex = 1
-        case .favorite:
-            rootViewController.selectedIndex = 2
+            rootViewController.selectedIndex = 0
+//        case .favorite:
+//            rootViewController.selectedIndex = 2
         case .setting:
-            rootViewController.selectedIndex = 3
+            rootViewController.selectedIndex = 1
         }
         
         // Reset the shorcut item so it's never processed twice.
         shortcutItemToProcess = nil
         guard let navi = rootViewController.selectedViewController as? UINavigationController else { return }
         navi.popToRootViewController(animated: true)
+        
+        guard let movieViewController = navi.viewControllers.first as? MovieView else { return }
+        
+        switch moopShortcutItem {
+        case .current:
+            movieViewController.changeIndex(0)
+        case .future:
+            movieViewController.changeIndex(1)
+        default: break
+        }
         
         guard let viewController = navi.viewControllers.first as? ScrollToTopDelegate,
             viewController.canScrollToTop else { return }
