@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sjj-dB-ias">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sjj-dB-ias">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,7 +11,7 @@
         <!--Favorites-->
         <scene sceneID="TF6-Lv-Fz9">
             <objects>
-                <viewController storyboardIdentifier="FavoriteViewController" id="Avw-Fg-gGl" customClass="FavoriteViewController" customModule="DEV_Moop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AlarmView" id="Avw-Fg-gGl" customClass="AlarmView" customModule="DEV_Moop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uP6-Gg-Wkg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,7 +24,7 @@ that requires notification</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="j3C-XR-SeN">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="756"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lA6-7R-5Jw">
                                     <size key="itemSize" width="50" height="50"/>
@@ -38,10 +38,10 @@ that requires notification</string>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="j3C-XR-SeN" secondAttribute="trailing" id="Phw-rQ-wWZ"/>
-                            <constraint firstItem="j3C-XR-SeN" firstAttribute="top" secondItem="uP6-Gg-Wkg" secondAttribute="top" id="WcY-Sz-zBK"/>
                             <constraint firstItem="j3C-XR-SeN" firstAttribute="leading" secondItem="Wbd-TU-Rxx" secondAttribute="leading" id="XKp-Me-i1i"/>
                             <constraint firstAttribute="bottom" secondItem="j3C-XR-SeN" secondAttribute="bottom" id="bM0-1g-X1H"/>
                             <constraint firstItem="Wbd-TU-Rxx" firstAttribute="trailing" secondItem="8OQ-iF-xfi" secondAttribute="trailing" constant="20" id="eGk-r1-BPq"/>
+                            <constraint firstItem="j3C-XR-SeN" firstAttribute="top" secondItem="Wbd-TU-Rxx" secondAttribute="top" id="lpP-cF-BIh"/>
                             <constraint firstItem="8OQ-iF-xfi" firstAttribute="centerY" secondItem="uP6-Gg-Wkg" secondAttribute="centerY" id="smx-4u-cRG"/>
                             <constraint firstItem="8OQ-iF-xfi" firstAttribute="leading" secondItem="Wbd-TU-Rxx" secondAttribute="leading" constant="20" id="zSi-Jn-BjN"/>
                         </constraints>
@@ -55,7 +55,7 @@ that requires notification</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4uN-zj-rrb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1958" y="1438"/>
+            <point key="canvasLocation" x="1957.9710144927537" y="1437.7232142857142"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="o66-YC-32G">

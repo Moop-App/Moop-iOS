@@ -10,12 +10,34 @@ import SDWebImage
 import CoreSpotlight
 import MobileCoreServices
 
+struct SpotlightData {
+    let id: String
+    let posterURL: String
+    let displayName: String
+    let keywords: [String]
+    let contentDescription: String
+    
+    init(_ movie: Movie) {
+        id = movie.id
+        posterURL = movie.posterURL
+        displayName = movie.title
+        contentDescription = "개봉".localized + " \(movie.openDate)\n\(movie.actors.joined(separator: ", "))"
+        keywords = Array(movie.genres) + Array(movie.nations) + Array(movie.directors) + Array(movie.actors) + Array(movie.companies)
+    }
+    
+    var attributeSet: CSSearchableItemAttributeSet {
+        let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
+        attributeSet.displayName = displayName
+        attributeSet.contentDescription = contentDescription
+        attributeSet.keywords = keywords
+        return attributeSet
+    }
+}
+
 class SpotlightManager {
     static let shared = SpotlightManager()
     
     private init() {}
-    
-    
     
     func application(continue userActivity: NSUserActivity,
                      rootViewController: UIViewController?) {
@@ -29,27 +51,26 @@ class SpotlightManager {
         navi.pushViewController(targetView, animated: true)
     }
     
-    func addIndexes(items: [Movie]) {
-        items.forEach { movie in
-            self.fetchThumbnail(with: movie.posterURL) { [weak self] imageData in
-                self?.indexItem(with: movie, image: imageData)
+    func addIndexes(items: [SpotlightData]) {
+        DispatchQueue.global(qos: .background).async {
+            items.forEach { movie in
+                self.fetchThumbnail(with: movie.posterURL) { [weak self] imageData in
+                    self?.indexItem(with: movie, image: imageData)
+                }
             }
         }
     }
     
     private func fetchThumbnail(with url: String, completionHandler: @escaping (Data?) -> Void) {
         SDWebImageManager.shared.loadImage(with: URL(string: url),
-                                           options: [],
+                                           options: .continueInBackground,
                                            progress: nil) { (image, data, error, cacheType, isFinished, imageUrl) in
                                             completionHandler(image?.pngData())
         }
     }
     
-    private func indexItem(with item: Movie, image: Data?) {
-        let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
-        attributeSet.displayName = item.title
-        attributeSet.contentDescription = "개봉".localized + " \(item.openDate)\n\(item.actors.joined(separator: ", "))"
-        attributeSet.keywords = Array(item.genres) + Array(item.nations) + Array(item.directors) + Array(item.actors) + Array(item.companies)
+    private func indexItem(with item: SpotlightData, image: Data?) {
+        let attributeSet = item.attributeSet
         attributeSet.thumbnailData = image
         
         let item = CSSearchableItem(uniqueIdentifier: item.id, domainIdentifier: "com.kor45cw.Moop", attributeSet: attributeSet)
@@ -63,11 +84,13 @@ class SpotlightManager {
     }
     
     func removeIndexes(with ids: [String]) {
-        CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: ids) { error in
-            if let error = error {
-                print("Indexing error: \(error.localizedDescription)")
-            } else {
-                print("Search item successfully deleted!")
+        DispatchQueue.global(qos: .background).async {
+            CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: ids) { error in
+                if let error = error {
+                    print("Indexing error: \(error.localizedDescription)")
+                } else {
+                    print("Search item successfully deleted!")
+                }
             }
         }
     }

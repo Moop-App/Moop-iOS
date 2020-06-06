@@ -20,7 +20,7 @@ class MainTabBarController: UITabBarController {
         self.delegate = self
         
         self.viewControllers = [movieViewController(),
-//                                favoriteViewController(),
+                                alarmViewController(),
                                 settingViewController()]
     }
     
@@ -33,19 +33,19 @@ class MainTabBarController: UITabBarController {
         return currentNavigationController
     }
     
-//    private func favoriteViewController() -> UINavigationController {
-//        let favoriteNavigationController = UINavigationController(rootViewController: FavoriteViewController.instance())
-//        favoriteNavigationController.navigationBar.prefersLargeTitles = true
-//        let favoriteTabBarItem = UITabBarItem(title: "즐겨찾기".localized, image: UIImage(named: "heart"), tag: 2)
-//        favoriteTabBarItem.selectedImage = UIImage(named: "heart_fill")
-//        favoriteNavigationController.tabBarItem = favoriteTabBarItem
-//        return favoriteNavigationController
-//    }
+    private func alarmViewController() -> UINavigationController {
+        let alarmNavigationController = UINavigationController(rootViewController: AlarmView.instance())
+        alarmNavigationController.navigationBar.prefersLargeTitles = true
+        let alarmTabBarItem = UITabBarItem(title: "알림".localized, image: UIImage(systemName: "bell"), tag: 1)
+        alarmTabBarItem.selectedImage = UIImage(systemName: "bell.fill")
+        alarmNavigationController.tabBarItem = alarmTabBarItem
+        return alarmNavigationController
+    }
     
     private func settingViewController() -> UINavigationController {
         let settingNavigationController = UINavigationController(rootViewController: SettingView.instance())
         settingNavigationController.navigationBar.prefersLargeTitles = true
-        let settingTabBarItem = UITabBarItem(title: "설정".localized, image: UIImage(named: "setting"), tag: 3)
+        let settingTabBarItem = UITabBarItem(title: "설정".localized, image: UIImage(named: "setting"), tag: 2)
         settingTabBarItem.selectedImage = UIImage(named: "setting_selected")
         settingNavigationController.tabBarItem = settingTabBarItem
         return settingNavigationController

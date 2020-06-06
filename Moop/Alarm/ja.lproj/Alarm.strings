@@ -1,6 +1,6 @@
 
 /* Class = "UILabel"; text = "개봉 알림이 필요한 영화를 \n추가해주세요"; ObjectID = "8OQ-iF-xfi"; */
-"8OQ-iF-xfi.text" = "Please add a movie \nthat requires notification";
+"8OQ-iF-xfi.text" = "開封通知が必要な映画\nを追加してください";
 
 /* Class = "UINavigationItem"; title = "즐겨찾기"; ObjectID = "Grz-rE-jsA"; */
-"Grz-rE-jsA.title" = "Favorites";
+"Grz-rE-jsA.title" = "警報";

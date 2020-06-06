@@ -11,14 +11,14 @@ import UIKit
 private enum MoopShortcutItem: CaseIterable {
     case current
     case future
-//    case favorite
+    case alarm
     case setting
     
     init(item: UIApplicationShortcutItem) {
         switch item.type {
         case "CurrentAction": self = .current
         case "FutureAction": self = .future
-//        case "FavoriteAction": self = .favorite
+        case "AlarmAction": self = .alarm
         case "SettingAction": self = .setting
         default: self = .current
         }
@@ -28,7 +28,7 @@ private enum MoopShortcutItem: CaseIterable {
         switch self {
         case .current: return "CurrentAction"
         case .future: return "FutureAction"
-//        case .favorite: return "FavoriteAction"
+        case .alarm: return "AlarmAction"
         case .setting: return "SettingAction"
         }
     }
@@ -37,7 +37,7 @@ private enum MoopShortcutItem: CaseIterable {
         switch self {
         case .current: return "현재상영".localized
         case .future: return "개봉예정".localized
-//        case .favorite: return "즐겨찾기".localized
+        case .alarm: return "알림".localized
         case .setting: return "설정".localized
         }
     }
@@ -46,7 +46,7 @@ private enum MoopShortcutItem: CaseIterable {
         switch self {
         case .current: return UIApplicationShortcutIcon(templateImageName: "movie")
         case .future: return UIApplicationShortcutIcon(templateImageName: "plan")
-//        case .favorite: return UIApplicationShortcutIcon(templateImageName: "heart")
+        case .alarm: return UIApplicationShortcutIcon(systemImageName: "bell")
         case .setting: return UIApplicationShortcutIcon(templateImageName: "setting")
         }
     }
@@ -86,10 +86,10 @@ class ShortcutManager {
             rootViewController.selectedIndex = 0
         case .future:
             rootViewController.selectedIndex = 0
-//        case .favorite:
-//            rootViewController.selectedIndex = 2
-        case .setting:
+        case .alarm:
             rootViewController.selectedIndex = 1
+        case .setting:
+            rootViewController.selectedIndex = 2
         }
         
         // Reset the shorcut item so it's never processed twice.

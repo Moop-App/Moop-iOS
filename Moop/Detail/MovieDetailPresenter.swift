@@ -67,6 +67,10 @@ class MovieDetailPresenter {
         movieInfo?.title ?? ""
     }
     
+    var isAlarm: Bool {
+        movieInfo?.isAlarm ?? false
+    }
+    
     subscript(indexPath: IndexPath) -> MovieDetailCellType? {
         totalCell[safe: indexPath.item]
     }
@@ -118,15 +122,21 @@ extension MovieDetailPresenter: MovieDetailPresenterDelegate {
             RealmManager.shared.beginWrite()
             movieInfo.set(detailResponse: response)
             RealmManager.shared.commitWrite()
-            SpotlightManager.shared.addIndexes(items: [movieInfo])
+            SpotlightManager.shared.addIndexes(items: [movieInfo].map(SpotlightData.init))
         } else {
             let movieDetail = Movie(response: response)
             RealmManager.shared.saveData(item: movieDetail)
             movieInfo = movieDetail
-            SpotlightManager.shared.addIndexes(items: [movieDetail])
+            SpotlightManager.shared.addIndexes(items: [movieDetail].map(SpotlightData.init))
         }
         totalCell = calculateCell()
         view.loadFinished()
+    }
+    
+    func changeAlarm(isAlarm: Bool) {
+        RealmManager.shared.beginWrite()
+        movieInfo?.isAlarm = isAlarm
+        RealmManager.shared.commitWrite()
     }
     
     func webURL(with type: TheaterType) -> URL? {

@@ -139,10 +139,10 @@ extension SettingView: UITableViewDelegate {
                 let controller    = FeedbackViewController(configuration: configuration)
                 navigationController?.pushViewController(controller, animated: true)
             } else {
-                let url = URL(string: "http://pf.kakao.com/_xaPxkxau")
-                if let url = url, UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:])
-                }
+                UIPasteboard.general.string = "kor45cw@gmail.com"
+                let alert = UIAlertController(title: "메일 주소 복사 완료".localized, message: "클립보드에 저장된 이메일로 문의주세요".localized, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "확인".localized, style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         case (.etc, .version):
             guard let cell = tableView.cellForRow(at: indexPath) as? SettingCell,
