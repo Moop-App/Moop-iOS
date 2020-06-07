@@ -64,6 +64,10 @@ class MoviePresenter: NSObject {
                     .filter("now == true").sorted(byKeyPath: "score", ascending: true).compactMap { $0 }
                 self.futureMovieData.items = results.filter("now == false").sorted(byKeyPath: "getDay").compactMap { $0 }
                 self.filterItemChanged()
+                let items = Array(results).map(SpotlightData.init)
+                DispatchQueue.global(qos: .background).async {
+                    SpotlightManager.shared.addIndexes(items: items)
+                }
             case let .update(results, _, _, _):
                 self.currentMovieData.items = results.filter("now == true").sorted(byKeyPath: "score", ascending: true).compactMap { $0 }
                 self.futureMovieData.items = results.filter("now == false").sorted(byKeyPath: "getDay").compactMap { $0 }
@@ -258,6 +262,14 @@ extension MoviePresenter: MoviePresenterDelegate {
             willDeleteItem = futureMovieData.items.filter { !items.map { $0.id }.contains($0.id) }
             let targetItem = futureMovieData.items.filter { items.map { $0.id }.contains($0.id) }
             view.loadFinished(targetItem)
+        }
+        
+
+        let indexesItems = items.map(SpotlightData.init)
+        let deleteIds = willDeleteItem.map { $0.id }
+        DispatchQueue.global(qos: .background).async {
+            SpotlightManager.shared.addIndexes(items: indexesItems)
+            SpotlightManager.shared.removeIndexes(with: deleteIds)
         }
         RealmManager.shared.deleteData(items: willDeleteItem)
         RealmManager.shared.saveData(items: items)

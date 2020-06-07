@@ -56,5 +56,7 @@ class RealmManager {
         realm.objects(T.self).filter(predicate).first
     }
     
-    
+    func fetchDatas<T: Object>(predicate: NSPredicate) -> Results<T> {
+        realm.objects(T.self).filter(predicate)
+    }
 }

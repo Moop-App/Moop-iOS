@@ -49,6 +49,12 @@ class MovieView: UIViewController {
         collectionView.collectionViewLayout = createdLayout()
     }
     
+    func changeIndex(_ index: Int) {
+        if let view = collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 0)) as? MovieViewSegmentedControl {
+            view.setIndex(index)
+        }
+    }
+    
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Movie>(collectionView: collectionView) { (collectionView, indexPath, movie) -> UICollectionViewCell? in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as? MovieCell else { return UICollectionViewCell() }
@@ -58,7 +64,6 @@ class MovieView: UIViewController {
         
         dataSource.supplementaryViewProvider = { [weak self] (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "MovieViewSegmentedControl", for: indexPath) as? MovieViewSegmentedControl else { return nil }
-            
             header.delegate = self
             return header
         }

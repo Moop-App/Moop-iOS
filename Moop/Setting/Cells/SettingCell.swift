@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyStoreKit
 
 class SettingCell: UITableViewCell {
     
@@ -80,11 +79,8 @@ class SettingCell: UITableViewCell {
     }
     
     private func fetchProductInfo(_ item: String) {
-        SwiftyStoreKit.retrieveProductsInfo([item]) { [weak self] result in
-            if let product = result.retrievedProducts.first,
-                let priceString = product.localizedPrice {
-                self?.descriptionLabel.text = priceString
-            }
+        StoreKitManager.shared.fetchProductInfo { [weak self] in
+            self?.descriptionLabel.text = $0
         }
     }
     

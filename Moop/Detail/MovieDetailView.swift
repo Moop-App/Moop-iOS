@@ -25,7 +25,7 @@ class MovieDetailView: UIViewController {
     
     var presenter: MovieDetailPresenterDelegate!
     
-//    @IBOutlet private weak var favoriteButton: UIButton!
+    @IBOutlet private weak var alarmButton: UIBarButtonItem!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.register(MovieInfoPlotCell.self)
@@ -43,16 +43,15 @@ class MovieDetailView: UIViewController {
     
     @IBOutlet private weak var bannerWrpperView: UIView!
     @IBOutlet private weak var bannerViewHeightConstraint: NSLayoutConstraint!
-    private lazy var 광고모듈: AdManager = AdManager(배너광고타입: .상세, viewController: self, wrapperView: bannerWrpperView, 네이티브광고타입: .상세)
+    private lazy var 광고모듈: AdManager = AdManager(배너광고타입: .상세,
+                                                   viewController: self,
+                                                   wrapperView: bannerWrpperView,
+                                                   네이티브광고타입: .상세)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAd()
         presenter.viewDidLoad()
-        
-//        guard let ids = UserDefaults.standard.array(forKey: .favorites) as? [String] else { return }
-//        favoriteButton.tag = ids.contains(item?.id ?? "") ? 1 : 0
-//        favoriteButton.setImage(favoriteButton.tag == 1 ? UIImage(named: "heart_fill") : UIImage(named: "heart"), for: .normal)
     }
     
     private func configureAd() {
@@ -99,11 +98,18 @@ class MovieDetailView: UIViewController {
         share(sender: sender)
     }
     
-//    @IBAction private func favorite(_ sender: UIButton) {
-//        sender.tag = sender.tag == 0 ? 1 : 0
-//        sender.setImage(sender.tag == 1 ? UIImage(named: "heart_fill") : UIImage(named: "heart"), for: .normal)
-//        favorite(isAdd: sender.tag == 1)
-//    }
+    @IBAction private func alarm(_ sender: UIBarButtonItem) {
+        sender.tag = sender.tag == 0 ? 1 : 0
+        sender.image = sender.tag == 1 ? UIImage(systemName: "bell.fill") : UIImage(systemName: "bell")
+        alarm(isAdd: sender.tag == 1)
+    }
+    
+    private func alarm(isAdd: Bool) {
+        isAdd ? NotificationManager.shared.addNotification(item: presenter.movieInfo) :
+            NotificationManager.shared.removeNotification(item: presenter.movieInfo)
+        
+        presenter.changeAlarm(isAlarm: isAdd)
+    }
 }
 
 extension MovieDetailView: DetailHeaderDelegate {
@@ -128,25 +134,6 @@ extension MovieDetailView: DetailHeaderDelegate {
         present(viewController, animated: true, completion: nil)
     }
     
-//    func favorite(isAdd: Bool) {
-//        guard var array = UserDefaults.standard.array(forKey: .favorites) as? [String],
-//            let itemId = item?.id else {
-//                if isAdd {
-//                    UserDefaults.standard.set([item?.id ?? ""], forKey: .favorites)
-//                    NotificationManager.shared.addNotification(item: item)
-//                }
-//                return
-//        }
-//        if isAdd {
-//            array.append(itemId)
-//            NotificationManager.shared.addNotification(item: item)
-//        } else if let index = array.firstIndex(of: itemId) {
-//            array.remove(at: index)
-//            NotificationManager.shared.removeNotification(item: item)
-//        }
-//        UserDefaults.standard.set(array, forKey: .favorites)
-//    }
-    
     func poster(_ image: UIImage) {
         let posterViewController = PosterViewController.instance(image: image)
         posterViewController.modalPresentationStyle = .fullScreen
@@ -156,7 +143,9 @@ extension MovieDetailView: DetailHeaderDelegate {
 
 extension MovieDetailView: MovieDetailViewDelegate {
     func loadFinished() {
-        self.title = presenter.title
+        alarmButton.tag = presenter.isAlarm ? 1 : 0
+        alarmButton.image = alarmButton.tag == 1 ? UIImage(systemName: "bell.fill") : UIImage(systemName: "bell")
+        title = presenter.title
         if isAllowedToOpenStoreReview() {
             SKStoreReviewController.requestReview()
         }

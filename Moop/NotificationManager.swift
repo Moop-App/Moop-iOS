@@ -45,7 +45,7 @@ class NotificationManager: NSObject {
         }
     }
     
-    public func removeNotification(item: MovieResponse?) {
+    public func removeNotification(item: Movie?) {
         guard let item = item else { return }
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [item.id])
     }

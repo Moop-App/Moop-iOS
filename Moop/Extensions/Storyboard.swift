@@ -13,7 +13,7 @@ enum Storyboard: StoryboardName {
     case movie
     case detail
     case setting
-    case favorite
+    case alarm
     case filter
     
     var name: String {
@@ -22,7 +22,7 @@ enum Storyboard: StoryboardName {
         case .movie: return "Movie"
         case .detail: return "Detail"
         case .setting: return "Setting"
-        case .favorite: return "Favorite"
+        case .alarm: return "Alarm"
         case .filter: return "Filter"
         }
     }

@@ -1,0 +1,106 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "AcknowList",
+        "repositoryURL": "https://github.com/vtourraine/AcknowList",
+        "state": {
+          "branch": null,
+          "revision": "467c4cb1474fec99156d52671f0c5dc84b1ae315",
+          "version": "1.9.4"
+        }
+      },
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
+        "state": {
+          "branch": null,
+          "revision": "2777659076fda38bd4e487739ee331c7a65b5924",
+          "version": "5.2.1"
+        }
+      },
+      {
+        "package": "AlamofireNetworkActivityIndicator",
+        "repositoryURL": "https://github.com/Alamofire/AlamofireNetworkActivityIndicator",
+        "state": {
+          "branch": null,
+          "revision": "392bed083e8d193aca16bfa684ee24e4bcff0510",
+          "version": "3.1.0"
+        }
+      },
+      {
+        "package": "CTFeedbackSwift",
+        "repositoryURL": "https://github.com/rizumita/CTFeedbackSwift",
+        "state": {
+          "branch": null,
+          "revision": "acfb41759a05bcce12397a2674d0dabd9807788e",
+          "version": "0.1.8"
+        }
+      },
+      {
+        "package": "Facebook",
+        "repositoryURL": "https://github.com/facebook/facebook-ios-sdk",
+        "state": {
+          "branch": null,
+          "revision": "ebdfec2c8e7d440909334c7c12846409ee876328",
+          "version": "7.0.0"
+        }
+      },
+      {
+        "package": "FTLinearActivityIndicator",
+        "repositoryURL": "https://github.com/futuretap/FTLinearActivityIndicator",
+        "state": {
+          "branch": null,
+          "revision": "d8b196450f5d8b76369002c1178b47e00f1df81a",
+          "version": "1.3.1"
+        }
+      },
+      {
+        "package": "kor45cw-Extension",
+        "repositoryURL": "https://github.com/kor45cw/kor45cw-Extension",
+        "state": {
+          "branch": null,
+          "revision": "6aa322a82f9e35e42606c0cfc02d57393fb72766",
+          "version": "0.0.4"
+        }
+      },
+      {
+        "package": "Realm",
+        "repositoryURL": "https://github.com/realm/realm-cocoa",
+        "state": {
+          "branch": null,
+          "revision": "8cc4d9ea5815f34c39a518261f81a82ca3270b69",
+          "version": "5.0.2"
+        }
+      },
+      {
+        "package": "RealmCore",
+        "repositoryURL": "https://github.com/realm/realm-core",
+        "state": {
+          "branch": null,
+          "revision": "bc900a2a8e05722c1b42f95396adb3c99eeb500f",
+          "version": "6.0.6"
+        }
+      },
+      {
+        "package": "SDWebImage",
+        "repositoryURL": "https://github.com/SDWebImage/SDWebImage",
+        "state": {
+          "branch": null,
+          "revision": "5818cf70fde7e9e07e24196d0d54350bc8526f26",
+          "version": "5.8.0"
+        }
+      },
+      {
+        "package": "SwiftyStoreKit",
+        "repositoryURL": "https://github.com/bizz84/SwiftyStoreKit",
+        "state": {
+          "branch": null,
+          "revision": "6de7077c6cd15435c53d8ecfb1a09a371c83c4df",
+          "version": "0.15.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -10,7 +10,6 @@ import UIKit
 import AcknowList
 import MessageUI
 import CTFeedbackSwift
-import SwiftyStoreKit
 
 class SettingView: UIViewController {
     static func instance() -> SettingView {
@@ -68,7 +67,9 @@ class SettingView: UIViewController {
 }
 
 extension SettingView: SettingViewDelegate {
-    
+    func reload() {
+        tableView.reloadData()
+    }
 }
 
 extension SettingView: ScrollToTopDelegate {
@@ -123,9 +124,9 @@ extension SettingView: UITableViewDelegate {
         case (.inApp, .showAd):
             광고모듈.전면광고보여줘(isRandom: false)
         case (.inApp, .inApp):
-            purchase(item)
+            presenter.purchase(with: item.productId)
         case (.inApp, .restore):
-            restore()
+            presenter.restore()
         case (.etc, .showMap):
             self.performSegue(withIdentifier: "toMaps", sender: self)
         case (.etc, .openSource):
@@ -138,10 +139,10 @@ extension SettingView: UITableViewDelegate {
                 let controller    = FeedbackViewController(configuration: configuration)
                 navigationController?.pushViewController(controller, animated: true)
             } else {
-                let url = URL(string: "http://pf.kakao.com/_xaPxkxau")
-                if let url = url, UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:])
-                }
+                UIPasteboard.general.string = "kor45cw@gmail.com"
+                let alert = UIAlertController(title: "메일 주소 복사 완료".localized, message: "클립보드에 저장된 이메일로 문의주세요".localized, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "확인".localized, style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         case (.etc, .version):
             guard let cell = tableView.cellForRow(at: indexPath) as? SettingCell,
@@ -150,26 +151,6 @@ extension SettingView: UITableViewDelegate {
                 UIApplication.shared.open(url, options: [:])
             }
         default: return
-        }
-    }
-    
-    private func restore() {
-        SwiftyStoreKit.restorePurchases { [weak self] result in
-            guard !result.restoredPurchases.isEmpty else { return }
-            UserData.isAdFree = true
-            self?.tableView.reloadData()
-        }
-    }
-    
-    private func purchase(_ product: Section.Item) {
-        SwiftyStoreKit.purchaseProduct(product.productId, quantity: 1, atomically: true) { [weak self] result in
-            switch result {
-            case .success:
-                UserData.isAdFree = true
-                self?.tableView.reloadData()
-            case .error(let error):
-                print((error as NSError).localizedDescription)
-            }
         }
     }
 }

@@ -37,6 +37,11 @@ class MovieViewSegmentedControl: UICollectionReusableView {
         let index = sender.selectedSegmentIndex
         delegate?.trackSelected(index: index)
     }
+    
+    func setIndex(_ index: Int) {
+        segmentedControl.selectedSegmentIndex = index
+        delegate?.trackSelected(index: index)
+    }
 
     private func setupAnchors() {
         addSubview(segmentedControl)

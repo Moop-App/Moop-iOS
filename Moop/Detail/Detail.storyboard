@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8dK-cE-crg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8dK-cE-crg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
+        <deployment version="4864" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -46,18 +46,23 @@
                         <viewLayoutGuide key="safeArea" id="Gkk-dn-iW6"/>
                     </view>
                     <navigationItem key="navigationItem" id="Rlm-ig-vio">
-                        <barButtonItem key="rightBarButtonItem" image="share" style="plain" id="QB0-Yb-ihr">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6G8-mk-OSR">
-                                <rect key="frame" x="346" y="0.0" width="48" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="share"/>
+                        <rightBarButtonItems>
+                            <barButtonItem image="square.and.arrow.up" catalog="system" id="cLe-uv-Yi8">
+                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <connections>
-                                    <action selector="share:" destination="SUI-xH-IQ0" eventType="touchUpInside" id="n5k-Dp-O4l"/>
+                                    <action selector="share:" destination="SUI-xH-IQ0" id="FFR-r1-05J"/>
                                 </connections>
-                            </button>
-                        </barButtonItem>
+                            </barButtonItem>
+                            <barButtonItem image="bell" catalog="system" id="sgQ-LT-9ca">
+                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <connections>
+                                    <action selector="alarm:" destination="SUI-xH-IQ0" id="V6W-QS-EuH"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="alarmButton" destination="sgQ-LT-9ca" id="mh1-X6-5rf"/>
                         <outlet property="bannerViewHeightConstraint" destination="w67-fo-Bt0" id="QjR-wx-cfM"/>
                         <outlet property="bannerWrpperView" destination="zvD-Tp-9ab" id="lgn-J2-jer"/>
                         <outlet property="tableView" destination="kiH-Ej-Zcd" id="32k-i9-cOr"/>
@@ -87,6 +92,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="share" width="24" height="24"/>
+        <image name="bell" catalog="system" width="128" height="124"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
     </resources>
 </document>

@@ -10,6 +10,8 @@ import UIKit
 
 protocol SettingViewDelegate: class {
     var presenter: SettingPresenterDelegate! { get set }
+    
+    func reload()
 }
 
 protocol SettingPresenterDelegate: class {
@@ -18,4 +20,6 @@ protocol SettingPresenterDelegate: class {
     subscript(indexPath: IndexPath) -> (section: Section, item: Section.Item)? { get }
 
     func numberOfItemsInSection(_ section: Int) -> Int
+    func purchase(with productId: String)
+    func restore()
 }
