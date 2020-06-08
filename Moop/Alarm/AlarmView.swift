@@ -33,6 +33,7 @@ class AlarmView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "알림".localized
         configureDataSource()
         collectionView.collectionViewLayout = createdLayout()
     }

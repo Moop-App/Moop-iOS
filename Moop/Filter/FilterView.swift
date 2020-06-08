@@ -26,7 +26,7 @@ class FilterView: UIViewController {
     var presenter: FilterPresenterDelegate!
     weak var delegate: FilterChangeDelegate?
     
-    private lazy var 광고모듈: AdManager = AdManager(배너광고타입: .필터, viewController: self, wrapperView: 광고포장뷰, 네이티브광고타입: .상세)
+    private lazy var 광고모듈: AdManager = AdManager(배너광고타입: .필터, viewController: self, wrapperView: 광고포장뷰)
     
     override func viewDidLoad() {
         super.viewDidLoad()

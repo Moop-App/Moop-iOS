@@ -108,7 +108,7 @@ PODS:
     - nanopb/encode (= 1.30905.0)
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
-  - Nimble (8.0.9)
+  - Nimble (8.1.0)
   - PromisesObjC (1.2.8)
   - Protobuf (3.12.0)
   - Quick (2.2.0)
@@ -183,7 +183,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   mopub-ios-sdk: d1640225b34ad74700e2acddb116cac634fc45d8
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
-  Nimble: 98b888285a615fd34f20e61753cf58ea1402bde4
+  Nimble: dc2fe319733797b05d453f19f5508ca6bcd88f04
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e

@@ -641,14 +641,14 @@
 		A08F85C024417EEB0086F676 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				A08F85C124417EEB0086F676 /* NativeAdFacebookView.xib */,
 				A08F85C224417EEB0086F676 /* NativeAdView.swift */,
+				A08F85C724417EEB0086F676 /* NativeAdView.xib */,
 				A08F85C324417EEB0086F676 /* NativeAdGoogleView.swift */,
 				A08F85C424417EEB0086F676 /* NativeAdGoogleView.xib */,
-				A08F85C524417EEB0086F676 /* NativeAdMasterCell.xib */,
-				A08F85C624417EEB0086F676 /* NativeAdMasterCell.swift */,
-				A08F85C724417EEB0086F676 /* NativeAdView.xib */,
 				A08F85C824417EEB0086F676 /* NativeAdFacebookView.swift */,
+				A08F85C124417EEB0086F676 /* NativeAdFacebookView.xib */,
+				A08F85C624417EEB0086F676 /* NativeAdMasterCell.swift */,
+				A08F85C524417EEB0086F676 /* NativeAdMasterCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
