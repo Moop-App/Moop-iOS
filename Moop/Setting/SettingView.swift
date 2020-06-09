@@ -28,7 +28,8 @@ class SettingView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        광고모듈 = AdManager(배너광고타입: .설정, viewController: self, wrapperView: 광고포장뷰, 전면광고타입: .설정, 네이티브광고타입: .상세)
+        title = "설정".localized
+        광고모듈 = AdManager(배너광고타입: .설정, viewController: self, wrapperView: 광고포장뷰, 전면광고타입: .설정)
         
         guard !UserData.isAdFree else {
             광고포장뷰.removeFromSuperview()
