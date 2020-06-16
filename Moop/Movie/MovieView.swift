@@ -137,6 +137,8 @@ extension MovieView: MovieViewDelegate {
         snapshot.appendSections([.main])
         snapshot.appendItems(movies)
         dataSource.apply(snapshot, animatingDifferences: true)
+        
+        presenter.updateIndexes()
     }
     
     func loadFailed() {
