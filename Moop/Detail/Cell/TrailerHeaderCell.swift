@@ -14,6 +14,8 @@ class TrailerHeaderCell: UITableViewCell, NibLoadableView {
     @IBOutlet private weak var wrapperView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
 
+    weak var delegate: DetailHeaderDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
@@ -25,5 +27,9 @@ class TrailerHeaderCell: UITableViewCell, NibLoadableView {
     
     func set(_ title: String) {
         titleLabel.text = "'\(title) 예고편' 검색 결과"
+    }
+    
+    @IBAction private func youtubePrivacy(_ sender: UIButton) {
+        delegate?.privacy()
     }
 }
