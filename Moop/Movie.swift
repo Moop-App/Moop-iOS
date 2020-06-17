@@ -121,6 +121,23 @@ class Movie: Object {
         trailers.append(objectsIn: detailResponse.trailers?.map(Trailer.init) ?? [])
         isUpdatedDetailInfo = true
     }
+    
+    
+    func set(movie response: MovieResponse) {
+        score = response.score
+        title = response.title
+        posterURL = response.posterUrl
+        openDate = response.openDate
+        now = response.now
+        age = response.age
+        nationFilter.append(objectsIn: response.nationFilter ?? [])
+        genres.append(objectsIn: response.genres ?? [])
+        boxOfficeScore.value = response.boxOffice
+        cgv = response.theater["C"]
+        lotte = response.theater["L"]
+        megabox = response.theater["M"]
+        getDay = response.getDay
+    }
 }
 
 extension Movie {
