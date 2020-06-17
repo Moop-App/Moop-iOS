@@ -37,8 +37,12 @@ class RealmManager {
     
     func saveData(item: Movie?) {
         guard let item = item else { return }
-        try? realm.write {
+        if realm.isInWriteTransaction {
             realm.add(item, update: .modified)
+        } else {
+            try? realm.write {
+                realm.add(item, update: .modified)
+            }
         }
     }
     

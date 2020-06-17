@@ -42,8 +42,8 @@ class SpotlightManager {
     func application(continue userActivity: NSUserActivity,
                      rootViewController: UIViewController?) {
         guard userActivity.activityType == CSSearchableItemActionType,
-        let identifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String,
-        let rootViewController = rootViewController as? MainTabBarController else { return }
+            let identifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String,
+            let rootViewController = rootViewController as? MainTabBarController else { return }
         
         guard let navi = rootViewController.selectedViewController as? UINavigationController else { return }
         
@@ -52,11 +52,9 @@ class SpotlightManager {
     }
     
     func addIndexes(items: [SpotlightData]) {
-        DispatchQueue.global(qos: .background).async {
-            items.forEach { movie in
-                self.fetchThumbnail(with: movie.posterURL) { [weak self] imageData in
-                    self?.indexItem(with: movie, image: imageData)
-                }
+        items.forEach { movie in
+            self.fetchThumbnail(with: movie.posterURL) { [weak self] imageData in
+                self?.indexItem(with: movie, image: imageData)
             }
         }
     }
@@ -84,13 +82,11 @@ class SpotlightManager {
     }
     
     func removeIndexes(with ids: [String]) {
-        DispatchQueue.global(qos: .background).async {
-            CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: ids) { error in
-                if let error = error {
-                    print("Indexing error: \(error.localizedDescription)")
-                } else {
-                    print("Search item successfully deleted!")
-                }
+        CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: ids) { error in
+            if let error = error {
+                print("Indexing error: \(error.localizedDescription)")
+            } else {
+                print("Search item successfully deleted!")
             }
         }
     }

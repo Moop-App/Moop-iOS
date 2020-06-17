@@ -31,7 +31,6 @@ protocol MoviePresenterDelegate: class {
     func viewDidLoad()
     func updateState(_ index: Int)
     func fetchDatas()
-    func updateIndexes()
     
     func fetchContextMenus(item: Movie?) -> [UIAction]
 }

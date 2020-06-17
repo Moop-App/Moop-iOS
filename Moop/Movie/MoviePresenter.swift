@@ -117,14 +117,6 @@ extension MoviePresenter: MoviePresenterDelegate {
         checkCurrentUpdateTime()
     }
     
-    func updateIndexes() {
-        let movieDatas = self.currentMovieData.items + self.futureMovieData.items
-        let items = movieDatas.map(SpotlightData.init)
-        DispatchQueue.global(qos: .background).async {
-            SpotlightManager.shared.addIndexes(items: items)
-        }
-    }
-    
     func fetchContextMenus(item: Movie?) -> [UIAction] {
         guard let item = item else { return [] }
         var menus: [UIAction] = []
@@ -172,13 +164,13 @@ extension MoviePresenter: MoviePresenterDelegate {
     }
     
     private func checkCurrentUpdateTime() {
-        requestCurrentUpdateTime { [weak self] isUpdatedRequire in
-            if isUpdatedRequire {
-                self?.fetchCurrentDatas()
-            } else {
-                self?.filterItemChanged()
-            }
-        }
+//        requestCurrentUpdateTime { [weak self] isUpdatedRequire in
+//            if isUpdatedRequire {
+                fetchCurrentDatas()
+//            } else {
+//                self?.filterItemChanged()
+//            }
+//        }
     }
     
     private func requestCurrentUpdateTime(completionHandler: @escaping (Bool) -> Void) {
@@ -199,15 +191,8 @@ extension MoviePresenter: MoviePresenterDelegate {
             guard let self = self else { return }
             switch result {
             case .success(let result):
-                let movies = result.map { item -> Movie in
-                    if let movie: Movie = RealmManager.shared.fetchData(predicate: NSPredicate(format: "id = %@", item.id)) {
-                        movie.set(movie: item)
-                        return movie
-                    }
-                    return Movie(response: item)
-                }.map { ThreadSafeReference(to: $0) }
-                if !movies.isEmpty {
-                    self.saveData(items: movies, type: .current)
+                if !result.isEmpty {
+                    self.saveData(items: result.map { Movie(response: $0) }, type: .current)
                 } else {
                     self.filterItemChanged()
                 }
@@ -218,13 +203,13 @@ extension MoviePresenter: MoviePresenterDelegate {
     }
     
     private func checkFutureUpdateTime() {
-        requestFutureUpdateTime { [weak self] isUpdatedRequire in
-            if isUpdatedRequire {
-                self?.fetchFutureDatas()
-            } else {
-                self?.filterItemChanged()
-            }
-        }
+//        requestFutureUpdateTime { [weak self] isUpdatedRequire in
+//            if isUpdatedRequire {
+                fetchFutureDatas()
+//            } else {
+//                self?.filterItemChanged()
+//            }
+//        }
     }
     
     private func requestFutureUpdateTime(completionHandler: @escaping (Bool) -> Void) {
@@ -245,15 +230,8 @@ extension MoviePresenter: MoviePresenterDelegate {
             guard let self = self else { return }
             switch result {
             case .success(let result):
-                let movies = result.map { item -> Movie in
-                    if let movie: Movie = RealmManager.shared.fetchData(predicate: NSPredicate(format: "id = %@", item.id)) {
-                        movie.set(movie: item)
-                        return movie
-                    }
-                    return Movie(response: item)
-                }.map { ThreadSafeReference(to: $0) }
-                if !movies.isEmpty {
-                    self.saveData(items: movies, type: .future)
+                if !result.isEmpty {
+                    self.saveData(items: result.map { Movie(response: $0) }, type: .future)
                 } else {
                     self.filterItemChanged()
                 }
@@ -267,9 +245,7 @@ extension MoviePresenter: MoviePresenterDelegate {
         state = MovieType(rawValue: index) ?? .current
     }
     
-    private func saveData(items: [ThreadSafeReference<Movie>], type: MovieType) {
-        let realm = try? Realm()
-        let items = items.compactMap { realm?.resolve($0) }
+    private func saveData(items: [Movie], type: MovieType) {
         var willDeleteItem: [Movie] = []
         switch type {
         case .current:
@@ -283,10 +259,18 @@ extension MoviePresenter: MoviePresenterDelegate {
         }
         
         let deleteIds = willDeleteItem.map { $0.id }
-        DispatchQueue.global(qos: .background).async {
-            SpotlightManager.shared.removeIndexes(with: deleteIds)
-        }
+        SpotlightManager.shared.removeIndexes(with: deleteIds)
+        
         RealmManager.shared.deleteData(items: willDeleteItem)
-        RealmManager.shared.saveData(items: items)
+        RealmManager.shared.beginWrite()
+        items.forEach {
+            if let movie: Movie = RealmManager.shared.fetchData(predicate: NSPredicate(format: "id = %@", $0.id)) {
+                movie.set(movie: $0)
+                return
+            } else {
+                RealmManager.shared.saveData(item: $0)
+            }
+        }
+        RealmManager.shared.commitWrite()
     }
 }
