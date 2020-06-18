@@ -70,14 +70,4 @@ class MovieInfoManager {
             }
         }
     }
-    
-    func favorites() -> [MovieResponse] {
-//        guard let ids = UserDefaults.standard.array(forKey: .favorites) as? [String] else { return [] }
-        var infos: [MovieResponse] = []
-        
-//        infos.append(contentsOf: currentDatas.filter({ ids.contains($0.id) }))
-//        infos.append(contentsOf: futureDatas.filter({ ids.contains($0.id) }))
-
-        return infos
-    }
 }

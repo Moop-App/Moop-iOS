@@ -123,19 +123,21 @@ class Movie: Object {
     }
     
     
-    func set(movie response: MovieResponse) {
+    func set(movie response: Movie) {
         score = response.score
         title = response.title
-        posterURL = response.posterUrl
+        posterURL = response.posterURL
         openDate = response.openDate
         now = response.now
         age = response.age
-        nationFilter.append(objectsIn: response.nationFilter ?? [])
-        genres.append(objectsIn: response.genres ?? [])
-        boxOfficeScore.value = response.boxOffice
-        cgv = response.theater["C"]
-        lotte = response.theater["L"]
-        megabox = response.theater["M"]
+        nationFilter.removeAll()
+        nationFilter.append(objectsIn: response.nationFilter)
+        genres.removeAll()
+        genres.append(objectsIn: response.genres)
+        boxOfficeScore.value = response.boxOfficeScore.value
+        cgv = response.cgv
+        lotte = response.lotte
+        megabox = response.megabox
         getDay = response.getDay
     }
 }

@@ -14,6 +14,7 @@ import kor45cw_Extension
 protocol DetailHeaderDelegate: class {
     func wrapper(type: TheaterType)
     func poster(_ image: UIImage)
+    func privacy()
 }
 
 class MovieDetailView: UIViewController {
@@ -139,6 +140,12 @@ extension MovieDetailView: DetailHeaderDelegate {
         posterViewController.modalPresentationStyle = .fullScreen
         self.present(posterViewController, animated: true)
     }
+    
+    func privacy() {
+        guard let url = URL(string: "https://policies.google.com/privacy") else { return }
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true, completion: nil)
+    }
 }
 
 extension MovieDetailView: MovieDetailViewDelegate {
@@ -196,6 +203,7 @@ extension MovieDetailView: UITableViewDataSource {
         case .trailerHeader:
             let cell: TrailerHeaderCell = tableView.dequeueReusableCell(for: indexPath)
             cell.set(presenter.title)
+            cell.delegate = self
             return cell
         case .trailer(let trailerInfo):
             let cell: TrailerCell = tableView.dequeueReusableCell(for: indexPath)
