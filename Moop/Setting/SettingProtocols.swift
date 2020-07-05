@@ -22,4 +22,5 @@ protocol SettingPresenterDelegate: class {
     func numberOfItemsInSection(_ section: Int) -> Int
     func purchase(with productId: String)
     func restore()
+    func rateApp()
 }

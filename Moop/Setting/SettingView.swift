@@ -130,6 +130,8 @@ extension SettingView: UITableViewDelegate {
             presenter.restore()
         case (.etc, .showMap):
             self.performSegue(withIdentifier: "toMaps", sender: self)
+        case (.etc, .rating):
+            presenter.rateApp()
         case (.etc, .openSource):
             let path = Bundle.main.path(forResource: "Pods-Moop-acknowledgements", ofType: "plist")
             let viewController = AcknowListViewController(acknowledgementsPlistPath: path)
