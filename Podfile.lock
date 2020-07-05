@@ -2,7 +2,7 @@ PODS:
   - AdFitSDK (3.4.2)
   - FBAudienceNetwork (5.9.0):
     - FBSDKCoreKit/Basics (>= 5.6.0)
-  - FBSDKCoreKit/Basics (7.0.1)
+  - FBSDKCoreKit/Basics (7.1.1)
   - Firebase/AdMob (6.27.0):
     - Firebase/CoreOnly
     - Google-Mobile-Ads-SDK (~> 7.50)
@@ -156,7 +156,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AdFitSDK: 7132921b1b562d559b9ef19002547f337e954e31
   FBAudienceNetwork: 648648b13d8ea3d39676542dece2b04dbe867497
-  FBSDKCoreKit: 9cc05bec0568a5955c82eb59ae95da0fe125b88d
+  FBSDKCoreKit: b46507dc8b8cefed31d644e74d7cc30e2a715ef8
   Firebase: fc4cbf6f1592636431821ef9a3c557e4dfd9f268
   FirebaseAnalytics: 0ea640473474f036cabbc2576e20c2d63671c92f
   FirebaseCore: feda061cb1ee6d8ad4824f4a4a8ffbcfe284f595
