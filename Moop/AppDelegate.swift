@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         librarySetup()
         debugSettings()
         ShortcutManager.shared.application(didFinishLaunchingWithOptions: launchOptions)
-        NotificationManager.shared.register(application)
         return true
     }
     
@@ -57,6 +56,7 @@ extension AppDelegate {
         AdManager.librarySetup()
         APISetupManager.setup()
         StoreKitManager.shared.setup()
+        NotificationManager.shared.register()
     }
     
     private func debugSettings() {

@@ -16,15 +16,18 @@ class NotificationManager: NSObject {
     
     private override init() { }
     
-    func register(_ application: UIApplication) {
+    func register() {
         // [START set_messaging_delegate]
         Messaging.messaging().delegate = self
         // [END set_messaging_delegate]
         
         UNUserNotificationCenter.current().delegate = self
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound],
-                                                                completionHandler: {_, _ in })
-        application.registerForRemoteNotifications()
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (_, error) in
+            guard error == nil else { return }
+            DispatchQueue.main.async(execute: {
+                UIApplication.shared.registerForRemoteNotifications()
+            })
+        }
     }
     
     public func addNotification(item: Movie?) {
@@ -33,6 +36,9 @@ class NotificationManager: NSObject {
         content.title = "오늘개봉작".localized
         content.body = "\(item.title)\n\("뭅에서확인하세요".localized)"
         content.sound = UNNotificationSound.default
+        content.summaryArgument = "개봉한 영화 목록".localized
+        content.summaryArgumentCount = 5
+        
         let triggerDate = Calendar.current.dateComponents([.year,.month,.day], from: item.releaseDate)
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
         
@@ -48,6 +54,17 @@ class NotificationManager: NSObject {
     public func removeNotification(item: Movie?) {
         guard let item = item else { return }
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [item.id])
+    }
+    
+    public func isAuthroized(completionHandler: @escaping (Bool) -> Void) {
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            completionHandler([.authorized, .provisional].contains(settings.authorizationStatus))
+        }
+    }
+    
+    public func unregisterNotification() {
+        UIApplication.shared.unregisterForRemoteNotifications()
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 }
 
@@ -104,4 +121,12 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
         
         completionHandler()
     }
+    
+//    func userNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {
+//        guard let currentViewController = UIApplication.shared.windows.first?.rootViewController else { return }
+//
+//        let settingsViewController = UIViewController()
+//        settingsViewController.view.backgroundColor = .gray
+//        currentViewController.present(settingsViewController, animated: true, completion: nil)
+//    }
 }

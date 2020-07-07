@@ -30,7 +30,7 @@ enum Section: CaseIterable {
     var contents: [Item] {
         switch self {
         case .inApp: return UserData.isAdFree ? [.header, .showAd] : [.header, .showAd, .inApp, .restore]
-        case .etc: return [.header, .showMap, .rating, .openSource, .bugReport, .version, .footer]
+        case .etc: return [.header, .showMap, .alarm, .rating, .openSource, .bugReport, .version, .footer]
         }
     }
     
@@ -38,7 +38,7 @@ enum Section: CaseIterable {
         case header
         case showAd
         case inApp, restore
-        case showMap, rating, openSource, bugReport, version
+        case showMap, alarm, rating, openSource, bugReport, version
         case footer
         
         var productId: String {
@@ -54,6 +54,7 @@ enum Section: CaseIterable {
             case .inApp: return "🎊 광고제거 구매".localized
             case .restore: return "🧧 구매복원".localized
             case .showMap: return "🗺 극장위치 확인하기".localized
+            case .alarm: return "🛎 알람설정".localized
             case .rating: return "🎖 앱 평가하기".localized
             case .openSource: return "💡오픈소스".localized
             case .bugReport: return "⚒ 버그 신고 및 문의".localized

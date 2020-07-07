@@ -130,6 +130,8 @@ extension SettingView: UITableViewDelegate {
             presenter.restore()
         case (.etc, .showMap):
             self.performSegue(withIdentifier: "toMaps", sender: self)
+        case (.etc, .alarm):
+            showNotificationSettingAlert()
         case (.etc, .rating):
             presenter.rateApp()
         case (.etc, .openSource):
@@ -155,6 +157,19 @@ extension SettingView: UITableViewDelegate {
             }
         default: return
         }
+    }
+    
+    func showNotificationSettingAlert() {
+        let alert = UIAlertController(title: nil, message: "노티 권한을 변경하기 위해서는 앱 설정으로 이동해야합니다.".localized, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Settings", style: .destructive) { _ in
+            DispatchQueue.main.async {
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString),
+                    UIApplication.shared.canOpenURL(settingsUrl) else { return }
+                UIApplication.shared.open(settingsUrl)
+            }
+        })
+        alert.addAction(UIAlertAction(title: "취소".localized, style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
 
