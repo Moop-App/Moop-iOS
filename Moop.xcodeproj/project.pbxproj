@@ -1733,7 +1733,7 @@
 			repositoryURL = "https://github.com/realm/realm-cocoa";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.2;
+				minimumVersion = 5.2.0;
 			};
 		};
 		A0BA7CAC2488E55500CB2D45 /* XCRemoteSwiftPackageReference "kor45cw-Extension" */ = {
@@ -1781,7 +1781,7 @@
 			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.15.1;
+				minimumVersion = 0.16.0;
 			};
 		};
 		A0BA7CBE2488E67A00CB2D45 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
@@ -1789,7 +1789,7 @@
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.8.0;
+				minimumVersion = 5.8.3;
 			};
 		};
 		A0BA7CC12488E79800CB2D45 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
@@ -1797,7 +1797,7 @@
 			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
+				minimumVersion = 7.1.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
