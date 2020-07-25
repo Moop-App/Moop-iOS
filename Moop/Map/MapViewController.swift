@@ -17,22 +17,24 @@ class MapViewController: UIViewController {
             routeView.delegate = self
         }
     }
-    @IBOutlet private weak var mapView: MKMapView! {
+    @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet private weak var searchView: UIView! {
         didSet {
-            mapView.delegate = self
-            mapView.mapType = .standard
-            mapView.showsUserLocation = true
-            mapView.isZoomEnabled = true
-            mapView.isScrollEnabled = true
+            searchView.elevate(elevation: 1)
         }
     }
-
+    @IBOutlet private weak var textField: FormTextField! {
+        didSet {
+            textField.delegate = self
+        }
+    }
     private let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.requestWhenInUseAuthorization()
+        
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
 
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
@@ -57,6 +59,46 @@ class MapViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
+    }
+}
+
+extension MapViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard !textField.text.isNilOrEmpty else { return false }
+        textField.endEditing(true)
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let text = textField.text,
+            let item = mapView.annotations.first(where: { $0.title??.contains(text) ?? false }) else {
+                return
+        }
+        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+        mapView.setRegion(MKCoordinateRegion(center: item.coordinate, span: span), animated: true)
+        mapView.selectAnnotation(item, animated: true)
+        
+        routeView.annotation = item
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+            self.routeView.transform = CGAffineTransform(translationX: 0, y: -200)
+        }, completion: nil)
     }
 }
 
@@ -166,5 +208,21 @@ extension MapViewController: RouteDelegate {
             let theater = routeView.annotation as? TheaterMapInfo,
             let url = URL(string: "comgooglemaps://?saddr=\(locValue.latitude),\(locValue.longitude)&daddr=\(theater.lat),\(theater.lng)&directionsmode=transit") else { return }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+}
+
+class FormTextField: UITextField {
+    @IBInspectable var inset: CGFloat = 0
+    
+    override open func textRect(forBounds bounds: CGRect) -> CGRect {
+        bounds.inset(by: UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset))
+    }
+    
+    override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        bounds.inset(by: UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset))
+    }
+    
+    override open func editingRect(forBounds bounds: CGRect) -> CGRect {
+        bounds.inset(by: UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset))
     }
 }

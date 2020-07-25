@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
         "state": {
           "branch": null,
-          "revision": "2777659076fda38bd4e487739ee331c7a65b5924",
-          "version": "5.2.1"
+          "revision": "becd9a729a37bdbef5bc39dc3c702b99f9e3d046",
+          "version": "5.2.2"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/facebook/facebook-ios-sdk",
         "state": {
           "branch": null,
-          "revision": "ebdfec2c8e7d440909334c7c12846409ee876328",
-          "version": "7.0.0"
+          "revision": "a3ef4451928249e18bb3ae5b7cb906134ed63b26",
+          "version": "7.1.1"
         }
       },
       {
@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/realm/realm-cocoa",
         "state": {
           "branch": null,
-          "revision": "8cc4d9ea5815f34c39a518261f81a82ca3270b69",
-          "version": "5.0.2"
+          "revision": "5d296d8a3750ac86e731263b44e2ba0c3c85f2cb",
+          "version": "5.3.2"
         }
       },
       {
@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/realm/realm-core",
         "state": {
           "branch": null,
-          "revision": "bc900a2a8e05722c1b42f95396adb3c99eeb500f",
-          "version": "6.0.6"
+          "revision": "55a0d32516c0f3a5fd3ab8c0224ee22efcc7cd58",
+          "version": "6.0.12"
         }
       },
       {
@@ -87,8 +87,8 @@
         "repositoryURL": "https://github.com/SDWebImage/SDWebImage",
         "state": {
           "branch": null,
-          "revision": "5818cf70fde7e9e07e24196d0d54350bc8526f26",
-          "version": "5.8.0"
+          "revision": "2f9ef53b99a25bdfba97660c69c42cb54e323b78",
+          "version": "5.8.4"
         }
       },
       {
@@ -96,8 +96,8 @@
         "repositoryURL": "https://github.com/bizz84/SwiftyStoreKit",
         "state": {
           "branch": null,
-          "revision": "6de7077c6cd15435c53d8ecfb1a09a371c83c4df",
-          "version": "0.15.1"
+          "revision": "9974acf07b31b6f5bf363d5118dc1bd4fcac6122",
+          "version": "0.16.1"
         }
       }
     ]

@@ -48,4 +48,10 @@ extension SettingPresenter: SettingPresenterDelegate {
             view?.reload()
         }
     }
+    
+    func rateApp() {
+        let urlStr = "https://itunes.apple.com/app/id1464896856?action=write-review"
+        guard let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
 }

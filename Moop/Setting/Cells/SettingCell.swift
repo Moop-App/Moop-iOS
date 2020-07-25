@@ -92,6 +92,14 @@ class SettingCell: UITableViewCell {
         switch item {
         case .showMap:
             isFirst = true
+        case .alarm:
+            iconImage.isHidden = true
+            NotificationManager.shared.isAuthroized { [weak self] isAuthroized in
+                DispatchQueue.main.async {
+                    self?.descriptionLabel.isHidden = false
+                    self?.descriptionLabel.text = isAuthroized ? "On" : "Off"
+                }
+            }
             
         case .version:
             isLast = true

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6sY-RN-SxI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6sY-RN-SxI">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <deployment version="4864" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,8 +16,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ajw-J5-3wA">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ajw-J5-3wA">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <connections>
+                                    <outlet property="delegate" destination="E56-jo-Uog" id="1Ba-Az-3q4"/>
+                                </connections>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mJE-gg-wma" customClass="MapRouteView" customModule="DEV_Moop" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="896" width="414" height="200"/>
@@ -37,47 +39,60 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJh-oW-AJG">
-                                        <rect key="frame" x="280" y="1" width="118" height="165"/>
+                                        <rect key="frame" x="306" y="1" width="92" height="165"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BFK-Hk-cYv">
-                                                <rect key="frame" x="0.0" y="45.5" width="118" height="74"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="BFK-Hk-cYv">
+                                                <rect key="frame" x="0.0" y="36.5" width="92" height="92"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="NrP-NL-r1N">
-                                                        <rect key="frame" x="0.0" y="0.0" width="118" height="33"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="NrP-NL-r1N">
+                                                        <rect key="frame" x="0.0" y="0.0" width="92" height="40"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sj-Yf-mmm">
-                                                                <rect key="frame" x="0.0" y="0.0" width="55" height="33"/>
-                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                                <state key="normal" title="Kakao"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sj-Yf-mmm">
+                                                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="0dw-rZ-jKV"/>
+                                                                    <constraint firstAttribute="width" constant="40" id="LN7-kc-4aW"/>
+                                                                </constraints>
+                                                                <state key="normal" image="kakaotalk"/>
                                                                 <connections>
                                                                     <action selector="route:" destination="mJE-gg-wma" eventType="touchUpInside" id="jgc-vd-Bor"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2T-Py-VWc">
-                                                                <rect key="frame" x="63" y="0.0" width="55" height="33"/>
-                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                                <state key="normal" title="Naver"/>
+                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2T-Py-VWc">
+                                                                <rect key="frame" x="52" y="0.0" width="40" height="40"/>
+                                                                <color key="backgroundColor" red="0.37254901960784315" green="0.77647058823529413" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <state key="normal" image="naver"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="8"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="route:" destination="mJE-gg-wma" eventType="touchUpInside" id="Sfp-YR-18b"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="w7m-1L-WJ1">
-                                                        <rect key="frame" x="0.0" y="41" width="118" height="33"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="w7m-1L-WJ1">
+                                                        <rect key="frame" x="0.0" y="52" width="92" height="40"/>
                                                         <subviews>
-                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5GI-tf-NFG">
-                                                                <rect key="frame" x="0.0" y="0.0" width="55" height="33"/>
-                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                                <state key="normal" title="Google"/>
+                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5GI-tf-NFG">
+                                                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                                <state key="normal" image="google"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="8"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="route:" destination="mJE-gg-wma" eventType="touchUpInside" id="hg4-k7-uY4"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKs-ZI-eQc">
-                                                                <rect key="frame" x="63" y="0.0" width="55" height="33"/>
-                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                                <state key="normal" title="Apple"/>
+                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKs-ZI-eQc">
+                                                                <rect key="frame" x="52" y="0.0" width="40" height="40"/>
+                                                                <state key="normal" image="apple">
+                                                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
                                                                 <connections>
                                                                     <action selector="route:" destination="mJE-gg-wma" eventType="touchUpInside" id="lZq-L6-ryc"/>
                                                                 </connections>
@@ -115,6 +130,34 @@
                                     <outlet property="titleLabel" destination="8UO-tK-lqt" id="s0Q-jv-zPW"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gJu-LL-8Xo">
+                                <rect key="frame" x="8" y="148" width="398" height="48"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="극장명을 입력하세요" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tO6-22-chI" customClass="FormTextField" customModule="DEV_Moop" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="398" height="48"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="inset">
+                                                <real key="value" value="16"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="tO6-22-chI" secondAttribute="trailing" id="Bzc-iP-eq7"/>
+                                    <constraint firstItem="tO6-22-chI" firstAttribute="leading" secondItem="gJu-LL-8Xo" secondAttribute="leading" id="IZC-Os-FFt"/>
+                                    <constraint firstItem="tO6-22-chI" firstAttribute="top" secondItem="gJu-LL-8Xo" secondAttribute="top" id="OE2-Pu-bjz"/>
+                                    <constraint firstAttribute="height" constant="48" id="VTq-ev-jdg"/>
+                                    <constraint firstAttribute="bottom" secondItem="tO6-22-chI" secondAttribute="bottom" id="yhF-cM-WOg"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -123,8 +166,11 @@
                             <constraint firstItem="mJE-gg-wma" firstAttribute="leading" secondItem="fny-sA-8qb" secondAttribute="leading" id="HJz-lV-LNR"/>
                             <constraint firstAttribute="bottom" secondItem="ajw-J5-3wA" secondAttribute="bottom" id="OvF-a6-epO"/>
                             <constraint firstAttribute="bottom" secondItem="mJE-gg-wma" secondAttribute="bottom" constant="-200" id="bgB-8M-pDF"/>
+                            <constraint firstItem="gJu-LL-8Xo" firstAttribute="leading" secondItem="6sA-T9-SPX" secondAttribute="leading" constant="8" id="l0t-II-Kgi"/>
                             <constraint firstItem="ajw-J5-3wA" firstAttribute="top" secondItem="fny-sA-8qb" secondAttribute="top" id="w8z-dg-cfX"/>
                             <constraint firstAttribute="trailing" secondItem="mJE-gg-wma" secondAttribute="trailing" id="wpu-XV-5aI"/>
+                            <constraint firstItem="gJu-LL-8Xo" firstAttribute="top" secondItem="6sA-T9-SPX" secondAttribute="top" constant="8" id="wz8-Il-Pbo"/>
+                            <constraint firstItem="6sA-T9-SPX" firstAttribute="trailing" secondItem="gJu-LL-8Xo" secondAttribute="trailing" constant="8" id="xVn-7A-8nI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6sA-T9-SPX"/>
                     </view>
@@ -132,6 +178,8 @@
                     <connections>
                         <outlet property="mapView" destination="ajw-J5-3wA" id="hAD-5Q-Ts5"/>
                         <outlet property="routeView" destination="mJE-gg-wma" id="dce-bS-bk7"/>
+                        <outlet property="searchView" destination="gJu-LL-8Xo" id="wjV-SH-WtP"/>
+                        <outlet property="textField" destination="tO6-22-chI" id="eZH-Ru-sQT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yEx-GP-umQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -174,7 +222,7 @@
                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingHeaderCell" id="vsL-TZ-AZw" customClass="SettingHeaderCell" customModule="Currency" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingHeaderCell" id="vsL-TZ-AZw" customClass="SettingHeaderCell" customModule="DEV_Moop" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="68.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vsL-TZ-AZw" id="pbJ-Td-Y1z">
@@ -200,7 +248,7 @@
                                             <outlet property="titleLabel" destination="xbE-VR-rwX" id="ZSe-Zn-eAy"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingCell" id="pEG-B9-60s" customClass="SettingCell" customModule="Currency" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingCell" id="pEG-B9-60s" customClass="SettingCell" customModule="DEV_Moop" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="96.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pEG-B9-60s" id="Z5V-n8-fWi">
@@ -293,7 +341,7 @@
                                             <outlet property="titleLabel" destination="CKa-ON-5gZ" id="KNx-tq-SMS"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingFooterCell" id="pWS-dx-PvU" customClass="SettingFooterCell" customModule="Currency" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingFooterCell" id="pWS-dx-PvU" customClass="SettingFooterCell" customModule="DEV_Moop" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="140.5" width="414" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pWS-dx-PvU" id="JSN-VJ-wqQ">
@@ -359,6 +407,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="apple" width="1024" height="1024"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <image name="google" width="80" height="80"/>
+        <image name="kakaotalk" width="34" height="34.5"/>
+        <image name="naver" width="19" height="18"/>
     </resources>
 </document>
